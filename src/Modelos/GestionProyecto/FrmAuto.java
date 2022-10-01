@@ -67,20 +67,20 @@ public class FrmAuto extends FrmGenerica {
 
     public void setTxtCosto(JTextField txtCosto) {
         this.txtCosto = txtCosto;
-       // int costo= Integer.parseInt( txtCosto.getText());
-        //costo=(int) (costo+costo*0.2);
-        //cadena total= Integer.toString(costo);
-        //total= new JTextField(total, 5);
-       // textField.setText(Integer.toString(costo));
-      //  this.setTxtTotal(JTextField total);
+        int costo= Integer.parseInt( txtCosto.getText());
+        costo=(int) (costo+costo*2);
+        String total= Integer.toString(costo);
+        JTextField total2= new JTextField(total, 5);
+//        textField.setText(Integer.toString(costo));
+        //this.setTxtTotal(JTextField total2);
     } 
-//    public JTextField getTxtTotal() {
-//        return txtTotal;
-//    }
-//
-//    public void setTxtTotal(JTextField total) {
-//        this.txtTotal = total;
-//    }
+    public JTextField getTxtTotal() {
+       return txtTotal;   
+    }
+//  
+    public void setTxtTotal(JTextField total2) {
+       this.txtTotal = total2;
+    }
     
     public JTextField getTxtAño() {
         return txtAño;
@@ -383,7 +383,7 @@ public class FrmAuto extends FrmGenerica {
         jLabel3.setText("Código");
         jLabel3.setRequestFocusEnabled(false);
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(20, 20, 90, 17);
+        jLabel3.setBounds(20, 20, 90, 19);
 
         txtCodigo.setBackground(new java.awt.Color(204, 255, 204));
         txtCodigo.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
@@ -399,7 +399,7 @@ public class FrmAuto extends FrmGenerica {
             }
         });
         jPanel1.add(txtCodigo);
-        txtCodigo.setBounds(20, 40, 90, 23);
+        txtCodigo.setBounds(20, 40, 90, 25);
 
         btnBuscarCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnBuscarCodigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar.png"))); // NOI18N
@@ -422,7 +422,7 @@ public class FrmAuto extends FrmGenerica {
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel2.setText("Stock");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 300, 120, 17);
+        jLabel2.setBounds(20, 300, 120, 19);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(null);
@@ -442,7 +442,7 @@ public class FrmAuto extends FrmGenerica {
             }
         });
         jPanel2.add(btnGuardar);
-        btnGuardar.setBounds(110, 5, 75, 30);
+        btnGuardar.setBounds(110, 5, 77, 30);
 
         btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add.png"))); // NOI18N
@@ -532,28 +532,33 @@ public class FrmAuto extends FrmGenerica {
         jLabel5.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel5.setText("Modelo");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(20, 80, 120, 17);
+        jLabel5.setBounds(20, 80, 120, 19);
         jPanel1.add(spStock);
         spStock.setBounds(20, 320, 120, 30);
 
         jLabel6.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel6.setText("Año");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(440, 80, 80, 17);
+        jLabel6.setBounds(440, 80, 80, 19);
 
         jLabel7.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel7.setText("Costo");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(20, 150, 120, 17);
+        jLabel7.setBounds(20, 150, 120, 19);
 
         jLabel8.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel8.setText("Marca");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(210, 80, 120, 17);
+        jLabel8.setBounds(210, 80, 120, 19);
 
         txtCosto.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtCosto.setForeground(new java.awt.Color(187, 187, 198));
         txtCosto.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtCosto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCostoActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtCosto);
         txtCosto.setBounds(20, 170, 180, 30);
 
@@ -625,7 +630,7 @@ public class FrmAuto extends FrmGenerica {
         txtBusquedaNombre.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtBusquedaNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel4.add(txtBusquedaNombre);
-        txtBusquedaNombre.setBounds(20, 50, 240, 23);
+        txtBusquedaNombre.setBounds(20, 50, 240, 25);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Auto");
@@ -821,6 +826,10 @@ public class FrmAuto extends FrmGenerica {
     private void cmbModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbModeloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbModeloActionPerformed
+
+    private void txtCostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCostoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCostoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
