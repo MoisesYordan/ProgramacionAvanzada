@@ -481,7 +481,7 @@ public class FrmAuto extends FrmGenerica {
             }
         });
         jPanel3.add(btnSalir);
-        btnSalir.setBounds(95, 10, 80, 20);
+        btnSalir.setBounds(95, 10, 75, 23);
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCancelar.setText("Cancelar");

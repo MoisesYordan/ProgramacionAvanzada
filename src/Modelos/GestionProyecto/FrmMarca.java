@@ -441,7 +441,7 @@ public class FrmMarca extends FrmGenerica {
             }
         });
         jPanel3.add(btnSalir);
-        btnSalir.setBounds(100, 10, 75, 21);
+        btnSalir.setBounds(100, 10, 75, 23);
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCancelar.setText("Cancelar");

@@ -228,7 +228,7 @@ public class GestorVistaCliente extends GestorVista {
     
      public void initializeTablaBusqueda(JTable tbl) {
         String[] titulo={"","Cód.","NOMBRE","APELLIDO","DNI","FechaDeNacimiento","Telefono","Email","Direccion"};//CAMBIARRRRRRRRRRR
-        String[] ancho ={"8","15","35","35","35","31","31","31","31"};
+        String[] ancho ={"5","20","90","90","90","90","90","90","90"};
         this.newModelTable(tbl,titulo,ancho);
     }
          public void setBusqueda() {

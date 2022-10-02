@@ -316,8 +316,8 @@ public class FrmVentas extends FrmGenerica {
         btnEliminar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setTitle("Marca");
-        setToolTipText("Marca");
+        setTitle("Ventas");
+        setToolTipText("Ventas");
         setFrameIcon(null);
         setName("TipoServicio"); // NOI18N
         getContentPane().setLayout(null);
@@ -334,7 +334,7 @@ public class FrmVentas extends FrmGenerica {
         txtNombre.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtNombre);
-        txtNombre.setBounds(20, 90, 460, 23);
+        txtNombre.setBounds(20, 90, 220, 23);
 
         jLabel3.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel3.setText("Código");
@@ -440,7 +440,7 @@ public class FrmVentas extends FrmGenerica {
             }
         });
         jPanel3.add(btnSalir);
-        btnSalir.setBounds(100, 10, 75, 21);
+        btnSalir.setBounds(100, 10, 75, 23);
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -471,13 +471,13 @@ public class FrmVentas extends FrmGenerica {
             }
         });
         jPanel1.add(cmbPais);
-        cmbPais.setBounds(20, 140, 310, 30);
+        cmbPais.setBounds(20, 140, 120, 30);
 
         txtPais.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtPais.setForeground(new java.awt.Color(187, 187, 198));
         txtPais.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtPais);
-        txtPais.setBounds(20, 140, 310, 30);
+        txtPais.setBounds(20, 140, 120, 30);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(390, 10, 500, 430);
@@ -544,7 +544,7 @@ public class FrmVentas extends FrmGenerica {
         txtBusquedaNombre.setBounds(20, 50, 240, 23);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Marca");
+        jLabel4.setText("Ventas");
         jPanel4.add(jLabel4);
         jLabel4.setBounds(20, 20, 190, 20);
 

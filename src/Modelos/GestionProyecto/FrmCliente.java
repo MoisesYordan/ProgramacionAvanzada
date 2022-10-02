@@ -466,7 +466,7 @@ public class FrmCliente extends FrmGenerica {
             }
         });
         jPanel3.add(btnSalir);
-        btnSalir.setBounds(100, 10, 75, 21);
+        btnSalir.setBounds(100, 10, 75, 23);
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -488,7 +488,7 @@ public class FrmCliente extends FrmGenerica {
         btnCancelar.setBounds(10, 10, 75, 23);
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(310, 380, 180, 40);
+        jPanel3.setBounds(300, 380, 180, 40);
 
         jLabel5.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel5.setText("Nombre");
