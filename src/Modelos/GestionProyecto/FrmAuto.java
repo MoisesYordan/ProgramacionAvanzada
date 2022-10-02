@@ -506,6 +506,11 @@ public class FrmAuto extends FrmGenerica {
         jPanel3.setBounds(310, 380, 180, 40);
 
         cmbModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        cmbModelo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbModeloItemStateChanged(evt);
+            }
+        });
         cmbModelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbModeloActionPerformed(evt);
@@ -859,6 +864,12 @@ public class FrmAuto extends FrmGenerica {
     private void btnCalcularKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCalcularKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCalcularKeyPressed
+
+    private void cmbModeloItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbModeloItemStateChanged
+      String modelo = String.valueOf(this.cmbModelo.getSelectedIndex()); 
+      gestorVista.getGestorModelo().getGestorMarca().getModel();
+      txtMarca.setText(modelo+"");                            // TODO add your handling code here:
+    }//GEN-LAST:event_cmbModeloItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
