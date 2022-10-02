@@ -4,7 +4,7 @@
  */
 package Modelos.GestionProyecto;
 
-import java.io.Serializable;
+import java.io.Serializable; //asd
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
