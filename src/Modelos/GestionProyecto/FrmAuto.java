@@ -822,7 +822,7 @@ public class FrmAuto extends FrmGenerica {
     }//GEN-LAST:event_btnCancelarKeyPressed
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-         this.clearView();
+        this.clearView();
         this.setBusqueda();
         this.viewCamposEnabled(false);
 //        botonesComandoView.viewAllDisabled();

@@ -29,39 +29,7 @@ public class Auto implements Comparable, Serializable {
     private String total;//dudas
     private String año;
     private Modelo marca;
-    
-    public String getAño() {
-        return año;
-    }
-
-    public void setAño(String año) {
-        this.año = año;
-    }
-    
-    public String getTotal() {
-        return total;
-    }
-
-    public void setTotal(String costo) {
-        this.total = costo;
-    }
-    
-    public String getCosto() {
-        return costo;
-    }
-
-    public void setCosto(String costo) {
-        this.costo = costo;
-    }
-
-    public String getStock() {
-        return stock;
-    }
-
-    public void setStock(String stock) {
-        this.stock = stock;
-    }
-    
+       
     public long getId() {
         return id;
     }
@@ -69,7 +37,15 @@ public class Auto implements Comparable, Serializable {
     public void setId(long id) {
         this.id = id;
     }
+    
+  public int getEstado() {
+        return Estado;
+    }
 
+    public void setEstado(int Estado) {
+        this.Estado = Estado;
+    }
+    
     public int getCodigo() {
         return codigo;
     }
@@ -85,34 +61,60 @@ public class Auto implements Comparable, Serializable {
     public void setModelo(Modelo modelo) {
         this.modelo = modelo;
     }
-//    public Modelo getMarca() {
-//        return marca;
-//    }
-//
-//    public void setMarca(Marca marca) {
-//        this.marca = marca;
-//    }
-
-    public int getEstado() {
-        return Estado;
+    
+    public Modelo getMarca() {
+        return marca;
     }
 
-    public void setEstado(int Estado) {
-        this.Estado = Estado;
+    public void setMarca(Modelo marca) {
+        this.marca = marca;
     }
     
-    public Auto() {
+    public String getAño() {
+        return año;
     }
 
-    public Auto(long id, int codigo, Modelo modelo, String costo,String stock, Modelo marca, String año ) {
-        this.id = id;
+    public void setAño(String año) {
+        this.año = año;
+    }
+    
+    public String getCosto() {
+        return costo;
+    }
+
+    public void setCosto(String costo) {
+        this.costo = costo;
+    }
+ 
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String costo) {
+        this.total = costo;
+    }
+    
+    public String getStock() {
+        return stock;
+    }
+
+    public void setStock(String stock) {
+        this.stock = stock;
+    }
+
+    public Auto() {
+    
+    }
+
+    public Auto(long id, int codigo, Modelo modelo, Modelo marca,  String año, String costo, String total, String stock) {
+        this.id =id;
         this.codigo = codigo;
         this.modelo = modelo;
+        this.marca=marca;
         this.año = año;
         this.costo=costo;
+        this.total=total;
         this.stock=stock;
-        this.modelo=marca;
-        
     }
     
 //    @Override
@@ -132,6 +134,5 @@ public class Auto implements Comparable, Serializable {
     public void asEliminado() {
         this.setEstado(1);
     }
-    
     
 }
