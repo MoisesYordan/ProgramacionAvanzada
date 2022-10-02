@@ -93,8 +93,6 @@ public class GestorVistaEmpleado extends GestorVista {
             this.getModel().setTelefono(this.getForm().getTxtTelefono().getText());
             this.getModel().setEmail(this.getForm().getTxtEmail().getText());
             this.getModel().setDireccion(this.getForm().getTxtDireccion().getText());
-// this.getModel().setPais((Pais) this.getForm().getCmbPais().getModel().getSelectedItem());
-
             return 0;
         } else {
             return 1;
@@ -104,51 +102,53 @@ public class GestorVistaEmpleado extends GestorVista {
     @Override
     public boolean isDatosValidos() {
         if (this.isEmpty(this.getForm().getTxtNombre())) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar la descripción del Proyecto");
+            JOptionPane.showMessageDialog(null, "Falta ingresar correctamente el nombre");
             this.getForm().getTxtNombre().grabFocus();
             return false;
         }
         if (this.isEmpty(this.getForm().getTxtApellido())) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar la descripción del Proyecto");
+            JOptionPane.showMessageDialog(null, "Falta ingresar correctamente el apellido");
             this.getForm().getTxtApellido().grabFocus();
             return false;
         }
-        if (this.isEmpty(this.getForm().getTxtDni())) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar la descripción del Proyecto");
+         if (this.isEmpty(this.getForm().getTxtDni())|| !validarNumerosDNI(this.getForm().getTxtDni().getText().trim())) {
+            JOptionPane.showMessageDialog(null, "Falta ingresar correctamente el DNI");
             this.getForm().getTxtDni().grabFocus();
             return false;
         }
-        if (this.isEmpty(this.getForm().getTxtFechaDeNacimiento())) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar la descripción del Proyecto");
+        if (this.isEmpty(this.getForm().getTxtFechaDeNacimiento())|| !validarNumerosFN(this.getForm().getTxtFechaDeNacimiento().getText().trim())) {
+            JOptionPane.showMessageDialog(null, "Falta ingresar correctamente la fecha de nacimiento, Ejemplo 11021999");
             this.getForm().getTxtFechaDeNacimiento().grabFocus();
             return false;
         }
-         if (this.isEmpty(this.getForm().getTxtTelefono())) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar la descripción del Proyecto");
+         if (this.isEmpty(this.getForm().getTxtTelefono())|| !validarNumeros(this.getForm().getTxtTelefono().getText().trim())) {
+            JOptionPane.showMessageDialog(null, "Falta ingresarcorrectamente el telefono");
             this.getForm().getTxtTelefono().grabFocus();
             return false;
         }
          if (this.isEmpty(this.getForm().getTxtEmail())) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar la descripción del Proyecto");
+            JOptionPane.showMessageDialog(null, "Falta ingresar correctamente el email, Ejemplo: argentina@gmail.com");
             this.getForm().getTxtEmail().grabFocus();
             return false;
         }
          if (this.isEmpty(this.getForm().getTxtDireccion())) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar la descripción del Proyecto");
+            JOptionPane.showMessageDialog(null, "Falta ingresar correctamente la direccion, Ejemplo: san Juan 12");
             this.getForm().getTxtDireccion().grabFocus();
             return false;
         }
-         
-        
-//        if (this.isEmpty(this.getForm().getCmbPais())) {
-//            JOptionPane.showMessageDialog(null, "Falta ingresar el item de Proyecto");
-//            this.getForm().getCmbPais().grabFocus();
-//            return false;
-//        }
-
+  
         return true;
     }
-
+   //Validacion para que solo ingrese numeros para DNI FechaDeNacimiento, Telefono
+    public static boolean validarNumerosDNI(String datos){
+        return datos.matches("[0-9]{4,8}");
+    }
+    public static boolean validarNumerosFN(String datos){
+        return datos.matches("[0-9]{8,8}");
+    }
+    public static boolean validarNumeros(String datos){
+        return datos.matches("[0-9]*");
+    } 
     public void saveModel(int opcABM) {
         switch (opcABM) {
             case 0:
