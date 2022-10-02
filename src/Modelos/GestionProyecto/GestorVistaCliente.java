@@ -45,7 +45,6 @@ public class GestorVistaCliente extends GestorVista {
     }
 
   
-
     @Override
     public void newModel() {
         this.setModel(new Cliente());
@@ -67,14 +66,11 @@ public class GestorVistaCliente extends GestorVista {
         this.getForm().viewGuardar();
         if (this.getOpcABM() == 0) {
             this.getForm().getTxtCodigo().setText(this.getModel().getCodigoS());
-//            this..setItems(this.getForm().getTbl());
+
         }
 
     }
-    public void eliminar(){
-        this.getModel().asEliminado();
-        this.actualizarObjeto(this.getModel());
-    }
+   
     @Override
     public int setModel() {
         if (this.isDatosValidos()) {
@@ -137,12 +133,15 @@ public class GestorVistaCliente extends GestorVista {
     public static boolean validarNumerosDNI(String datos){
         return datos.matches("[0-9]{4,8}");
     }
+    
     public static boolean validarNumerosFN(String datos){
         return datos.matches("[0-9]{8,8}");
     }
+    
     public static boolean validarNumeros(String datos){
         return datos.matches("[0-9]*");
     } 
+    
     public void saveModel(int opcABM) {
         switch (opcABM) {
             case 0:
@@ -172,10 +171,12 @@ public class GestorVistaCliente extends GestorVista {
     public void actualizarObjeto() {
         this.actualizarObjeto(this.getModel());
     }
+    
+    public void eliminar(){
+        this.getModel().asEliminado();
+        this.actualizarObjeto(this.getModel());
+    }
 
-//    public void eliminar() {
-//        this.eliminarObjeto(this.getModel());
-//    }
     @Override
     public void openFormulario(JDesktopPane pantalla) {
         this.setEscritorio(pantalla);
