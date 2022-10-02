@@ -100,7 +100,7 @@ public class GestorVistaModelo extends GestorVista{
      @Override
     public int setModel() {
         if (this.isDatosValidos()) {
-            this.getModel().setNombre(this.getForm().getTxtDenominacion().getText());
+            this.getModel().setNombre(this.getForm().getTxtNombre().getText());
             this.getModel().setMarca((Marca) this.getForm().getCmbMarca().getModel().getSelectedItem());
 
             return 0;
@@ -110,9 +110,9 @@ public class GestorVistaModelo extends GestorVista{
     }
     @Override
      public boolean isDatosValidos() {
-        if (this.isEmpty(this.getForm().getTxtDenominacion())) {
+        if (this.isEmpty(this.getForm().getTxtNombre())) {
             JOptionPane.showMessageDialog(null, "Falta ingresar la descripción del Proyecto");
-            this.getForm().getTxtDenominacion().grabFocus();
+            this.getForm().getTxtNombre().grabFocus();
             return false;
         }
 
@@ -212,6 +212,13 @@ public class GestorVistaModelo extends GestorVista{
         String[] titulo={"","Cód.","NOMBRE","MARCA"};
         String[] ancho ={"10","30","135","135"};//cambiar
         this.newModelTable(tbl,titulo,ancho);
+    }
+          @Override
+    public void getView() {
+        this.getForm().getTxtCodigo().setText(this.getModel().getCodigoS());
+        this.getForm().getTxtNombre().setText(this.getModel().getNombre());
+        this.getForm().getCmbMarca().setSelectedItem(this.getModel().getMarca());
+
     }
          public void setBusqueda() {
         Boolean error=false;

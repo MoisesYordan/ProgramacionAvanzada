@@ -237,6 +237,18 @@ public class GestorVistaEmpleado extends GestorVista {
         String[] ancho ={"5","20","90","90","90","90","90","90","90"};
         this.newModelTable(tbl,titulo,ancho);
     }
+          @Override
+    public void getView() {
+        this.getForm().getTxtCodigo().setText(this.getModel().getCodigoS());
+        this.getForm().getTxtNombre().setText(this.getModel().getNombre());
+        this.getForm().getTxtApellido().setText(this.getModel().getApellido());
+        this.getForm().getTxtDni().setText(this.getModel().getDni());
+        this.getForm().getTxtFechaDeNacimiento().setText(this.getModel().getFechanacimiento());
+        this.getForm().getTxtTelefono().setText(this.getModel().getTelefono());
+        this.getForm().getTxtEmail().setText(this.getModel().getEmail());
+        this.getForm().getTxtDireccion().setText(this.getModel().getDireccion());
+
+    }
          public void setBusqueda() {
         Boolean error=false;
         this.initializeTablaBusqueda(this.getForm().getTblDatos());

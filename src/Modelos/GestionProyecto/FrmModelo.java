@@ -33,11 +33,11 @@ public class FrmModelo extends FrmGenerica {
     }
 
 // Definicion de getter y setter de los componentes visuales del formulario
-    public JTextField getTxtDenominacion() {
+    public JTextField getTxtNombre() {
         return txtNombre;
     }
 
-    public void setTxtDenominacion(JTextField txtDenominacion) {
+    public void setTxtNombre(JTextField txtDenominacion) {
         this.txtNombre = txtDenominacion;
     }
     

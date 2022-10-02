@@ -198,7 +198,13 @@ public class GestorVistaMarca extends GestorVista {
         String[] ancho ={"10","30","135","135"};
         this.newModelTable(tbl,titulo,ancho);
     }
-         public void setBusqueda() {
+         @Override
+    public void getView() {
+        this.getForm().getTxtCodigo().setText(this.getModel().getCodigoS());
+        this.getForm().getTxtNombre().setText(this.getModel().getNombre());
+        this.getForm().getCmbPais().setSelectedItem(this.getModel().getPais());
+    }
+    public void setBusqueda() {
         Boolean error=false;
         this.initializeTablaBusqueda(this.getForm().getTblDatos());
 

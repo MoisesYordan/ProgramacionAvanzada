@@ -39,6 +39,7 @@ public class FrmEmpleado extends FrmGenerica {
     public void setTxtNombre(JTextField txtNombre) {
         this.txtNombre = txtNombre;
     }
+    
     public JTextField getTxtApellido() {
         return txtApellido;
     }
@@ -60,6 +61,7 @@ public class FrmEmpleado extends FrmGenerica {
     public void setTxtFechaDeNacimiento(JTextField txtFechaDeNacimiento) {
         this.txtFechaDeNacimiento = txtFechaDeNacimiento;
     }
+    
      public JTextField getTxtTelefono() {
         return txtTelefono;
     }

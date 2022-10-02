@@ -216,6 +216,21 @@ public class GestorVistaAuto extends GestorVista  {
         String[] ancho ={"10","30","100","111","40","100","100","40"};
         this.newModelTable(tbl,titulo,ancho);
     }
+     @Override
+    public void getView() {
+        this.getForm().getTxtCodigo().setText(this.getModel().getCodigoS());
+        //this.getForm().getTxtNombre().setText(this.getModel().getNombre());
+        //this.getForm().getCmbPais().setSelectedItem(this.getModel().getPais());
+        this.getForm().getCmbModelo().setSelectedItem(this.getModel().getModelo().getMarca());
+        this.getForm().getCmbModelo().setSelectedItem(this.getModel().getModelo());
+        this.getForm().getTxtAño().setText(this.getModel().getAño());
+        
+        this.getForm().getTxtCosto().setText(this.getModel().getCosto());
+        this.getForm().getTxtTotal().setText(this.getModel().getTotal());
+        this.getForm().getTxtStock().setText(this.getModel().getStock());
+
+    }
+
     public void setBusqueda() {
         Boolean error=false;
         this.initializeTablaBusqueda(this.getForm().getTblDatos());
@@ -280,7 +295,7 @@ public class GestorVistaAuto extends GestorVista  {
      public List<Auto> listar(String text,int ord) {
         Criteria crit = getSession().createCriteria(Auto.class)
              .add( Restrictions.eq("Estado", 0));
-             crit.add( Restrictions.like("modelo",'%'+ text.toUpperCase()+'%'));
+             crit.add( Restrictions.like("marca",'%'+ text.toUpperCase()+'%'));
         return crit.list();
     }  
 }
