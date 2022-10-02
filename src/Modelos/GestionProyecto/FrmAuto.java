@@ -55,10 +55,9 @@ public class FrmAuto extends FrmGenerica {
     
     public void setTxtModelo(JTextField txtModelo) {
         this.txtModelo = txtModelo;
-        this.getTxtMarca(txtModelo);
     }
     
-   public JTextField getTxtMarca(JTextField txtModelo) {
+   public JTextField getTxtMarca() {
         return txtModelo;
     }
     public JTextField getTxtCosto() {
@@ -345,6 +344,7 @@ public class FrmAuto extends FrmGenerica {
         txtAño = new javax.swing.JTextField();
         txtStock = new javax.swing.JTextField();
         btnCalcular = new javax.swing.JButton();
+        btnMarca = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
@@ -590,6 +590,15 @@ public class FrmAuto extends FrmGenerica {
         jPanel1.add(btnCalcular);
         btnCalcular.setBounds(210, 170, 30, 30);
         btnCalcular.getAccessibleContext().setAccessibleDescription("");
+
+        btnMarca.setText("jButton1");
+        btnMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMarcaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnMarca);
+        btnMarca.setBounds(240, 140, 75, 22);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(390, 10, 540, 430);
@@ -866,10 +875,15 @@ public class FrmAuto extends FrmGenerica {
     }//GEN-LAST:event_btnCalcularKeyPressed
 
     private void cmbModeloItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbModeloItemStateChanged
-      String modelo = String.valueOf(this.cmbModelo.getSelectedIndex()); 
-      gestorVista.getGestorModelo().getGestorMarca().getModel();
-      txtMarca.setText(modelo+"");                            // TODO add your handling code here:
+                     
+         Modelo modelo = (Modelo) cmbModelo.getSelectedItem();
+        txtMarca.setText(modelo.getMarca().toString());//// TODO add your handling code here:
     }//GEN-LAST:event_cmbModeloItemStateChanged
+
+    private void btnMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarcaActionPerformed
+//        Modelo modelo = (Modelo) cmbModelo.getSelectedItem();
+//        txtMarca.setText(modelo.getMarca().toString());// TODO add your handling code here:
+    }//GEN-LAST:event_btnMarcaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -881,6 +895,7 @@ public class FrmAuto extends FrmGenerica {
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnImprimir1;
+    private javax.swing.JButton btnMarca;
     public javax.swing.JButton btnNuevo;
     public javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cmbModelo;

@@ -56,16 +56,19 @@ public class GestorVistaModelo extends GestorVista{
     public void setModelMarca(JComboBox cmb) {
         cmb.setModel(getComboModelTipoProyecto());
     }
-    public List <Modelo> listarModelos(){   
-        return this.listarClase(Modelo.class,"nombre");
+    public List <Modelo> List(){   
+        return getSession().createCriteria(Modelo.class).list();
     }
+//    public List <Modelo> listarModelos(){   
+//        return this.listarClase(Modelo.class,"nombre");
+//    }
     public DefaultComboBoxModel getComboModelTipoProyecto() {
         return this.getGestorMarca().getComboModelMarca();
     }
     public DefaultComboBoxModel getComboModelModelo() {      
         DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
         auxModel.addElement("");
-        for (Modelo auxTipo : this.listarModelos()) {
+        for (Modelo auxTipo : this.List()) {
             auxModel.addElement(auxTipo);
         }
          return auxModel;

@@ -69,9 +69,16 @@ public class Modelo implements Comparable, Serializable{
     public Modelo() {
     }
 
+//    @Override
+//    public String toString() {
+//        return nombre;
+//    }
     @Override
     public String toString() {
-        return nombre;
+        return 
+//                "id: "+getId()+"\n"+" "+
+//                "nombre:  "+
+                getNombre();
     }
     @Override
     public int compareTo(Object o) {

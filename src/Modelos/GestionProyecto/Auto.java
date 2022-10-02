@@ -28,7 +28,7 @@ public class Auto implements Comparable, Serializable {
     private String stock;
     private String total;//dudas
     private String año;
-    private Modelo marca;
+    private String marca;
        
     public long getId() {
         return id;
@@ -62,11 +62,11 @@ public class Auto implements Comparable, Serializable {
         this.modelo = modelo;
     }
     
-    public Modelo getMarca() {
+    public String getMarca() {
         return marca;
     }
 
-    public void setMarca(Modelo marca) {
+    public void setMarca(String marca) {
         this.marca = marca;
     }
     
@@ -106,7 +106,7 @@ public class Auto implements Comparable, Serializable {
     
     }
 
-    public Auto(long id, int codigo, Modelo modelo, Modelo marca,  String año, String costo, String total, String stock) {
+    public Auto(long id, int codigo, Modelo modelo, String marca,  String año, String costo, String total, String stock) {
         this.id =id;
         this.codigo = codigo;
         this.modelo = modelo;
