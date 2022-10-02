@@ -72,7 +72,7 @@ public class FrmAuto extends FrmGenerica {
         String total= Integer.toString(costo);
         JTextField total2= new JTextField(total, 5);
 //        textField.setText(Integer.toString(costo));
-        //this.setTxtTotal(JTextField total2);
+        this.setTxtTotal(total2);
     } 
     public JTextField getTxtTotal() {
        return txtTotal;   
