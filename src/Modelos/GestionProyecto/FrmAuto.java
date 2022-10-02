@@ -62,7 +62,6 @@ public class FrmAuto extends FrmGenerica {
         return txtModelo;
     }
     public JTextField getTxtCosto() {
-       //  this.gestorVista.convertirToInteger(txtCosto);
         return txtCosto;
     }
 
@@ -78,7 +77,7 @@ public class FrmAuto extends FrmGenerica {
     public JTextField getTxtTotal() {
        return txtTotal;   
     }
-//  
+
     public void setTxtTotal(JTextField total2) {
        this.txtTotal = total2;
     }
@@ -90,14 +89,15 @@ public class FrmAuto extends FrmGenerica {
     public void setTxtAño(JTextField txtAño) {
         this.txtAño= txtAño;
     }
+    
+   public JTextField getTxtStock() {
+        return txtStock;
+    }
 
-//      public JSpinner SpinnerStock() {
-//        return spStock;
-//    }
-//
-//    public void setSpinnerStock(JSpinner spStock) {
-//        this.spStock = spStock;
-//    } 
+    public void setTxtStock(JTextField txtStock) {
+        this.txtStock= txtStock;
+    }
+
   
 // Constructores del formulario 
     public FrmAuto(GestorVistaAuto gestorVista) {
@@ -264,11 +264,12 @@ public class FrmAuto extends FrmGenerica {
 
     @Override
     public void clearView() {
-        txtTotal.setText("");
         txtCodigo.setText("");
         txtModelo.setText("");
         txtMarca.setText("");
+        txtAño.setText("");
         txtCosto.setText("");
+        txtTotal.setText("");
         txtStock.setText("");
        
     }

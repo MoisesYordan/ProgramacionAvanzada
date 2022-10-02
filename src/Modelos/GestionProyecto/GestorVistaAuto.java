@@ -84,10 +84,12 @@ public class GestorVistaAuto extends GestorVista  {
     @Override
     public int setModel() {
         if (this.isDatosValidos()) {
-            //this.getModel().setCosto(this.getForm().getTxtCosto().getTxt());
-            
             this.getModel().setModelo((Modelo) this.getForm().getCmbModelo().getModel().getSelectedItem());
-
+            //marca
+            this.getModel().setAño(this.getForm().getTxtAño().getText());
+            this.getModel().setCosto(this.getForm().getTxtCosto().getText());
+            //precioVenta
+            this.getModel().setStock(this.getForm().getTxtStock().getText());
             return 0;
         } else {
             return 1;
@@ -96,35 +98,37 @@ public class GestorVistaAuto extends GestorVista  {
 
     @Override
     public boolean isDatosValidos() {
-         if (this.isEmpty(this.getForm().getTxtAño())) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar la descripción del Proyecto");
-            this.getForm().getTxtAño().grabFocus();
-            return false;
-        } 
-        if (this.isEmpty(this.getForm().getTxtCosto())) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar la descripción del Proyecto");
-            this.getForm().getTxtCosto().grabFocus();
-            return false;
-        }
-        if (this.isEmpty(this.getForm().getTxtAño())) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar la descripción del Proyecto");
-            this.getForm().getTxtAño().grabFocus();
-            return false;
-        }
-
-        if (this.isEmpty(this.getForm().getCmbModelo())) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar el item de Proyecto");
+         if (this.isEmpty(this.getForm().getCmbModelo())) {
+            JOptionPane.showMessageDialog(null, "Falta ingresar el Modelo");
             this.getForm().getCmbModelo().grabFocus();
             return false;
         }
-//         if (this.isEmpty(this.getForm(). {
-//            JOptionPane.showMessageDialog(null, "Falta ingresar la descripción del Proyecto");
-//            this.getForm().getTxtAño().grabFocus();
-//            return false;
-//        }
+         if (this.isEmpty(this.getForm().getTxtAño())|| !validarNumerosAño(this.getForm().getTxtAño().getText().trim())) {
+            JOptionPane.showMessageDialog(null, "Falta ingresar bien el año");
+            this.getForm().getTxtAño().grabFocus();
+            return false;
+        } 
+        if (this.isEmpty(this.getForm().getTxtCosto())|| !validarNumeros(this.getForm().getTxtCosto().getText().trim())) {
+            JOptionPane.showMessageDialog(null, "Falta ingresar el costo");
+            this.getForm().getTxtCosto().grabFocus();
+            return false;
+        }
+         if (this.isEmpty(this.getForm().getTxtStock())|| !validarNumeros(this.getForm().getTxtStock().getText().trim())) {
+            JOptionPane.showMessageDialog(null, "Falta ingresar el stock");
+            this.getForm().getTxtStock().grabFocus();
+            return false;
+        }
+
         return true;
     }
-
+    //Validacion para que solo ingrese numeros para Año, Costo, Stock
+    public static boolean validarNumerosAño(String datos){
+        return datos.matches("[0-9]{1,4}");
+    }
+    public static boolean validarNumeros(String datos){
+        return datos.matches("[0-9]*");
+    }        
+        
     public void saveModel(int opcABM) {
         switch (opcABM) {
             case 0:

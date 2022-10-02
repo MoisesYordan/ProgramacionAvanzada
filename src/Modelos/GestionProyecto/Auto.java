@@ -24,41 +24,41 @@ public class Auto implements Comparable, Serializable {
     @OneToOne (targetEntity = Modelo.class, cascade= CascadeType.ALL,fetch=FetchType.LAZY)
     private Modelo modelo;
     private int Estado;
-    private int costo;
-    private int stock;
-    private int total;//dudas
-    private int año;
+    private String costo;
+    private String stock;
+    private String total;//dudas
+    private String año;
     private Modelo marca;
     
-    public int getAño() {
+    public String getAño() {
         return año;
     }
 
-    public void setAño(int año) {
+    public void setAño(String año) {
         this.año = año;
     }
     
-    public int getTotal() {
+    public String getTotal() {
         return total;
     }
 
-    public void setTotal(int costo) {
-        this.total = (int) (costo+costo*0.2);
+    public void setTotal(String costo) {
+        this.total = costo;
     }
     
-    public int getCosto() {
+    public String getCosto() {
         return costo;
     }
 
-    public void setCosto(int costo) {
+    public void setCosto(String costo) {
         this.costo = costo;
     }
 
-    public int getStock() {
+    public String getStock() {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(String stock) {
         this.stock = stock;
     }
     
@@ -104,7 +104,7 @@ public class Auto implements Comparable, Serializable {
     public Auto() {
     }
 
-    public Auto(long id, int codigo, Modelo modelo, int costo,int stock, Modelo marca, int año ) {
+    public Auto(long id, int codigo, Modelo modelo, String costo,String stock, Modelo marca, String año ) {
         this.id = id;
         this.codigo = codigo;
         this.modelo = modelo;
