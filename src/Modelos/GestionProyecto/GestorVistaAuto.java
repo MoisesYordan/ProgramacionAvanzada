@@ -84,7 +84,8 @@ public class GestorVistaAuto extends GestorVista  {
     @Override
     public int setModel() {
         if (this.isDatosValidos()) {
-           // this.getModel().setPatente(this.getForm().getTxtNombre().getText());
+            //this.getModel().setCosto(this.getForm().getTxtCosto().getTxt());
+            
             this.getModel().setModelo((Modelo) this.getForm().getCmbModelo().getModel().getSelectedItem());
 
             return 0;
@@ -184,6 +185,7 @@ public class GestorVistaAuto extends GestorVista  {
     }
     public DefaultComboBoxModel getComboModelTipoProyecto() {
         return this.getGestorModelo().getComboModelModelo();
+        
     }
     
 //    public DefaultComboBoxModel getComboModelMarca() {      

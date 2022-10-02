@@ -28,6 +28,7 @@ public class Auto implements Comparable, Serializable {
     private int stock;
     private int total;//dudas
     private int año;
+    private Modelo marca;
     
     public int getAño() {
         return año;
