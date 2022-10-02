@@ -88,7 +88,7 @@ public class GestorVistaAuto extends GestorVista  {
             //marca
             this.getModel().setAño(this.getForm().getTxtAño().getText());
             this.getModel().setCosto(this.getForm().getTxtCosto().getText());
-            //precioVenta
+            this.getModel().setTotal(this.getForm().getTxtTotal().getText());
             this.getModel().setStock(this.getForm().getTxtStock().getText());
             return 0;
         } else {
@@ -123,7 +123,7 @@ public class GestorVistaAuto extends GestorVista  {
     }
     //Validacion para que solo ingrese numeros para Año, Costo, Stock
     public static boolean validarNumerosAño(String datos){
-        return datos.matches("[0-9]{1,4}");
+        return datos.matches("[0-9]{4,4}");
     }
     public static boolean validarNumeros(String datos){
         return datos.matches("[0-9]*");

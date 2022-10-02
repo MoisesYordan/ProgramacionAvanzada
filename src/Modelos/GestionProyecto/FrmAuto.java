@@ -66,20 +66,10 @@ public class FrmAuto extends FrmGenerica {
     }
 
     public void setTxtCosto(JTextField txtCosto) {
-        this.txtCosto = txtCosto;
-        int costo= Integer.parseInt( txtCosto.getText());
-        costo=(int) (costo+costo*2);
-        String total= Integer.toString(costo);
-        JTextField total2= new JTextField(total, 5);
-//        textField.setText(Integer.toString(costo));
-        this.setTxtTotal(total2);
+       this.txtCosto = txtCosto;
     } 
     public JTextField getTxtTotal() {
        return txtTotal;   
-    }
-
-    public void setTxtTotal(JTextField total2) {
-       this.txtTotal = total2;
     }
     
     public JTextField getTxtAño() {
@@ -350,6 +340,7 @@ public class FrmAuto extends FrmGenerica {
         txtCosto = new javax.swing.JTextField();
         txtAño = new javax.swing.JTextField();
         txtStock = new javax.swing.JTextField();
+        btnCalcular = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
@@ -386,7 +377,7 @@ public class FrmAuto extends FrmGenerica {
         jLabel3.setText("Código");
         jLabel3.setRequestFocusEnabled(false);
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(20, 20, 90, 17);
+        jLabel3.setBounds(20, 20, 90, 19);
 
         txtCodigo.setBackground(new java.awt.Color(204, 255, 204));
         txtCodigo.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
@@ -402,7 +393,7 @@ public class FrmAuto extends FrmGenerica {
             }
         });
         jPanel1.add(txtCodigo);
-        txtCodigo.setBounds(20, 40, 90, 23);
+        txtCodigo.setBounds(20, 40, 90, 25);
 
         btnBuscarCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnBuscarCodigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar.png"))); // NOI18N
@@ -425,7 +416,7 @@ public class FrmAuto extends FrmGenerica {
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel2.setText("Stock");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 300, 120, 17);
+        jLabel2.setBounds(20, 300, 120, 19);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(null);
@@ -445,7 +436,7 @@ public class FrmAuto extends FrmGenerica {
             }
         });
         jPanel2.add(btnGuardar);
-        btnGuardar.setBounds(110, 5, 75, 30);
+        btnGuardar.setBounds(110, 5, 77, 30);
 
         btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add.png"))); // NOI18N
@@ -534,22 +525,22 @@ public class FrmAuto extends FrmGenerica {
         jLabel5.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel5.setText("Modelo");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(20, 80, 120, 17);
+        jLabel5.setBounds(20, 80, 120, 19);
 
         jLabel6.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel6.setText("Año");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(440, 80, 80, 17);
+        jLabel6.setBounds(440, 80, 80, 19);
 
         jLabel7.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel7.setText("Costo");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(20, 150, 120, 17);
+        jLabel7.setBounds(20, 150, 120, 19);
 
         jLabel8.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel8.setText("Marca");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(210, 80, 120, 17);
+        jLabel8.setBounds(210, 80, 120, 19);
 
         txtCosto.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtCosto.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -570,6 +561,27 @@ public class FrmAuto extends FrmGenerica {
         txtStock.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtStock);
         txtStock.setBounds(20, 320, 80, 30);
+
+        btnCalcular.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnCalcular.setText("Calcular");
+        btnCalcular.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        btnCalcular.setMaximumSize(new java.awt.Dimension(61, 21));
+        btnCalcular.setMinimumSize(new java.awt.Dimension(61, 21));
+        btnCalcular.setPreferredSize(new java.awt.Dimension(61, 21));
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularActionPerformed(evt);
+            }
+        });
+        btnCalcular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCalcularKeyPressed(evt);
+            }
+        });
+        jPanel1.add(btnCalcular);
+        btnCalcular.setBounds(240, 210, 75, 23);
+        btnCalcular.getAccessibleContext().setAccessibleName("Calcular");
+        btnCalcular.getAccessibleContext().setAccessibleDescription("");
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(390, 10, 540, 430);
@@ -633,7 +645,7 @@ public class FrmAuto extends FrmGenerica {
         txtBusquedaNombre.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtBusquedaNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel4.add(txtBusquedaNombre);
-        txtBusquedaNombre.setBounds(20, 50, 240, 23);
+        txtBusquedaNombre.setBounds(20, 50, 240, 25);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Auto");
@@ -834,10 +846,21 @@ public class FrmAuto extends FrmGenerica {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCostoActionPerformed
 
+    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
+       int costo= Integer.parseInt( txtCosto.getText());
+       costo= costo+(costo*2);
+       txtTotal.setText(costo +"");
+    }//GEN-LAST:event_btnCalcularActionPerformed
+
+    private void btnCalcularKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCalcularKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCalcularKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnBuscarCodigo;
+    public javax.swing.JButton btnCalcular;
     public javax.swing.JButton btnCancelar;
     public javax.swing.JButton btnEditar;
     public javax.swing.JButton btnEliminar;
