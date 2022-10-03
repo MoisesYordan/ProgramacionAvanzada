@@ -2,6 +2,7 @@ package Modelos.GestionProyecto;
 
 import static Hibernate.HibernateUtil.getSession;
 import Vistas.GestorVista;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
@@ -10,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -231,14 +233,18 @@ public class GestorVistaAuto extends GestorVista  {
 
     }
 
-    public void setBusqueda() {
+    public void setBusqueda(String valor){ //quizas agregar un argumento string para realizar un if q me traiga lo q diga ese string txtBusqueda
         Boolean error=false;
         this.initializeTablaBusqueda(this.getForm().getTblDatos());
-
-        if (!error) {
-      
-            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),""));
+       
+        if(valor != null){
+            this.getForm().getTblDatos().setModel(this.listarDatos2((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),this.getForm().getTxtBuscar().getText(),""));
         }
+        
+//        if (!error) {
+//      
+//            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),""));
+//        }
         else{
             JOptionPane.showMessageDialog(null, "Falta ingresar datos para la búsqueda","Validación de Datos",JOptionPane.WARNING_MESSAGE);
         } 
@@ -274,9 +280,27 @@ public class GestorVistaAuto extends GestorVista  {
         }
     }
 
-    public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String text) {
+    public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String text) { 
         TreeSet<Auto> lista= new TreeSet();
-        List<Auto> list= this.listar(text,ordenamiento);
+        List<Auto> list= this.listar(text,ordenamiento); 
+        Auto  auxModel;
+        Iterator it = (Iterator) list.iterator();
+        while (it.hasNext())  {
+            auxModel =(Auto) it.next(); 
+            lista.add(auxModel);
+         }
+       
+        Iterator it2 = (Iterator) lista.iterator();
+        while (it2.hasNext())  {
+            auxModel =( Auto ) it2.next();
+            Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),auxModel.getAño(),auxModel.getCosto(),auxModel.getTotal(),auxModel.getStock()}; 
+            auxModelTabla.addRow(fila); 
+        }
+        return auxModelTabla;
+    }
+        public DefaultTableModel listarDatos2(DefaultTableModel auxModelTabla, int ordenamiento, String valor, String text) { 
+        ArrayList<Auto> lista = new ArrayList(); 
+        List<Auto> list= this.listar2(text,ordenamiento,valor); 
         Auto  auxModel;
         Iterator it = (Iterator) list.iterator();
         while (it.hasNext())  {
@@ -296,6 +320,13 @@ public class GestorVistaAuto extends GestorVista  {
         Criteria crit = getSession().createCriteria(Auto.class)
              .add( Restrictions.eq("Estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
              crit.add( Restrictions.like("marca",'%'+ text.toUpperCase()+'%'));
+        return crit.list();
+    }
+     public List<Auto> listar2(String text,int ord,String valor) {
+        Criteria crit = getSession().createCriteria(Auto.class)
+             .add( Restrictions.eq("Estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             crit.add( Restrictions.eq("marca", valor));
+             //crit.add( Restrictions.like("marca",'%'+ text.toUpperCase()+'%'));
         return crit.list();
     }  
 }

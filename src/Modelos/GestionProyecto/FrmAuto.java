@@ -86,7 +86,12 @@ public class FrmAuto extends FrmGenerica {
     public void setTxtStock(JTextField txtStock) {
         this.txtStock= txtStock;
     }
-
+    public JTextField getTxtBuscar(){
+        return txtBusquedaNombre;
+    }
+    public void setTxtBuscar(JTextField txtBusquedaNombre){
+        this.txtBusquedaNombre=txtBusquedaNombre;
+    }
   
 // Constructores del formulario 
     public FrmAuto(GestorVistaAuto gestorVista) {
@@ -310,7 +315,7 @@ public class FrmAuto extends FrmGenerica {
     //llenado de tablas
     public void setBusqueda() {
         this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
-        this.getGestorVista().setBusqueda();
+        this.getGestorVista().setBusqueda(txtBusquedaNombre.getText());  //txtBusquedaNombre.getText()
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -652,6 +657,11 @@ public class FrmAuto extends FrmGenerica {
 
         txtBusquedaNombre.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtBusquedaNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtBusquedaNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBusquedaNombreActionPerformed(evt);
+            }
+        });
         jPanel4.add(txtBusquedaNombre);
         txtBusquedaNombre.setBounds(20, 50, 240, 25);
 
@@ -870,6 +880,10 @@ public class FrmAuto extends FrmGenerica {
       Modelo modelo = (Modelo) cmbModelo.getSelectedItem();
         txtMarca.setText(modelo.getMarca().toString());      //pasar a un metodo setearMarcar dentro de gestor vista auto y solo llamar
     }//GEN-LAST:event_cmbModeloItemStateChanged
+
+    private void txtBusquedaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBusquedaNombreActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
