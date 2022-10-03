@@ -294,7 +294,7 @@ public class GestorVistaAuto extends GestorVista  {
     }
      public List<Auto> listar(String text,int ord) {
         Criteria crit = getSession().createCriteria(Auto.class)
-             .add( Restrictions.eq("Estado", 0));
+             .add( Restrictions.eq("Estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
              crit.add( Restrictions.like("marca",'%'+ text.toUpperCase()+'%'));
         return crit.list();
     }  

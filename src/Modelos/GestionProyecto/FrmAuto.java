@@ -855,7 +855,7 @@ public class FrmAuto extends FrmGenerica {
     }//GEN-LAST:event_txtCostoActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-       Double costo= Double.parseDouble( txtCosto.getText());
+       Double costo= Double.parseDouble( txtCosto.getText());  //pasar a un metodo calcular dentro de gestor vista auto y solo llamar
        costo= costo+(costo*0.2);
        Math.round(costo);
        txtTotal.setText(Math.round(costo) +"");
@@ -868,7 +868,7 @@ public class FrmAuto extends FrmGenerica {
 
     private void cmbModeloItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbModeloItemStateChanged
       Modelo modelo = (Modelo) cmbModelo.getSelectedItem();
-        txtMarca.setText(modelo.getMarca().toString());      //
+        txtMarca.setText(modelo.getMarca().toString());      //pasar a un metodo setearMarcar dentro de gestor vista auto y solo llamar
     }//GEN-LAST:event_cmbModeloItemStateChanged
 
 
