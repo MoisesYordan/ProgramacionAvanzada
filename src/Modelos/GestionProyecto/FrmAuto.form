@@ -582,7 +582,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/PrinterChica.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Imprir"/>
+            <Property name="text" type="java.lang.String" value="Imprimir"/>
             <Property name="toolTipText" type="java.lang.String" value="Impreme el documento"/>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
