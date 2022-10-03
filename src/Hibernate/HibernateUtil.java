@@ -14,14 +14,14 @@ public class HibernateUtil  {
            try{
                 conf.setProperty("hibernate.connection.driver_class","org.postgresql.Driver");
                 conf.setProperty("hibernate.dialect","org.hibernate.dialect.PostgreSQLDialect");                 
-                conf.setProperty("hibernate.connection.url","jdbc:postgresql://localhost:5432/PA");
+                conf.setProperty("hibernate.connection.url","jdbc:postgresql://localhost:5432/PROGRAMACIONA");
             }
             catch(Exception e){
                 JOptionPane.showMessageDialog(null, "Error de Base de Datos Nº 2001");
             }
             
             conf.setProperty("hibernate.connection.username","postgres");
-            conf.setProperty("hibernate.connection.password","123");
+            conf.setProperty("hibernate.connection.password","12");
 
             conf.setProperty("hibernate.connection.pool_size","10");                          
             conf.setProperty("hibernate.hbm2ddl.auto","update");
