@@ -304,6 +304,23 @@ public class FrmVentas extends FrmGenerica {
         btnCancelar = new javax.swing.JButton();
         cmbPais = new javax.swing.JComboBox<>();
         txtPais = new javax.swing.JTextField();
+        txtNombre1 = new javax.swing.JTextField();
+        txtNombre2 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        cmbPais1 = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        txtNombre3 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtNombre4 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtNombre5 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtNombre6 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtNombre7 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
@@ -326,15 +343,15 @@ public class FrmVentas extends FrmGenerica {
         jPanel1.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        jLabel1.setText("Nombre");
+        jLabel1.setText("Formulario N°");
         jLabel1.setRequestFocusEnabled(false);
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(20, 70, 90, 20);
+        jLabel1.setBounds(320, 20, 100, 20);
 
         txtNombre.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtNombre);
-        txtNombre.setBounds(20, 90, 220, 23);
+        txtNombre.setBounds(160, 90, 120, 23);
 
         jLabel3.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel3.setText("Código");
@@ -377,9 +394,9 @@ public class FrmVentas extends FrmGenerica {
         btnBuscarCodigo.setBounds(110, 40, 30, 30);
 
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        jLabel2.setText("Pais");
+        jLabel2.setText("Cliente");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 120, 120, 17);
+        jLabel2.setBounds(320, 120, 120, 17);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(null);
@@ -471,7 +488,7 @@ public class FrmVentas extends FrmGenerica {
             }
         });
         jPanel1.add(cmbPais);
-        cmbPais.setBounds(20, 140, 120, 30);
+        cmbPais.setBounds(320, 140, 120, 30);
 
         txtPais.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtPais.setForeground(new java.awt.Color(187, 187, 198));
@@ -479,8 +496,108 @@ public class FrmVentas extends FrmGenerica {
         jPanel1.add(txtPais);
         txtPais.setBounds(20, 140, 120, 30);
 
+        txtNombre1.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtNombre1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel1.add(txtNombre1);
+        txtNombre1.setBounds(320, 40, 120, 23);
+
+        txtNombre2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtNombre2.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel1.add(txtNombre2);
+        txtNombre2.setBounds(20, 200, 120, 23);
+
+        jLabel5.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        jLabel5.setText("Cantidad");
+        jLabel5.setRequestFocusEnabled(false);
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(20, 180, 90, 20);
+
+        jLabel6.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        jLabel6.setText("Modelo");
+        jLabel6.setRequestFocusEnabled(false);
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(160, 70, 90, 20);
+
+        cmbPais1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        cmbPais1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPais1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmbPais1);
+        cmbPais1.setBounds(20, 140, 120, 30);
+
+        jLabel7.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        jLabel7.setText("Cliente");
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(20, 120, 120, 17);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Add_Symbol.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(160, 140, 40, 30);
+
+        txtNombre3.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtNombre3.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel1.add(txtNombre3);
+        txtNombre3.setBounds(20, 90, 120, 23);
+
+        jLabel8.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        jLabel8.setText("Marca");
+        jLabel8.setRequestFocusEnabled(false);
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(20, 70, 90, 20);
+
+        txtNombre4.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtNombre4.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel1.add(txtNombre4);
+        txtNombre4.setBounds(360, 350, 120, 23);
+
+        jLabel9.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        jLabel9.setText("FechaDeVenta");
+        jLabel9.setRequestFocusEnabled(false);
+        jPanel1.add(jLabel9);
+        jLabel9.setBounds(360, 330, 110, 20);
+
+        txtNombre5.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtNombre5.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel1.add(txtNombre5);
+        txtNombre5.setBounds(20, 303, 320, 60);
+
+        jLabel10.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        jLabel10.setText("Obvservaciones");
+        jLabel10.setRequestFocusEnabled(false);
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(20, 280, 110, 20);
+
+        txtNombre6.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtNombre6.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel1.add(txtNombre6);
+        txtNombre6.setBounds(20, 250, 120, 23);
+
+        jLabel11.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        jLabel11.setText("Total");
+        jLabel11.setRequestFocusEnabled(false);
+        jPanel1.add(jLabel11);
+        jLabel11.setBounds(20, 230, 90, 20);
+
+        txtNombre7.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtNombre7.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel1.add(txtNombre7);
+        txtNombre7.setBounds(320, 90, 120, 23);
+
+        jLabel12.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        jLabel12.setText("Año");
+        jLabel12.setRequestFocusEnabled(false);
+        jPanel1.add(jLabel12);
+        jLabel12.setBounds(320, 70, 90, 20);
+
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(390, 10, 500, 430);
+        jPanel1.setBounds(370, 10, 520, 430);
 
         jPanel4.setLayout(null);
 
@@ -737,6 +854,14 @@ public class FrmVentas extends FrmGenerica {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbPaisActionPerformed
 
+    private void cmbPais1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPais1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbPais1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar1;
@@ -749,10 +874,20 @@ public class FrmVentas extends FrmGenerica {
     public javax.swing.JButton btnNuevo;
     public javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cmbPais;
+    private javax.swing.JComboBox<String> cmbPais1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -763,6 +898,13 @@ public class FrmVentas extends FrmGenerica {
     private javax.swing.JTextField txtBusquedaNombre;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNombre1;
+    private javax.swing.JTextField txtNombre2;
+    private javax.swing.JTextField txtNombre3;
+    private javax.swing.JTextField txtNombre4;
+    private javax.swing.JTextField txtNombre5;
+    private javax.swing.JTextField txtNombre6;
+    private javax.swing.JTextField txtNombre7;
     private javax.swing.JTextField txtPais;
     // End of variables declaration//GEN-END:variables
 }

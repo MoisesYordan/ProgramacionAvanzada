@@ -237,14 +237,14 @@ public class GestorVistaAuto extends GestorVista  {
         Boolean error=false;
         this.initializeTablaBusqueda(this.getForm().getTblDatos());
        
-        if(valor != null){
-            this.getForm().getTblDatos().setModel(this.listarDatos2((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),this.getForm().getTxtBuscar().getText(),""));
-        }
-        
-//        if (!error) {
-//      
-//            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),""));
+//        if(valor != null){
+//            this.getForm().getTblDatos().setModel(this.listarDatos2((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),this.getForm().getTxtBuscar().getText(),""));
 //        }
+        
+        if (!error && valor != null) {
+      
+            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),""));
+        }
         else{
             JOptionPane.showMessageDialog(null, "Falta ingresar datos para la búsqueda","Validación de Datos",JOptionPane.WARNING_MESSAGE);
         } 
