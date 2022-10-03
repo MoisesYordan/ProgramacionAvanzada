@@ -40,6 +40,7 @@ public class GestorVistaModelo extends GestorVista{
     public void setModel(Modelo model) {
         this.model = model;
     }
+    
      public GestorVistaMarca getGestorMarca() {
         return gestorMarca;
     }

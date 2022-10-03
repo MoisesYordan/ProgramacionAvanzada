@@ -58,7 +58,7 @@ public class FrmAuto extends FrmGenerica {
     }
     
    public JTextField getTxtMarca() {
-        return txtModelo;
+        return txtMarca;
     }
     public JTextField getTxtCosto() {
         return txtCosto;
@@ -866,9 +866,8 @@ public class FrmAuto extends FrmGenerica {
     }//GEN-LAST:event_btnCalcularKeyPressed
 
     private void cmbModeloItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbModeloItemStateChanged
-                     
-         Modelo modelo = (Modelo) cmbModelo.getSelectedItem();
-        txtMarca.setText(modelo.getMarca().toString());//// TODO add your handling code here:
+      Modelo modelo = (Modelo) cmbModelo.getSelectedItem();
+        txtMarca.setText(modelo.getMarca().toString());      //
     }//GEN-LAST:event_cmbModeloItemStateChanged
 
 
