@@ -290,7 +290,6 @@ public class FrmVentas extends FrmGenerica {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
@@ -304,7 +303,6 @@ public class FrmVentas extends FrmGenerica {
         btnCancelar = new javax.swing.JButton();
         cmbPais = new javax.swing.JComboBox<>();
         txtPais = new javax.swing.JTextField();
-        txtNombre1 = new javax.swing.JTextField();
         txtNombre2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -341,12 +339,6 @@ public class FrmVentas extends FrmGenerica {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descripción", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel1.setLayout(null);
-
-        jLabel1.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        jLabel1.setText("Formulario N°");
-        jLabel1.setRequestFocusEnabled(false);
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(320, 20, 100, 20);
 
         txtNombre.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -394,7 +386,7 @@ public class FrmVentas extends FrmGenerica {
         btnBuscarCodigo.setBounds(110, 40, 30, 30);
 
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        jLabel2.setText("Cliente");
+        jLabel2.setText("Empleado");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(320, 120, 120, 17);
 
@@ -496,11 +488,6 @@ public class FrmVentas extends FrmGenerica {
         jPanel1.add(txtPais);
         txtPais.setBounds(20, 140, 120, 30);
 
-        txtNombre1.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        txtNombre1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jPanel1.add(txtNombre1);
-        txtNombre1.setBounds(320, 40, 120, 23);
-
         txtNombre2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtNombre2.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtNombre2);
@@ -555,13 +542,13 @@ public class FrmVentas extends FrmGenerica {
         txtNombre4.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtNombre4.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtNombre4);
-        txtNombre4.setBounds(360, 350, 120, 23);
+        txtNombre4.setBounds(360, 340, 120, 23);
 
         jLabel9.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel9.setText("FechaDeVenta");
         jLabel9.setRequestFocusEnabled(false);
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(360, 330, 110, 20);
+        jLabel9.setBounds(360, 320, 110, 20);
 
         txtNombre5.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtNombre5.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -876,7 +863,6 @@ public class FrmVentas extends FrmGenerica {
     private javax.swing.JComboBox<String> cmbPais;
     private javax.swing.JComboBox<String> cmbPais1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -898,7 +884,6 @@ public class FrmVentas extends FrmGenerica {
     private javax.swing.JTextField txtBusquedaNombre;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtNombre1;
     private javax.swing.JTextField txtNombre2;
     private javax.swing.JTextField txtNombre3;
     private javax.swing.JTextField txtNombre4;
