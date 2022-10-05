@@ -352,6 +352,9 @@ public class FrmAuto extends FrmGenerica {
         txtAño = new javax.swing.JTextField();
         txtStock = new javax.swing.JTextField();
         btnCalcular = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
@@ -548,10 +551,10 @@ public class FrmAuto extends FrmGenerica {
         jPanel1.add(jLabel6);
         jLabel6.setBounds(440, 80, 80, 17);
 
-        jLabel7.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        jLabel7.setText("Costo");
+        jLabel7.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
+        jLabel7.setText("$");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(20, 150, 120, 17);
+        jLabel7.setBounds(200, 170, 30, 30);
 
         jLabel8.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel8.setText("Marca");
@@ -595,8 +598,23 @@ public class FrmAuto extends FrmGenerica {
             }
         });
         jPanel1.add(btnCalcular);
-        btnCalcular.setBounds(210, 170, 30, 30);
+        btnCalcular.setBounds(220, 170, 30, 30);
         btnCalcular.getAccessibleContext().setAccessibleDescription("");
+
+        jLabel9.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        jLabel9.setText("Costo");
+        jPanel1.add(jLabel9);
+        jLabel9.setBounds(20, 150, 120, 17);
+
+        jLabel10.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
+        jLabel10.setText("U°");
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(100, 320, 30, 30);
+
+        jLabel11.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
+        jLabel11.setText("$");
+        jPanel1.add(jLabel11);
+        jLabel11.setBounds(200, 230, 30, 30);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(390, 10, 540, 430);
@@ -901,6 +919,8 @@ public class FrmAuto extends FrmGenerica {
     public javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cmbModelo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -908,6 +928,7 @@ public class FrmAuto extends FrmGenerica {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
