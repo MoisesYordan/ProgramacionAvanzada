@@ -313,4 +313,17 @@ public class GestorVistaCliente extends GestorVista {
              crit.add( Restrictions.like("nombre",'%'+ text.toUpperCase()+'%'));
         return crit.list();
     }  
+    public DefaultComboBoxModel getComboModelCliente() {      
+        DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
+        auxModel.addElement("");
+        for (Cliente auxTipo : this.listarClientes()) {
+            auxModel.addElement(auxTipo);
+        }
+         return auxModel;
+    }
+    
+    public List <Cliente> listarClientes(){   
+        return this.listarClase(Cliente.class,"nombre");
+    }
+     
 }

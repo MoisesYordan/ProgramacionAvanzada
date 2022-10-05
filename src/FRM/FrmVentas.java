@@ -156,6 +156,7 @@ public class FrmVentas extends FrmGenerica {
         
         btnCancelar.setEnabled(true);
         btnSalir.setEnabled(true);
+        btnFrmCliente.setEnabled(false);
         btnNuevo.grabFocus();
     }
 
@@ -165,6 +166,7 @@ public class FrmVentas extends FrmGenerica {
         btnGuardar.setEnabled(true);
         btnEliminar.setEnabled(false);
         
+        btnFrmCliente.setEnabled(true);
         btnCancelar.setEnabled(true);
         btnSalir.setEnabled(true);
     }
@@ -178,8 +180,7 @@ public class FrmVentas extends FrmGenerica {
         btnEditar.setEnabled(true);
         btnGuardar.setEnabled(false);
         btnEliminar.setEnabled(true);
-        
-        
+        btnFrmCliente.setEnabled(false);
         btnCancelar.setEnabled(false);
         btnSalir.setEnabled(true);
         btnNuevo.grabFocus();
@@ -190,7 +191,7 @@ public class FrmVentas extends FrmGenerica {
         btnEditar.setEnabled(true);
         btnGuardar.setEnabled(false);
         btnEliminar.setEnabled(true);
-        
+        btnFrmCliente.setEnabled(false);
         btnSalir.setEnabled(true);
         btnCancelar.setEnabled(true);
         
@@ -205,7 +206,7 @@ public class FrmVentas extends FrmGenerica {
         btnEditar.setEnabled(false);
         btnGuardar.setEnabled(false);
         btnEliminar.setEnabled(false);
-     
+        btnFrmCliente.setEnabled(false);
         btnSalir.setEnabled(true);
         btnCancelar.setEnabled(true);
     }
@@ -220,18 +221,31 @@ public class FrmVentas extends FrmGenerica {
        // this.isExtra();
      }
     
-//    @Override
-//    public void cargarCombos() {
-//        this.gestorVista.setModelPais(cmbPais);
-//    }
+    @Override
+    public void cargarCombos() {
+        this.gestorVista.setModelModelo(cmbModelo);
+//        this.gestorVista.setModelEmpleado(cmbEmpleado);
+//        this.gestorVista.setModelCliente(cmbCliente);
+    }
 
     @Override
     public void viewCamposEnabled(Boolean tipo) {
         txtCodigo.setEnabled(false);
-        txtPais.setEnabled(tipo);
-        cmbEmpleado.setEnabled(tipo);
-        txtPais.setEnabled(false);
         
+        cmbModelo.setEnabled(tipo);
+        txtPais.setEnabled(false);
+        txtMarca.setEnabled(false);
+        txtAño.setEnabled(false);
+        
+        txtCantidad.setEnabled(tipo);
+        txtImpuesto.setEnabled(false);
+        txtTotal.setEnabled(false);
+        
+        cmbEmpleado.setEnabled(tipo);
+        cmbCliente.setEnabled(tipo);
+        
+        txtObvservaciones.setEnabled(tipo);
+        txtFechaDeVenta.setEnabled(tipo);
     }
 
     private void viewBasic(){

@@ -26,7 +26,10 @@ import org.hibernate.criterion.Restrictions;
 public class GestorVistaVentas extends GestorVista  {
     private FrmVentas form;
     private Ventas model;
-   
+    private GestorVistaModelo gestorModelo = new GestorVistaModelo();
+    private GestorVistaCliente gestorCliente = new GestorVistaCliente();
+    private GestorVistaEmpleado gestorEmpleado = new GestorVistaEmpleado();
+
     public FrmVentas getForm() {
         return form;
     }
@@ -42,11 +45,53 @@ public class GestorVistaVentas extends GestorVista  {
     public void setModel(Ventas model) {
         this.model = model;
     }
-
+  
+    public GestorVistaModelo getGestorModelo() {
+        return gestorModelo;
+    }
+    public void setGestorModelo(GestorVistaModelo gestorModelo) {
+        this.gestorModelo = gestorModelo;
+    }
+    
+    public GestorVistaEmpleado getGestorEmpleado() {
+        return gestorEmpleado;
+    }
+    public void setGestorEmpleado(GestorVistaEmpleado gestorEmpleado) {
+        this.gestorEmpleado = gestorEmpleado;
+    }    
+    
+    public GestorVistaCliente getGestorCliente() {
+        return gestorCliente;
+    }
+    public void setGestorCliente(GestorVistaCliente gestorCliente) {
+        this.gestorCliente = gestorCliente;
+    }
+    
     @Override
     public void newModel() {
         this.setModel(new Ventas());
         this.setModoNuevo();
+    }
+     
+    public void setModelModelo(JComboBox cmb) {
+        cmb.setModel(getComboModelTipoProyecto());
+    }
+    public DefaultComboBoxModel getComboModelTipoProyecto() {
+        return this.getGestorModelo().getComboModelModelo();
+    }
+    
+    public void setModelCliente(JComboBox cmb) {
+        cmb.setModel(getComboModelTipoProyecto1());
+    }
+    public DefaultComboBoxModel getComboModelTipoProyecto1() {
+        return this.getGestorCliente().getComboModelCliente();
+    }
+    
+    public void setModelEmpleado(JComboBox cmb) {
+        cmb.setModel(getComboModelTipoProyecto2());
+    }
+    public DefaultComboBoxModel getComboModelTipoProyecto2() {
+        return this.getGestorEmpleado().getComboModelEmpleado();
     }
     
     @Override
@@ -69,17 +114,29 @@ public class GestorVistaVentas extends GestorVista  {
 
     }
    
+    public void eliminar(){
+        this.getModel().asEliminado();
+        this.actualizarObjeto(this.getModel());
+    }
+    
     @Override
     public int setModel() {
         if (this.isDatosValidos()) {
-//            this.getModel().setNombre(this.getForm().getTxtNombre().getText());
-//            this.getModel().setApellido(this.getForm().getTxtApellido().getText());
-//            this.getModel().setDni(this.getForm().getTxtDni().getText());
-//            this.getModel().setFechanacimiento(this.getForm().getTxtFechaDeNacimiento().getText());
-//            this.getModel().setTelefono(this.getForm().getTxtTelefono().getText());
-//            this.getModel().setEmail(this.getForm().getTxtEmail().getText());
-//            this.getModel().setDireccion(this.getForm().getTxtDireccion().getText());
-
+            this.getModel().setModelo((Modelo) this.getForm().getCmbModelo().getModel().getSelectedItem());
+            this.getModel().setPais(this.getForm().getTxtPais().getText());
+            this.getModel().setMarca(this.getForm().getTxtMarca().getText());
+            this.getModel().setAño(this.getForm().getTxtAño().getText());
+            
+            this.getModel().setCantidad(this.getForm().getTxtCantidad().getText());
+            this.getModel().setImpuesto(this.getForm().getTxtImpuesto().getText());
+            this.getModel().setTotal(this.getForm().getTxtTotal().getText());
+            
+            this.getModel().setObvservaciones(this.getForm().getTxtObvservaciones().getText());
+            this.getModel().setFechaDeVenta(this.getForm().getTxtFechaDeVenta().getText());
+            
+//            this.getModel().setModelo((Empleado) this.getForm().getCmbEmpleado().getModel().getSelectedItem());
+//            this.getModel().setModelo((Cliente) this.getForm().getCmbCliente().getModel().getSelectedItem());
+            
             return 0;
         } else {
             return 1;
@@ -88,58 +145,41 @@ public class GestorVistaVentas extends GestorVista  {
 
     @Override
     public boolean isDatosValidos() {
-//        if (this.isEmpty(this.getForm().getTxtNombre())) {
-//            JOptionPane.showMessageDialog(null, "Falta ingresar correctamente el nombre");
-//            this.getForm().getTxtNombre().grabFocus();
-//            return false;
-//        }
-//        if (this.isEmpty(this.getForm().getTxtApellido())) {
-//            JOptionPane.showMessageDialog(null, "Falta ingresar correctamente el apellido");
-//            this.getForm().getTxtApellido().grabFocus();
-//            return false;
-//        }
-//        if (this.isEmpty(this.getForm().getTxtDni())|| !validarNumerosDNI(this.getForm().getTxtDni().getText().trim())) {
-//            JOptionPane.showMessageDialog(null, "Falta ingresar correctamente el DNI");
-//            this.getForm().getTxtDni().grabFocus();
-//            return false;
-//        }
-//        if (this.isEmpty(this.getForm().getTxtFechaDeNacimiento())|| !validarNumerosFN(this.getForm().getTxtFechaDeNacimiento().getText().trim())) {
-//            JOptionPane.showMessageDialog(null, "Falta ingresar correctamente la fecha de nacimiento, Ejemplo 11021999");
-//            this.getForm().getTxtFechaDeNacimiento().grabFocus();
-//            return false;
-//        }
-//         if (this.isEmpty(this.getForm().getTxtTelefono())|| !validarNumeros(this.getForm().getTxtTelefono().getText().trim())) {
-//            JOptionPane.showMessageDialog(null, "Falta ingresarcorrectamente el telefono");
-//            this.getForm().getTxtTelefono().grabFocus();
-//            return false;
-//        }
-//         if (this.isEmpty(this.getForm().getTxtEmail())) {
-//            JOptionPane.showMessageDialog(null, "Falta ingresar correctamente el email, Ejemplo: argentina@gmail.com");
-//            this.getForm().getTxtEmail().grabFocus();
-//            return false;
-//        }
-//         if (this.isEmpty(this.getForm().getTxtDireccion())) {
-//            JOptionPane.showMessageDialog(null, "Falta ingresar correctamente la direccion, Ejemplo: san Juan 12");
-//            this.getForm().getTxtDireccion().grabFocus();
-//            return false;
-//        }
 
+         if (this.isEmpty(this.getForm().getTxtCantidad())) {
+            JOptionPane.showMessageDialog(null, "Falta ingresar correctamente la direccion, Ejemplo: san Juan 12");
+            this.getForm().getTxtCantidad().grabFocus();
+            return false;
+        }
+        if (this.isEmpty(this.getForm().getCmbModelo())) {
+            JOptionPane.showMessageDialog(null, "Falta ingresar el Modelo");
+            this.getForm().getCmbModelo().grabFocus();
+            return false;
+        }
+        if (this.isEmpty(this.getForm().getCmbEmpleado())) {
+            JOptionPane.showMessageDialog(null, "Falta ingresar el Empleado");
+            this.getForm().getCmbEmpleado().grabFocus();
+            return false;
+        }
+        if (this.isEmpty(this.getForm().getCmbCliente())) {
+            JOptionPane.showMessageDialog(null, "Falta ingresar el Cliente");
+            this.getForm().getCmbCliente().grabFocus();
+            return false;
+        }
+        if (this.isEmpty(this.getForm().getTxtObvservaciones())) {
+            JOptionPane.showMessageDialog(null, "Falta ingresar correctamente las Obvservaciones");
+            this.getForm().getTxtObvservaciones().grabFocus();
+            return false;
+        }
+        if (this.isEmpty(this.getForm().getTxtFechaDeVenta())) {
+            JOptionPane.showMessageDialog(null, "Falta ingresar correctamente la FechaDeVenta, Ejemplo: 05102022");
+            this.getForm().getTxtFechaDeVenta().grabFocus();
+            return false;
+        }
 
         return true;
     }
-   //Validacion para que solo ingrese numeros para DNI FechaDeNacimiento, Telefono
-    public static boolean validarNumerosDNI(String datos){
-        return datos.matches("[0-9]{4,8}");
-    }
-    
-    public static boolean validarNumerosFN(String datos){
-        return datos.matches("[0-9]{8,8}");
-    }
-    
-    public static boolean validarNumeros(String datos){
-        return datos.matches("[0-9]*");
-    } 
-    
+
     public void saveModel(int opcABM) {
         switch (opcABM) {
             case 0:
@@ -169,12 +209,7 @@ public class GestorVistaVentas extends GestorVista  {
     public void actualizarObjeto() {
         this.actualizarObjeto(this.getModel());
     }
-    
-    public void eliminar(){
-        this.getModel().asEliminado();
-        this.actualizarObjeto(this.getModel());
-    }
-
+ 
     @Override
     public void openFormulario(JDesktopPane pantalla) {
         this.setEscritorio(pantalla);
@@ -200,7 +235,7 @@ public class GestorVistaVentas extends GestorVista  {
     }
    // busquedas, iteradores y otras 
     public List <Ventas> listarVentas(){   
-        return this.listarClase(Cliente.class,"nombre");
+        return this.listarClase(Ventas.class,"id");
     }
 //    public DefaultComboBoxModel getComboModelTipoProyecto() {
 //        return this.getGestorPais().getComboModelPais();
@@ -226,21 +261,27 @@ public class GestorVistaVentas extends GestorVista  {
     }
     
      public void initializeTablaBusqueda(JTable tbl) {
-        String[] titulo={"","Cód.","NOMBRE","APELLIDO","DNI","FechaDeNacimiento","Telefono","Email","Direccion"};//CAMBIARRRRRRRRRRR
-        String[] ancho ={"5","20","90","90","90","90","90","90","90"};
+        String[] titulo={"","Cód.","Modelo","marca","Pais","año","Cliente","Empleado","cantidad","total","impuesto","fechaDeVenta"};//CAMBIARRRRRRRRRRR
+        String[] ancho ={"5","20","90","90","90","90","90","90","90","90","90","90"};
         this.newModelTable(tbl,titulo,ancho);
     }
      
     @Override
     public void getView() {
-//        this.getForm().getTxtCodigo().setText(this.getModel().getCodigoS());
-//        this.getForm().getTxtNombre().setText(this.getModel().getNombre());
-//        this.getForm().getTxtApellido().setText(this.getModel().getApellido());
-//        this.getForm().getTxtDni().setText(this.getModel().getDni());
-//        this.getForm().getTxtFechaDeNacimiento().setText(this.getModel().getFechanacimiento());
-//        this.getForm().getTxtTelefono().setText(this.getModel().getTelefono());
-//        this.getForm().getTxtEmail().setText(this.getModel().getEmail());
-//        this.getForm().getTxtDireccion().setText(this.getModel().getDireccion());
+       this.getForm().getCmbModelo().setSelectedItem(this.getModel().getModelo());
+        this.getForm().getTxtCodigo().setText(this.getModel().getCodigoS());
+        this.getForm().getTxtMarca().setText(this.getModel().getMarca());
+        this.getForm().getTxtPais().setText(this.getModel().getPais());
+        this.getForm().getTxtAño().setText(this.getModel().getAño());
+
+        this.getForm().getTxtCantidad().setText(this.getModel().getCantidad());
+        this.getForm().getTxtImpuesto().setText(this.getModel().getImpuesto());
+        this.getForm().getTxtTotal().setText(this.getModel().getTotal());
+        
+        this.getForm().getTxtObvservaciones().setText(this.getModel().getObvservaciones());
+        this.getForm().getTxtFechaDeVenta().setText(this.getModel().getFechaDeVenta());
+       this.getForm().getCmbEmpleado().setSelectedItem(this.getModel().getEmpleado());
+       this.getForm().getCmbCliente().setSelectedItem(this.getModel().getCliente());
     }
     
     public void setBusqueda() {
@@ -299,7 +340,11 @@ public class GestorVistaVentas extends GestorVista  {
         Iterator it2 = (Iterator) lista.iterator();
         while (it2.hasNext())  {
             auxModel =( Ventas ) it2.next();
-            Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getApellido(),auxModel.getDni(),auxModel.getFechanacimiento(),auxModel.getTelefono(),auxModel.getEmail(),auxModel.getDireccion()}; //CAMBIARRRRRRRRRRRRRRRRRRRRRRRR
+            Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),
+            auxModel.getPais(),auxModel.getMarca(),auxModel.getAño(),
+            auxModel.getCantidad(),auxModel.getImpuesto(),auxModel.getTotal(), auxModel.getObvservaciones(),auxModel.getFechaDeVenta(),
+            auxModel.getEmpleado(),auxModel.getCliente()
+            }; 
             auxModelTabla.addRow(fila); 
         }
         return auxModelTabla;
@@ -307,7 +352,7 @@ public class GestorVistaVentas extends GestorVista  {
      public List<Ventas> listar(String text,int ord) {
         Criteria crit = getSession().createCriteria(Cliente.class)
              .add( Restrictions.eq("estado", 0));
-             crit.add( Restrictions.like("nombre",'%'+ text.toUpperCase()+'%'));
+             crit.add( Restrictions.like("Modelo",'%'+ text.toUpperCase()+'%'));
         return crit.list();
     }  
 }

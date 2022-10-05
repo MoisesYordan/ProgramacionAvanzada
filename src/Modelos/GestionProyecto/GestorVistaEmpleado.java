@@ -317,4 +317,17 @@ public class GestorVistaEmpleado extends GestorVista {
              crit.add( Restrictions.like("nombre",'%'+ text.toUpperCase()+'%'));
         return crit.list();
     }  
+    
+     public DefaultComboBoxModel getComboModelEmpleado() {      
+        DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
+        auxModel.addElement("");
+        for (Empleado auxTipo : this.listarEmpleados()) {
+            auxModel.addElement(auxTipo);
+        }
+         return auxModel;
+    }
+    
+    public List <Empleado> listarEmpleados(){   
+        return this.listarClase(Empleado.class,"nombre");
+    }
 }

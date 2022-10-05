@@ -79,6 +79,7 @@ public class GestorVistaMarca extends GestorVista {
         }
 
     }
+    
     public void eliminar(){
         this.getModel().asEliminado();
         this.actualizarObjeto(this.getModel());
