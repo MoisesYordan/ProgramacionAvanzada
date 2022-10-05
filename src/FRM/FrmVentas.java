@@ -224,8 +224,8 @@ public class FrmVentas extends FrmGenerica {
     @Override
     public void cargarCombos() {
         this.gestorVista.setModelModelo(cmbModelo);
-//        this.gestorVista.setModelEmpleado(cmbEmpleado);
-//        this.gestorVista.setModelCliente(cmbCliente);
+        this.gestorVista.setModelEmpleado(cmbEmpleado);
+        this.gestorVista.setModelCliente(cmbCliente);
     }
 
     @Override
