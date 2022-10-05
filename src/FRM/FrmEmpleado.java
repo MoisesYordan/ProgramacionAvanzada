@@ -1,4 +1,5 @@
-package Modelos.GestionProyecto;
+package FRM;
+import Modelos.GestionProyecto.GestorVistaEmpleado;
 import Vistas.FrmGenerica;
 import java.awt.HeadlessException;
 import javax.swing.*;

@@ -1,5 +1,6 @@
 package Modelos.GestionProyecto;
 
+import FRM.FrmAuto;
 import static Hibernate.HibernateUtil.getSession;
 import Vistas.GestorVista;
 import java.util.ArrayList;

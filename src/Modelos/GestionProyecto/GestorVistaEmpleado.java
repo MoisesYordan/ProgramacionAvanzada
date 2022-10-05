@@ -4,6 +4,7 @@
  */
 package Modelos.GestionProyecto;
 
+import FRM.FrmEmpleado;
 import static Hibernate.HibernateUtil.getSession;
 import Vistas.GestorVista;
 import java.util.Iterator;
