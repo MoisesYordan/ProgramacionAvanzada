@@ -26,7 +26,7 @@ import org.hibernate.criterion.Restrictions;
 public class GestorVistaVentas extends GestorVista  {
     private FrmVentas form;
     private Ventas model;
-    private GestorVistaModelo gestorModelo = new GestorVistaModelo();
+    private GestorVistaAuto gestorAuto = new GestorVistaAuto();
     private GestorVistaCliente gestorCliente = new GestorVistaCliente();
     private GestorVistaEmpleado gestorEmpleado = new GestorVistaEmpleado();
 
@@ -46,11 +46,11 @@ public class GestorVistaVentas extends GestorVista  {
         this.model = model;
     }
   
-    public GestorVistaModelo getGestorModelo() {
-        return gestorModelo;
+    public GestorVistaAuto getGestorAuto() {
+        return gestorAuto;
     }
-    public void setGestorModelo(GestorVistaModelo gestorModelo) {
-        this.gestorModelo = gestorModelo;
+    public void setGestorAuto(GestorVistaAuto gestorAuto) {
+        this.gestorAuto = gestorAuto;
     }
     
     public GestorVistaEmpleado getGestorEmpleado() {
@@ -73,11 +73,11 @@ public class GestorVistaVentas extends GestorVista  {
         this.setModoNuevo();
     }
      
-    public void setModelModelo(JComboBox cmb) {
+    public void setModelAuto(JComboBox cmb) {
         cmb.setModel(getComboModelTipoProyecto());
     }
     public DefaultComboBoxModel getComboModelTipoProyecto() {
-        return this.getGestorModelo().getComboModelModelo();
+        return this.getGestorAuto().getComboModelAuto();
     }
     
     public void setModelCliente(JComboBox cmb) {
@@ -122,7 +122,7 @@ public class GestorVistaVentas extends GestorVista  {
     @Override
     public int setModel() {
         if (this.isDatosValidos()) {
-            this.getModel().setModelo((Modelo) this.getForm().getCmbModelo().getModel().getSelectedItem());
+//            this.getModel().setModelo((Auto) this.getForm().getCmbAuto().getModel().getSelectedItem());
             this.getModel().setPais(this.getForm().getTxtPais().getText());
             this.getModel().setMarca(this.getForm().getTxtMarca().getText());
             this.getModel().setAño(this.getForm().getTxtAño().getText());
@@ -134,8 +134,8 @@ public class GestorVistaVentas extends GestorVista  {
             this.getModel().setObvservaciones(this.getForm().getTxtObvservaciones().getText());
             this.getModel().setFechaDeVenta(this.getForm().getTxtFechaDeVenta().getText());
             
-//            this.getModel().setModelo((Empleado) this.getForm().getCmbEmpleado().getModel().getSelectedItem());
-//            this.getModel().setModelo((Cliente) this.getForm().getCmbCliente().getModel().getSelectedItem());
+ //           this.getModel().setModelo((Empleado) this.getForm().getCmbEmpleado().getModel().getSelectedItem());
+ //           this.getModel().setModelo((Cliente) this.getForm().getCmbCliente().getModel().getSelectedItem());
             
             return 0;
         } else {
@@ -147,13 +147,13 @@ public class GestorVistaVentas extends GestorVista  {
     public boolean isDatosValidos() {
 
          if (this.isEmpty(this.getForm().getTxtCantidad())) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar correctamente la direccion, Ejemplo: san Juan 12");
+            JOptionPane.showMessageDialog(null, "Falta ingresar correctamente la cantidad");
             this.getForm().getTxtCantidad().grabFocus();
             return false;
         }
-        if (this.isEmpty(this.getForm().getCmbModelo())) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar el Modelo");
-            this.getForm().getCmbModelo().grabFocus();
+        if (this.isEmpty(this.getForm().getCmbAuto())) {
+            JOptionPane.showMessageDialog(null, "Falta ingresar el Auto");
+            this.getForm().getCmbAuto().grabFocus();
             return false;
         }
         if (this.isEmpty(this.getForm().getCmbEmpleado())) {
@@ -268,7 +268,7 @@ public class GestorVistaVentas extends GestorVista  {
      
     @Override
     public void getView() {
-       this.getForm().getCmbModelo().setSelectedItem(this.getModel().getModelo());
+       this.getForm().getCmbAuto().setSelectedItem(this.getModel().getAuto());
         this.getForm().getTxtCodigo().setText(this.getModel().getCodigoS());
         this.getForm().getTxtMarca().setText(this.getModel().getMarca());
         this.getForm().getTxtPais().setText(this.getModel().getPais());

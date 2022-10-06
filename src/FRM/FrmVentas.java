@@ -1,5 +1,6 @@
 package FRM;
 import Modelos.GestionProyecto.GestorVistaVentas;
+import Modelos.GestionProyecto.Modelo;
 import Vistas.FrmGenerica;
 import java.awt.HeadlessException;
 import javax.swing.*;
@@ -43,12 +44,12 @@ public class FrmVentas extends FrmGenerica {
         this.txtCodigo = txtCodigo;
     }
 
-    public JComboBox<String> getCmbModelo() {
-        return cmbModelo;
+    public JComboBox<String> getCmbAuto() {
+        return cmbAuto;
     }
 
-    public void setCmbModelo(JComboBox<String> cmbModelo) {
-        this.cmbModelo = cmbModelo;
+    public void setCmbAuto(JComboBox<String> cmbAuto) {
+        this.cmbAuto = cmbAuto;
     }
     
     public JTextField getTxtPais() {
@@ -197,8 +198,8 @@ public class FrmVentas extends FrmGenerica {
         
     } 
     private void viewDenominacionVisible(Boolean tipo){
-        txtModelo.setVisible(!tipo);
-        cmbModelo.setVisible(tipo);
+        txtAuto.setVisible(!tipo);
+        cmbAuto.setVisible(tipo);
     }
     
     public void viewBuscar() {
@@ -223,7 +224,7 @@ public class FrmVentas extends FrmGenerica {
     
     @Override
     public void cargarCombos() {
-        this.gestorVista.setModelModelo(cmbModelo);
+        this.gestorVista.setModelAuto(cmbAuto);
         this.gestorVista.setModelEmpleado(cmbEmpleado);
         this.gestorVista.setModelCliente(cmbCliente);
     }
@@ -232,7 +233,7 @@ public class FrmVentas extends FrmGenerica {
     public void viewCamposEnabled(Boolean tipo) {
         txtCodigo.setEnabled(false);
         
-        cmbModelo.setEnabled(tipo);
+        cmbAuto.setEnabled(tipo);
         txtPais.setEnabled(false);
         txtMarca.setEnabled(false);
         txtAño.setEnabled(false);
@@ -262,7 +263,7 @@ public class FrmVentas extends FrmGenerica {
     @Override
     public void viewEditarEnter( ) {
         this.viewBasic();
-        txtModelo.grabFocus();
+        txtAuto.grabFocus();
         this.getGestorVista().setModoEditar();
     }
 
@@ -307,13 +308,13 @@ public class FrmVentas extends FrmGenerica {
     private void viewNueva(){
         this.clearView();
         this.getGestorVista().newModel();
-        txtModelo.grabFocus();
+        txtAuto.grabFocus();
     }
 
     @Override
     public void clearView() {
         txtCodigo.setText("");
-        txtModelo.setText("");
+        txtAuto.setText("");
         txtPais.setText("");
         txtMarca.setText("");
         txtAño.setText("");
@@ -328,7 +329,7 @@ public class FrmVentas extends FrmGenerica {
 
     @Override
     public void grabFocus(){
-        txtModelo.grabFocus();
+        txtAuto.grabFocus();
     }
 
    @Override
@@ -410,12 +411,12 @@ public class FrmVentas extends FrmGenerica {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        cmbModelo = new javax.swing.JComboBox<>();
+        cmbAuto = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         txtImpuesto = new javax.swing.JTextField();
-        txtModelo = new javax.swing.JTextField();
+        txtAuto = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
@@ -686,14 +687,19 @@ public class FrmVentas extends FrmGenerica {
         jPanel1.add(jLabel14);
         jLabel14.setBounds(140, 170, 30, 30);
 
-        cmbModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
-        cmbModelo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbModeloActionPerformed(evt);
+        cmbAuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        cmbAuto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbAutoItemStateChanged(evt);
             }
         });
-        jPanel1.add(cmbModelo);
-        cmbModelo.setBounds(20, 100, 120, 30);
+        cmbAuto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbAutoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmbAuto);
+        cmbAuto.setBounds(20, 100, 120, 30);
 
         jLabel15.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel15.setText("Modelo");
@@ -717,10 +723,10 @@ public class FrmVentas extends FrmGenerica {
         jPanel1.add(txtImpuesto);
         txtImpuesto.setBounds(20, 220, 120, 30);
 
-        txtModelo.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        txtModelo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jPanel1.add(txtModelo);
-        txtModelo.setBounds(20, 100, 120, 30);
+        txtAuto.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtAuto.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel1.add(txtAuto);
+        txtAuto.setBounds(20, 100, 120, 30);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(370, 0, 550, 440);
@@ -988,9 +994,14 @@ public class FrmVentas extends FrmGenerica {
         //this.gestorVista.abrirCliente(getEscritorio());        // TODO add your handling code here:
     }//GEN-LAST:event_btnFrmClienteActionPerformed
 
-    private void cmbModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbModeloActionPerformed
+    private void cmbAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbModeloActionPerformed
+    }//GEN-LAST:event_cmbAutoActionPerformed
+
+    private void cmbAutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAutoItemStateChanged
+//        Auto auto = (Auto) cmbAuto.getSelectedItem();
+//        txtModelo.setText(modelo.getMarca().toString());        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbAutoItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1004,9 +1015,9 @@ public class FrmVentas extends FrmGenerica {
     private javax.swing.JButton btnImprimir1;
     public javax.swing.JButton btnNuevo;
     public javax.swing.JButton btnSalir;
+    private javax.swing.JComboBox<String> cmbAuto;
     private javax.swing.JComboBox<String> cmbCliente;
     private javax.swing.JComboBox<String> cmbEmpleado;
-    private javax.swing.JComboBox<String> cmbModelo;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1030,6 +1041,7 @@ public class FrmVentas extends FrmGenerica {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblDatos;
+    private javax.swing.JTextField txtAuto;
     private javax.swing.JTextField txtAño;
     private javax.swing.JTextField txtBusquedaNombre;
     private javax.swing.JTextField txtCantidad;
@@ -1037,7 +1049,6 @@ public class FrmVentas extends FrmGenerica {
     private javax.swing.JTextField txtFechaDeVenta;
     private javax.swing.JTextField txtImpuesto;
     private javax.swing.JTextField txtMarca;
-    private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtObvservaciones;
     private javax.swing.JTextField txtPais;
     private javax.swing.JTextField txtTotal;

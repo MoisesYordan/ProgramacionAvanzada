@@ -22,7 +22,9 @@ public class Ventas implements Comparable, Serializable {
     private long id;
     private int codigo;
     private int estado;
-  
+
+    @OneToOne (targetEntity = Auto.class, cascade= CascadeType.ALL,fetch=FetchType.LAZY)
+    private Auto auto;
     @OneToOne (targetEntity = Modelo.class, cascade= CascadeType.ALL,fetch=FetchType.LAZY)
     private Modelo modelo;
     private String pais;
@@ -65,7 +67,13 @@ public class Ventas implements Comparable, Serializable {
     public void setEstado(int estado) {
         this.estado = estado;
     }
+    public Auto getAuto() {
+        return auto;
+    }
 
+    public void setAuto(Auto auto) {
+        this.auto = auto;
+    }
     public Modelo getModelo() {
         return modelo;
     }

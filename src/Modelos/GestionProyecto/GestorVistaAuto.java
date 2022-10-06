@@ -194,16 +194,16 @@ public class GestorVistaAuto extends GestorVista  {
         return this.getGestorModelo().getComboModelModelo();
         
     }
-    
-//    public DefaultComboBoxModel getComboModelMarca() {      
-//        DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
-//        auxModel.addElement("");
-//        for (Marca auxTipo : this.listarMarcas()) {
-//            auxModel.addElement(auxTipo);
-//        }
-//         return auxModel;
-//    }
-//   
+
+    public DefaultComboBoxModel getComboModelAuto() {      
+        DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
+        auxModel.addElement("");
+        for (Auto auxTipo : this.listarAutos()) {
+            auxModel.addElement(auxTipo);
+        }
+         return auxModel;
+    }
+
     public int getUltimoCodigo() {
         try {
             Auto auxModel = (Auto) this.listarUltimo(Auto.class).get(0);
