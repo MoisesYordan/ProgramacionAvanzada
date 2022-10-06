@@ -1007,7 +1007,7 @@ public class FrmVentas extends FrmGenerica {
     
         txtModelo.setText(auto.getModelo().toString());   
         txtMarca.setText(auto.getMarca().toString());  
-        txtPais.setText(auto.getModelo().getMarca().getPais().toString());  
+        txtPais.setText(auto.getModelo().getPais().toString());  
         txtAño.setText(auto.getAño().toString());  
     }//GEN-LAST:event_cmbAutoItemStateChanged
 

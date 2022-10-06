@@ -317,13 +317,13 @@ public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordena
     
     public List<Auto> listar(String text,int ord) {
         Criteria crit = getSession().createCriteria(Auto.class)
-             .add( Restrictions.eq("Estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             .add( Restrictions.eq("estado", 0)); 
              crit.add( Restrictions.like("marca",'%'+ text.toUpperCase()+'%'));
         return crit.list();
     }
      public List<Auto> listar2(String text,int ord,String valor) { 
         Criteria crit = getSession().createCriteria(Auto.class)
-             .add( Restrictions.eq("Estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             .add( Restrictions.eq("estado", 0)); 
              crit.add( Restrictions.eq("marca", valor));
              //crit.add( Restrictions.like("marca",'%'+ text.toUpperCase()+'%'));
         return crit.list();

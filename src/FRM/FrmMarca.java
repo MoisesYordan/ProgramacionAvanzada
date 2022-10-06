@@ -49,21 +49,21 @@ public class FrmMarca extends FrmGenerica {
         this.txtCodigo = txtCodigo;
     }
 
-    public JComboBox<String> getCmbPais() {
-        return cmbPais;
-    }
-
-    public void setCmbPais(JComboBox<String> cmbPais) {
-        this.cmbPais = cmbPais;
-    }
-
-    public JTextField getTxtPais() {
-        return txtPais;
-    }
-
-    public void setTxtPais(JTextField txtPais) {
-        this.txtPais = txtPais;
-    }
+//    public JComboBox<String> getCmbPais() {
+//        return cmbPais;
+//    }
+//
+//    public void setCmbPais(JComboBox<String> cmbPais) {
+//        this.cmbPais = cmbPais;
+//    }
+//
+//    public JTextField getTxtPais() {
+//        return txtPais;
+//    }
+//
+//    public void setTxtPais(JTextField txtPais) {
+//        this.txtPais = txtPais;
+//    }
     
 // Constructores del formulario 
     public FrmMarca(GestorVistaMarca gestorVista) {
@@ -129,10 +129,7 @@ public class FrmMarca extends FrmGenerica {
         btnCancelar.setEnabled(true);
         
     } 
-    private void viewDenominacionVisible(Boolean tipo){
-        txtPais.setVisible(!tipo);
-        cmbPais.setVisible(tipo);
-    }
+
     
     public void viewBuscar() {
         btnNuevo.setEnabled(true); 
@@ -154,17 +151,14 @@ public class FrmMarca extends FrmGenerica {
        // this.isExtra();
      }
     
-    @Override
-    public void cargarCombos() {
-        this.gestorVista.setModelPais(cmbPais);
-    }
+
 
     @Override
     public void viewCamposEnabled(Boolean tipo) {
         txtCodigo.setEnabled(false);
         txtNombre.setEnabled(tipo);
-        cmbPais.setEnabled(tipo);
-        txtPais.setEnabled(false);
+//        cmbPais.setEnabled(tipo);
+//        txtPais.setEnabled(false);
         
     }
 
@@ -235,7 +229,7 @@ public class FrmMarca extends FrmGenerica {
     public void clearView() {
         txtNombre.setText("");
         txtCodigo.setText("");
-        txtPais.setText("");
+//        txtPais.setText("");
     }
 
     @Override
@@ -297,15 +291,12 @@ public class FrmMarca extends FrmGenerica {
         jLabel3 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         btnBuscarCodigo = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        cmbPais = new javax.swing.JComboBox<>();
-        txtPais = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
@@ -336,7 +327,7 @@ public class FrmMarca extends FrmGenerica {
         txtNombre.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtNombre);
-        txtNombre.setBounds(20, 90, 460, 23);
+        txtNombre.setBounds(20, 90, 460, 30);
 
         jLabel3.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel3.setText("Código");
@@ -377,11 +368,6 @@ public class FrmMarca extends FrmGenerica {
         });
         jPanel1.add(btnBuscarCodigo);
         btnBuscarCodigo.setBounds(110, 40, 30, 30);
-
-        jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        jLabel2.setText("Pais");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 120, 120, 17);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(null);
@@ -465,21 +451,6 @@ public class FrmMarca extends FrmGenerica {
 
         jPanel1.add(jPanel3);
         jPanel3.setBounds(310, 380, 180, 40);
-
-        cmbPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
-        cmbPais.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbPaisActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cmbPais);
-        cmbPais.setBounds(20, 140, 310, 30);
-
-        txtPais.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        txtPais.setForeground(new java.awt.Color(187, 187, 198));
-        txtPais.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jPanel1.add(txtPais);
-        txtPais.setBounds(20, 140, 310, 30);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(390, 10, 500, 430);
@@ -735,10 +706,6 @@ public class FrmMarca extends FrmGenerica {
        this.getGestorVista().setDatos();
     }//GEN-LAST:event_tblDatosMouseClicked
 
-    private void cmbPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPaisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbPaisActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar1;
@@ -750,9 +717,7 @@ public class FrmMarca extends FrmGenerica {
     private javax.swing.JButton btnImprimir1;
     public javax.swing.JButton btnNuevo;
     public javax.swing.JButton btnSalir;
-    private javax.swing.JComboBox<String> cmbPais;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
@@ -765,6 +730,5 @@ public class FrmMarca extends FrmGenerica {
     private javax.swing.JTextField txtBusquedaNombre;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtPais;
     // End of variables declaration//GEN-END:variables
 }

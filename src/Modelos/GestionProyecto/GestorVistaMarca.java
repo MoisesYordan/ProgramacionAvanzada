@@ -23,7 +23,7 @@ public class GestorVistaMarca extends GestorVista {
 
     private FrmMarca form;
     private Marca model;
-    private GestorVistaPais gestorPais = new GestorVistaPais();
+//    private GestorVistaPais gestorPais = new GestorVistaPais();
 
    
     public FrmMarca getForm() {
@@ -42,13 +42,13 @@ public class GestorVistaMarca extends GestorVista {
         this.model = model;
     }
 
-    public GestorVistaPais getGestorPais() {
-        return gestorPais;
-    }
-
-    public void setGestorPais(GestorVistaPais gestorPais) {
-        this.gestorPais = gestorPais;
-    }
+//    public GestorVistaPais getGestorPais() {
+//        return gestorPais;
+//    }
+//
+//    public void setGestorPais(GestorVistaPais gestorPais) {
+//        this.gestorPais = gestorPais;
+//    }
 
     @Override
     public void newModel() {
@@ -56,9 +56,9 @@ public class GestorVistaMarca extends GestorVista {
         this.setModoNuevo();
     }
 
-    public void setModelPais(JComboBox cmb) {
-        cmb.setModel(getComboModelTipoProyecto());
-    }
+//    public void setModelPais(JComboBox cmb) {
+//        cmb.setModel(getComboModelTipoProyecto());
+//    }
   
     @Override
     public void saveView() {
@@ -88,7 +88,7 @@ public class GestorVistaMarca extends GestorVista {
     public int setModel() {
         if (this.isDatosValidos()) {
             this.getModel().setNombre(this.getForm().getTxtNombre().getText());
-            this.getModel().setPais((Pais) this.getForm().getCmbPais().getModel().getSelectedItem());
+//            this.getModel().setPais((Pais) this.getForm().getCmbPais().getModel().getSelectedItem());
 
             return 0;
         } else {
@@ -99,16 +99,16 @@ public class GestorVistaMarca extends GestorVista {
     @Override
     public boolean isDatosValidos() {
         if (this.isEmpty(this.getForm().getTxtNombre())) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar la descripción del Proyecto");
+            JOptionPane.showMessageDialog(null, "Falta ingresar la marca");
             this.getForm().getTxtNombre().grabFocus();
             return false;
         }
 
-        if (this.isEmpty(this.getForm().getCmbPais())) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar el item de Proyecto");
-            this.getForm().getCmbPais().grabFocus();
-            return false;
-        }
+//        if (this.isEmpty(this.getForm().getCmbPais())) {
+//            JOptionPane.showMessageDialog(null, "Falta ingresar el item de Proyecto");
+//            this.getForm().getCmbPais().grabFocus();
+//            return false;
+//        }
 
         return true;
     }
@@ -172,9 +172,9 @@ public class GestorVistaMarca extends GestorVista {
     public List <Marca> listarMarcas(){   //
         return this.listarClase(Marca.class,"nombre");
     }
-    public DefaultComboBoxModel getComboModelTipoProyecto() {
-        return this.getGestorPais().getComboModelPais();
-    }
+//    public DefaultComboBoxModel getComboModelTipoProyecto() {
+//        return this.getGestorPais().getComboModelPais();
+//    }
     
     public DefaultComboBoxModel getComboModelMarca() {      
         DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
@@ -204,7 +204,7 @@ public class GestorVistaMarca extends GestorVista {
     public void getView() {
         this.getForm().getTxtCodigo().setText(this.getModel().getCodigoS());
         this.getForm().getTxtNombre().setText(this.getModel().getNombre());
-        this.getForm().getCmbPais().setSelectedItem(this.getModel().getPais());
+//        this.getForm().getCmbPais().setSelectedItem(this.getModel().getPais());
     }
     public void setBusqueda() {
         Boolean error=false;
@@ -262,7 +262,7 @@ public class GestorVistaMarca extends GestorVista {
         Iterator it2 = (Iterator) lista.iterator();
         while (it2.hasNext())  {
             auxModel =( Marca ) it2.next();
-            Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getPais()}; 
+            Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre()}; 
             auxModelTabla.addRow(fila); 
         }
         return auxModelTabla;

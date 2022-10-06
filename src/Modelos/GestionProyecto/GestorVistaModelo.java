@@ -25,6 +25,7 @@ public class GestorVistaModelo extends GestorVista{
     private FrmModelo form;
     private Modelo model;
     private GestorVistaMarca gestorMarca = new GestorVistaMarca();
+    private GestorVistaPais gestorPais = new GestorVistaPais();
     
     public FrmModelo getForm() {
         return form;
@@ -42,6 +43,13 @@ public class GestorVistaModelo extends GestorVista{
         this.model = model;
     }
     
+    public GestorVistaPais getGestorPais() {
+        return gestorPais;
+    }
+
+    public void setGestorPais(GestorVistaPais gestorPais) {
+        this.gestorPais = gestorPais;
+    }
      public GestorVistaMarca getGestorMarca() {
         return gestorMarca;
     }
@@ -58,23 +66,10 @@ public class GestorVistaModelo extends GestorVista{
     public void setModelMarca(JComboBox cmb) {
         cmb.setModel(getComboModelTipoProyecto());
     }
-    public List <Modelo> List(){   
-        return getSession().createCriteria(Modelo.class).list();
+    public void setModelPais(JComboBox cmb) {
+        cmb.setModel(getComboModelTipoProyecto2());
     }
-//    public List <Modelo> listarModelos(){   
-//        return this.listarClase(Modelo.class,"nombre");
-//    }
-    public DefaultComboBoxModel getComboModelTipoProyecto() {
-        return this.getGestorMarca().getComboModelMarca();
-    }
-    public DefaultComboBoxModel getComboModelModelo() {      
-        DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
-        auxModel.addElement("");
-        for (Modelo auxTipo : this.List()) {
-            auxModel.addElement(auxTipo);
-        }
-         return auxModel;
-    }
+    
     
     @Override
     public void saveView() {
@@ -104,6 +99,7 @@ public class GestorVistaModelo extends GestorVista{
         if (this.isDatosValidos()) {
             this.getModel().setNombre(this.getForm().getTxtNombre().getText());
             this.getModel().setMarca((Marca) this.getForm().getCmbMarca().getModel().getSelectedItem());
+            this.getModel().setPais((Pais) this.getForm().getCmbPais().getModel().getSelectedItem());
 
             return 0;
         } else {
@@ -119,8 +115,13 @@ public class GestorVistaModelo extends GestorVista{
         }
 
         if (this.isEmpty(this.getForm().getCmbMarca())) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar el item de Proyecto");
+            JOptionPane.showMessageDialog(null, "Falta ingresar la marca");
             this.getForm().getCmbMarca().grabFocus();
+            return false;
+        }
+        if (this.isEmpty(this.getForm().getCmbPais())) {
+            JOptionPane.showMessageDialog(null, "Falta ingresar el pais");
+            this.getForm().getCmbPais().grabFocus();
             return false;
         }
 
@@ -156,10 +157,6 @@ public class GestorVistaModelo extends GestorVista{
         this.actualizarObjeto(this.getModel());
     }
 
-//    public void eliminar() {
-//        this.eliminarObjeto(this.getModel());
-//    }
-
     public int getUltimoCodigo() {
         try {
             Modelo auxModel = (Modelo) this.listarUltimo(Modelo.class).get(0);
@@ -191,19 +188,27 @@ public class GestorVistaModelo extends GestorVista{
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ // busquedas, iteradores y otras
+    public List <Modelo> List(){   
+        return getSession().createCriteria(Modelo.class).list();
+    }
+//    public List <Modelo> listarModelos(){   
+//        return this.listarClase(Modelo.class,"nombre");
+//    }
+    public DefaultComboBoxModel getComboModelTipoProyecto() {
+        return this.getGestorMarca().getComboModelMarca();
+    }
+     public DefaultComboBoxModel getComboModelTipoProyecto2() {
+        return this.getGestorPais().getComboModelPais();
+    }
+    public DefaultComboBoxModel getComboModelModelo() {      
+        DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
+        auxModel.addElement("");
+        for (Modelo auxTipo : this.List()) {
+            auxModel.addElement(auxTipo);
+        }
+         return auxModel;
+    }
     
     
      public Object getItemTablaSelected(JTable tbl) {
@@ -211,8 +216,8 @@ public class GestorVistaModelo extends GestorVista{
         return model.getValueAt(tbl.getSelectedRow(),0);
     }
      public void initializeTablaBusqueda(JTable tbl) {
-        String[] titulo={"","Cód.","NOMBRE","MARCA"};
-        String[] ancho ={"10","30","135","135"};//cambiar
+        String[] titulo={"","Cód.","NOMBRE","MARCA","Pais"};
+        String[] ancho ={"10","30","135","135","135"};//cambiar
         this.newModelTable(tbl,titulo,ancho);
     }
           @Override
@@ -220,7 +225,7 @@ public class GestorVistaModelo extends GestorVista{
         this.getForm().getTxtCodigo().setText(this.getModel().getCodigoS());
         this.getForm().getTxtNombre().setText(this.getModel().getNombre());
         this.getForm().getCmbMarca().setSelectedItem(this.getModel().getMarca());
-
+        this.getForm().getCmbPais().setSelectedItem(this.getModel().getPais());
     }
          public void setBusqueda() {
         Boolean error=false;
@@ -278,7 +283,7 @@ public class GestorVistaModelo extends GestorVista{
         Iterator it2 = (Iterator) lista.iterator();
         while (it2.hasNext())  {
             auxModel =( Modelo ) it2.next();
-            Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getMarca()}; 
+            Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getMarca(),auxModel.getPais()}; 
             auxModelTabla.addRow(fila); 
         }
         return auxModelTabla;

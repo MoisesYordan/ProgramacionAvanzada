@@ -65,7 +65,14 @@ public class FrmModelo extends FrmGenerica {
         this.txtMarca = txtMarca;
     }
     
-    
+    public JComboBox<String> getCmbPais() {
+        return cmbPais;
+    }
+
+    public void setCmbPais(JComboBox<String> cmbPais) {
+        this.cmbPais = cmbPais;
+    }
+
 // Constructores del formulario 
     public FrmModelo(GestorVistaModelo gestorVista) {
         try{
@@ -153,6 +160,7 @@ public class FrmModelo extends FrmGenerica {
     @Override
     public void cargarCombos() {
         this.gestorVista.setModelMarca(cmbMarca);
+        this.gestorVista.setModelPais(cmbPais);
     }
 
     @Override
@@ -160,6 +168,7 @@ public class FrmModelo extends FrmGenerica {
         txtCodigo.setEnabled(false);
         txtNombre.setEnabled(tipo);
         cmbMarca.setEnabled(tipo);
+        cmbPais.setEnabled(tipo);
 //        txtMarca.setEnabled(false);
     }
 
@@ -229,8 +238,7 @@ public class FrmModelo extends FrmGenerica {
     public void clearView() {
         txtNombre.setText("");
         txtCodigo.setText("");
-       //txtMarca.setText("");
-        //txtObservaciones.setText("");
+     
     }
 
     @Override
@@ -305,6 +313,8 @@ public class FrmModelo extends FrmGenerica {
         btnSalir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         cmbMarca = new javax.swing.JComboBox<>();
+        cmbPais = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
@@ -378,9 +388,9 @@ public class FrmModelo extends FrmGenerica {
         btnBuscarCodigo.setBounds(110, 40, 30, 30);
 
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        jLabel2.setText("Marca");
+        jLabel2.setText("Pais");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 120, 120, 17);
+        jLabel2.setBounds(20, 190, 120, 17);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(null);
@@ -475,6 +485,20 @@ public class FrmModelo extends FrmGenerica {
         });
         jPanel1.add(cmbMarca);
         cmbMarca.setBounds(20, 140, 310, 30);
+
+        cmbPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        cmbPais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPaisActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmbPais);
+        cmbPais.setBounds(20, 210, 310, 30);
+
+        jLabel5.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        jLabel5.setText("Marca");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(20, 120, 120, 17);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(390, 10, 490, 430);
@@ -737,6 +761,10 @@ try {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbMarcaActionPerformed
 
+    private void cmbPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPaisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbPaisActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar1;
@@ -749,10 +777,12 @@ try {
     public javax.swing.JButton btnNuevo;
     public javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cmbMarca;
+    private javax.swing.JComboBox<String> cmbPais;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
