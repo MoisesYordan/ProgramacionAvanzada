@@ -222,8 +222,6 @@ public class GestorVistaAuto extends GestorVista  {
      @Override
     public void getView() {
         this.getForm().getTxtCodigo().setText(this.getModel().getCodigoS());
-        //this.getForm().getTxtNombre().setText(this.getModel().getNombre());
-        //this.getForm().getCmbPais().setSelectedItem(this.getModel().getPais());
         this.getForm().getCmbModelo().setSelectedItem(this.getModel().getModelo().getMarca());
         this.getForm().getCmbModelo().setSelectedItem(this.getModel().getModelo());
         this.getForm().getTxtAño().setText(this.getModel().getAño());
@@ -319,13 +317,13 @@ public class GestorVistaAuto extends GestorVista  {
     }
      public List<Auto> listar(String text,int ord) {
         Criteria crit = getSession().createCriteria(Auto.class)
-             .add( Restrictions.eq("Estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
              crit.add( Restrictions.like("marca",'%'+ text.toUpperCase()+'%')); // empiza con cualquier cosa sigue con una palabra y sigo con otra cosa Ejemplo &o& trae ford 
         return crit.list();
     }
      public List<Auto> listar2(String text,int ord,String valor) {
         Criteria crit = getSession().createCriteria(Auto.class)
-             .add( Restrictions.eq("Estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
              crit.add( Restrictions.eq("marca", valor));
              //crit.add( Restrictions.like("marca",'%'+ text.toUpperCase()+'%'));
         return crit.list();

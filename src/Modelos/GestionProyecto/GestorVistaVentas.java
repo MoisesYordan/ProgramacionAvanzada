@@ -122,7 +122,7 @@ public class GestorVistaVentas extends GestorVista  {
     @Override
     public int setModel() {
         if (this.isDatosValidos()) {
-//            this.getModel().setModelo((Auto) this.getForm().getCmbAuto().getModel().getSelectedItem());
+            this.getModel().setAuto((Auto) this.getForm().getCmbAuto().getModel().getSelectedItem());
             this.getModel().setPais(this.getForm().getTxtPais().getText());
             this.getModel().setMarca(this.getForm().getTxtMarca().getText());
             this.getModel().setAño(this.getForm().getTxtAño().getText());
@@ -134,8 +134,8 @@ public class GestorVistaVentas extends GestorVista  {
             this.getModel().setObvservaciones(this.getForm().getTxtObvservaciones().getText());
             this.getModel().setFechaDeVenta(this.getForm().getTxtFechaDeVenta().getText());
             
- //           this.getModel().setModelo((Empleado) this.getForm().getCmbEmpleado().getModel().getSelectedItem());
- //           this.getModel().setModelo((Cliente) this.getForm().getCmbCliente().getModel().getSelectedItem());
+            this.getModel().setEmpleado((Empleado) this.getForm().getCmbEmpleado().getModel().getSelectedItem());
+            this.getModel().setCliente((Cliente) this.getForm().getCmbCliente().getModel().getSelectedItem());
             
             return 0;
         } else {
@@ -235,16 +235,13 @@ public class GestorVistaVentas extends GestorVista  {
     }
    // busquedas, iteradores y otras 
     public List <Ventas> listarVentas(){   
-        return this.listarClase(Ventas.class,"id");
+        return this.listarClase(Ventas.class,"auto");
     }
-//    public DefaultComboBoxModel getComboModelTipoProyecto() {
-//        return this.getGestorPais().getComboModelPais();
-//    }
-    
-//    public DefaultComboBoxModel getComboModelMarca() {      
+
+//    public DefaultComboBoxModel getComboModelVentas() {      
 //        DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
 //        auxModel.addElement("");
-//        for (Marca auxTipo : this.listarMarcas()) {
+//        for (Ventas auxTipo : this.listarVentas()) {
 //            auxModel.addElement(auxTipo);
 //        }
 //         return auxModel;
@@ -352,7 +349,7 @@ public class GestorVistaVentas extends GestorVista  {
      public List<Ventas> listar(String text,int ord) {
         Criteria crit = getSession().createCriteria(Cliente.class)
              .add( Restrictions.eq("estado", 0));
-             crit.add( Restrictions.like("Modelo",'%'+ text.toUpperCase()+'%'));
+             crit.add( Restrictions.like("modelo", text.toUpperCase()+'%'));
         return crit.list();
     }  
 }

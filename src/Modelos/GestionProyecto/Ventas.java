@@ -25,8 +25,8 @@ public class Ventas implements Comparable, Serializable {
 
     @OneToOne (targetEntity = Auto.class, cascade= CascadeType.ALL,fetch=FetchType.LAZY)
     private Auto auto;
-    @OneToOne (targetEntity = Modelo.class, cascade= CascadeType.ALL,fetch=FetchType.LAZY)
-    private Modelo modelo;
+    
+    private String modelo;
     private String pais;
     private String marca;
     private String año;
@@ -74,11 +74,11 @@ public class Ventas implements Comparable, Serializable {
     public void setAuto(Auto auto) {
         this.auto = auto;
     }
-    public Modelo getModelo() {
+    public String getModelo() {
         return modelo;
     }
 
-    public void setModelo(Modelo modelo) {
+    public void setModelo(String modelo) {
         this.modelo = modelo;
     }
 
@@ -166,7 +166,7 @@ public class Ventas implements Comparable, Serializable {
     public Ventas() {
         
     }
-    public Ventas(long id, int codigo, Modelo modelo, String marca,String pais, String año,Empleado empleado, Cliente cliente, String fechaDeVenta, String obvservaciones, String total, String cantidad, String impuesto) {
+    public Ventas(long id, int codigo, String modelo, String marca,String pais, String año,Empleado empleado, Cliente cliente, String fechaDeVenta, String obvservaciones, String total, String cantidad, String impuesto) {
         this.id = id;
         this.codigo = codigo;
         this.modelo = modelo;
@@ -183,7 +183,7 @@ public class Ventas implements Comparable, Serializable {
     }
     @Override
     public String toString() {
-        return marca;
+        return modelo;
     }
     
     @Override

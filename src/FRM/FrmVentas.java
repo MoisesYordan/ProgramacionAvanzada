@@ -1,4 +1,5 @@
 package FRM;
+import Modelos.GestionProyecto.Auto;
 import Modelos.GestionProyecto.GestorVistaVentas;
 import Modelos.GestionProyecto.Modelo;
 import Vistas.FrmGenerica;
@@ -55,27 +56,19 @@ public class FrmVentas extends FrmGenerica {
     public JTextField getTxtPais() {
         return txtPais;
     }
-
-    public void setTxtPais(JTextField txtPais) {
-        this.txtPais = txtPais;
-    }
     
+      public JTextField getTxtModelo() {
+        return txtModelo;
+    }
+      
     public JTextField getTxtMarca() {
         return txtMarca;
-    }
-
-    public void setTxtMarca(JTextField txtMarca) {
-        this.txtMarca = txtMarca;
     }
     
     public JTextField getTxtAño() {
         return txtAño;
     }
 
-    public void setTxtAño(JTextField txtAño) {
-        this.txtAño = txtAño;
-    }
-    
     public JComboBox<String> getCmbEmpleado() {
         return cmbEmpleado;
     }
@@ -104,16 +97,8 @@ public class FrmVentas extends FrmGenerica {
         return txtImpuesto;
     }
 
-    public void setTxtImpuesto(JTextField txtImpuesto) {
-        this.txtImpuesto = txtImpuesto;
-    }
-
     public JTextField getTxtTotal() {
         return txtTotal;
-    }
-
-    public void setTxtTotal(JTextField txtTotal) {
-        this.txtTotal = txtTotal;
     }
 
     public JTextField getTxtObvservaciones() {
@@ -234,6 +219,7 @@ public class FrmVentas extends FrmGenerica {
         txtCodigo.setEnabled(false);
         
         cmbAuto.setEnabled(tipo);
+        txtModelo.setEnabled(false);
         txtPais.setEnabled(false);
         txtMarca.setEnabled(false);
         txtAño.setEnabled(false);
@@ -314,7 +300,9 @@ public class FrmVentas extends FrmGenerica {
     @Override
     public void clearView() {
         txtCodigo.setText("");
+        
         txtAuto.setText("");
+        txtModelo.setText("");
         txtPais.setText("");
         txtMarca.setText("");
         txtAño.setText("");
@@ -329,7 +317,7 @@ public class FrmVentas extends FrmGenerica {
 
     @Override
     public void grabFocus(){
-        txtAuto.grabFocus();
+        txtModelo.grabFocus();
     }
 
    @Override
@@ -413,10 +401,11 @@ public class FrmVentas extends FrmGenerica {
         jLabel14 = new javax.swing.JLabel();
         cmbAuto = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         txtImpuesto = new javax.swing.JTextField();
+        txtModelo = new javax.swing.JTextField();
         txtAuto = new javax.swing.JTextField();
+        jPanel6 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
@@ -582,6 +571,11 @@ public class FrmVentas extends FrmGenerica {
 
         txtCantidad.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtCantidad.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtCantidad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtCantidadMouseEntered(evt);
+            }
+        });
         jPanel1.add(txtCantidad);
         txtCantidad.setBounds(20, 170, 120, 30);
 
@@ -699,18 +693,13 @@ public class FrmVentas extends FrmGenerica {
             }
         });
         jPanel1.add(cmbAuto);
-        cmbAuto.setBounds(20, 100, 120, 30);
+        cmbAuto.setBounds(150, 30, 380, 30);
 
         jLabel15.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel15.setText("Modelo");
         jLabel15.setRequestFocusEnabled(false);
         jPanel1.add(jLabel15);
         jLabel15.setBounds(20, 80, 90, 20);
-
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Auto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
-        jPanel1.add(jPanel7);
-        jPanel7.setBounds(10, 70, 530, 70);
-        jPanel7.getAccessibleContext().setAccessibleName("Auto");
 
         jLabel16.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel16.setText("Cantidad");
@@ -723,10 +712,19 @@ public class FrmVentas extends FrmGenerica {
         jPanel1.add(txtImpuesto);
         txtImpuesto.setBounds(20, 220, 120, 30);
 
+        txtModelo.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtModelo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel1.add(txtModelo);
+        txtModelo.setBounds(20, 100, 120, 30);
+
         txtAuto.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtAuto.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtAuto);
-        txtAuto.setBounds(20, 100, 120, 30);
+        txtAuto.setBounds(150, 30, 120, 30);
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Auto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
+        jPanel1.add(jPanel6);
+        jPanel6.setBounds(10, 70, 530, 70);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(370, 0, 550, 440);
@@ -999,9 +997,21 @@ public class FrmVentas extends FrmGenerica {
     }//GEN-LAST:event_cmbAutoActionPerformed
 
     private void cmbAutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAutoItemStateChanged
-//        Auto auto = (Auto) cmbAuto.getSelectedItem();
-//        txtModelo.setText(modelo.getMarca().toString());        // TODO add your handling code here:
+        Auto auto = (Auto) cmbAuto.getSelectedItem();
+    
+        txtModelo.setText(auto.getModelo().toString());   
+        txtMarca.setText(auto.getMarca().toString());  
+        txtPais.setText(auto.getModelo().getMarca().getPais().toString());  
+        txtAño.setText(auto.getAño().toString());  
     }//GEN-LAST:event_cmbAutoItemStateChanged
+
+    private void txtCantidadMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantidadMouseEntered
+       Double cantidad= Double.parseDouble( txtCantidad.getText());  //pasar a un metodo calcular dentro de gestor vista auto y solo llamar
+       cantidad= cantidad+(cantidad*0.2);
+       Math.round(cantidad);
+       txtTotal.setText(Math.round(cantidad) +"");
+       btnGuardar.setEnabled(true);     // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1038,7 +1048,7 @@ public class FrmVentas extends FrmGenerica {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblDatos;
     private javax.swing.JTextField txtAuto;
@@ -1049,6 +1059,7 @@ public class FrmVentas extends FrmGenerica {
     private javax.swing.JTextField txtFechaDeVenta;
     private javax.swing.JTextField txtImpuesto;
     private javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtObvservaciones;
     private javax.swing.JTextField txtPais;
     private javax.swing.JTextField txtTotal;
