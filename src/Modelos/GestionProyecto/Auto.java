@@ -24,7 +24,7 @@ public class Auto implements Comparable<Auto> ,Serializable{
     private int codigo; 
     @OneToOne (targetEntity = Modelo.class, cascade= CascadeType.ALL,fetch=FetchType.LAZY)
     private Modelo modelo;
-    private int Estado;
+    private int estado;
     private String costo;
     private String stock;
     private String total;//dudas
@@ -40,11 +40,11 @@ public class Auto implements Comparable<Auto> ,Serializable{
     }
     
   public int getEstado() {
-        return Estado;
+        return estado;
     }
 
-    public void setEstado(int Estado) {
-        this.Estado = Estado;
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
     
     public int getCodigo() {
@@ -118,7 +118,13 @@ public class Auto implements Comparable<Auto> ,Serializable{
         this.stock=stock;
     }
     
-
+    @Override
+    public String toString() {
+        return 
+                "Modelo: "+getModelo()+"\n"+"    "+
+                "Marca:  "+ getMarca()+"\n"+"    "+
+                "Año:  "+ getAño();
+    }
     
     @Override
     public int compareTo(Auto o) {

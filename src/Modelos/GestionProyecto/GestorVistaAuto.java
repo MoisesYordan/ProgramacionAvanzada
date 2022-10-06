@@ -188,7 +188,8 @@ public class GestorVistaAuto extends GestorVista  {
     }
    // busquedas, iteradores y otras 
     public List <Auto> listarAutos(){   
-        return this.listarClase(Auto.class,"modelo");
+        return getSession().createCriteria(Auto.class).list();
+      //  return this.listarClase(Auto.class,"modelo");
     }
     public DefaultComboBoxModel getComboModelTipoProyecto() {
         return this.getGestorModelo().getComboModelModelo();
