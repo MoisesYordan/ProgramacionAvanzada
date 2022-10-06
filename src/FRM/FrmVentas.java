@@ -44,7 +44,13 @@ public class FrmVentas extends FrmGenerica {
     public void setTxtCodigo(JTextField txtCodigo) {
         this.txtCodigo = txtCodigo;
     }
+    public JTextField getTxtAuto() {
+        return txtAuto;
+    }
 
+    public void setTxtAuto(JTextField txtAuto) {
+        this.txtAuto = txtAuto;
+    }
     public JComboBox<String> getCmbAuto() {
         return cmbAuto;
     }
@@ -219,6 +225,7 @@ public class FrmVentas extends FrmGenerica {
         txtCodigo.setEnabled(false);
         
         cmbAuto.setEnabled(tipo);
+        txtAuto.setEnabled(false);
         txtModelo.setEnabled(false);
         txtPais.setEnabled(false);
         txtMarca.setEnabled(false);
@@ -711,7 +718,7 @@ public class FrmVentas extends FrmGenerica {
         txtAuto.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtAuto.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtAuto);
-        txtAuto.setBounds(150, 30, 120, 30);
+        txtAuto.setBounds(150, 30, 380, 30);
         jPanel1.add(txtCantidad);
         txtCantidad.setBounds(20, 170, 120, 30);
 
@@ -988,7 +995,7 @@ public class FrmVentas extends FrmGenerica {
     }//GEN-LAST:event_cmbClienteActionPerformed
 
     private void btnFrmClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFrmClienteActionPerformed
-        //this.gestorVista.abrirCliente(getEscritorio());        // TODO add your handling code here:
+       // this.gestorVista.abrirCliente();        // TODO add your handling code here:
     }//GEN-LAST:event_btnFrmClienteActionPerformed
 
     private void cmbAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAutoActionPerformed

@@ -6,7 +6,9 @@ package Modelos.GestionProyecto;
 
 import FRM.FrmVentas;
 import static Hibernate.HibernateUtil.getSession;
+import Vistas.FrmPrincipal;
 import Vistas.GestorVista;
+import Vistas.GestorVistaPrincipal;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
@@ -352,4 +354,9 @@ public class GestorVistaVentas extends GestorVista  {
              crit.add( Restrictions.like("modelo", text.toUpperCase()+'%'));
         return crit.list();
     }  
+//    public void  abrirCliente(){
+//        GestorVistaCliente.getInstancia().openFormulario(FrmPrincipal.escritorio);
+//        GestorVistaCliente.getInstancia().nuevoItem();
+//          GestorVistaPrincipal.abrirCliente(escritorio);
+//    }
 }

@@ -17,7 +17,8 @@ import javax.persistence.OneToOne;
  * @author Moisés Yordán
  */
 @Entity
-public class Auto implements Comparable, Serializable {
+public class Auto implements Comparable<Auto> ,Serializable{
+
        @Id @GeneratedValue(strategy=javax.persistence.GenerationType.AUTO)
     private long id;
     private int codigo; 
@@ -117,15 +118,29 @@ public class Auto implements Comparable, Serializable {
         this.stock=stock;
     }
     
-//    @Override
-//    public String toString() {
-//        return modelo;
-//    }
+
     
     @Override
-    public int compareTo(Object o) {
-        Auto p = (Auto) o;
-        return this.getModelo().compareTo(p.getModelo());
+    public int compareTo(Auto o) {
+        int salida;
+        if(o.getMarca().compareToIgnoreCase(this.marca)==0){
+            if(o.getAño().compareToIgnoreCase(this.año)>0){
+                salida = -1;
+            }
+            else if(o.getAño().compareToIgnoreCase(this.año)<0){
+                salida = 1;
+            }
+            else{
+                salida=0;
+            }
+        }
+        else if(o.getMarca().compareToIgnoreCase(this.marca)>0){
+            salida= -1;
+        }
+        else{
+            salida =1;
+        }
+        return salida;
     }
     
     public String getCodigoS() {

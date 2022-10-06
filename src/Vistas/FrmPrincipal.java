@@ -3,8 +3,14 @@ import javax.swing.JDesktopPane;
 
 public class FrmPrincipal extends  javax.swing.JFrame {
     public GestorVistaPrincipal gestorVista;
- 
-    
+
+    public GestorVistaPrincipal getGestorVista() {
+        return gestorVista;
+    }
+
+    public void setGestorVista(GestorVistaPrincipal gestorVista) {
+        this.gestorVista = gestorVista;
+    }
     public FrmPrincipal() {
         initComponents();
     }

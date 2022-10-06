@@ -27,8 +27,22 @@ public class GestorVistaCliente extends GestorVista {
 
     private FrmCliente form;
     private Cliente model;
-  
-   
+    
+//    private static GestorVistaCliente instanciaUnica;
+//    public static GestorVistaCliente getInstancia(){
+//        //PATRON DE DISEÑO SINGLETON
+//        if(instanciaUnica == null){ //solo se ejecuta la primera ves
+//            instanciaUnica = new GestorVistaCliente();
+//        }
+//        return instanciaUnica;
+//    }
+//     public void nuevoItem(){
+//        this.getForm().viewNuevoEnter();
+//        this.getForm().btnEliminar.setEnabled(false);
+//        this.getForm().btnCancelar.setEnabled(false);
+//        this.getForm().btnNuevo.setEnabled(true);
+//      
+//    }
     public FrmCliente getForm() {
         return form;
     }

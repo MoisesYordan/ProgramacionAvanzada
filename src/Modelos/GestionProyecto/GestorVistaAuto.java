@@ -232,21 +232,19 @@ public class GestorVistaAuto extends GestorVista  {
 
     }
 
-    public void setBusqueda(String valor){ //quizas agregar un argumento string para realizar un if q me traiga lo q diga ese string txtBusqueda
-        Boolean error=false;
+public void setBusqueda(String valor,int ord, String text){ //quizas agregar un argumento string para realizar un if q me traiga lo q diga ese string txtBusqueda
         this.initializeTablaBusqueda(this.getForm().getTblDatos());
-       
-//        if(valor != null){
-//            this.getForm().getTblDatos().setModel(this.listarDatos2((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),this.getForm().getTxtBuscar().getText(),""));
-//        }
-        
-        if (!error && valor != null) {
-      
-            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),""));
+
+        if("".equals(valor)){
+           this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),""));
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Falta ingresar datos para la búsqueda","Validación de Datos",JOptionPane.WARNING_MESSAGE);
-        } 
+
+        else {
+            this.getForm().getTblDatos().setModel(this.listarDatos2((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),this.getForm().getTxtBuscar().getText(),""));
+            if(this.listar2(text,ord,valor).size()==0){
+                JOptionPane.showMessageDialog(null, "error","Validación de Datos",JOptionPane.WARNING_MESSAGE);
+        }
+        }
     }
   
     private int getOrdenamiento() {
@@ -279,7 +277,7 @@ public class GestorVistaAuto extends GestorVista  {
         }
     }
 
-    public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String text) { 
+public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String text) { 
         TreeSet<Auto> lista= new TreeSet();
         List<Auto> list= this.listar(text,ordenamiento); 
         Auto  auxModel;
@@ -288,17 +286,18 @@ public class GestorVistaAuto extends GestorVista  {
             auxModel =(Auto) it.next(); 
             lista.add(auxModel);
          }
-       
+
         Iterator it2 = (Iterator) lista.iterator();
         while (it2.hasNext())  {
-            auxModel =( Auto ) it2.next();
+            auxModel =(Auto) it2.next();
             Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),auxModel.getAño(),auxModel.getCosto(),auxModel.getTotal(),auxModel.getStock()}; 
             auxModelTabla.addRow(fila); 
         }
         return auxModelTabla;
     }
-        public DefaultTableModel listarDatos2(DefaultTableModel auxModelTabla, int ordenamiento, String valor, String text) { 
-        ArrayList<Auto> lista = new ArrayList(); 
+    
+    public DefaultTableModel listarDatos2(DefaultTableModel auxModelTabla, int ordenamiento, String valor, String text) { 
+        TreeSet<Auto> lista = new TreeSet(); 
         List<Auto> list= this.listar2(text,ordenamiento,valor); 
         Auto  auxModel;
         Iterator it = (Iterator) list.iterator();
@@ -306,7 +305,7 @@ public class GestorVistaAuto extends GestorVista  {
             auxModel =(Auto) it.next(); 
             lista.add(auxModel);
          }
-       
+
         Iterator it2 = (Iterator) lista.iterator();
         while (it2.hasNext())  {
             auxModel =( Auto ) it2.next();
@@ -315,17 +314,18 @@ public class GestorVistaAuto extends GestorVista  {
         }
         return auxModelTabla;
     }
-     public List<Auto> listar(String text,int ord) {
+    
+    public List<Auto> listar(String text,int ord) {
         Criteria crit = getSession().createCriteria(Auto.class)
-             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
-             crit.add( Restrictions.like("marca",'%'+ text.toUpperCase()+'%')); // empiza con cualquier cosa sigue con una palabra y sigo con otra cosa Ejemplo &o& trae ford 
+             .add( Restrictions.eq("Estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             crit.add( Restrictions.like("marca",'%'+ text.toUpperCase()+'%'));
         return crit.list();
     }
-     public List<Auto> listar2(String text,int ord,String valor) {
+     public List<Auto> listar2(String text,int ord,String valor) { 
         Criteria crit = getSession().createCriteria(Auto.class)
-             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             .add( Restrictions.eq("Estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
              crit.add( Restrictions.eq("marca", valor));
              //crit.add( Restrictions.like("marca",'%'+ text.toUpperCase()+'%'));
         return crit.list();
-    }  
+    }
 }

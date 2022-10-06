@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class GestorVista  extends GestorHibernate {
     private int opcABM; // Se define para saber si es actualizacion o alta
-    private JDesktopPane escritorio;
+    public JDesktopPane escritorio;
     private MDIForm pantalla;
     private DefaultComboBoxModel modelCombo;
     private GestorDeReportes gestorReportes;
@@ -22,7 +22,15 @@ public class GestorVista  extends GestorHibernate {
     private UtilJtable UtilTable= new UtilJtable();
     private FrmGenerica auxForm;
     public static final String pathReportes="C:\\PP\\Reportes\\";
-    
+ //Definicion de getter y setter de variables, objetos y gestores   
+    private static GestorVista instanciaUnica;
+    public static GestorVista getInstancia(){
+        //PATRON DE DISEÑO SINGLETON
+        if(instanciaUnica == null){ //solo se ejecuta la primera ves
+            instanciaUnica = new GestorVista();
+        }
+        return instanciaUnica;
+    }
  
     public UtilJtable getUtilTable() {
         return UtilTable;

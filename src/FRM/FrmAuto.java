@@ -16,7 +16,7 @@ public class FrmAuto extends FrmGenerica {
     public void setGestorVista(GestorVistaAuto gestorVista) {
         this.gestorVista = gestorVista;
     }
-
+    
     public JTable getTblDatos() {
         return tblDatos;
     }
@@ -314,10 +314,16 @@ public class FrmAuto extends FrmGenerica {
 //    }
 //      
     
-    //llenado de tablas
+    
+
+
+
+//llenado de tablas
     public void setBusqueda() {
+        int ord = 0;
+        String text = null;
         this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
-        this.getGestorVista().setBusqueda(txtBusquedaNombre.getText());  //txtBusquedaNombre.getText()
+        this.getGestorVista().setBusqueda(this.txtBusquedaNombre.getText(),ord,text);  
     }
     /** This method is called from within the constructor to
      * initialize the form.
