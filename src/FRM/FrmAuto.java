@@ -95,6 +95,13 @@ public class FrmAuto extends FrmGenerica {
         this.txtBusquedaNombre=txtBusquedaNombre;
     }
   
+    public JTextField getTxtBuscarCodigo(){
+        return txtCodigo;
+    }
+    public void setTxtBuscarCodigo(JTextField txtCodigo){
+        this.txtCodigo=txtCodigo;
+    }
+  
 // Constructores del formulario 
     public FrmAuto(GestorVistaAuto gestorVista) {
         try{
@@ -110,7 +117,7 @@ public class FrmAuto extends FrmGenerica {
     public FrmAuto() {
         initComponents();
     }
-    
+    int band=0;
       // Metodos que gestionan los botones de la barra comando 
     public void viewOpenedBotones() {
         btnNuevo.setEnabled(true);
@@ -319,11 +326,24 @@ public class FrmAuto extends FrmGenerica {
 
 
 //llenado de tablas
-    public void setBusqueda() {
+    public void setBusqueda(int bandera) {
         int ord = 0;
         String text = null;
-        this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
-        this.getGestorVista().setBusqueda(this.txtBusquedaNombre.getText(),ord,text);  
+        String dato=this.txtBusquedaNombre.getText();
+        int b=0;
+        if (this.getGestorVista().validarNumeros(dato)==false|| bandera==0){
+            b=1;
+            String quebuscar="marca";
+            this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
+            this.getGestorVista().setBusqueda(dato,ord,text,quebuscar,b);  
+        }else{
+            b=0;
+            dato=this.txtCodigo.getText();
+            String quebuscar="codigo";
+            this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
+            this.getGestorVista().setBusqueda(dato,ord,text,quebuscar,b); 
+        }
+       
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -766,7 +786,17 @@ public class FrmAuto extends FrmGenerica {
 }//GEN-LAST:event_txtCodigoKeyTyped
 
     private void btnBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodigoActionPerformed
-        this.viewBuscarCodigoEnter();
+        //this.viewBuscarCodigoEnter();
+        int bandera=1;
+        if (band==0) {
+            txtCodigo.setEnabled(true);
+            band=1;
+        }
+        else {
+            txtCodigo.setEnabled(false);
+            this.setBusqueda(bandera);
+            band=0;
+        }
 }//GEN-LAST:event_btnBuscarCodigoActionPerformed
 
     private void btnBuscarCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarCodigoKeyPressed
@@ -863,8 +893,9 @@ public class FrmAuto extends FrmGenerica {
     }//GEN-LAST:event_btnCancelarKeyPressed
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+        int bandera=0;
         this.clearView();
-        this.setBusqueda();
+        this.setBusqueda(bandera);
         this.viewCamposEnabled(false);
 //        botonesComandoView.viewAllDisabled();
 //        botonesComandoView.viewOpenedBotones();
