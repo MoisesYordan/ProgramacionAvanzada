@@ -233,27 +233,31 @@ public class GestorVistaAuto extends GestorVista  {
 
     }
 
-public void setBusqueda(String dato,int ord, String text, String quebuscar,int b){ //quizas agregar un argumento string para realizar un if q me traiga lo q diga ese string txtBusqueda
+public void setBusqueda(String dato,int ord, String text, String quebuscar,int b){ 
         this.initializeTablaBusqueda(this.getForm().getTblDatos());
         if(!"".equals(dato)){
+            //bandera= 0=lupa de buscar 1= a el candado de buscar codigo
+            //band= 0 se presiono una vez para habilitar el campo para escribir, 1 realiza la buscaqueda y vuelve el campo a desabilitado
+            //b= 0 es una cadena alfanumerica , 1 es una cadena numerica
            if(b==0){
 //                int d=Integer.parseInt(dato);
-                this.getForm().getTblDatos().setModel(this.listarDatos4((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
+                this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
                 int d=Integer.parseInt(dato);
                 if(this.listar3(text,ord,d,quebuscar).size()==0){
 //                if(this.listar3(text,ord,d,quebuscar).size()==0){
-                    JOptionPane.showMessageDialog(null, "error","Validación de Datos",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "error","se ingreso una letra",JOptionPane.WARNING_MESSAGE);
                 }
            }
            else{
-                this.getForm().getTblDatos().setModel(this.listarDatos4((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
+                this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
                 if(this.listar2(text,ord,dato,quebuscar).size()==0){
                     JOptionPane.showMessageDialog(null, "error","Validación de Datos",JOptionPane.WARNING_MESSAGE);
                 }
             }
         }
         else{
-            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),""));
+            b=3;
+            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"")); 
         }
 
     }
@@ -288,26 +292,7 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
         }
     }
 
-public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String text) { 
-        TreeSet<Auto> lista= new TreeSet();
-        List<Auto> list= this.listar(text,ordenamiento); 
-        Auto  auxModel;
-        Iterator it = (Iterator) list.iterator();
-        while (it.hasNext())  {
-            auxModel =(Auto) it.next(); 
-            lista.add(auxModel);
-         }
-
-        Iterator it2 = (Iterator) lista.iterator();
-        while (it2.hasNext())  {
-            auxModel =(Auto) it2.next();
-            Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),auxModel.getAño(),auxModel.getCosto(),auxModel.getTotal(),auxModel.getStock()}; 
-            auxModelTabla.addRow(fila); 
-        }
-        return auxModelTabla;
-    }
-    
-    public DefaultTableModel listarDatos4(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text) { 
+public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text) { 
         TreeSet<Auto> lista = new TreeSet(); 
         if(b==0){
             int d=Integer.parseInt(dato);
@@ -318,7 +303,7 @@ public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordena
                 auxModel =(Auto) it.next(); 
                 lista.add(auxModel);
             }
-
+       
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Auto ) it2.next();
@@ -334,19 +319,32 @@ public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordena
                 auxModel =(Auto) it.next(); 
                 lista.add(auxModel);
             }
-
+       
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Auto ) it2.next();
                 Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),auxModel.getAño(),auxModel.getCosto(),auxModel.getTotal(),auxModel.getStock()}; 
                 auxModelTabla.addRow(fila); 
-            }
+            }  
         }
-
+        if(b==3){
+            List<Auto> list= this.listar(text,ordenamiento);
+            Auto  auxModel;
+            Iterator it = (Iterator) list.iterator();
+            while (it.hasNext())  {
+                auxModel =(Auto) it.next(); 
+                lista.add(auxModel);
+            }
+       
+            Iterator it2 = (Iterator) lista.iterator();
+            while (it2.hasNext())  {
+                auxModel =( Auto ) it2.next();
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),auxModel.getAño(),auxModel.getCosto(),auxModel.getTotal(),auxModel.getStock()}; 
+                auxModelTabla.addRow(fila); 
+            } 
+        }
     return auxModelTabla;
-
-
-    }
+}
     
 public List<Auto> listar(String text,int ord) {
         Criteria crit = getSession().createCriteria(Auto.class)
