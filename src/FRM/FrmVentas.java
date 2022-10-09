@@ -730,7 +730,7 @@ public class FrmVentas extends FrmGenerica {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Auto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel1.add(jPanel6);
-        jPanel6.setBounds(10, 65, 530, 70);
+        jPanel6.setBounds(10, 65, 530, 80);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(370, 0, 550, 440);

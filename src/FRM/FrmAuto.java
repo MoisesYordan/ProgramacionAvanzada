@@ -325,8 +325,8 @@ public class FrmAuto extends FrmGenerica {
 //llenado de tablas
     public void setBusqueda(int bandera) {
         //bandera= 0=lupa de buscar 1= a el candado de buscar codigo
-        //band= 0 se presiono una vez para habilitar el campo para escribir, 1 realiza la buscaqueda y vuelve el campo a desabilitado
-        //b= 0 es una cadena alfanumerica , 1 es una cadena numerica
+        //band=    0 se presiono una vez para habilitar el campo para escribir, 1 realiza la buscaqueda y vuelve el campo a desabilitado
+        //b=       0 es una cadena alfanumerica , 1 es una cadena numerica
         int ord = 0;
         String text = null;
         String dato=this.txtBusquedaNombre.getText();
@@ -767,14 +767,14 @@ public class FrmAuto extends FrmGenerica {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-        if (evt.getKeyCode()==10) {
-            if (this.gestorVista.getModelXCodigo(txtCodigo.getText())) {
-                this.viewActualizar();
-            }
-            else {
-                JOptionPane.showMessageDialog(null,"Código no existe");
-            }
-        }
+//        if (evt.getKeyCode()==10) {
+//            if (this.gestorVista.getModelXCodigo(txtCodigo.getText())) {
+//                this.viewActualizar();
+//            }
+//            else {
+//                JOptionPane.showMessageDialog(null,"Código no existe");
+//            }
+//        }
 }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped

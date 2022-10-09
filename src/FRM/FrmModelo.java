@@ -345,7 +345,7 @@ public class FrmModelo extends FrmGenerica {
         txtNombre.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtNombre);
-        txtNombre.setBounds(20, 90, 460, 23);
+        txtNombre.setBounds(20, 90, 460, 30);
 
         jLabel3.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel3.setText("Código");
@@ -484,7 +484,7 @@ public class FrmModelo extends FrmGenerica {
             }
         });
         jPanel1.add(cmbMarca);
-        cmbMarca.setBounds(20, 140, 310, 30);
+        cmbMarca.setBounds(20, 150, 310, 30);
 
         cmbPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         cmbPais.addActionListener(new java.awt.event.ActionListener() {
@@ -498,7 +498,7 @@ public class FrmModelo extends FrmGenerica {
         jLabel5.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel5.setText("Marca");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(20, 120, 120, 17);
+        jLabel5.setBounds(20, 130, 120, 17);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(390, 10, 490, 430);
