@@ -152,6 +152,7 @@ public class FrmVentas extends FrmGenerica {
         btnCancelar.setEnabled(true);
         btnSalir.setEnabled(true);
         btnFrmCliente.setEnabled(false);
+        btnCalcular.setEnabled(false); 
         btnNuevo.grabFocus();
     }
 
@@ -162,6 +163,7 @@ public class FrmVentas extends FrmGenerica {
         btnEliminar.setEnabled(false);
         btnFrmCliente.setEnabled(true);
         btnCancelar.setEnabled(true);
+        btnCalcular.setEnabled(false); 
         btnSalir.setEnabled(true);
     }
   
@@ -177,6 +179,7 @@ public class FrmVentas extends FrmGenerica {
         btnFrmCliente.setEnabled(false);
         btnCancelar.setEnabled(false);
         btnSalir.setEnabled(true);
+        btnCalcular.setEnabled(false); 
         btnNuevo.grabFocus();
     }
 
@@ -188,6 +191,7 @@ public class FrmVentas extends FrmGenerica {
         btnFrmCliente.setEnabled(false);
         btnSalir.setEnabled(true);
         btnCancelar.setEnabled(true); 
+        btnCalcular.setEnabled(false); 
     } 
     
     @Override
@@ -341,6 +345,41 @@ public class FrmVentas extends FrmGenerica {
         }
     }
     
+     public void llenadoCmbAutos(){
+        Auto auto = (Auto) cmbAuto.getSelectedItem();
+        txtModelo.setText(auto.getModelo().toString());   
+        txtMarca.setText(auto.getMarca().toString());  
+        txtPais.setText(auto.getModelo().getPais().toString());  
+        txtAño.setText(auto.getAño().toString()); 
+        btnCalcular.setEnabled(true); 
+     }
+     
+    public void calcularTotal(){
+        Auto auto = (Auto) cmbAuto.getSelectedItem();
+        int cantidad = Integer.parseInt(txtCantidad.getText());
+        String str= (String) auto.getModelo().getPais().getImpuesto();
+        if(auto.getModelo().getPais().getImpuesto().equalsIgnoreCase("1")){
+            txtImpuesto.setText("%1"); 
+            Double total= Double.parseDouble( auto.getTotal());
+            total= total+(total*0.01*cantidad);
+            Math.round(total);
+            txtTotal.setText(Math.round(total) +"");
+        }
+        if(auto.getModelo().getPais().getImpuesto().equalsIgnoreCase("2")){
+            txtImpuesto.setText("%10");  
+            Double total= Double.parseDouble( auto.getTotal());
+            total= total+(total*0.1*cantidad);
+            Math.round(total);
+            txtTotal.setText(Math.round(total) +"");
+        }
+        if(auto.getModelo().getPais().getImpuesto().equalsIgnoreCase("3")){
+            txtImpuesto.setText("%20");  
+            Double total= Double.parseDouble( auto.getTotal());
+            total= total+(total*0.2*cantidad);
+            Math.round(total);
+            txtTotal.setText(Math.round(total) +"");
+        }
+    }
      /** Este método se llama desde dentro del constructor para inicializar el formulario.
      ADVERTENCIA: NO modifique este código. 
      El contenido de este método es siempre regenerado por el Editor de formularios.**/
@@ -387,6 +426,7 @@ public class FrmVentas extends FrmGenerica {
         txtCantidad = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
+        btnCalcular = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
@@ -705,6 +745,25 @@ public class FrmVentas extends FrmGenerica {
         jPanel1.add(jPanel6);
         jPanel6.setBounds(10, 65, 530, 80);
 
+        btnCalcular.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnCalcular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/calcular.png"))); // NOI18N
+        btnCalcular.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        btnCalcular.setMaximumSize(new java.awt.Dimension(61, 21));
+        btnCalcular.setMinimumSize(new java.awt.Dimension(61, 21));
+        btnCalcular.setPreferredSize(new java.awt.Dimension(61, 21));
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularActionPerformed(evt);
+            }
+        });
+        btnCalcular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCalcularKeyPressed(evt);
+            }
+        });
+        jPanel1.add(btnCalcular);
+        btnCalcular.setBounds(170, 170, 30, 30);
+
         getContentPane().add(jPanel1);
         jPanel1.setBounds(370, 0, 550, 440);
 
@@ -829,13 +888,6 @@ public class FrmVentas extends FrmGenerica {
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
 //        if (evt.getKeyCode()==10) {
-//            if (this.gestorVista.getModelXCodigo(txtCodigo.getText())) {
-//                this.viewActualizar();
-//            }
-//            else {
-//                JOptionPane.showMessageDialog(null,"Código no existe");
-//            }
-//        }
 }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
@@ -984,18 +1036,24 @@ public class FrmVentas extends FrmGenerica {
     }//GEN-LAST:event_cmbAutoActionPerformed
 
     private void cmbAutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAutoItemStateChanged
-        Auto auto = (Auto) cmbAuto.getSelectedItem();
-    
-        txtModelo.setText(auto.getModelo().toString());   
-        txtMarca.setText(auto.getMarca().toString());  
-        txtPais.setText(auto.getModelo().getPais().toString());  
-        txtAño.setText(auto.getAño().toString());  
+
+        this.llenadoCmbAutos();
+        
     }//GEN-LAST:event_cmbAutoItemStateChanged
+
+    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
+        this.calcularTotal();
+    }//GEN-LAST:event_btnCalcularActionPerformed
+
+    private void btnCalcularKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCalcularKeyPressed
+       this.calcularTotal();
+    }//GEN-LAST:event_btnCalcularKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnBuscarCodigo;
+    public javax.swing.JButton btnCalcular;
     public javax.swing.JButton btnCancelar;
     public javax.swing.JButton btnEditar;
     public javax.swing.JButton btnEliminar;
