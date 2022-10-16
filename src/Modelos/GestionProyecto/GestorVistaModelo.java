@@ -344,7 +344,6 @@ public class GestorVistaModelo extends GestorVista{
              .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
              crit.add( Restrictions.eq(quebuscar, dato));
            //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
-
         return crit.list();
      }
      public List<Modelo> listar3(String text,int ord,int d,String quebuscar) { 

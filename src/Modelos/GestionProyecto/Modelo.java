@@ -22,7 +22,7 @@ public class Modelo implements Comparable, Serializable{
     private Marca marca;
     @OneToOne (targetEntity = Pais.class, cascade= CascadeType.ALL,fetch=FetchType.LAZY)
     private Pais pais;
-    private int Estado;
+    private int estado;
     
     public long getId() {
         return id;
@@ -64,11 +64,11 @@ public class Modelo implements Comparable, Serializable{
         this.pais = pais;
     }
      public int getEstado() {
-        return Estado;
+        return estado;
     }
 
     public void setEstado(int nombre) {
-        this.Estado = nombre;
+        this.estado = nombre;
     }
     public Modelo(long id, int codigo, String nombre, Marca marca, Pais pais) {
         this.id = id;

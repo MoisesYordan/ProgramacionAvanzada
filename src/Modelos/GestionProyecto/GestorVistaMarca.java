@@ -185,13 +185,13 @@ public class GestorVistaMarca extends GestorVista {
                     this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
                     int d=Integer.parseInt(dato);
                     if(this.listar3(text,ord,d,quebuscar).size()==0){
-                        JOptionPane.showMessageDialog(null, "error","se ingreso una letra",JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "error, se ingreso una letra","Validación de Datos",JOptionPane.WARNING_MESSAGE);
                     }
                }
                else{
                     this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
                     if(this.listar2(text,ord,dato,quebuscar).size()==0){
-                        JOptionPane.showMessageDialog(null, "error","Validación de Datos",JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Tiene que ingresar un nombre, no! un numero","Validación de Datos",JOptionPane.WARNING_MESSAGE);
                     }
                 }
             }
