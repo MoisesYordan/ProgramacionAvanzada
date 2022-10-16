@@ -107,8 +107,8 @@ public class GestorVistaAuto extends GestorVista  {
     public int setModel() {
         if (this.isDatosValidos()) {
             this.getModel().setModelo((Modelo) this.getForm().getCmbModelo().getModel().getSelectedItem());
-            //this.getModel().setPais((this.getForm().getTxtPais().getText()));
-            this.getModel().setMarca(this.getForm().getTxtMarca().getText());
+            this.getModel().setModelo((Modelo) this.getForm().getCmbPais().getModel().getSelectedItem());
+            this.getModel().setPais(this.getForm().getTxtMarca().getText());
             this.getModel().setAño(this.getForm().getTxtAño().getText());
             this.getModel().setCosto(this.getForm().getTxtCosto().getText());
             this.getModel().setTotal(this.getForm().getTxtTotal().getText());
@@ -124,6 +124,11 @@ public class GestorVistaAuto extends GestorVista  {
          if (this.isEmpty(this.getForm().getCmbModelo())) {
             JOptionPane.showMessageDialog(null, "Falta ingresar el Modelo");
             this.getForm().getCmbModelo().grabFocus();
+            return false;
+        }
+        if (this.isEmpty(this.getForm().getCmbPais())) {
+            JOptionPane.showMessageDialog(null, "Falta ingresar el pais");
+            this.getForm().getCmbPais().grabFocus();
             return false;
         }
          if (this.isEmpty(this.getForm().getTxtAño())|| !validarNumerosAño(this.getForm().getTxtAño().getText().trim())) {
@@ -229,8 +234,8 @@ public class GestorVistaAuto extends GestorVista  {
     }
     
      public void initializeTablaBusqueda(JTable tbl) {
-        String[] titulo={"","Cód.","MODELO","MARCA","Año","Costo","Total","Stock"};
-        String[] ancho ={"10","30","100","111","40","100","100","40"};
+        String[] titulo={"","Cód.","MODELO","MARCA","Año","Costo","Total","Stock","Pais"};
+        String[] ancho ={"10","30","100","111","40","100","100","40","100"};
         this.newModelTable(tbl,titulo,ancho);
     }
      
@@ -240,7 +245,7 @@ public class GestorVistaAuto extends GestorVista  {
         this.getForm().getCmbModelo().setSelectedItem(this.getModel().getModelo().getMarca());
         this.getForm().getCmbModelo().setSelectedItem(this.getModel().getModelo());
         this.getForm().getTxtAño().setText(this.getModel().getAño());
-        
+        this.getForm().getCmbPais().setSelectedItem(this.getModel().getPais());
         this.getForm().getTxtCosto().setText(this.getModel().getCosto());
         this.getForm().getTxtTotal().setText(this.getModel().getTotal());
         this.getForm().getTxtStock().setText(this.getModel().getStock());
@@ -251,18 +256,18 @@ public class GestorVistaAuto extends GestorVista  {
         this.initializeTablaBusqueda(this.getForm().getTblDatos());
         
         if(!"".equals(dato)){
-           if(b==0){//b=>0 es una cadena alfanumerica     1= es una cadena numerica
+           if(b==0){//b=>0 es una cadena numerica    1= es una cadena alfanumerica
 
                 this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
                 int d=Integer.parseInt(dato);
                 if(this.listar3(text,ord,d,quebuscar).size()==0){
-                    JOptionPane.showMessageDialog(null, "error","se ingreso una letra",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "error, no se encontro en la BD","Validación de Datos",JOptionPane.WARNING_MESSAGE);
                 }
            }
            else{
                 this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
                 if(this.listar2(text,ord,dato,quebuscar).size()==0){
-                    JOptionPane.showMessageDialog(null, "error","Validación de Datos",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "error, no se encontro en la BD","Validación de Datos",JOptionPane.WARNING_MESSAGE);
                 }
             }
         }
@@ -318,7 +323,7 @@ public class GestorVistaAuto extends GestorVista  {
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Auto ) it2.next();
-                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),auxModel.getAño(),auxModel.getCosto(),auxModel.getTotal(),auxModel.getStock()}; 
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),auxModel.getAño(),auxModel.getPais(),auxModel.getCosto(),auxModel.getTotal(),auxModel.getStock()}; 
                 auxModelTabla.addRow(fila); 
             }
         }
@@ -334,7 +339,7 @@ public class GestorVistaAuto extends GestorVista  {
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Auto ) it2.next();
-                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),auxModel.getAño(),auxModel.getCosto(),auxModel.getTotal(),auxModel.getStock()}; 
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),auxModel.getPais(),auxModel.getAño(),auxModel.getCosto(),auxModel.getTotal(),auxModel.getStock()}; 
                 auxModelTabla.addRow(fila); 
             }  
         }
@@ -350,20 +355,21 @@ public class GestorVistaAuto extends GestorVista  {
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Auto ) it2.next();
-                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),auxModel.getAño(),auxModel.getCosto(),auxModel.getTotal(),auxModel.getStock()}; 
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),auxModel.getAño(),auxModel.getPais(),auxModel.getCosto(),auxModel.getTotal(),auxModel.getStock()}; 
                 auxModelTabla.addRow(fila); 
             } 
         }
     return auxModelTabla;
 }
     
-public List<Auto> listar(String text,int ord) {
+    public List<Auto> listar(String text,int ord) { //Vacio
         Criteria crit = getSession().createCriteria(Auto.class)
              .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
              crit.add( Restrictions.like("marca",'%'+ text.toUpperCase()+'%'));
         return crit.list();
     }
-     public List<Auto> listar2(String text,int ord,String dato,String quebuscar) { 
+    
+    public List<Auto> listar2(String text,int ord,String dato,String quebuscar) { //LETRAS
         Criteria crit = getSession().createCriteria(Auto.class)
              .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
              crit.add( Restrictions.eq(quebuscar, dato));
@@ -371,7 +377,8 @@ public List<Auto> listar(String text,int ord) {
 
         return crit.list();
      }
-     public List<Auto> listar3(String text,int ord,int d,String quebuscar) { 
+    
+    public List<Auto> listar3(String text,int ord,int d,String quebuscar) { //Letra
         Criteria crit = getSession().createCriteria(Auto.class)
              .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
              crit.add( Restrictions.eq(quebuscar, d));
