@@ -232,7 +232,7 @@ public class FrmMarca extends FrmGenerica {
         //busqueda=> 0=lupa de buscar     1= el candado de buscarCodigo
         if (this.getGestorVista().validarNumeros(dato)==false|| busqueda==0){
             b=1;//b=>0 es una cadena alfanumerica            1= es una cadena numerica
-            String quebuscar="modelo";
+            String quebuscar="nombre";
             this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
             this.getGestorVista().setBusqueda(dato,ord,text,quebuscar,b);  
         }else{
@@ -546,14 +546,7 @@ public class FrmMarca extends FrmGenerica {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-//        if (evt.getKeyCode()==10) {
-//            if (this.gestorVista.getModelXCodigo(txtCodigo.getText())) {
-//                this.viewActualizar();
-//            }
-//            else {
-//                JOptionPane.showMessageDialog(null,"Código no existe");
-//            }
-//        }
+
 }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
