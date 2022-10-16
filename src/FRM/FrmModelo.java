@@ -25,14 +25,6 @@ public class FrmModelo extends FrmGenerica {
         this.tblDatos = tblDatos;
     }
 
-    public JTextField getTxtBusquedaDenominacion() {
-        return txtBusquedaNombre;
-    }
-
-    public void setTxtBusquedaDenominacion(JTextField txtBusquedaDenominacion) {
-        this.txtBusquedaNombre = txtBusquedaDenominacion;
-    }
-
 // Definicion de getter y setter de los componentes visuales del formulario
     public JTextField getTxtNombre() {
         return txtNombre;
@@ -72,7 +64,21 @@ public class FrmModelo extends FrmGenerica {
     public void setCmbPais(JComboBox<String> cmbPais) {
         this.cmbPais = cmbPais;
     }
-
+    
+    public JTextField getTxtBuscar(){
+        return txtBusquedaNombre;
+    }
+    public void setTxtBuscar(JTextField txtBusquedaNombre){
+        this.txtBusquedaNombre=txtBusquedaNombre;
+    }
+  
+    public JTextField getTxtBuscarCodigo(){
+        return txtCodigo;
+    }
+    public void setTxtBuscarCodigo(JTextField txtCodigo){
+        this.txtCodigo=txtCodigo;
+    }
+    
 // Constructores del formulario 
     public FrmModelo(GestorVistaModelo gestorVista) {
         try{
@@ -89,61 +95,54 @@ public class FrmModelo extends FrmGenerica {
         initComponents();
     }
     
-      // Metodos que gestionan los botones de la barra comando 
-    public void viewOpenedBotones() {
+// Metodos que gestionan los botones de la barra comando 
+    public void viewOpenedBotones() {//abris el frm
         btnNuevo.setEnabled(true);
         btnEditar.setEnabled(false);
         btnGuardar.setEnabled(false);
         btnEliminar.setEnabled(false);
-        
         btnCancelar.setEnabled(true);
         btnSalir.setEnabled(true);
         btnNuevo.grabFocus();
     }
 
-    public void viewNuevoEditarBotones(){
+    public void viewNuevoEditarBotones(){//btnEditar
         btnNuevo.setEnabled(false);
         btnEditar.setEnabled(false);
         btnGuardar.setEnabled(true);
         btnEliminar.setEnabled(false);
-        
         btnCancelar.setEnabled(true);
         btnSalir.setEnabled(true);
     }
   
-    public void viewEliminarBotones() {
+    public void viewEliminarBotones() {//btnEliminar
         this.viewOpenedBotones();
     }
   
-    public void viewGuardarBotones() {
+    public void viewGuardarBotones() {//btnGuardar
         btnNuevo.setEnabled(true);
         btnEditar.setEnabled(true);
         btnGuardar.setEnabled(false);
         btnEliminar.setEnabled(true);
-        
-        
         btnCancelar.setEnabled(false);
         btnSalir.setEnabled(true);
         btnNuevo.grabFocus();
     }
 
-    public void viewBuscarBotones() {
+    public void viewBuscarBotones() {//btnBuscar
         btnNuevo.setEnabled(false);
         btnEditar.setEnabled(true);
         btnGuardar.setEnabled(false);
         btnEliminar.setEnabled(true);
-        
         btnSalir.setEnabled(true);
         btnCancelar.setEnabled(true);
-        
     } 
     
-    public void viewBuscar() {
+    public void viewBuscar() {//btnBuscarCodigo
         btnNuevo.setEnabled(true); 
         btnEditar.setEnabled(false);
         btnGuardar.setEnabled(false);
         btnEliminar.setEnabled(false);
-     
         btnSalir.setEnabled(true);
         btnCancelar.setEnabled(true);
     }
@@ -151,10 +150,9 @@ public class FrmModelo extends FrmGenerica {
     @Override
     public void onViewOpened() {
         this.viewOpenedBotones();
-        this.viewOpenedBotones();
         this.viewCamposEnabled(false);
         this.cargarCombos();
-        //this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
+        this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
         //this.isExtra();
      }
     @Override
@@ -164,12 +162,11 @@ public class FrmModelo extends FrmGenerica {
     }
 
     @Override
-    public void viewCamposEnabled(Boolean tipo) {
+    public void viewCamposEnabled(Boolean tipo) {//al abrir el FRM
         txtCodigo.setEnabled(false);
         txtNombre.setEnabled(tipo);
         cmbMarca.setEnabled(tipo);
         cmbPais.setEnabled(tipo);
-//        txtMarca.setEnabled(false);
     }
 
     private void viewBasic(){
@@ -238,7 +235,6 @@ public class FrmModelo extends FrmGenerica {
     public void clearView() {
         txtNombre.setText("");
         txtCodigo.setText("");
-     
     }
 
     @Override
@@ -267,34 +263,16 @@ public class FrmModelo extends FrmGenerica {
     public void setView(){
        this.getGestorVista().getView();
     }  
-
-//    public void extraView() {
-//        btnBuscar.setEnabled(false);
-//        this.viewNuevoEnter();
-//    }
-// 
-//    private void isExtra() {
-//        if (this.getGestorVista().isExtra()) {
-//            this.extraView();
-//        }
-//    }
-// 
-//    
-//    
-    
-    
-    
-    
-    //llenado de tablas
+ 
+//llenado de tablas
     public void setBusqueda() {
         this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
         this.getGestorVista().setBusqueda();
     }
-    /** This method is called from within the constructor to
-     * initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is
-     * always regenerated by the Form Editor.
-     */
+    
+     /** Este método se llama desde dentro del constructor para inicializar el formulario.
+     ADVERTENCIA: NO modifique este código. 
+     El contenido de este método es siempre regenerado por el Editor de formularios.**/
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -562,7 +540,7 @@ public class FrmModelo extends FrmGenerica {
         txtBusquedaNombre.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtBusquedaNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel4.add(txtBusquedaNombre);
-        txtBusquedaNombre.setBounds(20, 50, 240, 23);
+        txtBusquedaNombre.setBounds(20, 50, 240, 30);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Modelos");

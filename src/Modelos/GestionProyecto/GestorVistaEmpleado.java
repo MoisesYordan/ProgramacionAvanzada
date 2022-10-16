@@ -180,9 +180,7 @@ public class GestorVistaEmpleado extends GestorVista {
         this.actualizarObjeto(this.getModel());
     }
 
-//    public void eliminar() {
-//        this.eliminarObjeto(this.getModel());
-//    }
+
     @Override
     public void openFormulario(JDesktopPane pantalla) {
         this.setEscritorio(pantalla);
@@ -238,7 +236,8 @@ public class GestorVistaEmpleado extends GestorVista {
         String[] ancho ={"5","20","90","90","90","90","90","90","90"};
         this.newModelTable(tbl,titulo,ancho);
     }
-          @Override
+    
+    @Override
     public void getView() {
         this.getForm().getTxtCodigo().setText(this.getModel().getCodigoS());
         this.getForm().getTxtNombre().setText(this.getModel().getNombre());
@@ -250,7 +249,8 @@ public class GestorVistaEmpleado extends GestorVista {
         this.getForm().getTxtDireccion().setText(this.getModel().getDireccion());
 
     }
-         public void setBusqueda() {
+    
+    public void setBusqueda() {
         Boolean error=false;
         this.initializeTablaBusqueda(this.getForm().getTblDatos());
 
@@ -268,10 +268,7 @@ public class GestorVistaEmpleado extends GestorVista {
 
         return ord;
     }
-//    public Object getItemTablaSelected(JTable tbl) {
-//        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
-//        return model.getValueAt(tbl.getSelectedRow(),0);
-//    }
+
     public void setDatos() {
         if(this.getOpcABM()==1){
             int resp = JOptionPane.showConfirmDialog(null, "Usted va a perder los cambios realizados en el producto, porque no ha grabado.\nDesea continuar?","Modificar Producto",JOptionPane.YES_NO_OPTION);

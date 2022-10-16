@@ -25,6 +25,7 @@ public class GestorVistaAuto extends GestorVista  {
     private FrmAuto form;
     private Auto model;
     private GestorVistaModelo gestorModelo = new GestorVistaModelo();
+    private GestorVistaPais gestorPais = new GestorVistaPais();
 
    
     public FrmAuto getForm() {
@@ -50,7 +51,13 @@ public class GestorVistaAuto extends GestorVista  {
     public void setGestorModelo(GestorVistaModelo gestorModelo) {
         this.gestorModelo = gestorModelo;
     }
+    public GestorVistaPais getGestorPais() {//POSIBLE MODIFICACION
+        return gestorPais;
+    }
 
+    public void setGestorPais(GestorVistaPais gestorPais) {//POSIBLE MODIFICACION
+        this.gestorPais = gestorPais;
+    }
     @Override
     public void newModel() {
         this.setModel(new Auto());
@@ -60,7 +67,9 @@ public class GestorVistaAuto extends GestorVista  {
     public void setModelModelo(JComboBox cmb) {
         cmb.setModel(getComboModelTipoProyecto());
     }
-  
+    public void setModelPais(JComboBox cmb) {//POSIBLE MODIFICACION
+        cmb.setModel(getComboModelTipoProyecto2());
+    }
     @Override
     public void saveView() {
         int err;
@@ -192,10 +201,11 @@ public class GestorVistaAuto extends GestorVista  {
       //  return this.listarClase(Auto.class,"modelo");
     }
     public DefaultComboBoxModel getComboModelTipoProyecto() {
-        return this.getGestorModelo().getComboModelModelo();
-        
+        return this.getGestorModelo().getComboModelModelo(); 
     }
-
+    public DefaultComboBoxModel getComboModelTipoProyecto2() {
+        return this.getGestorPais().getComboModelPais();//POSIBLE MODIFICACION
+    } 
     public DefaultComboBoxModel getComboModelAuto() {      
         DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
         auxModel.addElement("");

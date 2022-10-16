@@ -16,10 +16,10 @@ public class Pais {
     @Id
     @Column(columnDefinition = "SERIAL")
     private long id;
-
     private String codigopais;
-
     private String nombrepais;
+    private String impuesto;
+
 
     public long getId() {
         return id;
@@ -44,7 +44,14 @@ public class Pais {
     public void setNombrepais(String nombrepais) {
         this.nombrepais = nombrepais;
     }
+    
+    public String getImpuesto() {
+        return impuesto;
+    }
 
+    public void setImpuesto(String impuesto) {
+        this.impuesto = impuesto;
+    }
     @Override
     public String toString() {
         return nombrepais;
@@ -53,9 +60,10 @@ public class Pais {
     public Pais() {
     }
 
-    public Pais(long id, String codigopais, String nombrepais) {
+    public Pais(long id, String codigopais, String nombrepais, String impuesto) {
         this.id = id;
         this.codigopais = codigopais;
         this.nombrepais = nombrepais;
+        this.impuesto = impuesto;
     }
 }

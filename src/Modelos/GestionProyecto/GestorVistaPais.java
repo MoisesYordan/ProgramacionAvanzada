@@ -19,9 +19,6 @@ public class GestorVistaPais extends GestorVista{
         this.model = model;
     }
     
-    
-    
-    
     public DefaultComboBoxModel getComboModelPais() {      
         DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
         auxModel.addElement("");

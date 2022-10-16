@@ -196,8 +196,8 @@ public class GestorVistaMarca extends GestorVista {
     }
     
      public void initializeTablaBusqueda(JTable tbl) {
-        String[] titulo={"","Cód.","NOMBRE","PAIS"};
-        String[] ancho ={"10","30","135","135"};
+        String[] titulo={"","Cód.","NOMBRE"};
+        String[] ancho ={"10","30","150"};
         this.newModelTable(tbl,titulo,ancho);
     }
          @Override
@@ -269,7 +269,7 @@ public class GestorVistaMarca extends GestorVista {
     }
      public List<Marca> listar(String text,int ord) {
         Criteria crit = getSession().createCriteria(Marca.class)
-             .add( Restrictions.eq("Estado", 0));
+             .add( Restrictions.eq("estado", 0));
              crit.add( Restrictions.like("nombre",'%'+ text.toUpperCase()+'%'));
         return crit.list();
     }  

@@ -30,7 +30,8 @@ public class Auto implements Comparable<Auto> ,Serializable{
     private String total;//dudas
     private String año;
     private String marca;
-       
+    private String pais;   
+    
     public long getId() {
         return id;
     }
@@ -102,12 +103,20 @@ public class Auto implements Comparable<Auto> ,Serializable{
     public void setStock(String stock) {
         this.stock = stock;
     }
+    
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
 
     public Auto() {
     
     }
 
-    public Auto(long id, int codigo, Modelo modelo, String marca,  String año, String costo, String total, String stock) {
+    public Auto(long id, int codigo, Modelo modelo, String marca,  String año, String costo, String total, String stock, String pais) {
         this.id =id;
         this.codigo = codigo;
         this.modelo = modelo;
@@ -116,6 +125,7 @@ public class Auto implements Comparable<Auto> ,Serializable{
         this.costo=costo;
         this.total=total;
         this.stock=stock;
+        this.pais = pais;
     }
     
     @Override

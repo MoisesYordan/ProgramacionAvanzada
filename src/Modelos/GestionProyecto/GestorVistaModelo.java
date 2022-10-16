@@ -192,9 +192,7 @@ public class GestorVistaModelo extends GestorVista{
     public List <Modelo> List(){   
         return getSession().createCriteria(Modelo.class).list();
     }
-//    public List <Modelo> listarModelos(){   
-//        return this.listarClase(Modelo.class,"nombre");
-//    }
+
     public DefaultComboBoxModel getComboModelTipoProyecto() {
         return this.getGestorMarca().getComboModelMarca();
     }
@@ -245,10 +243,8 @@ public class GestorVistaModelo extends GestorVista{
 
         return ord;
     }
-//    public Object getItemTablaSelected(JTable tbl) {
-//        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
-//        return model.getValueAt(tbl.getSelectedRow(),0);
-//    }
+
+    
     public void setDatos() {
         if(this.getOpcABM()==1){
             int resp = JOptionPane.showConfirmDialog(null, "Usted va a perder los cambios realizados en el producto, porque no ha grabado.\nDesea continuar?","Modificar Producto",JOptionPane.YES_NO_OPTION);

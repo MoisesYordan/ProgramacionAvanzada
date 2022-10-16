@@ -24,85 +24,77 @@ public class FrmCliente extends FrmGenerica {
         this.tblDatos = tblDatos;
     }
 
-    public JTextField getTxtBusquedaDenominacion() {
-        return txtBusquedaNombre;
-    }
-
-    public void setTxtBusquedaDenominacion(JTextField txtBusquedaDenominacion) {
-        this.txtBusquedaNombre = txtBusquedaDenominacion;
-    }
-
 // Definicion de getter y setter de los componentes visuales del formulario
-    public JTextField getTxtNombre() {
-        return txtNombre;
-    }
-
-    public void setTxtNombre(JTextField txtNombre) {
-        this.txtNombre = txtNombre;
-    }
-    public JTextField getTxtApellido() {
-        return txtApellido;
-    }
-
-    public void setTxtApellido(JTextField txtApellido) {
-        this.txtApellido = txtApellido;
-    }
-    public JTextField getTxtDni() {
-        return txtDni;
-    }
-
-    public void setTxtDni(JTextField txtDni) {
-        this.txtDni = txtDni;
-    }
-    public JTextField getTxtFechaDeNacimiento() {
-        return txtFechaDeNacimiento;
-    }
-
-    public void setTxtFechaDeNacimiento(JTextField txtFechaDeNacimiento) {
-        this.txtFechaDeNacimiento = txtFechaDeNacimiento;
-    }
-     public JTextField getTxtTelefono() {
-        return txtTelefono;
-    }
-
-    public void setTxtTelefono(JTextField txtTelefono) {
-        this.txtTelefono = txtTelefono;
-    }
-     public JTextField getTxtEmail() {
-        return txtEmail;
-    }
-
-    public void setTxtEmail(JTextField txtEmail) {
-        this.txtEmail = txtEmail;
-    }
-      public JTextField getTxtDireccion() {
-        return txtDireccion;
-    }
-
-    public void setTxtDireccion(JTextField txtDireccion) {
-        this.txtDireccion = txtDireccion;
-    }
-    
-    
     public JTextField getTxtCodigo() {
         return txtCodigo;
     }
-
     public void setTxtCodigo(JTextField txtCodigo) {
         this.txtCodigo = txtCodigo;
     }
 
-
-//    public JComboBox<String> getCmbModelo() {
-//        return cmbModelo;
-//    }
-//
-//    public void setCmbModelo(JComboBox<String> cmbModelo) {
-//        this.cmbModelo = cmbModelo;
-//    }
-
-   
+    public JTextField getTxtNombre() {
+        return txtNombre;
+    }
+    public void setTxtNombre(JTextField txtNombre) {
+        this.txtNombre = txtNombre;
+    }
     
+    public JTextField getTxtApellido() {
+        return txtApellido;
+    }
+    public void setTxtApellido(JTextField txtApellido) {
+        this.txtApellido = txtApellido;
+    }
+    
+    public JTextField getTxtDni() {
+        return txtDni;
+    }
+    public void setTxtDni(JTextField txtDni) {
+        this.txtDni = txtDni;
+    }
+    
+    public JTextField getTxtFechaDeNacimiento() {
+        return txtFechaDeNacimiento;
+    }
+    public void setTxtFechaDeNacimiento(JTextField txtFechaDeNacimiento) {
+        this.txtFechaDeNacimiento = txtFechaDeNacimiento;
+    }
+    
+    public JTextField getTxtTelefono() {
+        return txtTelefono;
+    }
+    public void setTxtTelefono(JTextField txtTelefono) {
+        this.txtTelefono = txtTelefono;
+    }
+    
+    public JTextField getTxtEmail() {
+        return txtEmail;
+    }
+    public void setTxtEmail(JTextField txtEmail) {
+        this.txtEmail = txtEmail;
+    }
+    
+    public JTextField getTxtDireccion() {
+        return txtDireccion;
+    }
+    public void setTxtDireccion(JTextField txtDireccion) {
+        this.txtDireccion = txtDireccion;
+    }
+      
+    public JTextField getTxtBuscar(){
+        return txtBusquedaNombre;
+    }
+    public void setTxtBuscar(JTextField txtBusquedaNombre){
+        this.txtBusquedaNombre=txtBusquedaNombre;
+    }
+  
+    public JTextField getTxtBuscarCodigo(){
+        return txtCodigo;
+    }
+    public void setTxtBuscarCodigo(JTextField txtCodigo){
+        this.txtCodigo=txtCodigo;
+    }
+
 // Constructores del formulario 
     public FrmCliente(GestorVistaCliente gestorVista) {
         try{
@@ -119,96 +111,68 @@ public class FrmCliente extends FrmGenerica {
         initComponents();
     }
     
-      // Metodos que gestionan los botones de la barra comando 
-    public void viewOpenedBotones() {
+// Metodos que gestionan los botones de la barra comando 
+    public void viewOpenedBotones() {//abris el frm
         btnNuevo.setEnabled(true);
         btnEditar.setEnabled(false);
         btnGuardara.setEnabled(false);
         btnEliminar.setEnabled(false);
-        
         btnCancelar.setEnabled(true);
         btnSalir.setEnabled(true);
         btnNuevo.grabFocus();
     }
 
-    public void viewNuevoEditarBotones(){
+    public void viewNuevoEditarBotones(){//btnEditar
         btnNuevo.setEnabled(false);
         btnEditar.setEnabled(false);
         btnGuardara.setEnabled(true);
         btnEliminar.setEnabled(false);
-        
         btnCancelar.setEnabled(true);
         btnSalir.setEnabled(true);
     }
   
-    public void viewEliminarBotones() {
+    public void viewEliminarBotones() {//btnEliminar
         this.viewOpenedBotones();
     }
   
-    public void viewGuardarBotones() {
+    public void viewGuardarBotones() {//btnGuardar
         btnNuevo.setEnabled(true);
         btnEditar.setEnabled(true);
         btnGuardara.setEnabled(false);
         btnEliminar.setEnabled(true);
-        
-        
         btnCancelar.setEnabled(false);
         btnSalir.setEnabled(true);
         btnNuevo.grabFocus();
     }
 
-    public void viewBuscarBotones() {
+    public void viewBuscarBotones() {//btnBuscar
         btnNuevo.setEnabled(false);
         btnEditar.setEnabled(true);
         btnGuardara.setEnabled(false);
         btnEliminar.setEnabled(true);
-        
         btnSalir.setEnabled(true);
         btnCancelar.setEnabled(true);
-        
     } 
-//    private void viewDenominacionVisible(Boolean tipo){
-//        txtNombre.setEnabled(!tipo);
-//        txtApellido.setEnabled(tipo);
-//        txtDni.setEnabled(tipo);
-//        txtFechaDeNacimiento.setEnabled(tipo);
-//        
-//        txtTelefono.setEnabled(tipo);
-//        txtEmail.setEnabled(tipo);
-//        
-//        txtLocalidad.setEnabled(tipo);
-//        txtDireccion.setEnabled(tipo);
-//        txtProvincia.setEnabled(tipo);
-//      //  cmbModelo.setVisible(tipo);
+
+//    public void viewBuscar() {//btnBuscarCodigo
+//        btnNuevo.setEnabled(true); 
+//        btnEditar.setEnabled(false);
+//        btnGuardara.setEnabled(false);
+//        btnEliminar.setEnabled(false);
+//        btnSalir.setEnabled(true);
+//        btnCancelar.setEnabled(true);
 //    }
-    
-    public void viewBuscar() {
-        btnNuevo.setEnabled(true); 
-        btnEditar.setEnabled(false);
-        btnGuardara.setEnabled(false);
-        btnEliminar.setEnabled(false);
-     
-        btnSalir.setEnabled(true);
-        btnCancelar.setEnabled(true);
-    }
     
     @Override
     public void onViewOpened() {
         this.viewOpenedBotones();
-        this.viewOpenedBotones();
         this.viewCamposEnabled(false);
-        this.cargarCombos();
-        //this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
+        this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
        // this.isExtra();
      }
-    
-//    @Override
-//    public void cargarCombos() {
-//        this.gestorVista.setModelModelo(cmbModelo);
-//    }
 
     @Override
-    public void viewCamposEnabled(Boolean tipo) {
+    public void viewCamposEnabled(Boolean tipo) {//al abrir el FRM
         txtCodigo.setEnabled(false);
         
         txtNombre.setEnabled(tipo);
@@ -218,10 +182,8 @@ public class FrmCliente extends FrmGenerica {
         
         txtTelefono.setEnabled(tipo);
         txtEmail.setEnabled(tipo);
-       // cmbModelo.setEnabled(tipo);
        
         txtDireccion.setEnabled(tipo);
- 
     }
 
     private void viewBasic(){
@@ -242,22 +204,22 @@ public class FrmCliente extends FrmGenerica {
         this.getGestorVista().setModoEditar();
     }
 
-    private void viewBuscarPrincipalEnter() {
-        this.viewCamposEnabled(false);
-        this.clearView();
-        this.viewBuscar();
-    }
-
-    private void viewBuscarCodigoEnter() {
-        this.viewBuscarPrincipalEnter();
-        txtCodigo.setEnabled(true);
-        txtCodigo.grabFocus();
-    }
-
-    private void viewBuscarComboEnter() {
-        this.viewBuscarPrincipalEnter();
-        txtCodigo.setEnabled(false);
-    }
+//    private void viewBuscarPrincipalEnter() {
+//        this.viewCamposEnabled(false);
+//        this.clearView();
+//        this.viewBuscar();
+//    }
+//
+//    private void viewBuscarCodigoEnter() {
+//        this.viewBuscarPrincipalEnter();
+//        txtCodigo.setEnabled(true);
+//        txtCodigo.grabFocus();
+//    }
+//
+//    private void viewBuscarComboEnter() {
+//        this.viewBuscarPrincipalEnter();
+//        txtCodigo.setEnabled(false);
+//    }
 
     @Override
     public void viewGuardar() {
@@ -288,15 +250,16 @@ public class FrmCliente extends FrmGenerica {
 
     @Override
     public void clearView() {
-        txtApellido.setText("");
         txtCodigo.setText("");
+                
+        txtApellido.setText("");
         txtNombre.setText("");
         txtDni.setText("");
         txtFechaDeNacimiento.setText("");
         
         txtTelefono.setText("");
         txtEmail.setText("");
-       // cmbModelo.setEnabled(tipo);
+        
         txtDireccion.setText("");
     }
 
@@ -328,16 +291,15 @@ public class FrmCliente extends FrmGenerica {
     }  
 
  
-    //llenado de tablas
+//llenado de tablas
     public void setBusqueda() {
         this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
         this.getGestorVista().setBusqueda();
     }
-    /** This method is called from within the constructor to
-     * initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is
-     * always regenerated by the Form Editor.
-     */
+    
+     /** Este método se llama desde dentro del constructor para inicializar el formulario.
+     ADVERTENCIA: NO modifique este código. 
+     El contenido de este método es siempre regenerado por el Editor de formularios.**/
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -426,7 +388,7 @@ public class FrmCliente extends FrmGenerica {
             }
         });
         jPanel1.add(txtCodigo);
-        txtCodigo.setBounds(20, 40, 90, 23);
+        txtCodigo.setBounds(20, 37, 90, 23);
 
         btnBuscarCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnBuscarCodigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar.png"))); // NOI18N
@@ -444,7 +406,7 @@ public class FrmCliente extends FrmGenerica {
             }
         });
         jPanel1.add(btnBuscarCodigo);
-        btnBuscarCodigo.setBounds(110, 40, 30, 30);
+        btnBuscarCodigo.setBounds(110, 32, 30, 30);
 
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel2.setText("Apellido");
@@ -538,12 +500,12 @@ public class FrmCliente extends FrmGenerica {
         jLabel9.setText("Direccion");
         jLabel9.setRequestFocusEnabled(false);
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(20, 270, 90, 20);
+        jLabel9.setBounds(20, 280, 90, 20);
 
         txtDireccion.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtDireccion.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtDireccion);
-        txtDireccion.setBounds(20, 290, 170, 30);
+        txtDireccion.setBounds(20, 300, 170, 30);
 
         jLabel11.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel11.setText("DNI");
@@ -754,13 +716,13 @@ public class FrmCliente extends FrmGenerica {
 }//GEN-LAST:event_txtCodigoKeyTyped
 
     private void btnBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodigoActionPerformed
-        this.viewBuscarCodigoEnter();
+//        this.viewBuscarCodigoEnter();
 }//GEN-LAST:event_btnBuscarCodigoActionPerformed
 
     private void btnBuscarCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarCodigoKeyPressed
-        if(evt.getKeyCode()==10) {
-            this.viewBuscarCodigoEnter();
-        }
+//        if(evt.getKeyCode()==10) {
+//            this.viewBuscarCodigoEnter();
+//        }
 }//GEN-LAST:event_btnBuscarCodigoKeyPressed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelos.GestionProyecto;
 
 import FRM.FrmCliente;
@@ -243,7 +239,7 @@ public class GestorVistaCliente extends GestorVista {
     }
     
      public void initializeTablaBusqueda(JTable tbl) {
-        String[] titulo={"","Cód.","NOMBRE","APELLIDO","DNI","FechaDeNacimiento","Telefono","Email","Direccion"};//CAMBIARRRRRRRRRRR
+        String[] titulo={"","Cód.","NOMBRE","APELLIDO","DNI","FechaDeNacimiento","Telefono","Email","Direccion"};
         String[] ancho ={"5","20","90","90","90","90","90","90","90"};
         this.newModelTable(tbl,titulo,ancho);
     }

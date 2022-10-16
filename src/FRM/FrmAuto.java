@@ -25,20 +25,11 @@ public class FrmAuto extends FrmGenerica {
         this.tblDatos = tblDatos;
     }
 
-    public JTextField getTxtBusquedaDenominacion() {
-        return txtBusquedaNombre;
-    }
-
-    public void setTxtBusquedaDenominacion(JTextField txtBusquedaDenominacion) {
-        this.txtBusquedaNombre = txtBusquedaDenominacion;
-    }
-
 // Definicion de getter y setter de los componentes visuales del formulario
     
     public JTextField getTxtCodigo() {
         return txtCodigo;
     }
-
     public void setTxtCodigo(JTextField txtCodigo) {
         this.txtCodigo = txtCodigo;
     }
@@ -46,7 +37,6 @@ public class FrmAuto extends FrmGenerica {
     public JComboBox<String> getCmbModelo() {
         return cmbModelo;
     }
-
     public void setCmbModelo(JComboBox<String> cmbModelo) {
         this.cmbModelo = cmbModelo;
     }
@@ -54,12 +44,25 @@ public class FrmAuto extends FrmGenerica {
     public JTextField getTxtModelo() {
         return txtModelo;
     }
-    
     public void setTxtModelo(JTextField txtModelo) {
         this.txtModelo = txtModelo;
     }
     
-   public JTextField getTxtMarca() {
+    public JComboBox<String> getCmbPais() {
+        return cmbPais;
+    }
+    public void setCmbPais(JComboBox<String> cmbPais) {
+        this.cmbPais = cmbPais;
+    }
+
+    public JTextField getTxtPais() {
+        return txtPais;
+    }
+    public void setTxtPais(JTextField txtPais) {
+        this.txtPais = txtPais;
+    }
+    
+    public JTextField getTxtMarca() {
         return txtMarca;
     }
     public JTextField getTxtCosto() {
@@ -76,18 +79,17 @@ public class FrmAuto extends FrmGenerica {
     public JTextField getTxtAño() {
         return txtAño;
     }
-
     public void setTxtAño(JTextField txtAño) {
         this.txtAño= txtAño;
     }
     
-   public JTextField getTxtStock() {
+    public JTextField getTxtStock() {
         return txtStock;
     }
-
     public void setTxtStock(JTextField txtStock) {
         this.txtStock= txtStock;
     }
+    
     public JTextField getTxtBuscar(){
         return txtBusquedaNombre;
     }
@@ -103,6 +105,8 @@ public class FrmAuto extends FrmGenerica {
     }
   
 // Constructores del formulario 
+    int band=0;
+    
     public FrmAuto(GestorVistaAuto gestorVista) {
         try{
            initComponents();
@@ -117,9 +121,9 @@ public class FrmAuto extends FrmGenerica {
     public FrmAuto() {
         initComponents();
     }
-    int band=0;
-      // Metodos que gestionan los botones de la barra comando 
-    public void viewOpenedBotones() {
+
+// Metodos que gestionan los botones de la barra comando 
+    public void viewOpenedBotones() {//abris el frm
         btnNuevo.setEnabled(true);
         btnEditar.setEnabled(false);
         btnGuardar.setEnabled(false);
@@ -130,21 +134,21 @@ public class FrmAuto extends FrmGenerica {
         btnNuevo.grabFocus();
     }
 
-    public void viewNuevoEditarBotones(){
+    public void viewNuevoEditarBotones(){//btnEditar
         btnNuevo.setEnabled(false);
         btnEditar.setEnabled(false);
-        btnGuardar.setEnabled(false);
+        btnGuardar.setEnabled(false);//false
         btnEliminar.setEnabled(false);
         btnCancelar.setEnabled(true);
         btnSalir.setEnabled(true);
         btnCalcular.setEnabled(true);
     }
   
-    public void viewEliminarBotones() {
+    public void viewEliminarBotones() {//btnEliminar
         this.viewOpenedBotones();
     }
   
-    public void viewGuardarBotones() {
+    public void viewGuardarBotones() {//btnGuardar
         btnNuevo.setEnabled(true);
         btnEditar.setEnabled(true);
         btnGuardar.setEnabled(false);
@@ -155,7 +159,7 @@ public class FrmAuto extends FrmGenerica {
         btnNuevo.grabFocus();
     }
 
-    public void viewBuscarBotones() {
+    public void viewBuscarBotones() {//btnBuscar
         btnNuevo.setEnabled(false);
         btnEditar.setEnabled(true);
         btnGuardar.setEnabled(false);
@@ -164,12 +168,7 @@ public class FrmAuto extends FrmGenerica {
         btnCancelar.setEnabled(true);
     } 
     
-    private void viewDenominacionVisible(Boolean tipo){
-        txtModelo.setVisible(!tipo);
-        cmbModelo.setVisible(tipo);
-    }
-    
-    public void viewBuscar() {
+    public void viewBuscar() {//btnBuscarCodigo
         btnNuevo.setEnabled(true); 
         btnEditar.setEnabled(false);
         btnGuardar.setEnabled(false);
@@ -182,29 +181,30 @@ public class FrmAuto extends FrmGenerica {
     @Override
     public void onViewOpened() {
         this.viewOpenedBotones();
-        this.viewOpenedBotones();
         this.viewCamposEnabled(false);
         this.cargarCombos();
-        //this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
-       // this.isExtra();
+        this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
+        //this.isExtra();
      }
     
     @Override
     public void cargarCombos() {
         this.gestorVista.setModelModelo(cmbModelo);
+        this.gestorVista.setModelPais(cmbPais);//ver no se comunicaria con modelo directamente?
     }
 
     @Override
-    public void viewCamposEnabled(Boolean tipo) {
+    public void viewCamposEnabled(Boolean tipo) {//al abrir el FRM
         txtCodigo.setEnabled(false);
         txtTotal.setEnabled(false);
         txtMarca.setEnabled(false);
         txtAño.setEnabled(tipo);
         txtCosto.setEnabled(tipo);
         txtStock.setEnabled(tipo);
-        cmbModelo.setEnabled(tipo);
         txtModelo.setEnabled(false);
-        
+        cmbModelo.setEnabled(tipo); 
+        txtPais.setEnabled(false);
+        cmbPais.setEnabled(tipo); 
     }
 
     private void viewBasic(){
@@ -232,16 +232,16 @@ public class FrmAuto extends FrmGenerica {
         this.viewBuscar();
     }
 
-    private void viewBuscarCodigoEnter() {
-        this.viewBuscarPrincipalEnter();
-        txtCodigo.setEnabled(true);
-        txtCodigo.grabFocus();
-    }
+//    private void viewBuscarCodigoEnter() {
+//        this.viewBuscarPrincipalEnter();
+//        txtCodigo.setEnabled(true);
+//        txtCodigo.grabFocus();
+//    }
 
-    private void viewBuscarComboEnter() {
-        this.viewBuscarPrincipalEnter();
-        txtCodigo.setEnabled(false);
-    }
+//    private void viewBuscarComboEnter() {
+//        this.viewBuscarPrincipalEnter();
+//        txtCodigo.setEnabled(false);
+//    }
 
     @Override
     public void viewGuardar() {
@@ -276,10 +276,10 @@ public class FrmAuto extends FrmGenerica {
         txtModelo.setText("");
         txtMarca.setText("");
         txtAño.setText("");
+        txtPais.setText("");
         txtCosto.setText("");
         txtTotal.setText("");
         txtStock.setText("");
-       
     }
 
     @Override
@@ -309,29 +309,16 @@ public class FrmAuto extends FrmGenerica {
        this.getGestorVista().getView();
     }  
 
-//    public void extraView() {
-//        btnBuscar.setEnabled(false);
-//        this.viewNuevoEnter();
-//    }
-// 
-//    private void isExtra() {
-//        if (this.getGestorVista().isExtra()) {
-//            this.extraView();
-//        }
-//    }
-//      
-
-
 //llenado de tablas
-    public void setBusqueda(int bandera) {
-        //bandera= 0=lupa de buscar 1= a el candado de buscar codigo
-        //band=    0 se presiono una vez para habilitar el campo para escribir, 1 realiza la buscaqueda y vuelve el campo a desabilitado
-        //b=       0 es una cadena alfanumerica , 1 es una cadena numerica
+    public void setBusqueda(int busqueda) {
+//busqueda=> 0=lupa de buscar                                             1= el candado de buscarCodigo
+//band=>    0 se presiono una vez para habilitar el campo para escribir  1= realiza la buscaqueda y vuelve el campo a desabilitado
+//b=>       0 es una cadena alfanumerica                                 1= es una cadena numerica
         int ord = 0;
         String text = null;
         String dato=this.txtBusquedaNombre.getText();
         int b=0;
-        if (this.getGestorVista().validarNumeros(dato)==false|| bandera==0){
+        if (this.getGestorVista().validarNumeros(dato)==false|| busqueda==0){
             b=1;
             String quebuscar="marca";
             this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
@@ -345,7 +332,10 @@ public class FrmAuto extends FrmGenerica {
         }
        
     }
- 
+    
+ /** Este método se llama desde dentro del constructor para inicializar el formulario.
+     ADVERTENCIA: NO modifique este código. 
+     El contenido de este método es siempre regenerado por el Editor de formularios.**/
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -360,10 +350,10 @@ public class FrmAuto extends FrmGenerica {
         jPanel2 = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
+        cmbModelo = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        cmbModelo = new javax.swing.JComboBox<>();
         txtModelo = new javax.swing.JTextField();
         txtMarca = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -377,6 +367,12 @@ public class FrmAuto extends FrmGenerica {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        cmbPais = new javax.swing.JComboBox<>();
+        txtPais = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
@@ -402,12 +398,12 @@ public class FrmAuto extends FrmGenerica {
         jLabel1.setText("Precio de Venta");
         jLabel1.setRequestFocusEnabled(false);
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(20, 210, 140, 20);
+        jLabel1.setBounds(290, 220, 140, 20);
 
         txtTotal.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtTotal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtTotal);
-        txtTotal.setBounds(20, 230, 180, 30);
+        txtTotal.setBounds(290, 240, 180, 30);
 
         jLabel3.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel3.setText("Código");
@@ -497,6 +493,21 @@ public class FrmAuto extends FrmGenerica {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 380, 200, 40);
 
+        cmbModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        cmbModelo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbModeloItemStateChanged(evt);
+            }
+        });
+        cmbModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbModeloActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmbModelo);
+        cmbModelo.setBounds(20, 100, 180, 30);
+        cmbModelo.getAccessibleContext().setAccessibleName("");
+
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel3.setLayout(null);
 
@@ -537,21 +548,6 @@ public class FrmAuto extends FrmGenerica {
         jPanel1.add(jPanel3);
         jPanel3.setBounds(310, 380, 180, 40);
 
-        cmbModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
-        cmbModelo.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbModeloItemStateChanged(evt);
-            }
-        });
-        cmbModelo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbModeloActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cmbModelo);
-        cmbModelo.setBounds(20, 100, 180, 30);
-        cmbModelo.getAccessibleContext().setAccessibleName("");
-
         txtModelo.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtModelo.setForeground(new java.awt.Color(187, 187, 198));
         txtModelo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -564,19 +560,19 @@ public class FrmAuto extends FrmGenerica {
         txtMarca.setBounds(210, 100, 210, 30);
 
         jLabel5.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        jLabel5.setText("Modelo");
+        jLabel5.setText("Pais");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(20, 80, 120, 17);
+        jLabel5.setBounds(20, 140, 120, 17);
 
         jLabel6.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel6.setText("Año");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(440, 80, 80, 17);
+        jLabel6.setBounds(430, 80, 80, 17);
 
         jLabel7.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
         jLabel7.setText("$");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(200, 170, 30, 30);
+        jLabel7.setBounds(200, 240, 30, 30);
 
         jLabel8.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel8.setText("Marca");
@@ -591,12 +587,12 @@ public class FrmAuto extends FrmGenerica {
             }
         });
         jPanel1.add(txtCosto);
-        txtCosto.setBounds(20, 170, 180, 30);
+        txtCosto.setBounds(20, 240, 180, 30);
 
         txtAño.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtAño.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtAño);
-        txtAño.setBounds(440, 100, 80, 30);
+        txtAño.setBounds(430, 100, 80, 30);
 
         txtStock.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtStock.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -620,13 +616,13 @@ public class FrmAuto extends FrmGenerica {
             }
         });
         jPanel1.add(btnCalcular);
-        btnCalcular.setBounds(220, 170, 30, 30);
+        btnCalcular.setBounds(220, 240, 30, 30);
         btnCalcular.getAccessibleContext().setAccessibleDescription("");
 
         jLabel9.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel9.setText("Costo");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(20, 150, 120, 17);
+        jLabel9.setBounds(20, 220, 120, 17);
 
         jLabel10.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
         jLabel10.setText("U°");
@@ -636,7 +632,44 @@ public class FrmAuto extends FrmGenerica {
         jLabel11.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
         jLabel11.setText("$");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(200, 230, 30, 30);
+        jLabel11.setBounds(470, 240, 30, 30);
+
+        cmbPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        cmbPais.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbPaisItemStateChanged(evt);
+            }
+        });
+        cmbPais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPaisActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmbPais);
+        cmbPais.setBounds(20, 160, 180, 30);
+
+        txtPais.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtPais.setForeground(new java.awt.Color(187, 187, 198));
+        txtPais.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel1.add(txtPais);
+        txtPais.setBounds(20, 160, 170, 30);
+
+        jLabel12.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        jLabel12.setText("Modelo");
+        jPanel1.add(jLabel12);
+        jLabel12.setBounds(20, 80, 120, 17);
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Auto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
+        jPanel1.add(jPanel6);
+        jPanel6.setBounds(10, 65, 520, 140);
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Precio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
+        jPanel1.add(jPanel7);
+        jPanel7.setBounds(10, 205, 520, 80);
+
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Stock", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
+        jPanel1.add(jPanel8);
+        jPanel8.setBounds(10, 285, 520, 80);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(390, 10, 540, 430);
@@ -705,7 +738,7 @@ public class FrmAuto extends FrmGenerica {
             }
         });
         jPanel4.add(txtBusquedaNombre);
-        txtBusquedaNombre.setBounds(20, 50, 240, 23);
+        txtBusquedaNombre.setBounds(20, 50, 240, 30);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Auto");
@@ -783,22 +816,22 @@ public class FrmAuto extends FrmGenerica {
 
     private void btnBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodigoActionPerformed
         //this.viewBuscarCodigoEnter();
-        int bandera=1;
+        int busqueda=1; //busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
         if (band==0) {
             txtCodigo.setEnabled(true);
             band=1;
         }
         else {
             txtCodigo.setEnabled(false);
-            this.setBusqueda(bandera);
+            this.setBusqueda(busqueda);
             band=0;
         }
 }//GEN-LAST:event_btnBuscarCodigoActionPerformed
 
     private void btnBuscarCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarCodigoKeyPressed
-        if(evt.getKeyCode()==10) {
-            this.viewBuscarCodigoEnter();
-        }
+//        if(evt.getKeyCode()==10) {
+//            this.viewBuscarCodigoEnter();
+//        }
 }//GEN-LAST:event_btnBuscarCodigoKeyPressed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
@@ -889,12 +922,10 @@ public class FrmAuto extends FrmGenerica {
     }//GEN-LAST:event_btnCancelarKeyPressed
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-        int bandera=0;
+        int busqueda=0;//busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
         this.clearView();
-        this.setBusqueda(bandera);
+        this.setBusqueda(busqueda);
         this.viewCamposEnabled(false);
-//        botonesComandoView.viewAllDisabled();
-//        botonesComandoView.viewOpenedBotones();
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
     private void btnBuscar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscar1KeyPressed
@@ -938,6 +969,14 @@ public class FrmAuto extends FrmGenerica {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBusquedaNombreActionPerformed
 
+    private void cmbPaisItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbPaisItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbPaisItemStateChanged
+
+    private void cmbPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPaisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbPaisActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar1;
@@ -951,9 +990,11 @@ public class FrmAuto extends FrmGenerica {
     public javax.swing.JButton btnNuevo;
     public javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cmbModelo;
+    private javax.swing.JComboBox<String> cmbPais;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -967,6 +1008,9 @@ public class FrmAuto extends FrmGenerica {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblDatos;
     private javax.swing.JTextField txtAño;
@@ -975,6 +1019,7 @@ public class FrmAuto extends FrmGenerica {
     private javax.swing.JTextField txtCosto;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;
+    private javax.swing.JTextField txtPais;
     private javax.swing.JTextField txtStock;
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
