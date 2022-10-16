@@ -80,6 +80,8 @@ public class FrmModelo extends FrmGenerica {
     }
     
 // Constructores del formulario 
+    int btnCandado=0;//btnCandado=> 0 se presiono por 1era Vez (habilitar el campo)  1= 2da vez realiza la buscaqueda (desabilitar el campo)
+    
     public FrmModelo(GestorVistaModelo gestorVista) {
         try{
            initComponents();
@@ -137,16 +139,7 @@ public class FrmModelo extends FrmGenerica {
         btnSalir.setEnabled(true);
         btnCancelar.setEnabled(true);
     } 
-    
-    public void viewBuscar() {//btnBuscarCodigo
-        btnNuevo.setEnabled(true); 
-        btnEditar.setEnabled(false);
-        btnGuardar.setEnabled(false);
-        btnEliminar.setEnabled(false);
-        btnSalir.setEnabled(true);
-        btnCancelar.setEnabled(true);
-    }
-    
+
     @Override
     public void onViewOpened() {
         this.viewOpenedBotones();
@@ -185,23 +178,6 @@ public class FrmModelo extends FrmGenerica {
         this.viewBasic();
         txtNombre.grabFocus();
         this.getGestorVista().setModoEditar();
-    }
-
-    private void viewBuscarPrincipalEnter() {
-        this.viewCamposEnabled(false);
-        this.clearView();
-        this.viewBuscar();
-    }
-
-    private void viewBuscarCodigoEnter() {
-        this.viewBuscarPrincipalEnter();
-        txtCodigo.setEnabled(true);
-        txtCodigo.grabFocus();
-    }
-
-    private void viewBuscarComboEnter() {
-        this.viewBuscarPrincipalEnter();
-        txtCodigo.setEnabled(false);
     }
 
     @Override
@@ -265,9 +241,26 @@ public class FrmModelo extends FrmGenerica {
     }  
  
 //llenado de tablas
-    public void setBusqueda() {
-        this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
-        this.getGestorVista().setBusqueda();
+    public void setBusqueda(int busqueda) {
+        int ord = 0;
+        int b=0;//b=>0 es una cadena alfanumerica      1= es una cadena numerica
+        String text = null;
+        String dato=this.txtBusquedaNombre.getText();//se pone en la variable dato lo que esta dentro de la barra de busqueda de la lupa
+       
+        //pregunta si dato es igual a un numero(codigo) o una letra(barra de busqueda)
+        //busqueda=> 0=lupa de buscar     1= el candado de buscarCodigo
+        if (this.getGestorVista().validarNumeros(dato)==false|| busqueda==0){
+            b=1;//b=>0 es una cadena alfanumerica            1= es una cadena numerica
+            String quebuscar="modelo";
+            this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
+            this.getGestorVista().setBusqueda(dato,ord,text,quebuscar,b);  
+        }else{
+            b=0;//b=>0 es una cadena alfanumerica            1= es una cadena numerica
+            dato=this.txtCodigo.getText();//se pone en la variable dato lo que esta dentro de la barra de codigo
+            String quebuscar="codigo";
+            this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
+            this.getGestorVista().setBusqueda(dato,ord,text,quebuscar,b); 
+        }
     }
     
      /** Este método se llama desde dentro del constructor para inicializar el formulario.
@@ -600,14 +593,14 @@ public class FrmModelo extends FrmGenerica {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-        if (evt.getKeyCode()==10) {
-            if (this.gestorVista.getModelXCodigo(txtCodigo.getText())) {
-                this.viewActualizar();
-            }
-            else {
-                JOptionPane.showMessageDialog(null,"Código no existe");
-            }
-        }
+//        if (evt.getKeyCode()==10) {
+//            if (this.gestorVista.getModelXCodigo(txtCodigo.getText())) {
+//                this.viewActualizar();
+//            }
+//            else {
+//                JOptionPane.showMessageDialog(null,"Código no existe");
+//            }
+//        }
 }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
@@ -615,13 +608,22 @@ public class FrmModelo extends FrmGenerica {
 }//GEN-LAST:event_txtCodigoKeyTyped
 
     private void btnBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodigoActionPerformed
-        this.viewBuscarCodigoEnter();
+        int busqueda=1; //busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
+        if (btnCandado==0) {//btnCandado =0 primera vez presionado
+            txtCodigo.setEnabled(true);
+            btnCandado=1;
+        }
+        else {//btnCandado =1 segunda vez presionado realiza la busqueda
+            txtCodigo.setEnabled(false);
+            this.setBusqueda(busqueda);
+            btnCandado=0;
+        }
 }//GEN-LAST:event_btnBuscarCodigoActionPerformed
 
     private void btnBuscarCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarCodigoKeyPressed
-        if(evt.getKeyCode()==10) {
-            this.viewBuscarCodigoEnter();
-        }
+//        if(evt.getKeyCode()==10) {
+//            this.viewBuscarCodigoEnter();
+//        }
 }//GEN-LAST:event_btnBuscarCodigoKeyPressed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
@@ -716,11 +718,10 @@ try {
     }//GEN-LAST:event_btnCancelarKeyPressed
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-         this.clearView();
-        this.setBusqueda();
+        int busqueda=0;//busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
+        this.clearView();
+        this.setBusqueda(busqueda);
         this.viewCamposEnabled(false);
-//        botonesComandoView.viewAllDisabled();
-//        botonesComandoView.viewOpenedBotones();
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
     private void btnBuscar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscar1KeyPressed

@@ -47,17 +47,17 @@ public class GestorVistaAuto extends GestorVista  {
     public GestorVistaModelo getGestorModelo() {
         return gestorModelo;
     }
-
     public void setGestorModelo(GestorVistaModelo gestorModelo) {
         this.gestorModelo = gestorModelo;
     }
+    
     public GestorVistaPais getGestorPais() {//POSIBLE MODIFICACION
         return gestorPais;
     }
-
     public void setGestorPais(GestorVistaPais gestorPais) {//POSIBLE MODIFICACION
         this.gestorPais = gestorPais;
     }
+    
     @Override
     public void newModel() {
         this.setModel(new Auto());
@@ -67,9 +67,17 @@ public class GestorVistaAuto extends GestorVista  {
     public void setModelModelo(JComboBox cmb) {
         cmb.setModel(getComboModelTipoProyecto());
     }
+    public DefaultComboBoxModel getComboModelTipoProyecto() {
+        return this.getGestorModelo().getComboModelModelo(); 
+    }
+
     public void setModelPais(JComboBox cmb) {//POSIBLE MODIFICACION
         cmb.setModel(getComboModelTipoProyecto2());
     }
+    public DefaultComboBoxModel getComboModelTipoProyecto2() {
+        return this.getGestorPais().getComboModelPais();//POSIBLE MODIFICACION
+    } 
+    
     @Override
     public void saveView() {
         int err;
@@ -89,10 +97,12 @@ public class GestorVistaAuto extends GestorVista  {
         }
 
     }
+    
     public void eliminar(){
         this.getModel().asEliminado();
         this.actualizarObjeto(this.getModel());
     }
+    
     @Override
     public int setModel() {
         if (this.isDatosValidos()) {
@@ -171,7 +181,6 @@ public class GestorVistaAuto extends GestorVista  {
         this.actualizarObjeto(this.getModel());
     }
 
-
     @Override
     public void openFormulario(JDesktopPane pantalla) {
         this.setEscritorio(pantalla);
@@ -191,21 +200,14 @@ public class GestorVistaAuto extends GestorVista  {
         this.getForm().setVisible(true);
         this.setOpcABM(2);
     }
-    public Object getItemTablaSelected(JTable tbl) {
-        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
-        return model.getValueAt(tbl.getSelectedRow(),0);
-    }
-   // busquedas, iteradores y otras 
+    
+    
+// busquedas, iteradores y otras 
     public List <Auto> listarAutos(){   
         return getSession().createCriteria(Auto.class).list();
       //  return this.listarClase(Auto.class,"modelo");
     }
-    public DefaultComboBoxModel getComboModelTipoProyecto() {
-        return this.getGestorModelo().getComboModelModelo(); 
-    }
-    public DefaultComboBoxModel getComboModelTipoProyecto2() {
-        return this.getGestorPais().getComboModelPais();//POSIBLE MODIFICACION
-    } 
+   
     public DefaultComboBoxModel getComboModelAuto() {      
         DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
         auxModel.addElement("");
@@ -230,7 +232,8 @@ public class GestorVistaAuto extends GestorVista  {
         String[] ancho ={"10","30","100","111","40","100","100","40"};
         this.newModelTable(tbl,titulo,ancho);
     }
-     @Override
+     
+    @Override
     public void getView() {
         this.getForm().getTxtCodigo().setText(this.getModel().getCodigoS());
         this.getForm().getCmbModelo().setSelectedItem(this.getModel().getModelo().getMarca());
@@ -243,18 +246,15 @@ public class GestorVistaAuto extends GestorVista  {
 
     }
 
-public void setBusqueda(String dato,int ord, String text, String quebuscar,int b){ 
+    public void setBusqueda(String dato,int ord, String text, String quebuscar,int b){ 
         this.initializeTablaBusqueda(this.getForm().getTblDatos());
+        
         if(!"".equals(dato)){
-            //bandera= 0=lupa de buscar 1= a el candado de buscar codigo
-            //band= 0 se presiono una vez para habilitar el campo para escribir, 1 realiza la buscaqueda y vuelve el campo a desabilitado
-            //b= 0 es una cadena alfanumerica , 1 es una cadena numerica
-           if(b==0){
-//                int d=Integer.parseInt(dato);
+           if(b==0){//b=>0 es una cadena alfanumerica     1= es una cadena numerica
+
                 this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
                 int d=Integer.parseInt(dato);
                 if(this.listar3(text,ord,d,quebuscar).size()==0){
-//                if(this.listar3(text,ord,d,quebuscar).size()==0){
                     JOptionPane.showMessageDialog(null, "error","se ingreso una letra",JOptionPane.WARNING_MESSAGE);
                 }
            }
@@ -269,18 +269,13 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
             b=3;
             this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"")); 
         }
-
     }
   
     private int getOrdenamiento() {
         int ord=0;
-
         return ord;
     }
-//    public Object getItemTablaSelected(JTable tbl) {
-//        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
-//        return model.getValueAt(tbl.getSelectedRow(),0);
-//    }
+
     public void setDatos() {
         if(this.getOpcABM()==1){
             int resp = JOptionPane.showConfirmDialog(null, "Usted va a perder los cambios realizados en el producto, porque no ha grabado.\nDesea continuar?","Modificar Producto",JOptionPane.YES_NO_OPTION);
@@ -302,7 +297,12 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
         }
     }
 
-public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text) { 
+    public Object getItemTablaSelected(JTable tbl) {
+        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
+        return model.getValueAt(tbl.getSelectedRow(),0);
+    }
+    
+    public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text) { 
         TreeSet<Auto> lista = new TreeSet(); 
         if(b==0){
             int d=Integer.parseInt(dato);

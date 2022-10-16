@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelos.GestionProyecto;
 
 import FRM.FrmVentas;
@@ -181,7 +177,10 @@ public class GestorVistaVentas extends GestorVista  {
 
         return true;
     }
-
+    public static boolean validarNumeros(String datos){
+        return datos.matches("[0-9]*");
+    } 
+    
     public void saveModel(int opcABM) {
         switch (opcABM) {
             case 0:
@@ -231,24 +230,12 @@ public class GestorVistaVentas extends GestorVista  {
         this.getForm().setVisible(true);
         this.setOpcABM(2);
     }
-    public Object getItemTablaSelected(JTable tbl) {
-        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
-        return model.getValueAt(tbl.getSelectedRow(),0);
-    }
-   // busquedas, iteradores y otras 
+    
+// busquedas, iteradores y otras 
     public List <Ventas> listarVentas(){   
         return this.listarClase(Ventas.class,"auto");
     }
 
-//    public DefaultComboBoxModel getComboModelVentas() {      
-//        DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
-//        auxModel.addElement("");
-//        for (Ventas auxTipo : this.listarVentas()) {
-//            auxModel.addElement(auxTipo);
-//        }
-//         return auxModel;
-//    }
-   
     public int getUltimoCodigo() {
         try {
             Ventas auxModel = (Ventas) this.listarUltimo(Ventas.class).get(0);
@@ -256,7 +243,6 @@ public class GestorVistaVentas extends GestorVista  {
         } catch (Exception e) {
             return 0;
         }
-
     }
     
      public void initializeTablaBusqueda(JTable tbl) {
@@ -283,17 +269,30 @@ public class GestorVistaVentas extends GestorVista  {
        this.getForm().getCmbCliente().setSelectedItem(this.getModel().getCliente());
     }
     
-    public void setBusqueda() {
-        Boolean error=false;
-        this.initializeTablaBusqueda(this.getForm().getTblDatos());
+    public void setBusqueda(String dato,int ord, String text, String quebuscar,int b){ 
+            this.initializeTablaBusqueda(this.getForm().getTblDatos());
 
-        if (!error) {
-      
-            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),""));
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Falta ingresar datos para la búsqueda","Validación de Datos",JOptionPane.WARNING_MESSAGE);
-        } 
+            if(!"".equals(dato)){
+               if(b==0){//b=>0 es una cadena alfanumerica     1= es una cadena numerica
+
+                    this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
+                    int d=Integer.parseInt(dato);
+                    if(this.listar3(text,ord,d,quebuscar).size()==0){
+                        JOptionPane.showMessageDialog(null, "error","se ingreso una letra",JOptionPane.WARNING_MESSAGE);
+                    }
+               }
+               else{
+                    this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
+                    if(this.listar2(text,ord,dato,quebuscar).size()==0){
+                        JOptionPane.showMessageDialog(null, "error","Validación de Datos",JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+            }
+            else{
+                b=3;
+                this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"")); 
+            }
+
     }
   
     private int getOrdenamiento() {
@@ -301,10 +300,7 @@ public class GestorVistaVentas extends GestorVista  {
 
         return ord;
     }
-//    public Object getItemTablaSelected(JTable tbl) {
-//        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
-//        return model.getValueAt(tbl.getSelectedRow(),0);
-//    }
+
     public void setDatos() {
         if(this.getOpcABM()==1){
             int resp = JOptionPane.showConfirmDialog(null, "Usted va a perder los cambios realizados en el producto, porque no ha grabado.\nDesea continuar?","Modificar Producto",JOptionPane.YES_NO_OPTION);
@@ -326,37 +322,95 @@ public class GestorVistaVentas extends GestorVista  {
         }
     }
 
-    public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String text) {
-        TreeSet<Ventas> lista= new TreeSet();
-        List<Ventas> list= this.listar(text,ordenamiento);
-        Ventas  auxModel;
-        Iterator it = (Iterator) list.iterator();
-        while (it.hasNext())  {
-            auxModel =(Ventas) it.next(); 
-            lista.add(auxModel);
-         }
-       
-        Iterator it2 = (Iterator) lista.iterator();
-        while (it2.hasNext())  {
-            auxModel =( Ventas ) it2.next();
-            Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),
-            auxModel.getPais(),auxModel.getMarca(),auxModel.getAño(),
-            auxModel.getCantidad(),auxModel.getImpuesto(),auxModel.getTotal(), auxModel.getObvservaciones(),auxModel.getFechaDeVenta(),
-            auxModel.getEmpleado(),auxModel.getCliente()
-            }; 
-            auxModelTabla.addRow(fila); 
-        }
-        return auxModelTabla;
+    public Object getItemTablaSelected(JTable tbl) {
+        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
+        return model.getValueAt(tbl.getSelectedRow(),0);
     }
-     public List<Ventas> listar(String text,int ord) {
-        Criteria crit = getSession().createCriteria(Cliente.class)
-             .add( Restrictions.eq("estado", 0));
-             crit.add( Restrictions.like("modelo", text.toUpperCase()+'%'));
+    
+    public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text) { 
+        TreeSet<Ventas> lista= new TreeSet();
+        if(b==0){
+            int d=Integer.parseInt(dato);
+            List<Ventas> list= this.listar3(text,ordenamiento,d,quebuscar);
+            Ventas  auxModel;
+            Iterator it = (Iterator) list.iterator();
+            while (it.hasNext())  {
+                auxModel =(Ventas) it.next(); 
+                lista.add(auxModel);
+            }
+       
+            Iterator it2 = (Iterator) lista.iterator();
+            while (it2.hasNext())  {
+                auxModel =( Ventas ) it2.next();
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),
+                auxModel.getPais(),auxModel.getMarca(),auxModel.getAño(),
+                auxModel.getCantidad(),auxModel.getImpuesto(),auxModel.getTotal(), auxModel.getObvservaciones(),auxModel.getFechaDeVenta(),
+                auxModel.getEmpleado(),auxModel.getCliente()
+                };                
+                auxModelTabla.addRow(fila); 
+            }
+        }
+        if(b==1){
+            List<Ventas> list= this.listar2(text,ordenamiento,dato,quebuscar);
+            Ventas  auxModel;
+            Iterator it = (Iterator) list.iterator();
+            while (it.hasNext())  {
+                auxModel =(Ventas) it.next(); 
+                lista.add(auxModel);
+            }
+       
+            Iterator it2 = (Iterator) lista.iterator();
+            while (it2.hasNext())  {
+                auxModel =( Ventas ) it2.next();
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),
+                auxModel.getPais(),auxModel.getMarca(),auxModel.getAño(),
+                auxModel.getCantidad(),auxModel.getImpuesto(),auxModel.getTotal(), auxModel.getObvservaciones(),auxModel.getFechaDeVenta(),
+                auxModel.getEmpleado(),auxModel.getCliente()};   
+                auxModelTabla.addRow(fila); 
+            }  
+        }
+        if(b==3){
+            List<Ventas> list= this.listar(text,ordenamiento);
+            Ventas  auxModel;
+            Iterator it = (Iterator) list.iterator();
+            while (it.hasNext())  {
+                auxModel =(Ventas) it.next(); 
+                lista.add(auxModel);
+            }
+       
+            Iterator it2 = (Iterator) lista.iterator();
+            while (it2.hasNext())  {
+                auxModel =( Ventas ) it2.next();
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),
+                auxModel.getPais(),auxModel.getMarca(),auxModel.getAño(),
+                auxModel.getCantidad(),auxModel.getImpuesto(),auxModel.getTotal(), auxModel.getObvservaciones(),auxModel.getFechaDeVenta(),
+                auxModel.getEmpleado(),auxModel.getCliente()};   
+                auxModelTabla.addRow(fila); 
+            } 
+        }
+    return auxModelTabla;
+}
+
+    public List<Ventas> listar(String text,int ord) {
+        Criteria crit = getSession().createCriteria(Ventas.class)
+             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             crit.add( Restrictions.like("modelo",'%'+ text.toUpperCase()+'%'));
         return crit.list();
-    }  
-//    public void  abrirCliente(){
-//        GestorVistaCliente.getInstancia().openFormulario(FrmPrincipal.escritorio);
-//        GestorVistaCliente.getInstancia().nuevoItem();
-//          GestorVistaPrincipal.abrirCliente(escritorio);
-//    }
+    }
+     public List<Ventas> listar2(String text,int ord,String dato,String quebuscar) { 
+        Criteria crit = getSession().createCriteria(Ventas.class)
+             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             crit.add( Restrictions.eq(quebuscar, dato));
+           //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
+
+        return crit.list();
+     }
+     public List<Ventas> listar3(String text,int ord,int d,String quebuscar) { 
+        Criteria crit = getSession().createCriteria(Ventas.class)
+             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             crit.add( Restrictions.eq(quebuscar, d));
+           //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
+
+        return crit.list();
+     }
 }

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelos.GestionProyecto;
 
 import FRM.FrmEmpleado;
@@ -20,7 +16,6 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
 /**
- *
  * @author Moisés Yordán
  */
 public class GestorVistaEmpleado extends GestorVista {
@@ -30,7 +25,6 @@ public class GestorVistaEmpleado extends GestorVista {
     public FrmEmpleado getForm() {
         return form;
     }
-
     public void setForm(FrmEmpleado form) {
         this.form = form;
     }
@@ -38,18 +32,9 @@ public class GestorVistaEmpleado extends GestorVista {
     public Empleado getModel() {
         return model;
     }
-
     public void setModel(Empleado model) {
         this.model = model;
     }
-
-//    public GestorVistaPais getGestorPais() {
-//        return gestorPais;
-//    }
-
-//    public void setGestorPais(GestorVistaPais gestorPais) {
-//        this.gestorPais = gestorPais;
-//    }
 
     @Override
     public void newModel() {
@@ -57,10 +42,6 @@ public class GestorVistaEmpleado extends GestorVista {
         this.setModoNuevo();
     }
 
-//    public void setModelPais(JComboBox cmb) {
-//        cmb.setModel(getComboModelTipoProyecto());
-//    }
-//  
     @Override
     public void saveView() {
         int err;
@@ -80,10 +61,12 @@ public class GestorVistaEmpleado extends GestorVista {
         }
 
     }
+    
     public void eliminar(){
         this.getModel().asEliminado();
         this.actualizarObjeto(this.getModel());
     }
+    
     @Override
     public int setModel() {
         if (this.isDatosValidos()) {
@@ -150,6 +133,7 @@ public class GestorVistaEmpleado extends GestorVista {
     public static boolean validarNumeros(String datos){
         return datos.matches("[0-9]*");
     } 
+    
     public void saveModel(int opcABM) {
         switch (opcABM) {
             case 0:
@@ -180,7 +164,6 @@ public class GestorVistaEmpleado extends GestorVista {
         this.actualizarObjeto(this.getModel());
     }
 
-
     @Override
     public void openFormulario(JDesktopPane pantalla) {
         this.setEscritorio(pantalla);
@@ -200,27 +183,20 @@ public class GestorVistaEmpleado extends GestorVista {
         this.getForm().setVisible(true);
         this.setOpcABM(2);
     }
-    public Object getItemTablaSelected(JTable tbl) {
-        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
-        return model.getValueAt(tbl.getSelectedRow(),0);
-    }
-   // busquedas, iteradores y otras 
-    public List <Empleado> listarEmpleado(){   
+
+// busquedas, iteradores y otras 
+    public List <Empleado> listarEmpleados(){   
         return this.listarClase(Empleado.class,"nombre");
     }
-//    public DefaultComboBoxModel getComboModelTipoProyecto() {
-//        return this.getGestorPais().getComboModelPais();
-//    }
+    public DefaultComboBoxModel getComboModelEmpleado() {      
+        DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
+        auxModel.addElement("");
+        for (Empleado auxTipo : this.listarEmpleados()) {
+            auxModel.addElement(auxTipo);
+        }
+         return auxModel;
+    }
     
-//    public DefaultComboBoxModel getComboModelMarca() {      
-//        DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
-//        auxModel.addElement("");
-//        for (Marca auxTipo : this.listarMarcas()) {
-//            auxModel.addElement(auxTipo);
-//        }
-//         return auxModel;
-//    }
-   
     public int getUltimoCodigo() {
         try {
             Empleado auxModel = (Empleado) this.listarUltimo(Empleado.class).get(0);
@@ -250,22 +226,33 @@ public class GestorVistaEmpleado extends GestorVista {
 
     }
     
-    public void setBusqueda() {
-        Boolean error=false;
-        this.initializeTablaBusqueda(this.getForm().getTblDatos());
+    public void setBusqueda(String dato,int ord, String text, String quebuscar,int b){ 
+            this.initializeTablaBusqueda(this.getForm().getTblDatos());
 
-        if (!error) {
-      
-            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),""));
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Falta ingresar datos para la búsqueda","Validación de Datos",JOptionPane.WARNING_MESSAGE);
-        } 
+            if(!"".equals(dato)){
+               if(b==0){//b=>0 es una cadena alfanumerica     1= es una cadena numerica
+
+                    this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
+                    int d=Integer.parseInt(dato);
+                    if(this.listar3(text,ord,d,quebuscar).size()==0){
+                        JOptionPane.showMessageDialog(null, "error","se ingreso una letra",JOptionPane.WARNING_MESSAGE);
+                    }
+               }
+               else{
+                    this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
+                    if(this.listar2(text,ord,dato,quebuscar).size()==0){
+                        JOptionPane.showMessageDialog(null, "error","Validación de Datos",JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+            }
+            else{
+                b=3;
+                this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"")); 
+            }
     }
   
     private int getOrdenamiento() {
         int ord=0;
-
         return ord;
     }
 
@@ -289,42 +276,85 @@ public class GestorVistaEmpleado extends GestorVista {
             }     
         }
     }
-
-    public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String text) {
+    
+    public Object getItemTablaSelected(JTable tbl) {
+        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
+        return model.getValueAt(tbl.getSelectedRow(),0);
+    }
+    
+    public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text) { 
         TreeSet<Empleado> lista= new TreeSet();
-        List<Empleado> list= this.listar(text,ordenamiento);
-        Empleado  auxModel;
-        Iterator it = (Iterator) list.iterator();
-        while (it.hasNext())  {
-            auxModel =(Empleado) it.next(); 
-            lista.add(auxModel);
-         }
+        if(b==0){
+            int d=Integer.parseInt(dato);
+            List<Empleado> list= this.listar3(text,ordenamiento,d,quebuscar);
+            Empleado  auxModel;
+            Iterator it = (Iterator) list.iterator();
+            while (it.hasNext())  {
+                auxModel =(Empleado) it.next(); 
+                lista.add(auxModel);
+            }
        
-        Iterator it2 = (Iterator) lista.iterator();
-        while (it2.hasNext())  {
-            auxModel =( Empleado ) it2.next();
-            Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getApellido(),auxModel.getDni(),auxModel.getFechanacimiento(),auxModel.getTelefono(),auxModel.getEmail(),auxModel.getDireccion()}; //CAMBIARRRRRRRRRRRRRRRRRRRRRRRR
-            auxModelTabla.addRow(fila); 
+            Iterator it2 = (Iterator) lista.iterator();
+            while (it2.hasNext())  {
+                auxModel =( Empleado ) it2.next();
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getApellido(),auxModel.getDni(),auxModel.getFechanacimiento(),auxModel.getTelefono(),auxModel.getEmail(),auxModel.getDireccion()}; //CAMBIARRRRRRRRRRRRRRRRRRRRRRRR
+                auxModelTabla.addRow(fila); 
+            }
+        }
+        if(b==1){
+            List<Empleado> list= this.listar2(text,ordenamiento,dato,quebuscar);
+            Empleado  auxModel;
+            Iterator it = (Iterator) list.iterator();
+            while (it.hasNext())  {
+                auxModel =(Empleado) it.next(); 
+                lista.add(auxModel);
+            }
+       
+            Iterator it2 = (Iterator) lista.iterator();
+            while (it2.hasNext())  {
+                auxModel =( Empleado ) it2.next();
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getApellido(),auxModel.getDni(),auxModel.getFechanacimiento(),auxModel.getTelefono(),auxModel.getEmail(),auxModel.getDireccion()}; //CAMBIARRRRRRRRRRRRRRRRRRRRRRRR
+                auxModelTabla.addRow(fila); 
+            }  
+        }
+        if(b==3){
+            List<Empleado> list= this.listar(text,ordenamiento);
+            Empleado  auxModel;
+            Iterator it = (Iterator) list.iterator();
+            while (it.hasNext())  {
+                auxModel =(Empleado) it.next(); 
+                lista.add(auxModel);
+            }
+       
+            Iterator it2 = (Iterator) lista.iterator();
+            while (it2.hasNext())  {
+                auxModel =( Empleado ) it2.next();
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getApellido(),auxModel.getDni(),auxModel.getFechanacimiento(),auxModel.getTelefono(),auxModel.getEmail(),auxModel.getDireccion()}; //CAMBIARRRRRRRRRRRRRRRRRRRRRRRR
+                auxModelTabla.addRow(fila); 
+            } 
         }
         return auxModelTabla;
     }
-     public List<Empleado> listar(String text,int ord) {
+        public List<Empleado> listar(String text,int ord) {
         Criteria crit = getSession().createCriteria(Empleado.class)
-             .add( Restrictions.eq("estado", 0));
+             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
              crit.add( Restrictions.like("nombre",'%'+ text.toUpperCase()+'%'));
         return crit.list();
-    }  
-    
-     public DefaultComboBoxModel getComboModelEmpleado() {      
-        DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
-        auxModel.addElement("");
-        for (Empleado auxTipo : this.listarEmpleados()) {
-            auxModel.addElement(auxTipo);
-        }
-         return auxModel;
     }
-    
-    public List <Empleado> listarEmpleados(){   
-        return this.listarClase(Empleado.class,"nombre");
-    }
+     public List<Empleado> listar2(String text,int ord,String dato,String quebuscar) { 
+        Criteria crit = getSession().createCriteria(Empleado.class)
+             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             crit.add( Restrictions.eq(quebuscar, dato));
+           //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
+
+        return crit.list();
+     }
+     public List<Empleado> listar3(String text,int ord,int d,String quebuscar) { 
+        Criteria crit = getSession().createCriteria(Empleado.class)
+             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             crit.add( Restrictions.eq(quebuscar, d));
+           //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
+
+        return crit.list();
+     }
 }

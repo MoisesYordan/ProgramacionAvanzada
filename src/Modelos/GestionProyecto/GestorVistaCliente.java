@@ -54,8 +54,7 @@ public class GestorVistaCliente extends GestorVista {
     public void setModel(Cliente model) {
         this.model = model;
     }
-
-  
+    
     @Override
     public void newModel() {
         this.setModel(new Cliente());
@@ -73,7 +72,7 @@ public class GestorVistaCliente extends GestorVista {
     }
 
     @Override
-   public void actualizarView() {
+    public void actualizarView() {
         this.getForm().viewGuardar();
         if (this.getOpcABM() == 0) {
             this.getForm().getTxtCodigo().setText(this.getModel().getCodigoS());
@@ -82,6 +81,11 @@ public class GestorVistaCliente extends GestorVista {
 
     }
    
+    public void eliminar(){
+        this.getModel().asEliminado();
+        this.actualizarObjeto(this.getModel());
+    }
+    
     @Override
     public int setModel() {
         if (this.isDatosValidos()) {
@@ -144,11 +148,9 @@ public class GestorVistaCliente extends GestorVista {
     public static boolean validarNumerosDNI(String datos){
         return datos.matches("[0-9]{4,8}");
     }
-    
     public static boolean validarNumerosFN(String datos){
         return datos.matches("[0-9]{8,8}");
     }
-    
     public static boolean validarNumeros(String datos){
         return datos.matches("[0-9]*");
     } 
@@ -182,11 +184,6 @@ public class GestorVistaCliente extends GestorVista {
     public void actualizarObjeto() {
         this.actualizarObjeto(this.getModel());
     }
-    
-    public void eliminar(){
-        this.getModel().asEliminado();
-        this.actualizarObjeto(this.getModel());
-    }
 
     @Override
     public void openFormulario(JDesktopPane pantalla) {
@@ -207,26 +204,19 @@ public class GestorVistaCliente extends GestorVista {
         this.getForm().setVisible(true);
         this.setOpcABM(2);
     }
-    public Object getItemTablaSelected(JTable tbl) {
-        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
-        return model.getValueAt(tbl.getSelectedRow(),0);
-    }
-   // busquedas, iteradores y otras 
-    public List <Cliente> listarEmpleado(){   
+
+// busquedas, iteradores y otras 
+    public List <Cliente> listarClientes(){   
         return this.listarClase(Cliente.class,"nombre");
     }
-//    public DefaultComboBoxModel getComboModelTipoProyecto() {
-//        return this.getGestorPais().getComboModelPais();
-//    }
-    
-//    public DefaultComboBoxModel getComboModelMarca() {      
-//        DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
-//        auxModel.addElement("");
-//        for (Marca auxTipo : this.listarMarcas()) {
-//            auxModel.addElement(auxTipo);
-//        }
-//         return auxModel;
-//    }
+    public DefaultComboBoxModel getComboModelCliente() {      
+        DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
+        auxModel.addElement("");
+        for (Cliente auxTipo : this.listarClientes()) {
+            auxModel.addElement(auxTipo);
+        }
+         return auxModel;
+    }
    
     public int getUltimoCodigo() {
         try {
@@ -235,7 +225,6 @@ public class GestorVistaCliente extends GestorVista {
         } catch (Exception e) {
             return 0;
         }
-
     }
     
      public void initializeTablaBusqueda(JTable tbl) {
@@ -256,17 +245,30 @@ public class GestorVistaCliente extends GestorVista {
         this.getForm().getTxtDireccion().setText(this.getModel().getDireccion());
     }
     
-    public void setBusqueda() {
-        Boolean error=false;
-        this.initializeTablaBusqueda(this.getForm().getTblDatos());
+    public void setBusqueda(String dato,int ord, String text, String quebuscar,int b){ 
+            this.initializeTablaBusqueda(this.getForm().getTblDatos());
 
-        if (!error) {
-      
-            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),""));
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Falta ingresar datos para la búsqueda","Validación de Datos",JOptionPane.WARNING_MESSAGE);
-        } 
+            if(!"".equals(dato)){
+               if(b==0){//b=>0 es una cadena alfanumerica     1= es una cadena numerica
+
+                    this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
+                    int d=Integer.parseInt(dato);
+                    if(this.listar3(text,ord,d,quebuscar).size()==0){
+                        JOptionPane.showMessageDialog(null, "error","se ingreso una letra",JOptionPane.WARNING_MESSAGE);
+                    }
+               }
+               else{
+                    this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
+                    if(this.listar2(text,ord,dato,quebuscar).size()==0){
+                        JOptionPane.showMessageDialog(null, "error","Validación de Datos",JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+            }
+            else{
+                b=3;
+                this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"")); 
+            }
+
     }
   
     private int getOrdenamiento() {
@@ -274,10 +276,7 @@ public class GestorVistaCliente extends GestorVista {
 
         return ord;
     }
-//    public Object getItemTablaSelected(JTable tbl) {
-//        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
-//        return model.getValueAt(tbl.getSelectedRow(),0);
-//    }
+
     public void setDatos() {
         if(this.getOpcABM()==1){
             int resp = JOptionPane.showConfirmDialog(null, "Usted va a perder los cambios realizados en el producto, porque no ha grabado.\nDesea continuar?","Modificar Producto",JOptionPane.YES_NO_OPTION);
@@ -298,42 +297,87 @@ public class GestorVistaCliente extends GestorVista {
             }     
         }
     }
-
-    public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String text) {
-        TreeSet<Cliente> lista= new TreeSet();
-        List<Cliente> list= this.listar(text,ordenamiento);
-        Cliente  auxModel;
-        Iterator it = (Iterator) list.iterator();
-        while (it.hasNext())  {
-            auxModel =(Cliente) it.next(); 
-            lista.add(auxModel);
-         }
-       
-        Iterator it2 = (Iterator) lista.iterator();
-        while (it2.hasNext())  {
-            auxModel =( Cliente ) it2.next();
-            Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getApellido(),auxModel.getDni(),auxModel.getFechanacimiento(),auxModel.getTelefono(),auxModel.getEmail(),auxModel.getDireccion()}; //CAMBIARRRRRRRRRRRRRRRRRRRRRRRR
-            auxModelTabla.addRow(fila); 
-        }
-        return auxModelTabla;
+    
+    public Object getItemTablaSelected(JTable tbl) {
+        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
+        return model.getValueAt(tbl.getSelectedRow(),0);
     }
-     public List<Cliente> listar(String text,int ord) {
+   
+    public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text) { 
+        TreeSet<Cliente> lista= new TreeSet();
+        if(b==0){
+            int d=Integer.parseInt(dato);
+            List<Cliente> list= this.listar3(text,ordenamiento,d,quebuscar);
+            Cliente  auxModel;
+            Iterator it = (Iterator) list.iterator();
+            while (it.hasNext())  {
+                auxModel =(Cliente) it.next(); 
+                lista.add(auxModel);
+            }
+       
+            Iterator it2 = (Iterator) lista.iterator();
+            while (it2.hasNext())  {
+                auxModel =( Cliente ) it2.next();
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getApellido(),auxModel.getDni(),auxModel.getFechanacimiento(),auxModel.getTelefono(),auxModel.getEmail(),auxModel.getDireccion()}; //CAMBIARRRRRRRRRRRRRRRRRRRRRRRR
+                auxModelTabla.addRow(fila); 
+            }
+        }
+        if(b==1){
+            List<Cliente> list= this.listar2(text,ordenamiento,dato,quebuscar);
+            Cliente  auxModel;
+            Iterator it = (Iterator) list.iterator();
+            while (it.hasNext())  {
+                auxModel =(Cliente) it.next(); 
+                lista.add(auxModel);
+            }
+       
+            Iterator it2 = (Iterator) lista.iterator();
+            while (it2.hasNext())  {
+                auxModel =( Cliente ) it2.next();
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getApellido(),auxModel.getDni(),auxModel.getFechanacimiento(),auxModel.getTelefono(),auxModel.getEmail(),auxModel.getDireccion()}; //CAMBIARRRRRRRRRRRRRRRRRRRRRRRR
+                auxModelTabla.addRow(fila); 
+            }  
+        }
+        if(b==3){
+            List<Cliente> list= this.listar(text,ordenamiento);
+            Cliente  auxModel;
+            Iterator it = (Iterator) list.iterator();
+            while (it.hasNext())  {
+                auxModel =(Cliente) it.next(); 
+                lista.add(auxModel);
+            }
+       
+            Iterator it2 = (Iterator) lista.iterator();
+            while (it2.hasNext())  {
+                auxModel =( Cliente ) it2.next();
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getApellido(),auxModel.getDni(),auxModel.getFechanacimiento(),auxModel.getTelefono(),auxModel.getEmail(),auxModel.getDireccion()}; //CAMBIARRRRRRRRRRRRRRRRRRRRRRRR
+                auxModelTabla.addRow(fila); 
+            } 
+        }
+    return auxModelTabla;
+}
+    
+    public List<Cliente> listar(String text,int ord) {
         Criteria crit = getSession().createCriteria(Cliente.class)
-             .add( Restrictions.eq("estado", 0));
+             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
              crit.add( Restrictions.like("nombre",'%'+ text.toUpperCase()+'%'));
         return crit.list();
-    }  
-    public DefaultComboBoxModel getComboModelCliente() {      
-        DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
-        auxModel.addElement("");
-        for (Cliente auxTipo : this.listarClientes()) {
-            auxModel.addElement(auxTipo);
-        }
-         return auxModel;
     }
-    
-    public List <Cliente> listarClientes(){   
-        return this.listarClase(Cliente.class,"nombre");
-    }
+     public List<Cliente> listar2(String text,int ord,String dato,String quebuscar) { 
+        Criteria crit = getSession().createCriteria(Cliente.class)
+             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             crit.add( Restrictions.eq(quebuscar, dato));
+           //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
+
+        return crit.list();
+     }
+     public List<Cliente> listar3(String text,int ord,int d,String quebuscar) { 
+        Criteria crit = getSession().createCriteria(Cliente.class)
+             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             crit.add( Restrictions.eq(quebuscar, d));
+           //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
+
+        return crit.list();
+     }
      
 }
