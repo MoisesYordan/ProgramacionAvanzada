@@ -253,6 +253,7 @@ public class FrmAuto extends FrmGenerica {
         txtCosto.setText("");
         txtTotal.setText("");
         txtStock.setText("");
+        txtBusquedaNombre.setText("");
     }
 
     @Override
@@ -281,6 +282,7 @@ public class FrmAuto extends FrmGenerica {
     public void setView(){
        this.getGestorVista().getView();
     }  
+    
 
 //llenado de tablas
     public void setBusqueda(int busqueda) {
@@ -293,7 +295,7 @@ public class FrmAuto extends FrmGenerica {
         //busqueda=> 0=lupa de buscar     1= el candado de buscarCodigo
         if (this.getGestorVista().validarNumeros(dato)==false|| busqueda==0){
             b=1;//b=>0 es una cadena alfanumerica            1= es una cadena numerica
-            String quebuscar="modelo";
+            String quebuscar="marca";
             this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
             this.getGestorVista().setBusqueda(dato,ord,text,quebuscar,b);  
         }else{
@@ -305,6 +307,26 @@ public class FrmAuto extends FrmGenerica {
         }
     }
     
+    public void busqueda(){
+        int busqueda=1; //busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
+        if (btnCandado==0) {//btnCandado =0 primera vez presionado
+            txtCodigo.setEnabled(true);
+            btnCandado=1;
+            this.clearView();
+            txtBusquedaNombre.setEnabled(false);
+            btnBuscar1.setEnabled(false);
+        }
+        else {//btnCandado =1 segunda vez presionado realiza la busqueda
+            //txtCodigo.setEnabled(false);
+            if(this.getGestorVista().isDatosValidos2()==true){
+                this.setBusqueda(busqueda);
+                txtCodigo.setEnabled(false);
+                btnCandado=0;
+            }
+            txtBusquedaNombre.setEnabled(true);
+            btnBuscar1.setEnabled(true);
+            }
+    }
  /** Este método se llama desde dentro del constructor para inicializar el formulario.
      ADVERTENCIA: NO modifique este código. 
      El contenido de este método es siempre regenerado por el Editor de formularios.**/
@@ -785,22 +807,7 @@ public class FrmAuto extends FrmGenerica {
 }//GEN-LAST:event_txtCodigoKeyTyped
 
     private void btnBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodigoActionPerformed
-        int busqueda=1; //busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
-        if (btnCandado==0) {//btnCandado =0 primera vez presionado
-            txtCodigo.setEnabled(true);
-            btnCandado=1;
-        }
-        else {//btnCandado =1 segunda vez presionado realiza la busqueda
-            //txtCodigo.setEnabled(false);
-            if(this.getGestorVista().isDatosValidos2()==true){
-                this.setBusqueda(busqueda);
-                txtCodigo.setEnabled(false);
-                btnCandado=0;
-            }
-            
-//            this.setBusqueda(busqueda);
-//            btnCandado=0;
-        }
+        this.busqueda();
 }//GEN-LAST:event_btnBuscarCodigoActionPerformed
 
     private void btnBuscarCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarCodigoKeyPressed
