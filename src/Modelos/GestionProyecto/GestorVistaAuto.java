@@ -146,8 +146,15 @@ public class GestorVistaAuto extends GestorVista  {
             this.getForm().getTxtStock().grabFocus();
             return false;
         }
-
         return true;
+    }
+    public boolean isDatosValidos2() {
+         if (!validarNumeros(this.getForm().getTxtBuscarCodigo().getText().trim())) {
+            JOptionPane.showMessageDialog(null, "No se puede ingresar letras para buscar codigo");
+            this.getForm().getTxtStock().grabFocus();
+            return false;
+        }
+         return true;
     }
     //Validacion para que solo ingrese numeros para Año, Costo, Stock
     public static boolean validarNumerosAño(String datos){
