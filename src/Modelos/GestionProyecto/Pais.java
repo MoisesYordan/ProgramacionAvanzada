@@ -19,6 +19,8 @@ public class Pais {
     private String codigopais;
     private String nombrepais;
     private String impuesto;
+    
+   
 
 
     public long getId() {

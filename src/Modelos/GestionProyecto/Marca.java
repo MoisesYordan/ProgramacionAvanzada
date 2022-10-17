@@ -17,12 +17,13 @@ import javax.persistence.OneToOne;
 public class Marca implements Comparable, Serializable {
     @Id @GeneratedValue(strategy=javax.persistence.GenerationType.AUTO)
     private long id;
+    private int estado;
     private int codigo; 
     private String nombre; 
 
 //    @OneToOne (targetEntity = Pais.class, cascade= CascadeType.ALL,fetch=FetchType.LAZY)
 //    private Pais pais;
-    private int estado;
+    
     public long getId() {
         return id;
     }

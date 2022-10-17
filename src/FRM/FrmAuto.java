@@ -253,7 +253,7 @@ public class FrmAuto extends FrmGenerica {
         txtCosto.setText("");
         txtTotal.setText("");
         txtStock.setText("");
-        txtBusquedaNombre.setText("");
+        //txtBusquedaNombre.setText("");
     }
 
     @Override
@@ -299,7 +299,7 @@ public class FrmAuto extends FrmGenerica {
             this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
             this.getGestorVista().setBusqueda(dato,ord,text,quebuscar,b);  
         }else{
-            b=0;//b=>0 es una cadena alfanumerica            1= es una cadena numerica
+            b=0;//b=>0 es una cadena numerica           1= es una cadena letras
             dato=this.txtCodigo.getText();//se pone en la variable dato lo que esta dentro de la barra de codigo
             String quebuscar="codigo";
             this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
@@ -307,26 +307,26 @@ public class FrmAuto extends FrmGenerica {
         }
     }
     
-    public void busqueda(){
-        int busqueda=1; //busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
-        if (btnCandado==0) {//btnCandado =0 primera vez presionado
-            txtCodigo.setEnabled(true);
-            btnCandado=1;
-            this.clearView();
-            txtBusquedaNombre.setEnabled(false);
-            btnBuscar1.setEnabled(false);
-        }
-        else {//btnCandado =1 segunda vez presionado realiza la busqueda
-            //txtCodigo.setEnabled(false);
-            if(this.getGestorVista().isDatosValidos2()==true){
-                this.setBusqueda(busqueda);
-                txtCodigo.setEnabled(false);
-                btnCandado=0;
-            }
-            txtBusquedaNombre.setEnabled(true);
-            btnBuscar1.setEnabled(true);
-            }
-    }
+//    public void busqueda(){
+//        int busqueda=1; //busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
+//        if (btnCandado==0) {//btnCandado =0 primera vez presionado
+//            txtCodigo.setEnabled(true);
+//            btnCandado=1;
+//            this.clearView();
+//            txtBusquedaNombre.setEnabled(false);
+//            btnBuscar1.setEnabled(false);
+//        }
+//        else {//btnCandado =1 segunda vez presionado realiza la busqueda
+//            //txtCodigo.setEnabled(false);
+//            if(this.getGestorVista().isDatosValidos2()==true){
+//                this.setBusqueda(busqueda);
+//                txtCodigo.setEnabled(false);
+//                btnCandado=0;
+//            }
+//            txtBusquedaNombre.setEnabled(true);
+//            btnBuscar1.setEnabled(true);
+//            }
+//    }
  /** Este método se llama desde dentro del constructor para inicializar el formulario.
      ADVERTENCIA: NO modifique este código. 
      El contenido de este método es siempre regenerado por el Editor de formularios.**/
@@ -429,11 +429,6 @@ public class FrmAuto extends FrmGenerica {
         btnBuscarCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarCodigoActionPerformed(evt);
-            }
-        });
-        btnBuscarCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnBuscarCodigoKeyPressed(evt);
             }
         });
         jPanel1.add(btnBuscarCodigo);
@@ -738,6 +733,7 @@ public class FrmAuto extends FrmGenerica {
         });
         jPanel4.add(txtBusquedaNombre);
         txtBusquedaNombre.setBounds(20, 50, 240, 30);
+        txtBusquedaNombre.getAccessibleContext().setAccessibleName("txtBusquedaNombre");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Auto");
@@ -807,13 +803,25 @@ public class FrmAuto extends FrmGenerica {
 }//GEN-LAST:event_txtCodigoKeyTyped
 
     private void btnBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodigoActionPerformed
-        this.busqueda();
+        int busqueda=1; //busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
+        if (btnCandado==0) {//btnCandado =0 primera vez presionado
+            txtCodigo.setEnabled(true);
+            btnCandado=1;
+        }
+        else {//btnCandado =1 segunda vez presionado realiza la busqueda
+            //txtCodigo.setEnabled(false);
+            btnCandado=0;
+            //txtCodigo.setEnabled(false);
+            if(this.getGestorVista().isDatosValidos2()==true){
+                this.setBusqueda(busqueda);
+                txtCodigo.setEnabled(false);
+                btnCandado=0;
+            }
+            txtBusquedaNombre.setEnabled(true);
+            btnBuscar1.setEnabled(true);
+        }    
 }//GEN-LAST:event_btnBuscarCodigoActionPerformed
-
-    private void btnBuscarCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarCodigoKeyPressed
-
-}//GEN-LAST:event_btnBuscarCodigoKeyPressed
-
+                                                                          
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         this.viewNuevoEnter();
     }//GEN-LAST:event_btnNuevoActionPerformed
@@ -903,7 +911,7 @@ public class FrmAuto extends FrmGenerica {
         int busqueda=0;//busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
         this.clearView();
         this.setBusqueda(busqueda);
-        this.viewCamposEnabled(false);
+        //this.viewCamposEnabled(false);
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
     private void btnBuscar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscar1KeyPressed

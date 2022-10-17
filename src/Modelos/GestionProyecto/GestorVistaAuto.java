@@ -107,8 +107,8 @@ public class GestorVistaAuto extends GestorVista  {
     public int setModel() {
         if (this.isDatosValidos()) {
             this.getModel().setModelo((Modelo) this.getForm().getCmbModelo().getModel().getSelectedItem());
-            this.getModel().setModelo((Modelo) this.getForm().getCmbPais().getModel().getSelectedItem());
-            this.getModel().setPais(this.getForm().getTxtMarca().getText());
+            //this.getModel().setModelo((Modelo) this.getForm().getCmbPais().getModel().getSelectedItem());
+            this.getModel().setMarca(this.getForm().getTxtMarca().getText());
             this.getModel().setAño(this.getForm().getTxtAño().getText());
             this.getModel().setCosto(this.getForm().getTxtCosto().getText());
             this.getModel().setTotal(this.getForm().getTxtTotal().getText());

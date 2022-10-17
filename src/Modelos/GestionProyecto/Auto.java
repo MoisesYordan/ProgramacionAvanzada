@@ -27,7 +27,7 @@ public class Auto implements Comparable<Auto> ,Serializable{
     private int estado;
     private String costo;
     private String stock;
-    private String total;//dudas
+    private String total;
     private String año;
     private String marca;
     private String pais;   
