@@ -108,6 +108,7 @@ public class GestorVistaAuto extends GestorVista  {
         if (this.isDatosValidos()) {
             this.getModel().setModelo((Modelo) this.getForm().getCmbModelo().getModel().getSelectedItem());
             //this.getModel().setModelo((Modelo) this.getForm().getCmbPais().getModel().getSelectedItem());
+            this.getModel().setPais(this.getForm().getTxtPais().getText());
             this.getModel().setMarca(this.getForm().getTxtMarca().getText());
             this.getModel().setAño(this.getForm().getTxtAño().getText());
             this.getModel().setCosto(this.getForm().getTxtCosto().getText());
@@ -330,7 +331,9 @@ public class GestorVistaAuto extends GestorVista  {
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Auto ) it2.next();
-                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),auxModel.getAño(),auxModel.getPais(),auxModel.getCosto(),auxModel.getTotal(),auxModel.getStock()}; 
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),
+                                 auxModel.getAño(),auxModel.getCosto(),auxModel.getTotal(),
+                                 auxModel.getStock(),auxModel.getPais()}; 
                 auxModelTabla.addRow(fila); 
             }
         }
@@ -346,7 +349,9 @@ public class GestorVistaAuto extends GestorVista  {
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Auto ) it2.next();
-                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),auxModel.getPais(),auxModel.getAño(),auxModel.getCosto(),auxModel.getTotal(),auxModel.getStock()}; 
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),
+                                 auxModel.getAño(),auxModel.getCosto(),auxModel.getTotal(),
+                                 auxModel.getStock(),auxModel.getPais()}; 
                 auxModelTabla.addRow(fila); 
             }  
         }
@@ -362,7 +367,9 @@ public class GestorVistaAuto extends GestorVista  {
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Auto ) it2.next();
-                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),auxModel.getAño(),auxModel.getPais(),auxModel.getCosto(),auxModel.getTotal(),auxModel.getStock()}; 
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),
+                                 auxModel.getAño(),auxModel.getCosto(),auxModel.getTotal(),
+                                 auxModel.getStock(),auxModel.getPais()}; 
                 auxModelTabla.addRow(fila); 
             } 
         }
@@ -371,14 +378,14 @@ public class GestorVistaAuto extends GestorVista  {
     
     public List<Auto> listar(String text,int ord) { //Vacio
         Criteria crit = getSession().createCriteria(Auto.class)
-             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             .add( Restrictions.eq("estado", 0));  
              crit.add( Restrictions.like("marca",'%'+ text.toUpperCase()+'%'));
         return crit.list();
     }
     
     public List<Auto> listar2(String text,int ord,String dato,String quebuscar) { //LETRAS
         Criteria crit = getSession().createCriteria(Auto.class)
-             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             .add( Restrictions.eq("estado", 0)); 
              crit.add( Restrictions.eq(quebuscar, dato));
            //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
 
@@ -387,7 +394,7 @@ public class GestorVistaAuto extends GestorVista  {
     
     public List<Auto> listar3(String text,int ord,int d,String quebuscar) { //Letra
         Criteria crit = getSession().createCriteria(Auto.class)
-             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             .add( Restrictions.eq("estado", 0));  
              crit.add( Restrictions.eq(quebuscar, d));
            //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
 

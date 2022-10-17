@@ -361,6 +361,7 @@ public class FrmVentas extends FrmGenerica {
         if(auto.getModelo().getPais().getImpuesto().equalsIgnoreCase("1")){
             txtImpuesto.setText("%1"); 
             Double total= Double.parseDouble( auto.getTotal());
+            System.out.println(total);
             total= total+(total*0.01*cantidad);
             Math.round(total);
             txtTotal.setText(Math.round(total) +"");
@@ -368,6 +369,7 @@ public class FrmVentas extends FrmGenerica {
         if(auto.getModelo().getPais().getImpuesto().equalsIgnoreCase("2")){
             txtImpuesto.setText("%10");  
             Double total= Double.parseDouble( auto.getTotal());
+            System.out.println(total);
             total= total+(total*0.1*cantidad);
             Math.round(total);
             txtTotal.setText(Math.round(total) +"");
@@ -375,6 +377,7 @@ public class FrmVentas extends FrmGenerica {
         if(auto.getModelo().getPais().getImpuesto().equalsIgnoreCase("3")){
             txtImpuesto.setText("%20");  
             Double total= Double.parseDouble( auto.getTotal());
+            System.out.println(total);
             total= total+(total*0.2*cantidad);
             Math.round(total);
             txtTotal.setText(Math.round(total) +"");

@@ -120,7 +120,7 @@ public class GestorVistaVentas extends GestorVista  {
     @Override
     public int setModel() {
         if (this.isDatosValidos()) {
-            this.getModel().setAuto((Auto) this.getForm().getCmbAuto().getModel().getSelectedItem());
+            this.getModel().setModelo(this.getForm().getTxtModelo().getText());
             this.getModel().setPais(this.getForm().getTxtPais().getText());
             this.getModel().setMarca(this.getForm().getTxtMarca().getText());
             this.getModel().setAño(this.getForm().getTxtAño().getText());
@@ -194,7 +194,6 @@ public class GestorVistaVentas extends GestorVista  {
             case 2:
                 this.eliminar();
                 break;
-
         }
     }
 
@@ -246,8 +245,8 @@ public class GestorVistaVentas extends GestorVista  {
     }
     
      public void initializeTablaBusqueda(JTable tbl) {
-        String[] titulo={"","Cód.","Modelo","marca","Pais","año","Cliente","Empleado","cantidad","total","impuesto","fechaDeVenta"};//CAMBIARRRRRRRRRRR
-        String[] ancho ={"5","20","90","90","90","90","90","90","90","90","90","90"};
+        String[] titulo={"","Cód.","Modelo","marca","Pais","año","Cliente","Empleado","cantidad","total","impuesto","fechaDeVenta","Obvservaciones"};//CAMBIARRRRRRRRRRR
+        String[] ancho ={"5","20","90","90","90","90","90","90","90","90","90","90","90"};
         this.newModelTable(tbl,titulo,ancho);
     }
      
@@ -255,6 +254,7 @@ public class GestorVistaVentas extends GestorVista  {
     public void getView() {
        this.getForm().getCmbAuto().setSelectedItem(this.getModel().getAuto());
         this.getForm().getTxtCodigo().setText(this.getModel().getCodigoS());
+        this.getForm().getTxtModelo().setText(this.getModel().getModelo());
         this.getForm().getTxtMarca().setText(this.getModel().getMarca());
         this.getForm().getTxtPais().setText(this.getModel().getPais());
         this.getForm().getTxtAño().setText(this.getModel().getAño());
@@ -297,7 +297,6 @@ public class GestorVistaVentas extends GestorVista  {
   
     private int getOrdenamiento() {
         int ord=0;
-
         return ord;
     }
 
@@ -342,10 +341,9 @@ public class GestorVistaVentas extends GestorVista  {
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Ventas ) it2.next();
-                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),
-                auxModel.getPais(),auxModel.getMarca(),auxModel.getAño(),
-                auxModel.getCantidad(),auxModel.getImpuesto(),auxModel.getTotal(), auxModel.getObvservaciones(),auxModel.getFechaDeVenta(),
-                auxModel.getEmpleado(),auxModel.getCliente()
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),
+                auxModel.getPais(),auxModel.getAño(),auxModel.getCliente(),auxModel.getEmpleado(),
+                auxModel.getCantidad(),auxModel.getTotal(),auxModel.getImpuesto(),auxModel.getFechaDeVenta(), auxModel.getObvservaciones()
                 };                
                 auxModelTabla.addRow(fila); 
             }
@@ -362,10 +360,10 @@ public class GestorVistaVentas extends GestorVista  {
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Ventas ) it2.next();
-                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),
-                auxModel.getPais(),auxModel.getMarca(),auxModel.getAño(),
-                auxModel.getCantidad(),auxModel.getImpuesto(),auxModel.getTotal(), auxModel.getObvservaciones(),auxModel.getFechaDeVenta(),
-                auxModel.getEmpleado(),auxModel.getCliente()};   
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),
+                auxModel.getPais(),auxModel.getAño(),auxModel.getCliente(),auxModel.getEmpleado(),
+                auxModel.getCantidad(),auxModel.getTotal(),auxModel.getImpuesto(),auxModel.getFechaDeVenta(), auxModel.getObvservaciones()
+                };    
                 auxModelTabla.addRow(fila); 
             }  
         }
@@ -381,10 +379,10 @@ public class GestorVistaVentas extends GestorVista  {
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Ventas ) it2.next();
-                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),
-                auxModel.getPais(),auxModel.getMarca(),auxModel.getAño(),
-                auxModel.getCantidad(),auxModel.getImpuesto(),auxModel.getTotal(), auxModel.getObvservaciones(),auxModel.getFechaDeVenta(),
-                auxModel.getEmpleado(),auxModel.getCliente()};   
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),
+                auxModel.getPais(),auxModel.getAño(),auxModel.getCliente(),auxModel.getEmpleado(),
+                auxModel.getCantidad(),auxModel.getTotal(),auxModel.getImpuesto(),auxModel.getFechaDeVenta(), auxModel.getObvservaciones()
+                };     
                 auxModelTabla.addRow(fila); 
             } 
         }
