@@ -208,7 +208,7 @@ public class GestorVistaEmpleado extends GestorVista {
     }
     
      public void initializeTablaBusqueda(JTable tbl) {
-        String[] titulo={"","Cód.","NOMBRE","APELLIDO","DNI","FechaDeNacimiento","Telefono","Email","Direccion"};
+        String[] titulo={"","Cód.","Nombre","Apellido","DNI","FechaDeNacimiento","Telefono","Email","Direccion"};
         String[] ancho ={"5","20","90","90","90","90","90","90","90"};
         this.newModelTable(tbl,titulo,ancho);
     }
@@ -297,8 +297,9 @@ public class GestorVistaEmpleado extends GestorVista {
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Empleado ) it2.next();
-                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getApellido(),auxModel.getDni(),auxModel.getFechanacimiento(),auxModel.getTelefono(),auxModel.getEmail(),auxModel.getDireccion()}; //CAMBIARRRRRRRRRRRRRRRRRRRRRRRR
-                auxModelTabla.addRow(fila); 
+//{"","Cód.","Nombre","Apellido","DNI","FechaDeNacimiento","Telefono","Email","Direccion"};
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getApellido(),auxModel.getDni(),
+                                 auxModel.getFechanacimiento(),auxModel.getTelefono(),auxModel.getEmail(),auxModel.getDireccion()};                auxModelTabla.addRow(fila); 
             }
         }
         if(b==1){
@@ -313,8 +314,9 @@ public class GestorVistaEmpleado extends GestorVista {
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Empleado ) it2.next();
-                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getApellido(),auxModel.getDni(),auxModel.getFechanacimiento(),auxModel.getTelefono(),auxModel.getEmail(),auxModel.getDireccion()}; //CAMBIARRRRRRRRRRRRRRRRRRRRRRRR
-                auxModelTabla.addRow(fila); 
+//{"","Cód.","Nombre","Apellido","DNI","FechaDeNacimiento","Telefono","Email","Direccion"};
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getApellido(),auxModel.getDni(),
+                                 auxModel.getFechanacimiento(),auxModel.getTelefono(),auxModel.getEmail(),auxModel.getDireccion()};                auxModelTabla.addRow(fila); 
             }  
         }
         if(b==3){
@@ -329,21 +331,22 @@ public class GestorVistaEmpleado extends GestorVista {
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Empleado ) it2.next();
-                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getApellido(),auxModel.getDni(),auxModel.getFechanacimiento(),auxModel.getTelefono(),auxModel.getEmail(),auxModel.getDireccion()}; //CAMBIARRRRRRRRRRRRRRRRRRRRRRRR
-                auxModelTabla.addRow(fila); 
+//{"","Cód.","Nombre","Apellido","DNI","FechaDeNacimiento","Telefono","Email","Direccion"};
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getApellido(),auxModel.getDni(),
+                                 auxModel.getFechanacimiento(),auxModel.getTelefono(),auxModel.getEmail(),auxModel.getDireccion()};                auxModelTabla.addRow(fila); 
             } 
         }
         return auxModelTabla;
     }
         public List<Empleado> listar(String text,int ord) {
         Criteria crit = getSession().createCriteria(Empleado.class)
-             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             .add( Restrictions.eq("estado", 0));  
              crit.add( Restrictions.like("nombre",'%'+ text.toUpperCase()+'%'));
         return crit.list();
     }
      public List<Empleado> listar2(String text,int ord,String dato,String quebuscar) { 
         Criteria crit = getSession().createCriteria(Empleado.class)
-             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             .add( Restrictions.eq("estado", 0));  
              crit.add( Restrictions.eq(quebuscar, dato));
            //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
 
@@ -351,7 +354,7 @@ public class GestorVistaEmpleado extends GestorVista {
      }
      public List<Empleado> listar3(String text,int ord,int d,String quebuscar) { 
         Criteria crit = getSession().createCriteria(Empleado.class)
-             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             .add( Restrictions.eq("estado", 0)); 
              crit.add( Restrictions.eq(quebuscar, d));
            //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
 

@@ -210,7 +210,7 @@ public class GestorVistaModelo extends GestorVista{
     }
     
      public void initializeTablaBusqueda(JTable tbl) {
-        String[] titulo={"","Cód.","NOMBRE","MARCA","Pais"};
+        String[] titulo={"","Cód.","Nombre","Marca","Pais"};
         String[] ancho ={"10","30","135","135","135"};//cambiar
         this.newModelTable(tbl,titulo,ancho);
     }
@@ -335,20 +335,20 @@ public class GestorVistaModelo extends GestorVista{
 
     public List<Modelo> listar(String text,int ord) {
         Criteria crit = getSession().createCriteria(Modelo.class)
-             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             .add( Restrictions.eq("estado", 0));  
              crit.add( Restrictions.like("nombre",'%'+ text.toUpperCase()+'%'));
         return crit.list();
     }
      public List<Modelo> listar2(String text,int ord,String dato,String quebuscar) { 
         Criteria crit = getSession().createCriteria(Modelo.class)
-             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             .add( Restrictions.eq("estado", 0));  
              crit.add( Restrictions.eq(quebuscar, dato));
            //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
         return crit.list();
      }
      public List<Modelo> listar3(String text,int ord,int d,String quebuscar) { 
         Criteria crit = getSession().createCriteria(Modelo.class)
-             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             .add( Restrictions.eq("estado", 0));  
              crit.add( Restrictions.eq(quebuscar, d));
            //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
 

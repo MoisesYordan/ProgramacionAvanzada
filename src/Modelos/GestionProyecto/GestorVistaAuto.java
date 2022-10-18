@@ -242,7 +242,7 @@ public class GestorVistaAuto extends GestorVista  {
     }
     
      public void initializeTablaBusqueda(JTable tbl) {
-        String[] titulo={"","Cód.","MODELO","MARCA","Año","Costo","Total","Stock","Pais"};
+        String[] titulo={"","Cód.","Modelo","Marca","Año","Costo","Total","Stock","Pais"};
         String[] ancho ={"10","30","100","111","40","100","100","40","100"};
         this.newModelTable(tbl,titulo,ancho);
     }
@@ -331,6 +331,7 @@ public class GestorVistaAuto extends GestorVista  {
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Auto ) it2.next();
+                //{"","Cód.","Modelo","Marca","Año","Costo","Total","Stock","Pais"};
                 Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),
                                  auxModel.getAño(),auxModel.getCosto(),auxModel.getTotal(),
                                  auxModel.getStock(),auxModel.getPais()}; 

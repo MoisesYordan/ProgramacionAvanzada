@@ -245,7 +245,7 @@ public class GestorVistaVentas extends GestorVista  {
     }
     
      public void initializeTablaBusqueda(JTable tbl) {
-        String[] titulo={"","Cód.","Modelo","marca","Pais","año","Cliente","Empleado","cantidad","total","impuesto","fechaDeVenta","Obvservaciones"};//CAMBIARRRRRRRRRRR
+        String[] titulo={"","Cód.","Modelo","Marca","Pais","Año","Cliente","Empleado","Cantidad","Total","Impuesto","FechaDeVenta","Obvservaciones"};
         String[] ancho ={"5","20","90","90","90","90","90","90","90","90","90","90","90"};
         this.newModelTable(tbl,titulo,ancho);
     }
@@ -341,10 +341,11 @@ public class GestorVistaVentas extends GestorVista  {
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Ventas ) it2.next();
+//{"","Cód.","Modelo","Marca","Pais","Año","Cliente","Empleado","Cantidad","Total","Impuesto","FechaDeVenta","Obvservaciones"};
                 Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),
-                auxModel.getPais(),auxModel.getAño(),auxModel.getCliente(),auxModel.getEmpleado(),
-                auxModel.getCantidad(),auxModel.getTotal(),auxModel.getImpuesto(),auxModel.getFechaDeVenta(), auxModel.getObvservaciones()
-                };                
+                                 auxModel.getPais(),auxModel.getAño(),auxModel.getCliente(),auxModel.getEmpleado(),
+                                 auxModel.getCantidad(),auxModel.getTotal(),auxModel.getImpuesto(),auxModel.getFechaDeVenta(), 
+                                 auxModel.getObvservaciones()};                
                 auxModelTabla.addRow(fila); 
             }
         }
@@ -361,9 +362,9 @@ public class GestorVistaVentas extends GestorVista  {
             while (it2.hasNext())  {
                 auxModel =( Ventas ) it2.next();
                 Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),
-                auxModel.getPais(),auxModel.getAño(),auxModel.getCliente(),auxModel.getEmpleado(),
-                auxModel.getCantidad(),auxModel.getTotal(),auxModel.getImpuesto(),auxModel.getFechaDeVenta(), auxModel.getObvservaciones()
-                };    
+                                 auxModel.getPais(),auxModel.getAño(),auxModel.getCliente(),auxModel.getEmpleado(),
+                                 auxModel.getCantidad(),auxModel.getTotal(),auxModel.getImpuesto(),auxModel.getFechaDeVenta(), 
+                                 auxModel.getObvservaciones()};      
                 auxModelTabla.addRow(fila); 
             }  
         }
@@ -380,9 +381,9 @@ public class GestorVistaVentas extends GestorVista  {
             while (it2.hasNext())  {
                 auxModel =( Ventas ) it2.next();
                 Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),
-                auxModel.getPais(),auxModel.getAño(),auxModel.getCliente(),auxModel.getEmpleado(),
-                auxModel.getCantidad(),auxModel.getTotal(),auxModel.getImpuesto(),auxModel.getFechaDeVenta(), auxModel.getObvservaciones()
-                };     
+                                 auxModel.getPais(),auxModel.getAño(),auxModel.getCliente(),auxModel.getEmpleado(),
+                                 auxModel.getCantidad(),auxModel.getTotal(),auxModel.getImpuesto(),auxModel.getFechaDeVenta(), 
+                                 auxModel.getObvservaciones()};       
                 auxModelTabla.addRow(fila); 
             } 
         }
@@ -391,13 +392,13 @@ public class GestorVistaVentas extends GestorVista  {
 
     public List<Ventas> listar(String text,int ord) {
         Criteria crit = getSession().createCriteria(Ventas.class)
-             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             .add( Restrictions.eq("estado", 0));  
              crit.add( Restrictions.like("modelo",'%'+ text.toUpperCase()+'%'));
         return crit.list();
     }
      public List<Ventas> listar2(String text,int ord,String dato,String quebuscar) { 
         Criteria crit = getSession().createCriteria(Ventas.class)
-             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             .add( Restrictions.eq("estado", 0));  
              crit.add( Restrictions.eq(quebuscar, dato));
            //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
 
@@ -405,7 +406,7 @@ public class GestorVistaVentas extends GestorVista  {
      }
      public List<Ventas> listar3(String text,int ord,int d,String quebuscar) { 
         Criteria crit = getSession().createCriteria(Ventas.class)
-             .add( Restrictions.eq("estado", 0));  // esto no lo habia entendido hasta ahoera comprobar si mi combobox trae marcas con estado 1
+             .add( Restrictions.eq("estado", 0));  
              crit.add( Restrictions.eq(quebuscar, d));
            //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
 
