@@ -198,7 +198,7 @@ public class GestorVistaModelo extends GestorVista{
         }
          return auxModel;
     }
-   
+
     public int getUltimoCodigo() {
         try {
             Modelo auxModel = (Modelo) this.listarUltimo(Modelo.class).get(0);

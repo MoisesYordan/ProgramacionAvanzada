@@ -71,11 +71,11 @@ public class GestorVistaAuto extends GestorVista  {
         return this.getGestorModelo().getComboModelModelo(); 
     }
 
-    public void setModelPais(JComboBox cmb) {//POSIBLE MODIFICACION
+    public void setModelPais(JComboBox cmb) {
         cmb.setModel(getComboModelTipoProyecto2());
     }
     public DefaultComboBoxModel getComboModelTipoProyecto2() {
-        return this.getGestorPais().getComboModelPais();//POSIBLE MODIFICACION
+        return this.getGestorModelo().getComboModelTipoProyecto2();
     } 
     
     @Override
@@ -108,7 +108,8 @@ public class GestorVistaAuto extends GestorVista  {
         if (this.isDatosValidos()) {
             this.getModel().setModelo((Modelo) this.getForm().getCmbModelo().getModel().getSelectedItem());
             //this.getModel().setModelo((Modelo) this.getForm().getCmbPais().getModel().getSelectedItem());
-            this.getModel().setPais(this.getForm().getTxtPais().getText());
+            String pais= String.valueOf(this.getForm().getCmbPais().getModel().getSelectedItem());
+            this.getModel().setPais(pais);
             this.getModel().setMarca(this.getForm().getTxtMarca().getText());
             this.getModel().setAño(this.getForm().getTxtAño().getText());
             this.getModel().setCosto(this.getForm().getTxtCosto().getText());
@@ -250,10 +251,11 @@ public class GestorVistaAuto extends GestorVista  {
     @Override
     public void getView() {
         this.getForm().getTxtCodigo().setText(this.getModel().getCodigoS());
-        this.getForm().getCmbModelo().setSelectedItem(this.getModel().getModelo().getMarca());
+        this.getForm().getTxtMarca().setText(this.getModel().getMarca());
         this.getForm().getCmbModelo().setSelectedItem(this.getModel().getModelo());
         this.getForm().getTxtAño().setText(this.getModel().getAño());
-        this.getForm().getCmbPais().setSelectedItem(this.getModel().getPais());
+        this.getForm().getTxtPais().setText(this.getModel().getPais());
+        //this.getForm().getCmbPais().setSelectedItem(this.getModel().getPais());
         this.getForm().getTxtCosto().setText(this.getModel().getCosto());
         this.getForm().getTxtTotal().setText(this.getModel().getTotal());
         this.getForm().getTxtStock().setText(this.getModel().getStock());
