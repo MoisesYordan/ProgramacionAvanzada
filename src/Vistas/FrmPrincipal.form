@@ -4,6 +4,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Ejemplo"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -24,15 +25,16 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="escritorio" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="escritorio" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="escritorio" alignment="0" max="32767" attributes="0"/>
+          <Component id="escritorio" alignment="0" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -43,24 +45,32 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-                  <Component id="Empleado" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
-                  <Component id="Cliente" min="-2" pref="159" max="-2" attributes="0"/>
-                  <EmptySpace min="41" pref="41" max="-2" attributes="0"/>
-                  <Component id="ventas" min="-2" pref="159" max="-2" attributes="0"/>
-                  <EmptySpace min="381" pref="381" max="-2" attributes="0"/>
-                  <Component id="Auto" min="-2" pref="159" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+                          <Component id="Empleado" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
+                          <Component id="Cliente" min="-2" pref="159" max="-2" attributes="0"/>
+                          <EmptySpace min="41" pref="41" max="-2" attributes="0"/>
+                          <Component id="ventas" min="-2" pref="159" max="-2" attributes="0"/>
+                          <EmptySpace min="381" pref="381" max="-2" attributes="0"/>
+                          <Component id="Auto" min="-2" pref="159" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="960" pref="960" max="-2" attributes="0"/>
+                          <Component id="Marca" min="-2" pref="159" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="960" pref="960" max="-2" attributes="0"/>
+                          <Component id="Modelo" min="-2" pref="159" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="960" pref="960" max="-2" attributes="0"/>
-                  <Component id="Marca" min="-2" pref="159" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="960" pref="960" max="-2" attributes="0"/>
-                  <Component id="Modelo" min="-2" pref="159" max="-2" attributes="0"/>
-              </Group>
-              <Component id="jLabel1" min="-2" pref="1200" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -81,7 +91,7 @@
                   <EmptySpace min="38" pref="38" max="-2" attributes="0"/>
                   <Component id="Modelo" min="-2" pref="62" max="-2" attributes="0"/>
               </Group>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="jLabel1" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

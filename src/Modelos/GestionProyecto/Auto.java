@@ -133,7 +133,8 @@ public class Auto implements Comparable<Auto> ,Serializable{
         return 
                 "Modelo: "+getModelo()+"\n"+"    "+
                 "Marca:  "+ getMarca()+"\n"+"    "+
-                "Año:  "+ getAño();
+                "Año:  "+ getAño()+"\n"+"    "+
+                "Pais: "+ getPais();
     }
     
     @Override
