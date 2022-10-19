@@ -30,7 +30,7 @@ public class Auto implements Comparable<Auto> ,Serializable{
     private String total;
     private String año;
     private String marca;
-    private String pais;   
+    private String pais; //----> para mi deberia ser un objeto pais de tipo pais  
     
     public long getId() {
         return id;

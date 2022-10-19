@@ -68,14 +68,14 @@ public class GestorVistaAuto extends GestorVista  {
         cmb.setModel(getComboModelTipoProyecto());
     }
     public DefaultComboBoxModel getComboModelTipoProyecto() {
-        return this.getGestorModelo().getComboModelModelo(); 
+        return this.getGestorModelo().getComboModelModelo();  
     }
 
     public void setModelPais(JComboBox cmb) {
-        cmb.setModel(getComboModelTipoProyecto2());
+        cmb.setModel(getComboModelTipoProyecto2()); //esto para mi deberia cambiar (ivo) 
     }
     public DefaultComboBoxModel getComboModelTipoProyecto2() {
-        return this.getGestorModelo().getComboModelTipoProyecto2();
+        return this.getGestorModelo().getComboModelTipoProyecto2(); //esto para mi se deberia cambiar (ivo)
     } 
     
     @Override
@@ -108,8 +108,8 @@ public class GestorVistaAuto extends GestorVista  {
         if (this.isDatosValidos()) {
             this.getModel().setModelo((Modelo) this.getForm().getCmbModelo().getModel().getSelectedItem());
             //this.getModel().setModelo((Modelo) this.getForm().getCmbPais().getModel().getSelectedItem());
-            String pais= String.valueOf(this.getForm().getCmbPais().getModel().getSelectedItem());
-            this.getModel().setPais(pais);
+            String pais= String.valueOf(this.getForm().getCmbPais().getModel().getSelectedItem()); // modificacion moises para guardar pais
+            this.getModel().setPais(pais); //----> DE IVO cumple pero  no deberia traer un objeto pais asi podemos sacar el %
             this.getModel().setMarca(this.getForm().getTxtMarca().getText());
             this.getModel().setAño(this.getForm().getTxtAño().getText());
             this.getModel().setCosto(this.getForm().getTxtCosto().getText());
@@ -217,12 +217,14 @@ public class GestorVistaAuto extends GestorVista  {
     }
     
     
-// busquedas, iteradores y otras 
+// busquedas, iteradores y otras
+    
+    //lista para un combo box
     public List <Auto> listarAutos(){   
         return getSession().createCriteria(Auto.class).list();
       //  return this.listarClase(Auto.class,"modelo");
     }
-   
+    
     public DefaultComboBoxModel getComboModelAuto() {      
         DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
         auxModel.addElement("");
@@ -249,7 +251,7 @@ public class GestorVistaAuto extends GestorVista  {
     }
      
     @Override
-    public void getView() {
+    public void getView() { 
         this.getForm().getTxtCodigo().setText(this.getModel().getCodigoS());
         this.getForm().getTxtMarca().setText(this.getModel().getMarca());
         this.getForm().getCmbModelo().setSelectedItem(this.getModel().getModelo());
@@ -395,7 +397,7 @@ public class GestorVistaAuto extends GestorVista  {
         return crit.list();
      }
     
-    public List<Auto> listar3(String text,int ord,int d,String quebuscar) { //Letra
+    public List<Auto> listar3(String text,int ord,int d,String quebuscar) { //numero
         Criteria crit = getSession().createCriteria(Auto.class)
              .add( Restrictions.eq("estado", 0));  
              crit.add( Restrictions.eq(quebuscar, d));

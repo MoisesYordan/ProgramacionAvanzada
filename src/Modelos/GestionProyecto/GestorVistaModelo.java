@@ -21,7 +21,7 @@ public class GestorVistaModelo extends GestorVista{
     private FrmModelo form;
     private Modelo model;
     private GestorVistaMarca gestorMarca = new GestorVistaMarca();
-    private GestorVistaPais gestorPais = new GestorVistaPais();
+    private GestorVistaPais gestorPais = new GestorVistaPais(); // --->> este para mi va comentado porque si auto conoce pais no es necesario q marca conozca pais
     
     public FrmModelo getForm() {
         return form;

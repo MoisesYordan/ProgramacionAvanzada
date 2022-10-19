@@ -28,7 +28,7 @@ public class GestorVistaPais extends GestorVista{
          return auxModel;
     }
     
-    public List <Pais> listarPaises(){   
+    public List <Pais> listarPaises(){   //creo q deberiamos listar un objeto pais q contenga todos sus atributo nosolo su nombre
         return this.listarClase(Pais.class,"nombrepais");
     }
      
