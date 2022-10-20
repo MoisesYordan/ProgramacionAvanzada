@@ -48,13 +48,6 @@ public class Marca implements Comparable, Serializable {
         this.nombre = nombre;
     }
 
-//    public Pais getPais() {
-//        return pais;
-//    }
-//
-//    public void setPais(Pais pais) {
-//        this.pais = pais;
-//    }
     public int getEstado() {
         return estado;
     }

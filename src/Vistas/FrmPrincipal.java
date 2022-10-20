@@ -46,6 +46,7 @@ public class FrmPrincipal extends  javax.swing.JFrame {
         Cliente = new javax.swing.JButton();
         ventas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        Pais = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ejemplo");
@@ -158,6 +159,14 @@ public class FrmPrincipal extends  javax.swing.JFrame {
             .addComponent(jLabel1)
         );
 
+        Pais.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        Pais.setText("Pais");
+        Pais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PaisActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -165,11 +174,16 @@ public class FrmPrincipal extends  javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(Pais, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(234, 234, 234)
+                .addComponent(Pais, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -199,6 +213,10 @@ public class FrmPrincipal extends  javax.swing.JFrame {
        this.gestorVista.abrirVentas(getEscritorio());
     }//GEN-LAST:event_ventasActionPerformed
 
+    private void PaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaisActionPerformed
+        this.gestorVista.abrirPais(getEscritorio());// TODO add your handling code here:
+    }//GEN-LAST:event_PaisActionPerformed
+
 public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -213,6 +231,7 @@ public static void main(String args[]) {
     private javax.swing.JButton Empleado;
     private javax.swing.JButton Marca;
     private javax.swing.JButton Modelo;
+    private javax.swing.JButton Pais;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton ventas;

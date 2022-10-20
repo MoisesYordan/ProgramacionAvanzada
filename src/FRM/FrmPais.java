@@ -1,18 +1,18 @@
 package FRM;
-import Modelos.GestionProyecto.GestorVistaMarca;
+import Modelos.GestionProyecto.GestorVistaPais;
 import Vistas.FrmGenerica;
 import java.awt.HeadlessException;
 import javax.swing.*;
 
-public class FrmMarca extends FrmGenerica {
-    private GestorVistaMarca gestorVista;
+public class FrmPais extends FrmGenerica {
+    private GestorVistaPais gestorVista;
     private int YES_NO_OPTION;
 
-    public GestorVistaMarca getGestorVista() {
+    public GestorVistaPais getGestorVista() {
         return gestorVista;
     }
     
-    public void setGestorVista(GestorVistaMarca gestorVista) {
+    public void setGestorVista(GestorVistaPais gestorVista) {
         this.gestorVista = gestorVista;
     }
 
@@ -25,14 +25,20 @@ public class FrmMarca extends FrmGenerica {
     }
 
 // Definicion de getter y setter de los componentes visuales del formulario
-    public JTextField getTxtNombre() {
-        return txtNombre;
+    public JTextField getTxtPais() {
+        return txtPais;
     }
 
-    public void setTxtNombre(JTextField txtNombre) {
-        this.txtNombre = txtNombre;
+    public void setTxtPais(JTextField txtPais) {
+        this.txtPais = txtPais;
     }
-    
+    public JTextField getTxtImpuesto() {
+        return txtImpuesto;
+    }
+
+    public void setTxtImpuesto(JTextField txtImpuesto) {
+        this.txtImpuesto = txtImpuesto;
+    }
     public JTextField getTxtCodigo() {
         return txtCodigo;
     }
@@ -40,7 +46,6 @@ public class FrmMarca extends FrmGenerica {
     public void setTxtCodigo(JTextField txtCodigo) {
         this.txtCodigo = txtCodigo;
     }
-
     public JTextField getTxtBuscar(){
         return txtBusquedaNombre;
     }
@@ -58,7 +63,7 @@ public class FrmMarca extends FrmGenerica {
 // Constructores del formulario 
     int btnCandado=0;//btnCandado=> 0 se presiono por 1era Vez (habilitar el campo)  1= 2da vez realiza la buscaqueda (desabilitar el campo)
      
-    public FrmMarca(GestorVistaMarca gestorVista) {
+    public FrmPais(GestorVistaPais gestorVista) {
         try{
            initComponents();
            }
@@ -69,7 +74,7 @@ public class FrmMarca extends FrmGenerica {
         this.onViewOpened();
     }
 
-    public FrmMarca() {
+    public FrmPais() {
         initComponents();
     }
     
@@ -78,7 +83,7 @@ public class FrmMarca extends FrmGenerica {
         btnNuevo.setEnabled(true);
         btnEditar.setEnabled(false);
         btnGuardar.setEnabled(false);
-        btnEliminar.setEnabled(false);
+//        btnEliminar.setEnabled(false);
         btnCancelar.setEnabled(true);
         btnSalir.setEnabled(true);
         btnNuevo.grabFocus();
@@ -88,7 +93,7 @@ public class FrmMarca extends FrmGenerica {
         btnNuevo.setEnabled(false);
         btnEditar.setEnabled(false);
         btnGuardar.setEnabled(true);
-        btnEliminar.setEnabled(false);
+//        btnEliminar.setEnabled(false);
         btnCancelar.setEnabled(true);
         btnSalir.setEnabled(true);
     }
@@ -101,7 +106,7 @@ public class FrmMarca extends FrmGenerica {
         btnNuevo.setEnabled(true);
         btnEditar.setEnabled(true);
         btnGuardar.setEnabled(false);
-        btnEliminar.setEnabled(true);
+//        btnEliminar.setEnabled(true);
         btnCancelar.setEnabled(false);
         btnSalir.setEnabled(true);
         btnNuevo.grabFocus();
@@ -111,7 +116,7 @@ public class FrmMarca extends FrmGenerica {
         btnNuevo.setEnabled(false);
         btnEditar.setEnabled(true);
         btnGuardar.setEnabled(false);
-        btnEliminar.setEnabled(true);
+//        btnEliminar.setEnabled(true);
         btnSalir.setEnabled(true);
         btnCancelar.setEnabled(true);
         
@@ -126,11 +131,10 @@ public class FrmMarca extends FrmGenerica {
      }
     
 
-
     @Override
     public void viewCamposEnabled(Boolean tipo) {//al abrir el FRM
         txtCodigo.setEnabled(false);
-        txtNombre.setEnabled(tipo);        
+        txtPais.setEnabled(tipo);        
     }
 
     private void viewBasic(){
@@ -148,7 +152,7 @@ public class FrmMarca extends FrmGenerica {
     public void viewEditarEnter( ) {
         this.viewBasic();
         this.clearView();
-        txtNombre.grabFocus();
+        txtPais.grabFocus();
         this.getGestorVista().setModoEditar();
     }
 
@@ -176,18 +180,19 @@ public class FrmMarca extends FrmGenerica {
     private void viewNueva(){
         this.clearView();
         this.getGestorVista().newModel();
-        txtNombre.grabFocus();
+        txtPais.grabFocus();
     }
 
     @Override
     public void clearView() {
-        txtNombre.setText("");
+        txtPais.setText("");
+        txtImpuesto.setText("");
         txtCodigo.setText("");
     }
 
     @Override
     public void grabFocus(){
-        txtNombre.grabFocus();
+        txtPais.grabFocus();
     }
 
    @Override
@@ -244,7 +249,7 @@ public class FrmMarca extends FrmGenerica {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
+        txtPais = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         btnBuscarCodigo = new javax.swing.JButton();
@@ -254,6 +259,8 @@ public class FrmMarca extends FrmGenerica {
         jPanel3 = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtImpuesto = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
@@ -263,11 +270,10 @@ public class FrmMarca extends FrmGenerica {
         jLabel4 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         btnEditar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setTitle("Marca");
-        setToolTipText("Marca");
+        setTitle("Pais");
+        setToolTipText("Pais");
         setFrameIcon(null);
         setName("TipoServicio"); // NOI18N
         getContentPane().setLayout(null);
@@ -276,15 +282,15 @@ public class FrmMarca extends FrmGenerica {
         jPanel1.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        jLabel1.setText("Nombre");
+        jLabel1.setText("Impuesto Aplicado");
         jLabel1.setRequestFocusEnabled(false);
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(20, 70, 90, 20);
+        jLabel1.setBounds(20, 170, 120, 20);
 
-        txtNombre.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        txtNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jPanel1.add(txtNombre);
-        txtNombre.setBounds(20, 90, 460, 30);
+        txtPais.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtPais.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel1.add(txtPais);
+        txtPais.setBounds(20, 110, 460, 30);
 
         jLabel3.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel3.setText("Código");
@@ -414,6 +420,17 @@ public class FrmMarca extends FrmGenerica {
         jPanel1.add(jPanel3);
         jPanel3.setBounds(310, 380, 180, 40);
 
+        jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        jLabel2.setText("Pais");
+        jLabel2.setRequestFocusEnabled(false);
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(20, 90, 90, 20);
+
+        txtImpuesto.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtImpuesto.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel1.add(txtImpuesto);
+        txtImpuesto.setBounds(20, 190, 460, 30);
+
         getContentPane().add(jPanel1);
         jPanel1.setBounds(390, 10, 500, 430);
 
@@ -479,7 +496,7 @@ public class FrmMarca extends FrmGenerica {
         txtBusquedaNombre.setBounds(20, 50, 240, 30);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Marca");
+        jLabel4.setText("Pais");
         jPanel4.add(jLabel4);
         jLabel4.setBounds(20, 20, 190, 20);
 
@@ -504,25 +521,6 @@ public class FrmMarca extends FrmGenerica {
             }
         });
         jPanel5.add(btnEditar);
-
-        btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/remove.png"))); // NOI18N
-        btnEliminar.setText("Eliminar");
-        btnEliminar.setMargin(new java.awt.Insets(1, 1, 1, 1));
-        btnEliminar.setMaximumSize(new java.awt.Dimension(75, 29));
-        btnEliminar.setMinimumSize(new java.awt.Dimension(75, 29));
-        btnEliminar.setPreferredSize(new java.awt.Dimension(75, 29));
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-        btnEliminar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnEliminarKeyPressed(evt);
-            }
-        });
-        jPanel5.add(btnEliminar);
 
         jPanel4.add(jPanel5);
         jPanel5.setBounds(21, 380, 190, 40);
@@ -589,29 +587,6 @@ public class FrmMarca extends FrmGenerica {
         if (evt.getKeyCode()==10)
         this.saveView();
     }//GEN-LAST:event_btnGuardarKeyPressed
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-//        if (JOptionPane.showConfirmDialog(null, "Desea Eliminar el registro seleccionado","Advertencia", YES_NO_OPTION) == 0 )
-//           this.deleteView();
-        try {
-            this.getGestorVista().setForm(this);
-            if(JOptionPane.showConfirmDialog(null, "Se eliminara la fila seleccionada, esta seguro que desea eliminar?", "Eliminar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)==0){
-                 this.getGestorVista().eliminar();
-                 this.viewEliminarBotones();
-            }
-        }
-        catch(HeadlessException e) {
-            System.out.println("Error al intentar eliminar la fila"+ e.getMessage());
-            JOptionPane.showMessageDialog(null, "no selecciono una fila de la tabla");
-        }
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void btnEliminarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEliminarKeyPressed
-        if(evt.getKeyCode()==10) {
-            if (JOptionPane.showConfirmDialog(null, "Desea Eliminar el registro seleccionado","Advertencia", YES_NO_OPTION) == 0 )
-            this.deleteView();
-        }
-    }//GEN-LAST:event_btnEliminarKeyPressed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         int n = 0;
@@ -680,12 +655,12 @@ public class FrmMarca extends FrmGenerica {
     private javax.swing.JButton btnBuscarCodigo;
     public javax.swing.JButton btnCancelar;
     public javax.swing.JButton btnEditar;
-    public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnImprimir1;
     public javax.swing.JButton btnNuevo;
     public javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
@@ -697,6 +672,7 @@ public class FrmMarca extends FrmGenerica {
     private javax.swing.JTable tblDatos;
     private javax.swing.JTextField txtBusquedaNombre;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtImpuesto;
+    private javax.swing.JTextField txtPais;
     // End of variables declaration//GEN-END:variables
 }

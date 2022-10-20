@@ -349,7 +349,7 @@ public class FrmVentas extends FrmGenerica {
         Auto auto = (Auto) cmbAuto.getSelectedItem();
         txtModelo.setText(auto.getModelo().toString());   
         txtMarca.setText(auto.getMarca().toString());  
-        txtPais.setText(auto.getModelo().getPais().toString());  
+        txtPais.setText(auto.getPais().toString());  
         txtAño.setText(auto.getAño().toString()); 
         btnCalcular.setEnabled(true); 
      }
@@ -357,7 +357,13 @@ public class FrmVentas extends FrmGenerica {
     public void calcularTotal(){
         Auto auto = (Auto) cmbAuto.getSelectedItem();
         int cantidad = Integer.parseInt(txtCantidad.getText());
-        String str= (String) auto.getModelo().getPais().getImpuesto();
+        
+//        auto.getModelo().getPais().compareTo(auto.getPais());
+//        String pais= (String) auto.getPais();
+//        Object pais1= pais.toString();
+//        String impuesto = (String) pais1.toString(pais);
+//        System.out.println(impuesto);
+
         if(auto.getModelo().getPais().getImpuesto().equalsIgnoreCase("1")){
             txtImpuesto.setText("%1"); 
             Double total= Double.parseDouble( auto.getTotal());
