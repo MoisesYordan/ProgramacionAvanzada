@@ -297,14 +297,6 @@ public class FrmMarca extends FrmGenerica {
         txtCodigo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtCodigo.setToolTipText("Ingrese Código");
         txtCodigo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyTyped(evt);
-            }
-        });
         jPanel1.add(txtCodigo);
         txtCodigo.setBounds(20, 50, 90, 23);
 
@@ -535,14 +527,6 @@ public class FrmMarca extends FrmGenerica {
 
         setBounds(150, 0, 904, 481);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-
-}//GEN-LAST:event_txtCodigoKeyPressed
-
-    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
-
-}//GEN-LAST:event_txtCodigoKeyTyped
 
     private void btnBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodigoActionPerformed
         int busqueda=1; //busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo

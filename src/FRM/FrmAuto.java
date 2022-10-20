@@ -403,23 +403,15 @@ public class FrmAuto extends FrmGenerica {
         jLabel3.setText("Código");
         jLabel3.setRequestFocusEnabled(false);
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(20, 20, 90, 19);
+        jLabel3.setBounds(20, 20, 90, 17);
 
         txtCodigo.setBackground(new java.awt.Color(204, 255, 204));
         txtCodigo.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtCodigo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtCodigo.setToolTipText("Ingrese Código");
         txtCodigo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyTyped(evt);
-            }
-        });
         jPanel1.add(txtCodigo);
-        txtCodigo.setBounds(20, 40, 90, 25);
+        txtCodigo.setBounds(20, 40, 90, 23);
 
         btnBuscarCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnBuscarCodigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar.png"))); // NOI18N
@@ -437,7 +429,7 @@ public class FrmAuto extends FrmGenerica {
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel2.setText("Stock");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 300, 120, 19);
+        jLabel2.setBounds(20, 300, 120, 17);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(null);
@@ -457,7 +449,7 @@ public class FrmAuto extends FrmGenerica {
             }
         });
         jPanel2.add(btnGuardar);
-        btnGuardar.setBounds(110, 5, 77, 30);
+        btnGuardar.setBounds(110, 5, 75, 30);
 
         btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add.png"))); // NOI18N
@@ -546,12 +538,12 @@ public class FrmAuto extends FrmGenerica {
         jLabel5.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel5.setText("Pais");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(20, 140, 120, 19);
+        jLabel5.setBounds(20, 140, 120, 17);
 
         jLabel6.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel6.setText("Año");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(430, 80, 80, 19);
+        jLabel6.setBounds(430, 80, 80, 17);
 
         jLabel7.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
         jLabel7.setText("$");
@@ -561,15 +553,10 @@ public class FrmAuto extends FrmGenerica {
         jLabel8.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel8.setText("Marca");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(210, 80, 120, 19);
+        jLabel8.setBounds(210, 80, 120, 17);
 
         txtCosto.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtCosto.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtCosto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCostoActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtCosto);
         txtCosto.setBounds(20, 240, 180, 30);
 
@@ -594,11 +581,6 @@ public class FrmAuto extends FrmGenerica {
                 btnCalcularActionPerformed(evt);
             }
         });
-        btnCalcular.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnCalcularKeyPressed(evt);
-            }
-        });
         jPanel1.add(btnCalcular);
         btnCalcular.setBounds(220, 240, 30, 30);
         btnCalcular.getAccessibleContext().setAccessibleDescription("");
@@ -606,7 +588,7 @@ public class FrmAuto extends FrmGenerica {
         jLabel9.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel9.setText("Costo");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(20, 220, 120, 19);
+        jLabel9.setBounds(20, 220, 120, 17);
 
         jLabel10.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
         jLabel10.setText("U°");
@@ -619,16 +601,6 @@ public class FrmAuto extends FrmGenerica {
         jLabel11.setBounds(470, 240, 30, 30);
 
         cmbPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
-        cmbPais.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbPaisItemStateChanged(evt);
-            }
-        });
-        cmbPais.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbPaisActionPerformed(evt);
-            }
-        });
         jPanel1.add(cmbPais);
         cmbPais.setBounds(20, 160, 180, 30);
 
@@ -641,17 +613,17 @@ public class FrmAuto extends FrmGenerica {
         jLabel12.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel12.setText("Modelo");
         jPanel1.add(jLabel12);
-        jLabel12.setBounds(20, 80, 120, 19);
+        jLabel12.setBounds(20, 80, 120, 17);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Auto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 102, 204))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Auto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel1.add(jPanel6);
         jPanel6.setBounds(10, 65, 520, 140);
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Precio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 102, 204))); // NOI18N
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Precio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel1.add(jPanel7);
         jPanel7.setBounds(10, 205, 520, 80);
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Stock", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 102, 204))); // NOI18N
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Stock", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel1.add(jPanel8);
         jPanel8.setBounds(10, 285, 520, 80);
 
@@ -692,11 +664,6 @@ public class FrmAuto extends FrmGenerica {
                 btnBuscar1ActionPerformed(evt);
             }
         });
-        btnBuscar1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnBuscar1KeyPressed(evt);
-            }
-        });
         jPanel4.add(btnBuscar1);
         btnBuscar1.setBounds(260, 50, 80, 30);
 
@@ -716,11 +683,6 @@ public class FrmAuto extends FrmGenerica {
 
         txtBusquedaNombre.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtBusquedaNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtBusquedaNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBusquedaNombreActionPerformed(evt);
-            }
-        });
         jPanel4.add(txtBusquedaNombre);
         txtBusquedaNombre.setBounds(20, 50, 240, 30);
         txtBusquedaNombre.getAccessibleContext().setAccessibleName("txtBusquedaNombre");
@@ -783,14 +745,6 @@ public class FrmAuto extends FrmGenerica {
 
         setBounds(150, 0, 954, 481);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-//
-}//GEN-LAST:event_txtCodigoKeyPressed
-
-    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
-
-}//GEN-LAST:event_txtCodigoKeyTyped
 
     private void btnBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodigoActionPerformed
         int busqueda=1; //busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
@@ -904,10 +858,6 @@ public class FrmAuto extends FrmGenerica {
         //this.viewCamposEnabled(false);
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
-    private void btnBuscar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscar1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscar1KeyPressed
-
     private void btnImprimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimir1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnImprimir1ActionPerformed
@@ -915,10 +865,6 @@ public class FrmAuto extends FrmGenerica {
     private void tblDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatosMouseClicked
        this.getGestorVista().setDatos();
     }//GEN-LAST:event_tblDatosMouseClicked
-
-    private void txtCostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCostoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCostoActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
        Double costo= Double.parseDouble( txtCosto.getText());  //pasar a un metodo calcular dentro de gestor vista auto y solo llamar
@@ -928,26 +874,10 @@ public class FrmAuto extends FrmGenerica {
        btnGuardar.setEnabled(true);
     }//GEN-LAST:event_btnCalcularActionPerformed
 
-    private void btnCalcularKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCalcularKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCalcularKeyPressed
-
     private void cmbModeloItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbModeloItemStateChanged
       Modelo modelo = (Modelo) cmbModelo.getSelectedItem();
         txtMarca.setText(modelo.getMarca().toString());      //pasar a un metodo setearMarcar dentro de gestor vista auto y solo llamar
     }//GEN-LAST:event_cmbModeloItemStateChanged
-
-    private void txtBusquedaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBusquedaNombreActionPerformed
-
-    private void cmbPaisItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbPaisItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbPaisItemStateChanged
-
-    private void cmbPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPaisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbPaisActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

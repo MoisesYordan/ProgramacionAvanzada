@@ -311,34 +311,26 @@ public class FrmModelo extends FrmGenerica {
         jLabel1.setText("Nombre");
         jLabel1.setRequestFocusEnabled(false);
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(20, 70, 90, 20);
+        jLabel1.setBounds(20, 90, 90, 20);
 
         txtNombre.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtNombre);
-        txtNombre.setBounds(20, 90, 460, 30);
+        txtNombre.setBounds(20, 110, 460, 30);
 
         jLabel3.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel3.setText("Código");
         jLabel3.setRequestFocusEnabled(false);
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(20, 20, 90, 17);
+        jLabel3.setBounds(20, 30, 90, 17);
 
         txtCodigo.setBackground(new java.awt.Color(204, 255, 204));
         txtCodigo.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtCodigo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtCodigo.setToolTipText("Ingrese Código");
         txtCodigo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyTyped(evt);
-            }
-        });
         jPanel1.add(txtCodigo);
-        txtCodigo.setBounds(20, 40, 90, 23);
+        txtCodigo.setBounds(20, 50, 90, 23);
 
         btnBuscarCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnBuscarCodigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar.png"))); // NOI18N
@@ -351,12 +343,12 @@ public class FrmModelo extends FrmGenerica {
             }
         });
         jPanel1.add(btnBuscarCodigo);
-        btnBuscarCodigo.setBounds(110, 40, 30, 30);
+        btnBuscarCodigo.setBounds(110, 46, 30, 30);
 
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel2.setText("Pais");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 190, 120, 17);
+        jLabel2.setBounds(20, 210, 120, 17);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(null);
@@ -440,16 +432,16 @@ public class FrmModelo extends FrmGenerica {
 
         cmbMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         jPanel1.add(cmbMarca);
-        cmbMarca.setBounds(20, 150, 310, 30);
+        cmbMarca.setBounds(20, 170, 310, 30);
 
         cmbPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         jPanel1.add(cmbPais);
-        cmbPais.setBounds(20, 210, 310, 30);
+        cmbPais.setBounds(20, 230, 310, 30);
 
         jLabel5.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel5.setText("Marca");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(20, 130, 120, 17);
+        jLabel5.setBounds(20, 150, 120, 17);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(390, 10, 490, 430);
@@ -561,21 +553,6 @@ public class FrmModelo extends FrmGenerica {
 
         setBounds(150, 0, 898, 481);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-//        if (evt.getKeyCode()==10) {
-//            if (this.gestorVista.getModelXCodigo(txtCodigo.getText())) {
-//                this.viewActualizar();
-//            }
-//            else {
-//                JOptionPane.showMessageDialog(null,"Código no existe");
-//            }
-//        }
-}//GEN-LAST:event_txtCodigoKeyPressed
-
-    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
-
-}//GEN-LAST:event_txtCodigoKeyTyped
 
     private void btnBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodigoActionPerformed
         int busqueda=1; //busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo

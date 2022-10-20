@@ -368,14 +368,6 @@ public class FrmEmpleado extends FrmGenerica {
         txtCodigo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtCodigo.setToolTipText("Ingrese Código");
         txtCodigo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyTyped(evt);
-            }
-        });
         jPanel1.add(txtCodigo);
         txtCodigo.setBounds(20, 40, 90, 23);
 
@@ -588,11 +580,6 @@ public class FrmEmpleado extends FrmGenerica {
                 btnBuscar1ActionPerformed(evt);
             }
         });
-        btnBuscar1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnBuscar1KeyPressed(evt);
-            }
-        });
         jPanel4.add(btnBuscar1);
         btnBuscar1.setBounds(280, 50, 80, 30);
 
@@ -673,21 +660,6 @@ public class FrmEmpleado extends FrmGenerica {
 
         setBounds(150, 0, 904, 481);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-//        if (evt.getKeyCode()==10) {
-//            if (this.gestorVista.getModelXCodigo(txtCodigo.getText())) {
-//                this.viewActualizar();
-//            }
-//            else {
-//                JOptionPane.showMessageDialog(null,"Código no existe");
-//            }
-//        }
-}//GEN-LAST:event_txtCodigoKeyPressed
-
-    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
-
-}//GEN-LAST:event_txtCodigoKeyTyped
 
     private void btnBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodigoActionPerformed
                int busqueda=1; //busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
@@ -777,10 +749,6 @@ public class FrmEmpleado extends FrmGenerica {
         this.setBusqueda(busqueda);
         this.viewCamposEnabled(false);
     }//GEN-LAST:event_btnBuscar1ActionPerformed
-
-    private void btnBuscar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscar1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscar1KeyPressed
 
     private void btnImprimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimir1ActionPerformed
         // TODO add your handling code here:

@@ -353,11 +353,6 @@ public class FrmCliente extends FrmGenerica {
 
         txtApellido.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtApellido.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtApellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidoActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtApellido);
         txtApellido.setBounds(210, 110, 170, 30);
 
@@ -372,14 +367,6 @@ public class FrmCliente extends FrmGenerica {
         txtCodigo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtCodigo.setToolTipText("Ingrese Código");
         txtCodigo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyTyped(evt);
-            }
-        });
         jPanel1.add(txtCodigo);
         txtCodigo.setBounds(20, 37, 90, 23);
 
@@ -391,11 +378,6 @@ public class FrmCliente extends FrmGenerica {
         btnBuscarCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarCodigoActionPerformed(evt);
-            }
-        });
-        btnBuscarCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnBuscarCodigoKeyPressed(evt);
             }
         });
         jPanel1.add(btnBuscarCodigo);
@@ -471,11 +453,6 @@ public class FrmCliente extends FrmGenerica {
 
         txtFechaDeNacimiento.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtFechaDeNacimiento.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtFechaDeNacimiento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFechaDeNacimientoActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtFechaDeNacimiento);
         txtFechaDeNacimiento.setBounds(210, 160, 170, 30);
 
@@ -508,11 +485,6 @@ public class FrmCliente extends FrmGenerica {
 
         txtDni.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtDni.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtDni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDniActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtDni);
         txtDni.setBounds(20, 160, 170, 30);
 
@@ -607,11 +579,6 @@ public class FrmCliente extends FrmGenerica {
                 btnBuscar1ActionPerformed(evt);
             }
         });
-        btnBuscar1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnBuscar1KeyPressed(evt);
-            }
-        });
         jPanel4.add(btnBuscar1);
         btnBuscar1.setBounds(260, 50, 80, 30);
 
@@ -693,21 +660,6 @@ public class FrmCliente extends FrmGenerica {
         setBounds(150, 0, 904, 481);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-//        if (evt.getKeyCode()==10) {
-//            if (this.gestorVista.getModelXCodigo(txtCodigo.getText())) {
-//                this.viewActualizar();
-//            }
-//            else {
-//                JOptionPane.showMessageDialog(null,"Código no existe");
-//            }
-//        }
-}//GEN-LAST:event_txtCodigoKeyPressed
-
-    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
-
-}//GEN-LAST:event_txtCodigoKeyTyped
-
     private void btnBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodigoActionPerformed
         int busqueda=1; //busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
         if (btnCandado==0) {//btnCandado =0 primera vez presionado
@@ -720,12 +672,6 @@ public class FrmCliente extends FrmGenerica {
             btnCandado=0;
         }
 }//GEN-LAST:event_btnBuscarCodigoActionPerformed
-
-    private void btnBuscarCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarCodigoKeyPressed
-//        if(evt.getKeyCode()==10) {
-//            this.viewBuscarCodigoEnter();
-//        }
-}//GEN-LAST:event_btnBuscarCodigoKeyPressed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         this.viewEditarEnter();
@@ -803,10 +749,6 @@ public class FrmCliente extends FrmGenerica {
         this.viewCamposEnabled(false);
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
-    private void btnBuscar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscar1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscar1KeyPressed
-
     private void btnImprimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimir1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnImprimir1ActionPerformed
@@ -814,14 +756,6 @@ public class FrmCliente extends FrmGenerica {
     private void tblDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatosMouseClicked
        this.getGestorVista().setDatos();
     }//GEN-LAST:event_tblDatosMouseClicked
-
-    private void txtFechaDeNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaDeNacimientoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaDeNacimientoActionPerformed
-
-    private void txtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDniActionPerformed
 
     private void btnGuardaraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnGuardaraKeyPressed
          if (evt.getKeyCode()==10)
@@ -840,10 +774,6 @@ public class FrmCliente extends FrmGenerica {
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         this.viewNuevoEnter();
     }//GEN-LAST:event_btnNuevoActionPerformed
-
-    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
