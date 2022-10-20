@@ -349,7 +349,7 @@ public class FrmCliente extends FrmGenerica {
         jLabel1.setText("Email");
         jLabel1.setRequestFocusEnabled(false);
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(210, 200, 90, 20);
+        jLabel1.setBounds(210, 220, 90, 20);
 
         txtApellido.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtApellido.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -359,7 +359,7 @@ public class FrmCliente extends FrmGenerica {
             }
         });
         jPanel1.add(txtApellido);
-        txtApellido.setBounds(210, 90, 170, 30);
+        txtApellido.setBounds(210, 110, 170, 30);
 
         jLabel3.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel3.setText("Código");
@@ -404,7 +404,7 @@ public class FrmCliente extends FrmGenerica {
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel2.setText("Apellido");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(210, 70, 120, 17);
+        jLabel2.setBounds(210, 90, 120, 17);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel3.setLayout(null);
@@ -450,24 +450,24 @@ public class FrmCliente extends FrmGenerica {
         jLabel5.setText("Nombre");
         jLabel5.setRequestFocusEnabled(false);
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(20, 70, 90, 20);
+        jLabel5.setBounds(20, 90, 90, 20);
 
         jLabel6.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel6.setText("Fecha De Nacimiento");
         jLabel6.setRequestFocusEnabled(false);
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(210, 120, 170, 20);
+        jLabel6.setBounds(210, 140, 170, 20);
 
         jLabel7.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel7.setText("Telefono");
         jLabel7.setRequestFocusEnabled(false);
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(20, 200, 90, 20);
+        jLabel7.setBounds(20, 220, 90, 20);
 
         txtNombre.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtNombre);
-        txtNombre.setBounds(20, 90, 170, 30);
+        txtNombre.setBounds(20, 110, 170, 30);
 
         txtFechaDeNacimiento.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtFechaDeNacimiento.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -477,34 +477,34 @@ public class FrmCliente extends FrmGenerica {
             }
         });
         jPanel1.add(txtFechaDeNacimiento);
-        txtFechaDeNacimiento.setBounds(210, 140, 170, 30);
+        txtFechaDeNacimiento.setBounds(210, 160, 170, 30);
 
         txtEmail.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtEmail.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtEmail);
-        txtEmail.setBounds(210, 220, 170, 30);
+        txtEmail.setBounds(210, 240, 170, 30);
 
         txtTelefono.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtTelefono.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtTelefono);
-        txtTelefono.setBounds(20, 220, 170, 30);
+        txtTelefono.setBounds(20, 240, 170, 30);
 
         jLabel9.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel9.setText("Direccion");
         jLabel9.setRequestFocusEnabled(false);
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(20, 280, 90, 20);
+        jLabel9.setBounds(20, 302, 90, 20);
 
         txtDireccion.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtDireccion.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtDireccion);
-        txtDireccion.setBounds(20, 300, 170, 30);
+        txtDireccion.setBounds(20, 325, 170, 30);
 
         jLabel11.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel11.setText("DNI");
         jLabel11.setRequestFocusEnabled(false);
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(20, 120, 90, 20);
+        jLabel11.setBounds(20, 140, 90, 20);
 
         txtDni.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtDni.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -514,7 +514,7 @@ public class FrmCliente extends FrmGenerica {
             }
         });
         jPanel1.add(txtDni);
-        txtDni.setBounds(20, 140, 170, 30);
+        txtDni.setBounds(20, 160, 170, 30);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel6.setMinimumSize(new java.awt.Dimension(190, 40));
@@ -560,15 +560,15 @@ public class FrmCliente extends FrmGenerica {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos De Contacto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel1.add(jPanel7);
-        jPanel7.setBounds(10, 180, 470, 80);
+        jPanel7.setBounds(10, 200, 470, 80);
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Ubicacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel1.add(jPanel8);
-        jPanel8.setBounds(10, 260, 470, 110);
+        jPanel8.setBounds(10, 290, 470, 80);
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel1.add(jPanel10);
-        jPanel10.setBounds(10, 60, 470, 120);
+        jPanel10.setBounds(10, 80, 470, 120);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(390, 10, 500, 430);

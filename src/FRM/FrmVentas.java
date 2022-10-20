@@ -473,14 +473,6 @@ public class FrmVentas extends FrmGenerica {
         txtCodigo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtCodigo.setToolTipText("Ingrese Código");
         txtCodigo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyTyped(evt);
-            }
-        });
         jPanel1.add(txtCodigo);
         txtCodigo.setBounds(20, 40, 90, 23);
 
@@ -492,11 +484,6 @@ public class FrmVentas extends FrmGenerica {
         btnBuscarCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarCodigoActionPerformed(evt);
-            }
-        });
-        btnBuscarCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnBuscarCodigoKeyPressed(evt);
             }
         });
         jPanel1.add(btnBuscarCodigo);
@@ -566,7 +553,7 @@ public class FrmVentas extends FrmGenerica {
             }
         });
         jPanel3.add(btnSalir);
-        btnSalir.setBounds(100, 10, 75, 23);
+        btnSalir.setBounds(112, 5, 75, 30);
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -585,17 +572,12 @@ public class FrmVentas extends FrmGenerica {
             }
         });
         jPanel3.add(btnCancelar);
-        btnCancelar.setBounds(10, 10, 75, 23);
+        btnCancelar.setBounds(12, 5, 75, 30);
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(350, 390, 180, 40);
+        jPanel3.setBounds(320, 390, 200, 40);
 
         cmbEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
-        cmbEmpleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbEmpleadoActionPerformed(evt);
-            }
-        });
         jPanel1.add(cmbEmpleado);
         cmbEmpleado.setBounds(280, 170, 120, 30);
 
@@ -612,11 +594,6 @@ public class FrmVentas extends FrmGenerica {
         jLabel6.setBounds(150, 80, 90, 20);
 
         cmbCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
-        cmbCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbClienteActionPerformed(evt);
-            }
-        });
         jPanel1.add(cmbCliente);
         cmbCliente.setBounds(280, 230, 120, 30);
 
@@ -702,16 +679,6 @@ public class FrmVentas extends FrmGenerica {
         jLabel14.setBounds(140, 170, 30, 30);
 
         cmbAuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
-        cmbAuto.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbAutoItemStateChanged(evt);
-            }
-        });
-        cmbAuto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbAutoActionPerformed(evt);
-            }
-        });
         jPanel1.add(cmbAuto);
         cmbAuto.setBounds(150, 30, 380, 30);
 
@@ -765,11 +732,6 @@ public class FrmVentas extends FrmGenerica {
                 btnCalcularActionPerformed(evt);
             }
         });
-        btnCalcular.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnCalcularKeyPressed(evt);
-            }
-        });
         jPanel1.add(btnCalcular);
         btnCalcular.setBounds(170, 170, 30, 30);
 
@@ -810,11 +772,6 @@ public class FrmVentas extends FrmGenerica {
                 btnBuscar1ActionPerformed(evt);
             }
         });
-        btnBuscar1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnBuscar1KeyPressed(evt);
-            }
-        });
         jPanel4.add(btnBuscar1);
         btnBuscar1.setBounds(260, 30, 80, 30);
 
@@ -824,11 +781,6 @@ public class FrmVentas extends FrmGenerica {
         btnImprimir1.setToolTipText("Impreme el documento");
         btnImprimir1.setBorderPainted(false);
         btnImprimir1.setContentAreaFilled(false);
-        btnImprimir1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImprimir1ActionPerformed(evt);
-            }
-        });
         jPanel4.add(btnImprimir1);
         btnImprimir1.setBounds(250, 390, 110, 40);
 
@@ -895,14 +847,6 @@ public class FrmVentas extends FrmGenerica {
         setBounds(150, 0, 935, 481);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-//        if (evt.getKeyCode()==10) {
-}//GEN-LAST:event_txtCodigoKeyPressed
-
-    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
-
-}//GEN-LAST:event_txtCodigoKeyTyped
-
     private void btnBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodigoActionPerformed
         int busqueda=1; //busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
         if (btnCandado==0) {//btnCandado =0 primera vez presionado
@@ -915,12 +859,6 @@ public class FrmVentas extends FrmGenerica {
             btnCandado=0;
         }
 }//GEN-LAST:event_btnBuscarCodigoActionPerformed
-
-    private void btnBuscarCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarCodigoKeyPressed
-//        if(evt.getKeyCode()==10) {
-//            this.viewBuscarCodigoEnter();
-//        }
-}//GEN-LAST:event_btnBuscarCodigoKeyPressed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         this.viewNuevoEnter();
@@ -1016,47 +954,17 @@ public class FrmVentas extends FrmGenerica {
         this.viewCamposEnabled(false);
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
-    private void btnBuscar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscar1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscar1KeyPressed
-
-    private void btnImprimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimir1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnImprimir1ActionPerformed
-
     private void tblDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatosMouseClicked
        this.getGestorVista().setDatos();
     }//GEN-LAST:event_tblDatosMouseClicked
-
-    private void cmbEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEmpleadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbEmpleadoActionPerformed
-
-    private void cmbClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbClienteActionPerformed
 
     private void btnFrmClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFrmClienteActionPerformed
        // this.gestorVista.abrirCliente();        // TODO add your handling code here:
     }//GEN-LAST:event_btnFrmClienteActionPerformed
 
-    private void cmbAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbAutoActionPerformed
-
-    private void cmbAutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAutoItemStateChanged
-
-        this.llenadoCmbAutos();
-        
-    }//GEN-LAST:event_cmbAutoItemStateChanged
-
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         this.calcularTotal();
     }//GEN-LAST:event_btnCalcularActionPerformed
-
-    private void btnCalcularKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCalcularKeyPressed
-       this.calcularTotal();
-    }//GEN-LAST:event_btnCalcularKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

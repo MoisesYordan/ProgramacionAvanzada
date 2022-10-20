@@ -80,17 +80,17 @@ public class FrmPais extends FrmGenerica {
     
 // Metodos que gestionan los botones de la barra comando 
     public void viewOpenedBotones() {//abris el frm
-        btnNuevo.setEnabled(true);
+//        btnNuevo.setEnabled(true);
         btnEditar.setEnabled(false);
         btnGuardar.setEnabled(false);
 //        btnEliminar.setEnabled(false);
         btnCancelar.setEnabled(true);
         btnSalir.setEnabled(true);
-        btnNuevo.grabFocus();
+//        btnNuevo.grabFocus();
     }
 
     public void viewNuevoEditarBotones(){//btnEditar
-        btnNuevo.setEnabled(false);
+//        btnNuevo.setEnabled(false);
         btnEditar.setEnabled(false);
         btnGuardar.setEnabled(true);
 //        btnEliminar.setEnabled(false);
@@ -103,17 +103,17 @@ public class FrmPais extends FrmGenerica {
     }
   
     public void viewGuardarBotones() {//btnGuardar
-        btnNuevo.setEnabled(true);
+//        btnNuevo.setEnabled(true);
         btnEditar.setEnabled(true);
         btnGuardar.setEnabled(false);
 //        btnEliminar.setEnabled(true);
         btnCancelar.setEnabled(false);
         btnSalir.setEnabled(true);
-        btnNuevo.grabFocus();
+//        btnNuevo.grabFocus();
     }
 
     public void viewBuscarBotones() {//btnBuscar
-        btnNuevo.setEnabled(false);
+//        btnNuevo.setEnabled(false);
         btnEditar.setEnabled(true);
         btnGuardar.setEnabled(false);
 //        btnEliminar.setEnabled(true);
@@ -255,7 +255,7 @@ public class FrmPais extends FrmGenerica {
         btnBuscarCodigo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
-        btnNuevo = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
@@ -269,7 +269,6 @@ public class FrmPais extends FrmGenerica {
         txtBusquedaNombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        btnEditar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setTitle("Pais");
@@ -303,14 +302,6 @@ public class FrmPais extends FrmGenerica {
         txtCodigo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtCodigo.setToolTipText("Ingrese Código");
         txtCodigo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyTyped(evt);
-            }
-        });
         jPanel1.add(txtCodigo);
         txtCodigo.setBounds(20, 40, 90, 23);
 
@@ -319,23 +310,13 @@ public class FrmPais extends FrmGenerica {
         btnBuscarCodigo.setToolTipText("Buscar Tipo Servicio por código");
         btnBuscarCodigo.setBorderPainted(false);
         btnBuscarCodigo.setContentAreaFilled(false);
-        btnBuscarCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnBuscarCodigoMouseEntered(evt);
-            }
-        });
         btnBuscarCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarCodigoActionPerformed(evt);
             }
         });
-        btnBuscarCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnBuscarCodigoKeyPressed(evt);
-            }
-        });
         jPanel1.add(btnBuscarCodigo);
-        btnBuscarCodigo.setBounds(110, 40, 30, 30);
+        btnBuscarCodigo.setBounds(110, 36, 30, 30);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(null);
@@ -357,25 +338,25 @@ public class FrmPais extends FrmGenerica {
         jPanel2.add(btnGuardar);
         btnGuardar.setBounds(110, 5, 75, 30);
 
-        btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/add.png"))); // NOI18N
-        btnNuevo.setText("Nuevo");
-        btnNuevo.setMargin(new java.awt.Insets(1, 1, 1, 1));
-        btnNuevo.setMaximumSize(new java.awt.Dimension(75, 29));
-        btnNuevo.setMinimumSize(new java.awt.Dimension(75, 29));
-        btnNuevo.setPreferredSize(new java.awt.Dimension(75, 29));
-        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editarChico.png"))); // NOI18N
+        btnEditar.setText("Editar");
+        btnEditar.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        btnEditar.setMaximumSize(new java.awt.Dimension(75, 29));
+        btnEditar.setMinimumSize(new java.awt.Dimension(75, 29));
+        btnEditar.setPreferredSize(new java.awt.Dimension(75, 29));
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
-        btnNuevo.addKeyListener(new java.awt.event.KeyAdapter() {
+        btnEditar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnNuevoKeyPressed(evt);
+                btnEditarKeyPressed(evt);
             }
         });
-        jPanel2.add(btnNuevo);
-        btnNuevo.setBounds(10, 5, 75, 30);
+        jPanel2.add(btnEditar);
+        btnEditar.setBounds(20, 5, 75, 29);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 380, 200, 40);
@@ -396,7 +377,7 @@ public class FrmPais extends FrmGenerica {
             }
         });
         jPanel3.add(btnSalir);
-        btnSalir.setBounds(100, 10, 75, 23);
+        btnSalir.setBounds(100, 5, 75, 30);
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -415,10 +396,10 @@ public class FrmPais extends FrmGenerica {
             }
         });
         jPanel3.add(btnCancelar);
-        btnCancelar.setBounds(10, 10, 75, 23);
+        btnCancelar.setBounds(20, 5, 75, 30);
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(310, 380, 180, 40);
+        jPanel3.setBounds(290, 380, 200, 40);
 
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel2.setText("Pais");
@@ -468,11 +449,6 @@ public class FrmPais extends FrmGenerica {
                 btnBuscar1ActionPerformed(evt);
             }
         });
-        btnBuscar1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnBuscar1KeyPressed(evt);
-            }
-        });
         jPanel4.add(btnBuscar1);
         btnBuscar1.setBounds(260, 50, 80, 30);
 
@@ -482,11 +458,6 @@ public class FrmPais extends FrmGenerica {
         btnImprimir1.setToolTipText("Impreme el documento");
         btnImprimir1.setBorderPainted(false);
         btnImprimir1.setContentAreaFilled(false);
-        btnImprimir1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImprimir1ActionPerformed(evt);
-            }
-        });
         jPanel4.add(btnImprimir1);
         btnImprimir1.setBounds(250, 380, 110, 40);
 
@@ -502,26 +473,6 @@ public class FrmPais extends FrmGenerica {
 
         jPanel5.setMinimumSize(new java.awt.Dimension(190, 40));
         jPanel5.setPreferredSize(new java.awt.Dimension(190, 40));
-
-        btnEditar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editarChico.png"))); // NOI18N
-        btnEditar.setText("Editar");
-        btnEditar.setMargin(new java.awt.Insets(1, 1, 1, 1));
-        btnEditar.setMaximumSize(new java.awt.Dimension(75, 29));
-        btnEditar.setMinimumSize(new java.awt.Dimension(75, 29));
-        btnEditar.setPreferredSize(new java.awt.Dimension(75, 29));
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-        btnEditar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnEditarKeyPressed(evt);
-            }
-        });
-        jPanel5.add(btnEditar);
-
         jPanel4.add(jPanel5);
         jPanel5.setBounds(21, 380, 190, 40);
         jPanel5.getAccessibleContext().setAccessibleDescription("");
@@ -533,14 +484,6 @@ public class FrmPais extends FrmGenerica {
 
         setBounds(150, 0, 904, 481);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-
-}//GEN-LAST:event_txtCodigoKeyPressed
-
-    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
-
-}//GEN-LAST:event_txtCodigoKeyTyped
 
     private void btnBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodigoActionPerformed
         int busqueda=1; //busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
@@ -554,21 +497,6 @@ public class FrmPais extends FrmGenerica {
             btnCandado=0;
         }
 }//GEN-LAST:event_btnBuscarCodigoActionPerformed
-
-    private void btnBuscarCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarCodigoKeyPressed
-//        if(evt.getKeyCode()==10) {
-//            this.viewBuscarCodigoEnter();
-//        }
-}//GEN-LAST:event_btnBuscarCodigoKeyPressed
-
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        this.viewNuevoEnter();
-    }//GEN-LAST:event_btnNuevoActionPerformed
-
-    private void btnNuevoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnNuevoKeyPressed
-       if (evt.getKeyCode()==10)
-          this.viewNuevoEnter();
-    }//GEN-LAST:event_btnNuevoKeyPressed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         this.viewEditarEnter();
@@ -632,22 +560,9 @@ public class FrmPais extends FrmGenerica {
         this.viewCamposEnabled(false);
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
-    private void btnBuscar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscar1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscar1KeyPressed
-
-    private void btnImprimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimir1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnImprimir1ActionPerformed
-
     private void tblDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatosMouseClicked
        this.getGestorVista().setDatos();
     }//GEN-LAST:event_tblDatosMouseClicked
-
-    private void btnBuscarCodigoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarCodigoMouseEntered
-
-     // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarCodigoMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -657,7 +572,6 @@ public class FrmPais extends FrmGenerica {
     public javax.swing.JButton btnEditar;
     public javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnImprimir1;
-    public javax.swing.JButton btnNuevo;
     public javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

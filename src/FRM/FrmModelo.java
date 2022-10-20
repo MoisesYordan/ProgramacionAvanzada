@@ -350,11 +350,6 @@ public class FrmModelo extends FrmGenerica {
                 btnBuscarCodigoActionPerformed(evt);
             }
         });
-        btnBuscarCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnBuscarCodigoKeyPressed(evt);
-            }
-        });
         jPanel1.add(btnBuscarCodigo);
         btnBuscarCodigo.setBounds(110, 40, 30, 30);
 
@@ -418,11 +413,6 @@ public class FrmModelo extends FrmGenerica {
                 btnSalirActionPerformed(evt);
             }
         });
-        btnSalir.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnSalirKeyPressed(evt);
-            }
-        });
         jPanel3.add(btnSalir);
         btnSalir.setBounds(95, 10, 75, 23);
 
@@ -449,20 +439,10 @@ public class FrmModelo extends FrmGenerica {
         jPanel3.setBounds(280, 380, 180, 40);
 
         cmbMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
-        cmbMarca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbMarcaActionPerformed(evt);
-            }
-        });
         jPanel1.add(cmbMarca);
         cmbMarca.setBounds(20, 150, 310, 30);
 
         cmbPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
-        cmbPais.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbPaisActionPerformed(evt);
-            }
-        });
         jPanel1.add(cmbPais);
         cmbPais.setBounds(20, 210, 310, 30);
 
@@ -508,11 +488,6 @@ public class FrmModelo extends FrmGenerica {
                 btnBuscar1ActionPerformed(evt);
             }
         });
-        btnBuscar1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnBuscar1KeyPressed(evt);
-            }
-        });
         jPanel4.add(btnBuscar1);
         btnBuscar1.setBounds(260, 50, 80, 30);
 
@@ -522,11 +497,6 @@ public class FrmModelo extends FrmGenerica {
         btnImprimir1.setToolTipText("Impreme el documento");
         btnImprimir1.setBorderPainted(false);
         btnImprimir1.setContentAreaFilled(false);
-        btnImprimir1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImprimir1ActionPerformed(evt);
-            }
-        });
         jPanel4.add(btnImprimir1);
         btnImprimir1.setBounds(250, 380, 110, 40);
 
@@ -620,12 +590,6 @@ public class FrmModelo extends FrmGenerica {
         }
 }//GEN-LAST:event_btnBuscarCodigoActionPerformed
 
-    private void btnBuscarCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarCodigoKeyPressed
-//        if(evt.getKeyCode()==10) {
-//            this.viewBuscarCodigoEnter();
-//        }
-}//GEN-LAST:event_btnBuscarCodigoKeyPressed
-
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         this.viewNuevoEnter();
     }//GEN-LAST:event_btnNuevoActionPerformed
@@ -690,21 +654,6 @@ try {
             
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnSalirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalirKeyPressed
-//        if(evt.getKeyCode()==10) {
-//            int n = 0;
-//            if (this.getGestorVista().isNuevo())
-//                 this.dispose();
-//            else
-//            n=JOptionPane.showConfirmDialog(null, "¿Desea guardar los cambios antes de salir?","Advertencia", YES_NO_OPTION);
-//            if  (n == 1 ){
-//                this.cancelarView();
-//                this.dispose();
-//            }
-//        }
-
-    }//GEN-LAST:event_btnSalirKeyPressed
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         if (JOptionPane.showConfirmDialog(null, "Desea Cancelar los datos ingresados","Advertencia", YES_NO_OPTION) == 0 )
         this.cancelarView();
@@ -724,25 +673,9 @@ try {
         this.viewCamposEnabled(false);
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
-    private void btnBuscar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscar1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscar1KeyPressed
-
-    private void btnImprimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimir1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnImprimir1ActionPerformed
-
     private void tblDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatosMouseClicked
              this.getGestorVista().setDatos();
     }//GEN-LAST:event_tblDatosMouseClicked
-
-    private void cmbMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMarcaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbMarcaActionPerformed
-
-    private void cmbPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPaisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbPaisActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
