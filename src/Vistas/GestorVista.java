@@ -7,6 +7,8 @@ import ireport.GestorDeReportes;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 
 public class GestorVista  extends GestorHibernate {
     private int opcABM; // Se define para saber si es actualizacion o alta
@@ -164,11 +166,10 @@ public class GestorVista  extends GestorHibernate {
     }
 
 
-    public  DefaultComboBoxModel getComboModelFraccionamiento() {
-        Object[] model={"" , "Unidad", "Kg"};
-        return new DefaultComboBoxModel(model);
-    }
-    
+//    public  DefaultComboBoxModel getComboModelFraccionamiento() {
+//        Object[] model={"" , "Unidad", "Kg"};
+//        return new DefaultComboBoxModel(model);
+//    }
 
     public void cancelarView() {
 
@@ -292,5 +293,24 @@ public class GestorVista  extends GestorHibernate {
         DefaultTableModel model = (DefaultTableModel) tbl.getModel();
         model.removeRow(tbl.getSelectedRow());
     }
-
+    
+//    public List listarTodo(int ord, String text, Clase clase, int max){
+//        Criteria crit =getSession().createCriteria(clase);
+//            .add(Restrictions.eq("estado",0)).setMaxResults(max);
+//        return crit.list();
+//    }
+//        
+//    public List listarGenericoLetra(int ord, String quebuscar, Object dato, Clase clase, int max){
+//        Criteria crit =getSession().createCriteria(clase);
+//            .add(Restrictions.eq("estado",0))
+//            .add(Restrictions.eq(quebuscar,dato)).setMaxResults(max);
+//        return crit.list();
+//    }
+//     
+//    public List listarGenericoNumero(int ord, int d, String quebuscar, Clase clase, int max){
+//        Criteria crit =getSession().createCriteria(clase);
+//            .add(Restrictions.eq("estado",0))
+//            .add(Restrictions.eq(quebuscar,d).setMaxResults(max);
+//        return crit.list();
+//    }
 }

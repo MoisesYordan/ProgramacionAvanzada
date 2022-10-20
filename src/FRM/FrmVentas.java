@@ -352,11 +352,11 @@ public class FrmVentas extends FrmGenerica {
      public void llenadoCmbAutos(){
         Auto auto = (Auto) cmbAuto.getSelectedItem();
         txtModelo.setText(auto.getModelo().toString());   
-        txtMarca.setText(auto.getMarca().toString());  
-        txtPais.setText(auto.getPais().toString());  
-        txtAño.setText(auto.getAño().toString()); 
+        txtMarca.setText(auto.getMarca());  
+        txtPais.setText(auto.getPais());  
+        txtAño.setText(auto.getAño()); 
         btnCalcular.setEnabled(true); 
-        Object pais= auto.getPais().toString();
+//        Object pais= auto.getPais().toString();
 //        txtImpuesto.setText(pais.getImpuesto()); 
      }
      
@@ -403,6 +403,7 @@ public class FrmVentas extends FrmGenerica {
 //    public void setEscritorio(JDesktopPane escritorio) {
 //        this.escritorio = escritorio;
 //    }
+    
      /** Este método se llama desde dentro del constructor para inicializar el formulario.
      ADVERTENCIA: NO modifique este código. 
      El contenido de este método es siempre regenerado por el Editor de formularios.**/
