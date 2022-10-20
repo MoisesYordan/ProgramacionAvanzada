@@ -1,13 +1,17 @@
 package FRM;
 import Modelos.GestionProyecto.Auto;
+import Modelos.GestionProyecto.GestorVistaCliente;
 import Modelos.GestionProyecto.GestorVistaVentas;
 import Modelos.GestionProyecto.Modelo;
 import Vistas.FrmGenerica;
+import Vistas.GestorVistaPrincipal;
 import java.awt.HeadlessException;
 import javax.swing.*;
 import javax.swing.JDesktopPane;
 
+
 public class FrmVentas extends FrmGenerica {
+    private GestorVistaPrincipal gvista;
     private GestorVistaVentas gestorVista;
     private int YES_NO_OPTION;
 
@@ -352,18 +356,14 @@ public class FrmVentas extends FrmGenerica {
         txtPais.setText(auto.getPais().toString());  
         txtAño.setText(auto.getAño().toString()); 
         btnCalcular.setEnabled(true); 
+        Object pais= auto.getPais().toString();
+//        txtImpuesto.setText(pais.getImpuesto()); 
      }
      
     public void calcularTotal(){
         Auto auto = (Auto) cmbAuto.getSelectedItem();
         int cantidad = Integer.parseInt(txtCantidad.getText());
-        
-//        auto.getModelo().getPais().compareTo(auto.getPais());
-//        String pais= (String) auto.getPais();
-//        Object pais1= pais.toString();
-//        String impuesto = (String) pais1.toString(pais);
-//        System.out.println(impuesto);
-
+     
         if(auto.getModelo().getPais().getImpuesto().equalsIgnoreCase("1")){
             txtImpuesto.setText("%1"); 
             Double total= Double.parseDouble( auto.getTotal());
@@ -388,6 +388,20 @@ public class FrmVentas extends FrmGenerica {
             Math.round(total);
             txtTotal.setText(Math.round(total) +"");
         }
+    }
+    public void crearCliente(){
+         //this.gvista.abrirCliente(getEscritorio());
+        escritorio = new javax.swing.JDesktopPane();
+        GestorVistaCliente gestor= new GestorVistaCliente();
+        gestor.openFormulario(escritorio); 
+    }
+    JDesktopPane escritorio;
+    public JDesktopPane getEscritorio() {
+        return escritorio;
+    }
+
+    public void setEscritorio(JDesktopPane escritorio) {
+        this.escritorio = escritorio;
     }
      /** Este método se llama desde dentro del constructor para inicializar el formulario.
      ADVERTENCIA: NO modifique este código. 
@@ -679,6 +693,11 @@ public class FrmVentas extends FrmGenerica {
         jLabel14.setBounds(140, 170, 30, 30);
 
         cmbAuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        cmbAuto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbAutoItemStateChanged(evt);
+            }
+        });
         jPanel1.add(cmbAuto);
         cmbAuto.setBounds(150, 30, 380, 30);
 
@@ -828,11 +847,6 @@ public class FrmVentas extends FrmGenerica {
                 btnEliminarActionPerformed(evt);
             }
         });
-        btnEliminar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnEliminarKeyPressed(evt);
-            }
-        });
         jPanel5.add(btnEliminar);
 
         jPanel4.add(jPanel5);
@@ -888,8 +902,6 @@ public class FrmVentas extends FrmGenerica {
     }//GEN-LAST:event_btnGuardarKeyPressed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-//        if (JOptionPane.showConfirmDialog(null, "Desea Eliminar el registro seleccionado","Advertencia", YES_NO_OPTION) == 0 )
-//           this.deleteView();
         try {
             this.getGestorVista().setForm(this);
             if(JOptionPane.showConfirmDialog(null, "Se eliminara la fila seleccionada, esta seguro que desea eliminar?", "Eliminar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)==0){
@@ -902,13 +914,6 @@ public class FrmVentas extends FrmGenerica {
             JOptionPane.showMessageDialog(null, "no selecciono una fila de la tabla");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void btnEliminarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEliminarKeyPressed
-        if(evt.getKeyCode()==10) {
-            if (JOptionPane.showConfirmDialog(null, "Desea Eliminar el registro seleccionado","Advertencia", YES_NO_OPTION) == 0 )
-            this.deleteView();
-        }
-    }//GEN-LAST:event_btnEliminarKeyPressed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         int n = 0;
@@ -959,12 +964,16 @@ public class FrmVentas extends FrmGenerica {
     }//GEN-LAST:event_tblDatosMouseClicked
 
     private void btnFrmClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFrmClienteActionPerformed
-       // this.gestorVista.abrirCliente();        // TODO add your handling code here:
+       this.crearCliente();       // TODO add your handling code here:
     }//GEN-LAST:event_btnFrmClienteActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         this.calcularTotal();
     }//GEN-LAST:event_btnCalcularActionPerformed
+
+    private void cmbAutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAutoItemStateChanged
+        this.llenadoCmbAutos();        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbAutoItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
