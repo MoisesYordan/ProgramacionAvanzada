@@ -391,18 +391,18 @@ public class FrmVentas extends FrmGenerica {
     }
     public void crearCliente(){
          //this.gvista.abrirCliente(getEscritorio());
-        escritorio = new javax.swing.JDesktopPane();
-        GestorVistaCliente gestor= new GestorVistaCliente();
-        gestor.openFormulario(escritorio); 
+//        escritorio = new javax.swing.JDesktopPane();
+//        GestorVistaCliente gestor= new GestorVistaCliente();
+//        gestor.openFormulario(escritorio); 
     }
-    JDesktopPane escritorio;
-    public JDesktopPane getEscritorio() {
-        return escritorio;
-    }
-
-    public void setEscritorio(JDesktopPane escritorio) {
-        this.escritorio = escritorio;
-    }
+//    JDesktopPane escritorio;
+//    public JDesktopPane getEscritorio() {
+//        return escritorio;
+//    }
+//
+//    public void setEscritorio(JDesktopPane escritorio) {
+//        this.escritorio = escritorio;
+//    }
      /** Este método se llama desde dentro del constructor para inicializar el formulario.
      ADVERTENCIA: NO modifique este código. 
      El contenido de este método es siempre regenerado por el Editor de formularios.**/
