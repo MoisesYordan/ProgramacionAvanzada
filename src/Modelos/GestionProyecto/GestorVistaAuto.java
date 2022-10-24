@@ -264,28 +264,33 @@ public class GestorVistaAuto extends GestorVista  {
 
     }
 
-    public void setBusqueda(String dato,int ord, String text, String quebuscar,int b){ 
+public void setBusqueda(String dato,int ord, String text, String quebuscar,int b){ 
         this.initializeTablaBusqueda(this.getForm().getTblDatos());
-        
+
         if(!"".equals(dato)){
            if(b==0){//b=>0 es una cadena numerica    1= es una cadena alfanumerica
 
-                this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
+                this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,"",null));
                 int d=Integer.parseInt(dato);
-                if(this.listar3(text,ord,d,quebuscar).size()==0){
+                if(this.listarGenericoNumero(ord,d,quebuscar,Auto.class,-1).size()==0){
                     JOptionPane.showMessageDialog(null, "error, no se encontro en la BD","Validación de Datos",JOptionPane.WARNING_MESSAGE);
                 }
            }
            else{
-                this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
-                if(this.listar2(text,ord,dato,quebuscar).size()==0){
+                //this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,"",null));
+                if(this.listarGenericoLetra(ord,"nombre",dato,Modelo.class,-1).size()==0){
                     JOptionPane.showMessageDialog(null, "error, no se encontro en la BD","Validación de Datos",JOptionPane.WARNING_MESSAGE);
+                }
+                else{
+                    Modelo obj=(Modelo) this.listarGenericoLetra(ord,"nombre",dato,Modelo.class,-1).get(0);
+                    System.out.print(obj);
+                    this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"",obj));
                 }
             }
         }
         else{
             b=3;
-            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"")); 
+            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"",null)); 
         }
     }
   
@@ -320,11 +325,11 @@ public class GestorVistaAuto extends GestorVista  {
         return model.getValueAt(tbl.getSelectedRow(),0);
     }
     
-    public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text) { 
+ public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text,Object obj) { 
         TreeSet<Auto> lista = new TreeSet(); 
         if(b==0){
             int d=Integer.parseInt(dato);
-            List<Auto> list= this.listar3(text,ordenamiento,d,quebuscar);
+            List<Auto> list= this.listarGenericoNumero(ordenamiento,d,quebuscar,Auto.class,-1);
             Auto  auxModel;
             Iterator it = (Iterator) list.iterator();
             while (it.hasNext())  {
@@ -342,8 +347,8 @@ public class GestorVistaAuto extends GestorVista  {
                 auxModelTabla.addRow(fila); 
             }
         }
-        if(b==1){
-            List<Auto> list= this.listar2(text,ordenamiento,dato,quebuscar);
+        if(b==1){            
+            List<Auto> list= this.listarGenericoLetra(ordenamiento,"modelo",obj,Auto.class, -1);
             Auto  auxModel;
             Iterator it = (Iterator) list.iterator();
             while (it.hasNext())  {
@@ -361,7 +366,7 @@ public class GestorVistaAuto extends GestorVista  {
             }  
         }
         if(b==3){
-            List<Auto> list= this.listar(text,ordenamiento);
+            List<Auto> list= this.listarTodo(text,ordenamiento,Auto.class,-1);
             Auto  auxModel;
             Iterator it = (Iterator) list.iterator();
             while (it.hasNext())  {
@@ -378,31 +383,13 @@ public class GestorVistaAuto extends GestorVista  {
                 auxModelTabla.addRow(fila); 
             } 
         }
-    return auxModelTabla;
+     return auxModelTabla;
 }
-    
-    public List<Auto> listar(String text,int ord) { //Vacio
-        Criteria crit = getSession().createCriteria(Auto.class)
-             .add( Restrictions.eq("estado", 0));  
-             crit.add( Restrictions.like("marca",'%'+ text.toUpperCase()+'%'));
-        return crit.list();
+
+    private List<Auto> listarTodo(String text, int ordenamiento, Class<Auto> aClass, int i) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-    public List<Auto> listar2(String text,int ord,String dato,String quebuscar) { //LETRAS
-        Criteria crit = getSession().createCriteria(Auto.class)
-             .add( Restrictions.eq("estado", 0)); 
-             crit.add( Restrictions.eq(quebuscar, dato));
-           //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
 
-        return crit.list();
-     }
-    
-    public List<Auto> listar3(String text,int ord,int d,String quebuscar) { //numero
-        Criteria crit = getSession().createCriteria(Auto.class)
-             .add( Restrictions.eq("estado", 0));  
-             crit.add( Restrictions.eq(quebuscar, d));
-           //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
-
-        return crit.list();
-     }
+   
 }

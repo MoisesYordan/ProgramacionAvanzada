@@ -295,9 +295,9 @@ public class FrmAuto extends FrmGenerica {
         //busqueda=> 0=lupa de buscar     1= el candado de buscarCodigo
         if (this.getGestorVista().validarNumeros(dato)==false|| busqueda==0){
             b=1;//b=>0 es una cadena alfanumerica            1= es una cadena numerica
-            String quebuscar="marca";
+//            String quebuscar="marca";
             this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
-            this.getGestorVista().setBusqueda(dato,ord,text,quebuscar,b);  
+            this.getGestorVista().setBusqueda(dato,ord,text,"",b);  
         }else{
             b=0;//b=>0 es una cadena numerica           1= es una cadena letras
             dato=this.txtCodigo.getText();//se pone en la variable dato lo que esta dentro de la barra de codigo

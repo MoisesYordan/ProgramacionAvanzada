@@ -294,23 +294,23 @@ public class GestorVista  extends GestorHibernate {
         model.removeRow(tbl.getSelectedRow());
     }
     
-//    public List listarTodo(int ord, String text, Clase clase, int max){
-//        Criteria crit =getSession().createCriteria(clase);
-//            .add(Restrictions.eq("estado",0)).setMaxResults(max);
-//        return crit.list();
-//    }
-//        
-//    public List listarGenericoLetra(int ord, String quebuscar, Object dato, Clase clase, int max){
-//        Criteria crit =getSession().createCriteria(clase);
-//            .add(Restrictions.eq("estado",0))
-//            .add(Restrictions.eq(quebuscar,dato)).setMaxResults(max);
-//        return crit.list();
-//    }
-//     
-//    public List listarGenericoNumero(int ord, int d, String quebuscar, Clase clase, int max){
-//        Criteria crit =getSession().createCriteria(clase);
-//            .add(Restrictions.eq("estado",0))
-//            .add(Restrictions.eq(quebuscar,d).setMaxResults(max);
-//        return crit.list();
-//    }
+    public List listarTodo(String text, Class clase, int max){
+        Criteria crit =getSession().createCriteria(clase)
+            .add(Restrictions.eq("estado",0)).setMaxResults(max);
+        return crit.list();
+    }
+        
+    public List listarGenericoLetra(int ord, String quebuscar, Object dato, Class clase, int max){
+        Criteria crit =getSession().createCriteria(clase)
+            .add(Restrictions.eq("estado",0))
+            .add(Restrictions.eq(quebuscar,dato)).setMaxResults(max);
+        return crit.list();
+    }
+     
+    public List listarGenericoNumero(int ord, int d, String quebuscar, Class clase, int max){
+        Criteria crit =getSession().createCriteria(clase)
+            .add(Restrictions.eq("estado",0))
+            .add(Restrictions.eq(quebuscar,d)).setMaxResults(max);
+        return crit.list();
+    }
 }
