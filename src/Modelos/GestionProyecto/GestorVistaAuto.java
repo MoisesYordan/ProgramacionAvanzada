@@ -278,7 +278,7 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
            }
            else{
                 //this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,"",null));
-                if(this.listarGenericoLetra(ord,"nombre",dato,Modelo.class,-1).size()==0){
+                if(this.listarGenericoLetra(ord,"nombre",dato,Modelo.class,-1).size()==0){ //ADS
                     JOptionPane.showMessageDialog(null, "error, no se encontro en la BD","Validación de Datos",JOptionPane.WARNING_MESSAGE);
                 }
                 else{
