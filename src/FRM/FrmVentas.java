@@ -2,16 +2,13 @@ package FRM;
 import Modelos.GestionProyecto.Auto;
 import Modelos.GestionProyecto.GestorVistaCliente;
 import Modelos.GestionProyecto.GestorVistaVentas;
-import Modelos.GestionProyecto.Modelo;
 import Vistas.FrmGenerica;
 import Vistas.GestorVistaPrincipal;
 import java.awt.HeadlessException;
 import javax.swing.*;
-import javax.swing.JDesktopPane;
 
 
 public class FrmVentas extends FrmGenerica {
-    private GestorVistaPrincipal gvista;
     private GestorVistaVentas gestorVista;
     private int YES_NO_OPTION;
 
@@ -301,7 +298,7 @@ public class FrmVentas extends FrmGenerica {
 
     @Override
     public void grabFocus(){
-        txtModelo.grabFocus();
+        cmbAuto.grabFocus();
     }
 
    @Override
@@ -353,56 +350,21 @@ public class FrmVentas extends FrmGenerica {
         Auto auto = (Auto) cmbAuto.getSelectedItem();
         txtModelo.setText(auto.getModelo().toString());   
         txtMarca.setText(auto.getMarca());  
-        txtPais.setText(auto.getPais());  
+        txtPais.setText(auto.getPais().toString());  
         txtAño.setText(auto.getAño()); 
         btnCalcular.setEnabled(true); 
-//        Object pais= auto.getPais().toString();
-//        txtImpuesto.setText(pais.getImpuesto()); 
      }
      
     public void calcularTotal(){
         Auto auto = (Auto) cmbAuto.getSelectedItem();
         int cantidad = Integer.parseInt(txtCantidad.getText());
-     
-        if(auto.getModelo().getPais().getImpuesto().equalsIgnoreCase("1")){
-            txtImpuesto.setText("%1"); 
-            Double total= Double.parseDouble( auto.getTotal());
-            System.out.println(total);
-            total= total+(total*0.01*cantidad);
-            Math.round(total);
-            txtTotal.setText(Math.round(total) +"");
-        }
-        if(auto.getModelo().getPais().getImpuesto().equalsIgnoreCase("2")){
-            txtImpuesto.setText("%10");  
-            Double total= Double.parseDouble( auto.getTotal());
-            System.out.println(total);
-            total= total+(total*0.1*cantidad);
-            Math.round(total);
-            txtTotal.setText(Math.round(total) +"");
-        }
-        if(auto.getModelo().getPais().getImpuesto().equalsIgnoreCase("3")){
-            txtImpuesto.setText("%20");  
-            Double total= Double.parseDouble( auto.getTotal());
-            System.out.println(total);
-            total= total+(total*0.2*cantidad);
-            Math.round(total);
-            txtTotal.setText(Math.round(total) +"");
-        }
+        Double impuesto=Double.parseDouble( auto.getPais().getImpuesto());
+        Double total= Double.parseDouble( auto.getTotal());
+        total= total+(total*cantidad*(impuesto/100));
+        txtImpuesto.setText(auto.getPais().getImpuesto()); 
+        txtTotal.setText(Math.round(total) +"");
+
     }
-    public void crearCliente(){
-         //this.gvista.abrirCliente(getEscritorio());
-//        escritorio = new javax.swing.JDesktopPane();
-//        GestorVistaCliente gestor= new GestorVistaCliente();
-//        gestor.openFormulario(escritorio); 
-    }
-//    JDesktopPane escritorio;
-//    public JDesktopPane getEscritorio() {
-//        return escritorio;
-//    }
-//
-//    public void setEscritorio(JDesktopPane escritorio) {
-//        this.escritorio = escritorio;
-//    }
     
      /** Este método se llama desde dentro del constructor para inicializar el formulario.
      ADVERTENCIA: NO modifique este código. 
@@ -965,7 +927,7 @@ public class FrmVentas extends FrmGenerica {
     }//GEN-LAST:event_tblDatosMouseClicked
 
     private void btnFrmClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFrmClienteActionPerformed
-       this.crearCliente();       // TODO add your handling code here:
+       this.gestorVista.crearCliente();
     }//GEN-LAST:event_btnFrmClienteActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
@@ -973,7 +935,7 @@ public class FrmVentas extends FrmGenerica {
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void cmbAutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAutoItemStateChanged
-        this.llenadoCmbAutos();        // TODO add your handling code here:
+        this.llenadoCmbAutos();
     }//GEN-LAST:event_cmbAutoItemStateChanged
 
 

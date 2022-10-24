@@ -135,6 +135,10 @@ public class GestorVistaPais extends GestorVista{
         this.setOpcABM(2);
     }
 
+    public List <Pais> listarPaises(){   //creo q deberiamos listar un objeto pais q contenga todos sus atributo nosolo su nombre
+        return this.listarClase(Pais.class,"nombrepais");
+    }
+        
     public DefaultComboBoxModel getComboModelPais() {      
         DefaultComboBoxModel auxModel= new DefaultComboBoxModel();
         auxModel.addElement("");
@@ -142,10 +146,6 @@ public class GestorVistaPais extends GestorVista{
             auxModel.addElement(auxTipo);
         }
          return auxModel;
-    }
-    
-    public List <Pais> listarPaises(){   //creo q deberiamos listar un objeto pais q contenga todos sus atributo nosolo su nombre
-        return this.listarClase(Pais.class,"nombrepais");
     }
     
     public int getUltimoCodigo() {
@@ -156,6 +156,7 @@ public class GestorVistaPais extends GestorVista{
             return 0;
         }
     }
+
         public void initializeTablaBusqueda(JTable tbl) {
         String[] titulo={"","Cód.","Nombre","Impuesto"};
         String[] ancho ={"10","30","150","150"};

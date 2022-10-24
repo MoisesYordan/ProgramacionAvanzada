@@ -75,7 +75,7 @@ public class GestorVistaAuto extends GestorVista  {
         cmb.setModel(getComboModelTipoProyecto2()); //esto para mi deberia cambiar (ivo) 
     }
     public DefaultComboBoxModel getComboModelTipoProyecto2() {
-        return this.getGestorModelo().getComboModelTipoProyecto2(); //esto para mi se deberia cambiar (ivo)
+        return this.getGestorPais().getComboModelPais(); //esto para mi se deberia cambiar (ivo)
     } 
     
     @Override
@@ -107,9 +107,9 @@ public class GestorVistaAuto extends GestorVista  {
     public int setModel() {
         if (this.isDatosValidos()) {
             this.getModel().setModelo((Modelo) this.getForm().getCmbModelo().getModel().getSelectedItem());
-            //this.getModel().setModelo((Modelo) this.getForm().getCmbPais().getModel().getSelectedItem());
-            String pais= String.valueOf(this.getForm().getCmbPais().getModel().getSelectedItem()); // modificacion moises para guardar pais
-            this.getModel().setPais(pais); //----> DE IVO cumple pero  no deberia traer un objeto pais asi podemos sacar el %
+            this.getModel().setPais((Pais) this.getForm().getCmbPais().getModel().getSelectedItem());
+//            String pais= String.valueOf(this.getForm().getCmbPais().getModel().getSelectedItem()); // modificacion moises para guardar pais
+//            this.getModel().setPais(pais); //----> DE IVO cumple pero  no deberia traer un objeto pais asi podemos sacar el %
             this.getModel().setMarca(this.getForm().getTxtMarca().getText());
             this.getModel().setAño(this.getForm().getTxtAño().getText());
             this.getModel().setCosto(this.getForm().getTxtCosto().getText());
@@ -256,8 +256,8 @@ public class GestorVistaAuto extends GestorVista  {
         this.getForm().getTxtMarca().setText(this.getModel().getMarca());
         this.getForm().getCmbModelo().setSelectedItem(this.getModel().getModelo());
         this.getForm().getTxtAño().setText(this.getModel().getAño());
-        this.getForm().getTxtPais().setText(this.getModel().getPais());
-        //this.getForm().getCmbPais().setSelectedItem(this.getModel().getPais());
+        //this.getForm().getTxtPais().setText(this.getModel().getPais());
+        this.getForm().getCmbPais().setSelectedItem(this.getModel().getPais());
         this.getForm().getTxtCosto().setText(this.getModel().getCosto());
         this.getForm().getTxtTotal().setText(this.getModel().getTotal());
         this.getForm().getTxtStock().setText(this.getModel().getStock());

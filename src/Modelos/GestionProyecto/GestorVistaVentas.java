@@ -4,7 +4,6 @@ import FRM.FrmVentas;
 import static Hibernate.HibernateUtil.getSession;
 import Vistas.FrmPrincipal;
 import Vistas.GestorVista;
-import Vistas.GestorVistaPrincipal;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
@@ -27,6 +26,7 @@ public class GestorVistaVentas extends GestorVista  {
     private GestorVistaAuto gestorAuto = new GestorVistaAuto();
     private GestorVistaCliente gestorCliente = new GestorVistaCliente();
     private GestorVistaEmpleado gestorEmpleado = new GestorVistaEmpleado();
+    private FrmPrincipal fPrincipal = new FrmPrincipal();
 
     public FrmVentas getForm() {
         return form;
@@ -412,4 +412,15 @@ public class GestorVistaVentas extends GestorVista  {
 
         return crit.list();
      }
+    
+    public void crearCliente(){
+//        GestorVistaCliente gestor= new GestorVistaCliente();
+//        gestor.getInstancia().openFormulario(FrmPrincipal.escritorio);
+//        GestorVistaCliente.getInstancia().nuevoItem();
+//        
+//
+//        gestor.openFormulario(FrmPrincipal.escritorio); 
+    }
+
+
 }

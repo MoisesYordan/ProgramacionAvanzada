@@ -21,8 +21,7 @@ public class GestorVistaModelo extends GestorVista{
     private FrmModelo form;
     private Modelo model;
     private GestorVistaMarca gestorMarca = new GestorVistaMarca();
-    private GestorVistaPais gestorPais = new GestorVistaPais(); // --->> este para mi va comentado porque si auto conoce pais no es necesario q marca conozca pais
-    
+  
     public FrmModelo getForm() {
         return form;
     }
@@ -45,14 +44,7 @@ public class GestorVistaModelo extends GestorVista{
     public void setGestorMarca(GestorVistaMarca gestorMarca) {
         this.gestorMarca = gestorMarca;
     }
-        
-    public GestorVistaPais getGestorPais() {
-        return gestorPais;
-    }
-    public void setGestorPais(GestorVistaPais gestorPais) {
-        this.gestorPais = gestorPais;
-    }
-
+       
     @Override
     public void newModel() {
         this.setModel(new Modelo());
@@ -64,13 +56,6 @@ public class GestorVistaModelo extends GestorVista{
     }
     public DefaultComboBoxModel getComboModelTipoProyecto() {
         return this.getGestorMarca().getComboModelMarca();
-    }
-
-    public void setModelPais(JComboBox cmb) {
-        cmb.setModel(getComboModelTipoProyecto2());
-    }
-    public DefaultComboBoxModel getComboModelTipoProyecto2() {
-        return this.getGestorPais().getComboModelPais();
     }
          
     @Override
@@ -103,8 +88,7 @@ public class GestorVistaModelo extends GestorVista{
         if (this.isDatosValidos()) {
             this.getModel().setNombre(this.getForm().getTxtNombre().getText());
             this.getModel().setMarca((Marca) this.getForm().getCmbMarca().getModel().getSelectedItem());
-            this.getModel().setPais((Pais) this.getForm().getCmbPais().getModel().getSelectedItem());
-
+            
             return 0;
         } else {
             return 1;
@@ -121,11 +105,6 @@ public class GestorVistaModelo extends GestorVista{
         if (this.isEmpty(this.getForm().getCmbMarca())) {
             JOptionPane.showMessageDialog(null, "Falta ingresar la marca");
             this.getForm().getCmbMarca().grabFocus();
-            return false;
-        }
-        if (this.isEmpty(this.getForm().getCmbPais())) {
-            JOptionPane.showMessageDialog(null, "Falta ingresar el pais");
-            this.getForm().getCmbPais().grabFocus();
             return false;
         }
 
@@ -183,8 +162,7 @@ public class GestorVistaModelo extends GestorVista{
         this.getForm().setVisible(true);
         this.setOpcABM(2);
     }
-    
-    
+        
  // busquedas, iteradores y otras
     public List <Modelo> List(){   
         return getSession().createCriteria(Modelo.class).list();
@@ -210,8 +188,8 @@ public class GestorVistaModelo extends GestorVista{
     }
     
      public void initializeTablaBusqueda(JTable tbl) {
-        String[] titulo={"","Cód.","Nombre","Marca","Pais"};
-        String[] ancho ={"10","30","135","135","135"};//cambiar
+        String[] titulo={"","Cód.","Nombre","Marca"};
+        String[] ancho ={"10","30","135","135"};//cambiar
         this.newModelTable(tbl,titulo,ancho);
     }
      
@@ -220,7 +198,6 @@ public class GestorVistaModelo extends GestorVista{
         this.getForm().getTxtCodigo().setText(this.getModel().getCodigoS());
         this.getForm().getTxtNombre().setText(this.getModel().getNombre());
         this.getForm().getCmbMarca().setSelectedItem(this.getModel().getMarca());
-        this.getForm().getCmbPais().setSelectedItem(this.getModel().getPais());
     }
     
     public void setBusqueda(String dato,int ord, String text, String quebuscar,int b){ 
@@ -294,7 +271,7 @@ public class GestorVistaModelo extends GestorVista{
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Modelo ) it2.next();
-                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getMarca(),auxModel.getPais()}; 
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getMarca()}; 
                 auxModelTabla.addRow(fila); 
             }
         }
@@ -310,7 +287,7 @@ public class GestorVistaModelo extends GestorVista{
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Modelo ) it2.next();
-                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getMarca(),auxModel.getPais()}; 
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getMarca()}; 
                 auxModelTabla.addRow(fila); 
             }  
         }
@@ -326,7 +303,7 @@ public class GestorVistaModelo extends GestorVista{
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Modelo ) it2.next();
-                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getMarca(),auxModel.getPais()}; 
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getNombre(),auxModel.getMarca()}; 
                 auxModelTabla.addRow(fila); 
             } 
         }

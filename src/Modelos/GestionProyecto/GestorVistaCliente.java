@@ -24,6 +24,25 @@ public class GestorVistaCliente extends GestorVista {
     private FrmCliente form;
     private Cliente model;
     
+//    private static GestorVistaCliente instanciaUnica;
+//    public static GestorVistaCliente getInstancia(){
+//        if(instanciaUnica != null){ //solo se ejecuta la primera ves
+//            instanciaUnica = new GestorVistaCliente();
+//        }
+//        return instanciaUnica;
+//    }
+//    
+//    public void nuevoItem(){
+//        this.getForm().viewNuevoEnter();
+//        this.getForm().btnEliminar.setEnabled(false);
+//        this.getForm().btnCancelar.setEnabled(false);
+//        //this.getForm().btnImprimir.setEnabled(false);
+//       // this.getForm().txtFiltros.setEnabled(false);
+//       // this.getForm().comboFiltros.setEnabled(false);
+//        //this.getForm().btnBuscar.setEnabled(false);
+//       // this.eliminarDatosGrilla();
+//    }
+    
     public FrmCliente getForm() {
         return form;
     }
@@ -172,10 +191,6 @@ public class GestorVistaCliente extends GestorVista {
 
     @Override
     public void openFormulario(JDesktopPane pantalla) {
-//pantalla = (javax.swing.JDesktopPane) javax.swing.JDesktopPane[,0,0,0x0,invalid,alignmentX=0.0,alignmentY=0.0,
-//border=,flags=328,maximumSize=,minimumSize=,preferredSize=,optimizedDrawingPossible=true,
-//desktopManager=javax.swing.plaf.basic.BasicDesktopPaneUI$BasicDesktopManager@646c49f6]
-
         this.setEscritorio(pantalla);
         this.setForm(new FrmCliente(this));
         this.setTitulo(this.getForm().getTitle());

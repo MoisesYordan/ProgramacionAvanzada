@@ -3,7 +3,7 @@ import javax.swing.JDesktopPane;
 
 public class FrmPrincipal extends  javax.swing.JFrame {
     public GestorVistaPrincipal gestorVista;
-
+    
     public GestorVistaPrincipal getGestorVista() {
         return gestorVista;
     }
@@ -28,7 +28,8 @@ public class FrmPrincipal extends  javax.swing.JFrame {
     public void setEscritorio(JDesktopPane escritorio) {
         this.escritorio = escritorio;
     }
-
+    
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

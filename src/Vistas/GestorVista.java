@@ -229,18 +229,18 @@ public class GestorVista  extends GestorHibernate {
         return auxValor;
     }
 
-    public void abrirListado(String archivo){
-        try{
-            gestorReportes= new GestorDeReportes(archivo);
-            gestorReportes.agregarParametro("tituloMembrete", "");
-            gestorReportes.agregarParametro("tituloMembrete2", "");
-            gestorReportes.agregarParametro("frase", "");
-            gestorReportes.agregarParametro("pieMembrete", "");
-        }
-        catch (Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
+//    public void abrirListado(String archivo){
+//        try{
+//            gestorReportes= new GestorDeReportes(archivo);
+//            gestorReportes.agregarParametro("tituloMembrete", "");
+//            gestorReportes.agregarParametro("tituloMembrete2", "");
+//            gestorReportes.agregarParametro("frase", "");
+//            gestorReportes.agregarParametro("pieMembrete", "");
+//        }
+//        catch (Exception e){
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+//    }
 
     public void imprimirListado() {
         try{

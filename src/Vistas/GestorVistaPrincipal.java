@@ -30,7 +30,7 @@ public class GestorVistaPrincipal extends GestorVista{
     public  void abrirCliente(JDesktopPane escritorio) {
         GestorVistaCliente gestor= new GestorVistaCliente();
         gestor.openFormulario(escritorio); 
-        }
+    }
     public  void abrirVentas(JDesktopPane escritorio) {
         GestorVistaVentas gestor= new GestorVistaVentas();
         gestor.openFormulario(escritorio); 

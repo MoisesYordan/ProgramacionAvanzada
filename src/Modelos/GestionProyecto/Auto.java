@@ -30,7 +30,7 @@ public class Auto implements Comparable<Auto> ,Serializable{
     private String total;
     private String año;
     private String marca;
-    private String pais; //----> para mi deberia ser un objeto pais de tipo pais  
+    private Pais pais; //----> para mi deberia ser un objeto pais de tipo pais  
     
     public long getId() {
         return id;
@@ -104,11 +104,11 @@ public class Auto implements Comparable<Auto> ,Serializable{
         this.stock = stock;
     }
     
-    public String getPais() {
+    public Pais getPais() {
         return pais;
     }
 
-    public void setPais(String pais) {
+    public void setPais(Pais pais) {
         this.pais = pais;
     }
 
@@ -116,7 +116,7 @@ public class Auto implements Comparable<Auto> ,Serializable{
     
     }
 
-    public Auto(long id, int codigo, Modelo modelo, String marca,  String año, String costo, String total, String stock, String pais) {
+    public Auto(long id, int codigo, Modelo modelo, String marca,  String año, String costo, String total, String stock, Pais pais) {
         this.id =id;
         this.codigo = codigo;
         this.modelo = modelo;

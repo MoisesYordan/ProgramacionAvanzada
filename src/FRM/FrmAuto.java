@@ -253,7 +253,7 @@ public class FrmAuto extends FrmGenerica {
         txtCosto.setText("");
         txtTotal.setText("");
         txtStock.setText("");
-        //txtBusquedaNombre.setText("");
+        txtBusquedaNombre.setText("");
     }
 
     @Override

@@ -21,8 +21,6 @@ public class Modelo implements Comparable, Serializable{
     private String nombre;
     @OneToOne (targetEntity = Marca.class, cascade= CascadeType.ALL,fetch=FetchType.LAZY)
     private Marca marca;
-    @OneToOne (targetEntity = Pais.class, cascade= CascadeType.ALL,fetch=FetchType.LAZY)
-    private Pais pais;
     
     
     public long getId() {
@@ -56,14 +54,6 @@ public class Modelo implements Comparable, Serializable{
         this.marca = marca;
     }
     
-    
-    public Pais getPais() {
-        return pais;
-    }
-
-    public void setPais(Pais pais) {
-        this.pais = pais;
-    }
      public int getEstado() {
         return estado;
     }
@@ -71,21 +61,16 @@ public class Modelo implements Comparable, Serializable{
     public void setEstado(int nombre) {
         this.estado = nombre;
     }
-    public Modelo(long id, int codigo, String nombre, Marca marca, Pais pais) {
+    public Modelo(long id, int codigo, String nombre, Marca marca) {
         this.id = id;
         this.codigo = codigo;
         this.nombre = nombre;
         this.marca=marca;
-        this.pais=pais;
     }
 
     public Modelo() {
     }
 
-//    @Override
-//    public String toString() {
-//        return nombre;
-//    }
     @Override
     public String toString() {
         return 

@@ -57,14 +57,6 @@ public class FrmModelo extends FrmGenerica {
         this.txtMarca = txtMarca;
     }
     
-    public JComboBox<String> getCmbPais() {
-        return cmbPais;
-    }
-
-    public void setCmbPais(JComboBox<String> cmbPais) {
-        this.cmbPais = cmbPais;
-    }
-    
     public JTextField getTxtBuscar(){
         return txtBusquedaNombre;
     }
@@ -151,7 +143,6 @@ public class FrmModelo extends FrmGenerica {
     @Override
     public void cargarCombos() {
         this.gestorVista.setModelMarca(cmbMarca);
-        this.gestorVista.setModelPais(cmbPais);
     }
 
     @Override
@@ -159,7 +150,6 @@ public class FrmModelo extends FrmGenerica {
         txtCodigo.setEnabled(false);
         txtNombre.setEnabled(tipo);
         cmbMarca.setEnabled(tipo);
-        cmbPais.setEnabled(tipo);
     }
 
     private void viewBasic(){
@@ -276,7 +266,6 @@ public class FrmModelo extends FrmGenerica {
         jLabel3 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         btnBuscarCodigo = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnNuevo = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
@@ -284,7 +273,6 @@ public class FrmModelo extends FrmGenerica {
         btnSalir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         cmbMarca = new javax.swing.JComboBox<>();
-        cmbPais = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -344,11 +332,6 @@ public class FrmModelo extends FrmGenerica {
         });
         jPanel1.add(btnBuscarCodigo);
         btnBuscarCodigo.setBounds(110, 46, 30, 30);
-
-        jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        jLabel2.setText("Pais");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 210, 120, 17);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(null);
@@ -433,10 +416,6 @@ public class FrmModelo extends FrmGenerica {
         cmbMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         jPanel1.add(cmbMarca);
         cmbMarca.setBounds(20, 170, 310, 30);
-
-        cmbPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
-        jPanel1.add(cmbPais);
-        cmbPais.setBounds(20, 230, 310, 30);
 
         jLabel5.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel5.setText("Marca");
@@ -666,9 +645,7 @@ try {
     public javax.swing.JButton btnNuevo;
     public javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cmbMarca;
-    private javax.swing.JComboBox<String> cmbPais;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
