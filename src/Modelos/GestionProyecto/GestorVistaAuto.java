@@ -245,7 +245,7 @@ public class GestorVistaAuto extends GestorVista  {
     }
     
      public void initializeTablaBusqueda(JTable tbl) {
-        String[] titulo={"","Cód.","Modelo","Marca","Año","Costo","Total","Stock","Pais"};
+        String[] titulo={"","Cód.","Modelo","Marca","Año","Costo $","Total $","Stock U°","Pais"};
         String[] ancho ={"10","30","100","111","40","100","100","40","100"};
         this.newModelTable(tbl,titulo,ancho);
     }

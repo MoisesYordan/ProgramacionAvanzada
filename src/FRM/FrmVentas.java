@@ -419,6 +419,7 @@ public class FrmVentas extends FrmGenerica {
         jLabel17 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         btnCalcular = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
@@ -545,10 +546,10 @@ public class FrmVentas extends FrmGenerica {
         cmbEmpleado.setBounds(280, 170, 120, 30);
 
         jLabel5.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
-        jLabel5.setText("$");
+        jLabel5.setText("%");
         jLabel5.setRequestFocusEnabled(false);
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(140, 280, 30, 30);
+        jLabel5.setBounds(140, 220, 30, 30);
 
         jLabel6.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel6.setText("Pais");
@@ -702,6 +703,12 @@ public class FrmVentas extends FrmGenerica {
         });
         jPanel1.add(btnCalcular);
         btnCalcular.setBounds(170, 170, 30, 30);
+
+        jLabel18.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
+        jLabel18.setText("$");
+        jLabel18.setRequestFocusEnabled(false);
+        jPanel1.add(jLabel18);
+        jLabel18.setBounds(140, 280, 30, 30);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(370, 0, 550, 440);
@@ -908,6 +915,7 @@ public class FrmVentas extends FrmGenerica {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

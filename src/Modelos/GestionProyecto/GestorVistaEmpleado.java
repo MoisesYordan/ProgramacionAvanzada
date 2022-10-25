@@ -209,7 +209,7 @@ public class GestorVistaEmpleado extends GestorVista {
     
      public void initializeTablaBusqueda(JTable tbl) {
         String[] titulo={"","Cód.","Nombre","Apellido","DNI","FechaDeNacimiento","Telefono","Email","Direccion"};
-        String[] ancho ={"5","20","90","90","90","90","90","90","90"};
+        String[] ancho ={"3","20","90","90","90","90","90","90","90"};
         this.newModelTable(tbl,titulo,ancho);
     }
     
