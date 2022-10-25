@@ -417,7 +417,7 @@ public class FrmEmpleado extends FrmGenerica {
             }
         });
         jPanel3.add(btnSalir);
-        btnSalir.setBounds(100, 10, 75, 23);
+        btnSalir.setBounds(112, 5, 75, 30);
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -436,10 +436,10 @@ public class FrmEmpleado extends FrmGenerica {
             }
         });
         jPanel3.add(btnCancelar);
-        btnCancelar.setBounds(10, 10, 75, 23);
+        btnCancelar.setBounds(12, 5, 75, 30);
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(300, 380, 180, 40);
+        jPanel3.setBounds(278, 380, 200, 40);
 
         jLabel5.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel5.setText("Nombre");
@@ -541,7 +541,7 @@ public class FrmEmpleado extends FrmGenerica {
         jPanel6.add(btnGuardara);
 
         jPanel1.add(jPanel6);
-        jPanel6.setBounds(21, 380, 190, 40);
+        jPanel6.setBounds(15, 380, 190, 40);
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos De Contacto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel1.add(jPanel7);

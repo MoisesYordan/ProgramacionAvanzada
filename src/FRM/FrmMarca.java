@@ -382,7 +382,7 @@ public class FrmMarca extends FrmGenerica {
             }
         });
         jPanel3.add(btnSalir);
-        btnSalir.setBounds(100, 10, 75, 23);
+        btnSalir.setBounds(112, 5, 75, 30);
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -401,10 +401,10 @@ public class FrmMarca extends FrmGenerica {
             }
         });
         jPanel3.add(btnCancelar);
-        btnCancelar.setBounds(10, 10, 75, 23);
+        btnCancelar.setBounds(12, 5, 75, 30);
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(310, 380, 180, 40);
+        jPanel3.setBounds(280, 380, 200, 40);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(390, 10, 500, 430);
@@ -475,6 +475,7 @@ public class FrmMarca extends FrmGenerica {
         jPanel4.add(jLabel4);
         jLabel4.setBounds(20, 20, 190, 20);
 
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel5.setMinimumSize(new java.awt.Dimension(190, 40));
         jPanel5.setPreferredSize(new java.awt.Dimension(190, 40));
 

@@ -371,10 +371,10 @@ public class FrmModelo extends FrmGenerica {
             }
         });
         jPanel2.add(btnGuardar);
-        btnGuardar.setBounds(100, 5, 75, 30);
+        btnGuardar.setBounds(110, 5, 75, 30);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(20, 380, 190, 40);
+        jPanel2.setBounds(20, 380, 200, 40);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel3.setLayout(null);
@@ -389,7 +389,7 @@ public class FrmModelo extends FrmGenerica {
             }
         });
         jPanel3.add(btnSalir);
-        btnSalir.setBounds(95, 10, 75, 23);
+        btnSalir.setBounds(112, 5, 75, 30);
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -408,10 +408,10 @@ public class FrmModelo extends FrmGenerica {
             }
         });
         jPanel3.add(btnCancelar);
-        btnCancelar.setBounds(10, 10, 75, 23);
+        btnCancelar.setBounds(12, 5, 75, 30);
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(280, 380, 180, 40);
+        jPanel3.setBounds(280, 380, 200, 40);
 
         cmbMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         jPanel1.add(cmbMarca);
@@ -481,6 +481,7 @@ public class FrmModelo extends FrmGenerica {
         jPanel4.add(jLabel4);
         jLabel4.setBounds(20, 20, 190, 20);
 
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel5.setMinimumSize(new java.awt.Dimension(190, 40));
         jPanel5.setPreferredSize(new java.awt.Dimension(190, 40));
 

@@ -356,7 +356,7 @@ public class FrmPais extends FrmGenerica {
             }
         });
         jPanel2.add(btnEditar);
-        btnEditar.setBounds(20, 5, 75, 29);
+        btnEditar.setBounds(10, 5, 75, 30);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 380, 200, 40);
@@ -377,7 +377,7 @@ public class FrmPais extends FrmGenerica {
             }
         });
         jPanel3.add(btnSalir);
-        btnSalir.setBounds(100, 5, 75, 30);
+        btnSalir.setBounds(112, 5, 75, 30);
 
         btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -396,10 +396,10 @@ public class FrmPais extends FrmGenerica {
             }
         });
         jPanel3.add(btnCancelar);
-        btnCancelar.setBounds(20, 5, 75, 30);
+        btnCancelar.setBounds(12, 5, 75, 30);
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(290, 380, 200, 40);
+        jPanel3.setBounds(280, 380, 200, 40);
 
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel2.setText("Pais");

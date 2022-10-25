@@ -385,12 +385,12 @@ public class FrmVentas extends FrmGenerica {
         txtCodigo = new javax.swing.JTextField();
         btnBuscarCodigo = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        btnGuardar = new javax.swing.JButton();
-        btnNuevo = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        btnGuardar = new javax.swing.JButton();
+        btnNuevo = new javax.swing.JButton();
         cmbEmpleado = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -477,6 +477,46 @@ public class FrmVentas extends FrmGenerica {
         jPanel1.add(jLabel2);
         jLabel2.setBounds(280, 150, 120, 17);
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel3.setLayout(null);
+
+        btnSalir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        btnSalir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnSalirKeyPressed(evt);
+            }
+        });
+        jPanel3.add(btnSalir);
+        btnSalir.setBounds(112, 5, 75, 30);
+
+        btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        btnCancelar.setMaximumSize(new java.awt.Dimension(61, 21));
+        btnCancelar.setMinimumSize(new java.awt.Dimension(61, 21));
+        btnCancelar.setPreferredSize(new java.awt.Dimension(61, 21));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        btnCancelar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCancelarKeyPressed(evt);
+            }
+        });
+        jPanel3.add(btnCancelar);
+        btnCancelar.setBounds(12, 5, 75, 30);
+
+        jPanel1.add(jPanel3);
+        jPanel3.setBounds(320, 390, 200, 40);
+
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(null);
 
@@ -519,46 +559,6 @@ public class FrmVentas extends FrmGenerica {
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(20, 390, 200, 40);
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel3.setLayout(null);
-
-        btnSalir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
-        btnSalir.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnSalirKeyPressed(evt);
-            }
-        });
-        jPanel3.add(btnSalir);
-        btnSalir.setBounds(112, 5, 75, 30);
-
-        btnCancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnCancelar.setText("Cancelar");
-        btnCancelar.setMargin(new java.awt.Insets(1, 1, 1, 1));
-        btnCancelar.setMaximumSize(new java.awt.Dimension(61, 21));
-        btnCancelar.setMinimumSize(new java.awt.Dimension(61, 21));
-        btnCancelar.setPreferredSize(new java.awt.Dimension(61, 21));
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-        btnCancelar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnCancelarKeyPressed(evt);
-            }
-        });
-        jPanel3.add(btnCancelar);
-        btnCancelar.setBounds(12, 5, 75, 30);
-
-        jPanel1.add(jPanel3);
-        jPanel3.setBounds(320, 390, 200, 40);
 
         cmbEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         jPanel1.add(cmbEmpleado);
@@ -782,6 +782,7 @@ public class FrmVentas extends FrmGenerica {
         jPanel4.add(jLabel4);
         jLabel4.setBounds(20, 10, 190, 20);
 
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel5.setMinimumSize(new java.awt.Dimension(190, 40));
         jPanel5.setPreferredSize(new java.awt.Dimension(190, 40));
 
