@@ -189,7 +189,7 @@ public class GestorVistaModelo extends GestorVista{
     
      public void initializeTablaBusqueda(JTable tbl) {
         String[] titulo={"","Cód.","Nombre","Marca"};
-        String[] ancho ={"10","30","135","135"};//cambiar
+        String[] ancho ={"10","30","145","145"};//cambiar
         this.newModelTable(tbl,titulo,ancho);
     }
      

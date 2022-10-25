@@ -100,6 +100,7 @@ public class GestorVistaVentas extends GestorVista  {
             this.saveModel(this.getOpcABM());
             this.actualizarView();
         }
+        
     }
 
     @Override
@@ -414,12 +415,7 @@ public class GestorVistaVentas extends GestorVista  {
      }
     
     public void crearCliente(){
-//        GestorVistaCliente gestor= new GestorVistaCliente();
-//        gestor.getInstancia().openFormulario(FrmPrincipal.escritorio);
-//        GestorVistaCliente.getInstancia().nuevoItem();
-//        
-//
-//        gestor.openFormulario(FrmPrincipal.escritorio); 
+        this.gestorCliente.openFormulario(escritorio);
     }
 
 

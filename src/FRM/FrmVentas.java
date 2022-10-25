@@ -322,6 +322,7 @@ public class FrmVentas extends FrmGenerica {
     @Override
     public void saveView(){
         this.getGestorVista().saveView();
+        //this.gestorVista.getGestorAuto().getForm().setTxtStock(this.txtCantidad);
     }
 
     @Override
@@ -884,7 +885,13 @@ public class FrmVentas extends FrmGenerica {
     }//GEN-LAST:event_btnFrmClienteActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-        this.calcularTotal();
+        if (!txtCantidad.getText().equals("")&& this.gestorVista.validarNumeros(txtCantidad.getText()) ){
+            this.calcularTotal();
+        }else{
+            JOptionPane.showMessageDialog(null, "INGRESAR LA CANTIDAD DESEADA","Validación de Datos",JOptionPane.WARNING_MESSAGE);
+
+        }
+
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void cmbAutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAutoItemStateChanged

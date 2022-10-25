@@ -158,7 +158,7 @@ public class GestorVistaPais extends GestorVista{
     }
 
         public void initializeTablaBusqueda(JTable tbl) {
-        String[] titulo={"","Cód.","Nombre","Impuesto"};
+        String[] titulo={"","Cód.","Nombre","Impuesto %"};
         String[] ancho ={"10","30","150","150"};
         this.newModelTable(tbl,titulo,ancho);
     }

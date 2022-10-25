@@ -24,25 +24,6 @@ public class GestorVistaCliente extends GestorVista {
     private FrmCliente form;
     private Cliente model;
     
-//    private static GestorVistaCliente instanciaUnica;
-//    public static GestorVistaCliente getInstancia(){
-//        if(instanciaUnica != null){ //solo se ejecuta la primera ves
-//            instanciaUnica = new GestorVistaCliente();
-//        }
-//        return instanciaUnica;
-//    }
-//    
-//    public void nuevoItem(){
-//        this.getForm().viewNuevoEnter();
-//        this.getForm().btnEliminar.setEnabled(false);
-//        this.getForm().btnCancelar.setEnabled(false);
-//        //this.getForm().btnImprimir.setEnabled(false);
-//       // this.getForm().txtFiltros.setEnabled(false);
-//       // this.getForm().comboFiltros.setEnabled(false);
-//        //this.getForm().btnBuscar.setEnabled(false);
-//       // this.eliminarDatosGrilla();
-//    }
-    
     public FrmCliente getForm() {
         return form;
     }
