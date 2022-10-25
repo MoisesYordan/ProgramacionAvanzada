@@ -5,6 +5,8 @@ import Modelos.GestionProyecto.GestorVistaVentas;
 import Vistas.FrmGenerica;
 import Vistas.GestorVistaPrincipal;
 import java.awt.HeadlessException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.*;
 
 
@@ -272,12 +274,16 @@ public class FrmVentas extends FrmGenerica {
         this.viewBuscarBotones();
     }
 
+
     private void viewNueva(){
+        Date today;
+        today = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat();
         this.clearView();
         this.getGestorVista().newModel();
         txtAuto.grabFocus();
+        txtFechaDeVenta.setText(sdf.format(today)+"");
     }
-
     @Override
     public void clearView() {
         txtCodigo.setText("");

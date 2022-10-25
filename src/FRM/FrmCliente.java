@@ -297,6 +297,7 @@ public class FrmCliente extends FrmGenerica {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtApellido = new javax.swing.JTextField();
@@ -311,9 +312,9 @@ public class FrmCliente extends FrmGenerica {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        txtFechaDeNacimiento = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
+        txtFechaDeNacimiento = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -323,6 +324,7 @@ public class FrmCliente extends FrmGenerica {
         btnGuardara = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
+        jdcFechaDeNacimiento = new com.toedter.calendar.JDateChooser();
         jPanel10 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -451,11 +453,6 @@ public class FrmCliente extends FrmGenerica {
         jPanel1.add(txtNombre);
         txtNombre.setBounds(20, 110, 170, 30);
 
-        txtFechaDeNacimiento.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        txtFechaDeNacimiento.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jPanel1.add(txtFechaDeNacimiento);
-        txtFechaDeNacimiento.setBounds(210, 160, 170, 30);
-
         txtEmail.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtEmail.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtEmail);
@@ -465,6 +462,11 @@ public class FrmCliente extends FrmGenerica {
         txtTelefono.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtTelefono);
         txtTelefono.setBounds(20, 240, 170, 30);
+
+        txtFechaDeNacimiento.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtFechaDeNacimiento.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel1.add(txtFechaDeNacimiento);
+        txtFechaDeNacimiento.setBounds(210, 160, 150, 30);
 
         jLabel9.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel9.setText("Direccion");
@@ -537,6 +539,8 @@ public class FrmCliente extends FrmGenerica {
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Ubicacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel1.add(jPanel8);
         jPanel8.setBounds(10, 290, 470, 80);
+        jPanel1.add(jdcFechaDeNacimiento);
+        jdcFechaDeNacimiento.setBounds(210, 160, 170, 30);
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel1.add(jPanel10);
@@ -786,6 +790,7 @@ public class FrmCliente extends FrmGenerica {
     private javax.swing.JButton btnImprimir1;
     public javax.swing.JButton btnNuevo;
     public javax.swing.JButton btnSalir;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -804,6 +809,7 @@ public class FrmCliente extends FrmGenerica {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane2;
+    private com.toedter.calendar.JDateChooser jdcFechaDeNacimiento;
     private javax.swing.JTable tblDatos;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtBusquedaNombre;
