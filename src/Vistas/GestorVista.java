@@ -299,7 +299,12 @@ public class GestorVista  extends GestorHibernate {
             .add(Restrictions.eq("estado",0)).setMaxResults(max);
         return crit.list();
     }
-        
+    public List listarTodo(String text,int ord,Class clase,int max) { //Vacio
+        Criteria crit = getSession().createCriteria(clase)
+             .add( Restrictions.eq("estado", 0)).setMaxResults(max);  
+             //crit.add( Restrictions.like("marca",'%'+ text.toUpperCase()+'%'));
+        return crit.list();
+    }  
     public List listarGenericoLetra(int ord, String quebuscar, Object dato, Class clase, int max){
         Criteria crit =getSession().createCriteria(clase)
             .add(Restrictions.eq("estado",0))

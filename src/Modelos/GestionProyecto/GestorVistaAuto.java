@@ -384,12 +384,5 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
             } 
         }
      return auxModelTabla;
-}
-
-    private List<Auto> listarTodo(String text, int ordenamiento, Class<Auto> aClass, int i) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-
-   
+}  
 }
