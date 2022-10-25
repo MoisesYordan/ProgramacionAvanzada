@@ -124,7 +124,7 @@ public class GestorVistaCliente extends GestorVista {
             this.getForm().getTxtDni().grabFocus();
             return false;
         }
-        if (this.isEmpty(this.getForm().getTxtFechaDeNacimiento())|| !validarNumerosFN(this.getForm().getTxtFechaDeNacimiento().getText().trim())) {
+        if (this.isEmpty(this.getForm().getTxtFechaDeNacimiento())) {
             JOptionPane.showMessageDialog(null, "Falta ingresar correctamente la fecha de nacimiento, Ejemplo 11021999");
             this.getForm().getTxtFechaDeNacimiento().grabFocus();
             return false;
@@ -152,9 +152,9 @@ public class GestorVistaCliente extends GestorVista {
     public static boolean validarNumerosDNI(String datos){
         return datos.matches("[0-9]{4,8}");
     }
-    public static boolean validarNumerosFN(String datos){
-        return datos.matches("[0-9]{8,8}");
-    }
+//    public static boolean validarNumerosFN(String datos){
+//        return datos.matches("[0-9]{8,8}");
+//    }
     public static boolean validarNumeros(String datos){
         return datos.matches("[0-9]*");
     } 
