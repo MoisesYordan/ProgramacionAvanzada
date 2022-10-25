@@ -232,7 +232,7 @@ public class FrmVentas extends FrmGenerica {
         cmbCliente.setEnabled(tipo);
         
         txtObvservaciones.setEnabled(tipo);
-        txtFechaDeVenta.setEnabled(tipo);
+        txtFechaDeVenta.setEnabled(false);
     }
 
     private void viewBasic(){
@@ -487,11 +487,6 @@ public class FrmVentas extends FrmGenerica {
                 btnSalirActionPerformed(evt);
             }
         });
-        btnSalir.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnSalirKeyPressed(evt);
-            }
-        });
         jPanel3.add(btnSalir);
         btnSalir.setBounds(112, 5, 75, 30);
 
@@ -504,11 +499,6 @@ public class FrmVentas extends FrmGenerica {
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
-            }
-        });
-        btnCancelar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnCancelarKeyPressed(evt);
             }
         });
         jPanel3.add(btnCancelar);
@@ -529,11 +519,6 @@ public class FrmVentas extends FrmGenerica {
                 btnGuardarActionPerformed(evt);
             }
         });
-        btnGuardar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnGuardarKeyPressed(evt);
-            }
-        });
         jPanel2.add(btnGuardar);
         btnGuardar.setBounds(110, 5, 75, 30);
 
@@ -547,11 +532,6 @@ public class FrmVentas extends FrmGenerica {
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoActionPerformed(evt);
-            }
-        });
-        btnNuevo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnNuevoKeyPressed(evt);
             }
         });
         jPanel2.add(btnNuevo);
@@ -798,11 +778,6 @@ public class FrmVentas extends FrmGenerica {
                 btnEditarActionPerformed(evt);
             }
         });
-        btnEditar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnEditarKeyPressed(evt);
-            }
-        });
         jPanel5.add(btnEditar);
 
         btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -848,28 +823,13 @@ public class FrmVentas extends FrmGenerica {
         this.viewNuevoEnter();
     }//GEN-LAST:event_btnNuevoActionPerformed
 
-    private void btnNuevoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnNuevoKeyPressed
-       if (evt.getKeyCode()==10)
-          this.viewNuevoEnter();
-    }//GEN-LAST:event_btnNuevoKeyPressed
-
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         this.viewEditarEnter();
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void btnEditarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEditarKeyPressed
-        if (evt.getKeyCode()==10)
-        this.viewEditarEnter();
-    }//GEN-LAST:event_btnEditarKeyPressed
-
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         this.saveView();
     }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void btnGuardarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnGuardarKeyPressed
-        if (evt.getKeyCode()==10)
-        this.saveView();
-    }//GEN-LAST:event_btnGuardarKeyPressed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         try {
@@ -896,31 +856,10 @@ public class FrmVentas extends FrmGenerica {
             this.dispose();}
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnSalirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalirKeyPressed
-        if(evt.getKeyCode()==10) {
-            int n = 0;
-            if (this.getGestorVista().isNuevo())
-                 this.dispose();
-            else
-            n=JOptionPane.showConfirmDialog(null, "¿Desea guardar los cambios antes de salir?","Advertencia", YES_NO_OPTION);
-            if  (n == 1 ){
-                this.cancelarView();
-                this.dispose();}
-        }
-
-    }//GEN-LAST:event_btnSalirKeyPressed
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         if (JOptionPane.showConfirmDialog(null, "Desea Cancelar los datos ingresados","Advertencia", YES_NO_OPTION) == 0 )
         this.cancelarView();
     }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void btnCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCancelarKeyPressed
-        if(evt.getKeyCode()==10) {
-            if (JOptionPane.showConfirmDialog(null, "Desea Cancelar los datos ingresados","Advertencia", YES_NO_OPTION) == 0 )
-            this.cancelarView();
-        }
-    }//GEN-LAST:event_btnCancelarKeyPressed
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
         int busqueda=0;//busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
