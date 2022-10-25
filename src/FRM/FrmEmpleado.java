@@ -2,6 +2,7 @@ package FRM;
 import Modelos.GestionProyecto.GestorVistaEmpleado;
 import Vistas.FrmGenerica;
 import java.awt.HeadlessException;
+import java.text.SimpleDateFormat;
 import javax.swing.*;
 
 public class FrmEmpleado extends FrmGenerica {
@@ -122,6 +123,7 @@ public class FrmEmpleado extends FrmGenerica {
         btnCancelar.setEnabled(true);
         btnSalir.setEnabled(true);
         btnNuevo.grabFocus();
+        datoFechaNacimiento.setEnabled(false);
     }
 
     public void viewNuevoEditarBotones(){//btnEditar
@@ -131,6 +133,7 @@ public class FrmEmpleado extends FrmGenerica {
         btnEliminar.setEnabled(false);
         btnCancelar.setEnabled(true);
         btnSalir.setEnabled(true);
+        datoFechaNacimiento.setEnabled(true);
     }
   
     public void viewEliminarBotones() {//btnEliminar
@@ -144,11 +147,13 @@ public class FrmEmpleado extends FrmGenerica {
         btnEliminar.setEnabled(true);
         btnCancelar.setEnabled(false);
         btnSalir.setEnabled(true);
+        datoFechaNacimiento.setEnabled(false);
         btnNuevo.grabFocus();
     }
 
     public void viewBuscarBotones() {//btnBuscar
         btnNuevo.setEnabled(false);
+        datoFechaNacimiento.setEnabled(false);
         btnEditar.setEnabled(true);
         btnGuardara.setEnabled(false);
         btnEliminar.setEnabled(true);
@@ -291,6 +296,12 @@ public class FrmEmpleado extends FrmGenerica {
         }
     }
     
+    public void guardarFecha(){
+        SimpleDateFormat dFormat= new SimpleDateFormat("dd-MM-yyyy");
+        String fechaNacimiento= dFormat.format(datoFechaNacimiento.getDate());
+        this.txtFechaDeNacimiento.setText(fechaNacimiento);
+
+    }
      /** Este método se llama desde dentro del constructor para inicializar el formulario.
      ADVERTENCIA: NO modifique este código. 
      El contenido de este método es siempre regenerado por el Editor de formularios.**/
@@ -324,6 +335,7 @@ public class FrmEmpleado extends FrmGenerica {
         btnGuardara = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
+        datoFechaNacimiento = new com.toedter.calendar.JDateChooser();
         jPanel10 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -455,7 +467,7 @@ public class FrmEmpleado extends FrmGenerica {
         txtFechaDeNacimiento.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtFechaDeNacimiento.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtFechaDeNacimiento);
-        txtFechaDeNacimiento.setBounds(210, 160, 170, 30);
+        txtFechaDeNacimiento.setBounds(210, 160, 151, 30);
 
         txtEmail.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtEmail.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -538,6 +550,8 @@ public class FrmEmpleado extends FrmGenerica {
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Ubicacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel1.add(jPanel8);
         jPanel8.setBounds(10, 290, 470, 80);
+        jPanel1.add(datoFechaNacimiento);
+        datoFechaNacimiento.setBounds(209, 160, 170, 30);
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel1.add(jPanel10);
@@ -623,11 +637,6 @@ public class FrmEmpleado extends FrmGenerica {
                 btnEditarActionPerformed(evt);
             }
         });
-        btnEditar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnEditarKeyPressed(evt);
-            }
-        });
         jPanel5.add(btnEditar);
 
         btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -677,11 +686,6 @@ public class FrmEmpleado extends FrmGenerica {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         this.viewEditarEnter();
     }//GEN-LAST:event_btnEditarActionPerformed
-
-    private void btnEditarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEditarKeyPressed
-        if (evt.getKeyCode()==10)
-        this.viewEditarEnter();
-    }//GEN-LAST:event_btnEditarKeyPressed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 //        if (JOptionPane.showConfirmDialog(null, "Desea Eliminar el registro seleccionado","Advertencia", YES_NO_OPTION) == 0 )
@@ -764,6 +768,7 @@ public class FrmEmpleado extends FrmGenerica {
     }//GEN-LAST:event_btnGuardaraKeyPressed
 
     private void btnGuardaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaraActionPerformed
+        this.guardarFecha();
         this.saveView();
     }//GEN-LAST:event_btnGuardaraActionPerformed
 
@@ -787,6 +792,7 @@ public class FrmEmpleado extends FrmGenerica {
     private javax.swing.JButton btnImprimir1;
     public javax.swing.JButton btnNuevo;
     public javax.swing.JButton btnSalir;
+    private com.toedter.calendar.JDateChooser datoFechaNacimiento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;

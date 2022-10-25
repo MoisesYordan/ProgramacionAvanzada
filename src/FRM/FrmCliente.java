@@ -123,6 +123,7 @@ public class FrmCliente extends FrmGenerica {
         btnCancelar.setEnabled(true);
         btnSalir.setEnabled(true);
         btnNuevo.grabFocus();
+        datoFechaNacimiento.setEnabled(false);
     }
 
     public void viewNuevoEditarBotones(){//btnEditar
@@ -132,6 +133,7 @@ public class FrmCliente extends FrmGenerica {
         btnEliminar.setEnabled(false);
         btnCancelar.setEnabled(true);
         btnSalir.setEnabled(true);
+        datoFechaNacimiento.setEnabled(true);
     }
   
     public void viewEliminarBotones() {//btnEliminar
@@ -146,6 +148,7 @@ public class FrmCliente extends FrmGenerica {
         btnCancelar.setEnabled(false);
         btnSalir.setEnabled(true);
         btnNuevo.grabFocus();
+          datoFechaNacimiento.setEnabled(true); 
     }
 
     public void viewBuscarBotones() {//btnBuscar
@@ -155,6 +158,7 @@ public class FrmCliente extends FrmGenerica {
         btnEliminar.setEnabled(true);
         btnSalir.setEnabled(true);
         btnCancelar.setEnabled(true);
+        datoFechaNacimiento.setEnabled(false);   
     } 
 
     @Override
@@ -406,11 +410,6 @@ public class FrmCliente extends FrmGenerica {
                 btnSalirActionPerformed(evt);
             }
         });
-        btnSalir.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnSalirKeyPressed(evt);
-            }
-        });
         jPanel3.add(btnSalir);
         btnSalir.setBounds(100, 10, 75, 23);
 
@@ -423,11 +422,6 @@ public class FrmCliente extends FrmGenerica {
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
-            }
-        });
-        btnCancelar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnCancelarKeyPressed(evt);
             }
         });
         jPanel3.add(btnCancelar);
@@ -521,11 +515,6 @@ public class FrmCliente extends FrmGenerica {
         btnGuardara.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardaraActionPerformed(evt);
-            }
-        });
-        btnGuardara.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnGuardaraKeyPressed(evt);
             }
         });
         jPanel6.add(btnGuardara);
@@ -633,11 +622,6 @@ public class FrmCliente extends FrmGenerica {
                 btnEditarActionPerformed(evt);
             }
         });
-        btnEditar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnEditarKeyPressed(evt);
-            }
-        });
         jPanel5.add(btnEditar);
 
         btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -650,11 +634,6 @@ public class FrmCliente extends FrmGenerica {
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
-            }
-        });
-        btnEliminar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnEliminarKeyPressed(evt);
             }
         });
         jPanel5.add(btnEliminar);
@@ -688,11 +667,6 @@ public class FrmCliente extends FrmGenerica {
         this.viewEditarEnter();
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void btnEditarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEditarKeyPressed
-        if (evt.getKeyCode()==10)
-        this.viewEditarEnter();
-    }//GEN-LAST:event_btnEditarKeyPressed
-
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 //        if (JOptionPane.showConfirmDialog(null, "Desea Eliminar el registro seleccionado","Advertencia", YES_NO_OPTION) == 0 )
 //           this.deleteView();
@@ -709,13 +683,6 @@ public class FrmCliente extends FrmGenerica {
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnEliminarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEliminarKeyPressed
-        if(evt.getKeyCode()==10) {
-            if (JOptionPane.showConfirmDialog(null, "Desea Eliminar el registro seleccionado","Advertencia", YES_NO_OPTION) == 0 )
-            this.deleteView();
-        }
-    }//GEN-LAST:event_btnEliminarKeyPressed
-
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         int n = 0;
         if (this.getGestorVista().isNuevo() || this.getGestorVista().isOnlyRead())
@@ -727,31 +694,10 @@ public class FrmCliente extends FrmGenerica {
             this.dispose();}
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnSalirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalirKeyPressed
-        if(evt.getKeyCode()==10) {
-            int n = 0;
-            if (this.getGestorVista().isNuevo())
-                 this.dispose();
-            else
-            n=JOptionPane.showConfirmDialog(null, "¿Desea guardar los cambios antes de salir?","Advertencia", YES_NO_OPTION);
-            if  (n == 1 ){
-                this.cancelarView();
-                this.dispose();}
-        }
-
-    }//GEN-LAST:event_btnSalirKeyPressed
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         if (JOptionPane.showConfirmDialog(null, "Desea Cancelar los datos ingresados","Advertencia", YES_NO_OPTION) == 0 )
         this.cancelarView();
     }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void btnCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCancelarKeyPressed
-        if(evt.getKeyCode()==10) {
-            if (JOptionPane.showConfirmDialog(null, "Desea Cancelar los datos ingresados","Advertencia", YES_NO_OPTION) == 0 )
-            this.cancelarView();
-        }
-    }//GEN-LAST:event_btnCancelarKeyPressed
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
         int busqueda=0;//busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
@@ -767,11 +713,6 @@ public class FrmCliente extends FrmGenerica {
     private void tblDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatosMouseClicked
        this.getGestorVista().setDatos();
     }//GEN-LAST:event_tblDatosMouseClicked
-
-    private void btnGuardaraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnGuardaraKeyPressed
-         if (evt.getKeyCode()==10)
-        this.saveView();
-    }//GEN-LAST:event_btnGuardaraKeyPressed
 
     private void btnGuardaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaraActionPerformed
         this.guardarFecha();
