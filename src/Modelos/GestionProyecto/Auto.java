@@ -132,7 +132,6 @@ public class Auto implements Comparable<Auto> ,Serializable{
     public String toString() {
         return 
                 "Modelo: "+getModelo()+"\n"+"    "+
-                "Marca:  "+ getMarca()+"\n"+"    "+
                 "Año:  "+ getAño()+"\n"+"    "+
                 "Pais: "+ getPais();
     }

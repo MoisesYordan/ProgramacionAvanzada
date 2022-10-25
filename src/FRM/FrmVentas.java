@@ -322,7 +322,6 @@ public class FrmVentas extends FrmGenerica {
     @Override
     public void saveView(){
         this.getGestorVista().saveView();
-        //this.gestorVista.getGestorAuto().getForm().setTxtStock(this.txtCantidad);
     }
 
     @Override
@@ -364,13 +363,20 @@ public class FrmVentas extends FrmGenerica {
      
     public void calcularTotal(){
         Auto auto = (Auto) cmbAuto.getSelectedItem();
-        int cantidad = Integer.parseInt(txtCantidad.getText());
-        Double impuesto=Double.parseDouble( auto.getPais().getImpuesto());
-        Double total= Double.parseDouble( auto.getTotal());
-        total= total+(total*cantidad*(impuesto/100));
-        txtImpuesto.setText(auto.getPais().getImpuesto()); 
-        txtTotal.setText(Math.round(total) +"");
-
+        int cantidad = Integer.parseInt(txtCantidad.getText());//cantidad ingresada
+//        int stock = this.gestorVista.convertirToInteger(this.gestorVista.getGestorAuto().getForm().getTxtStock());//stock que tengo por auto
+//        int total2=stock-cantidad;//total2 sirve para saber si tengo Stock o no
+//        if(total2<0){
+            Double impuesto=Double.parseDouble( auto.getPais().getImpuesto());
+            Double total= Double.parseDouble( auto.getTotal());
+            total= total+(total*cantidad*(impuesto/100));
+            txtImpuesto.setText(auto.getPais().getImpuesto()); 
+            txtTotal.setText(Math.round(total) +"");
+//            JTextField total3 = new JTextField(total2);//total3 lo uso unicamentee para convertir el int a JTextField
+//            this.gestorVista.getGestorAuto().getForm().setTxtStock(total3);
+//        }else{
+//            JOptionPane.showMessageDialog(null, "NO HAY STOCK","Validación de Datos",JOptionPane.WARNING_MESSAGE);
+//        }
     }
     
      /** Este método se llama desde dentro del constructor para inicializar el formulario.
