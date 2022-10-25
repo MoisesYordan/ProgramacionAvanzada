@@ -411,11 +411,6 @@ public class FrmEmpleado extends FrmGenerica {
                 btnSalirActionPerformed(evt);
             }
         });
-        btnSalir.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnSalirKeyPressed(evt);
-            }
-        });
         jPanel3.add(btnSalir);
         btnSalir.setBounds(112, 5, 75, 30);
 
@@ -428,11 +423,6 @@ public class FrmEmpleado extends FrmGenerica {
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
-            }
-        });
-        btnCancelar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnCancelarKeyPressed(evt);
             }
         });
         jPanel3.add(btnCancelar);
@@ -517,11 +507,6 @@ public class FrmEmpleado extends FrmGenerica {
                 btnNuevoActionPerformed(evt);
             }
         });
-        btnNuevo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnNuevoKeyPressed(evt);
-            }
-        });
         jPanel6.add(btnNuevo);
 
         btnGuardara.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -531,11 +516,6 @@ public class FrmEmpleado extends FrmGenerica {
         btnGuardara.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardaraActionPerformed(evt);
-            }
-        });
-        btnGuardara.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnGuardaraKeyPressed(evt);
             }
         });
         jPanel6.add(btnGuardara);
@@ -651,11 +631,6 @@ public class FrmEmpleado extends FrmGenerica {
                 btnEliminarActionPerformed(evt);
             }
         });
-        btnEliminar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnEliminarKeyPressed(evt);
-            }
-        });
         jPanel5.add(btnEliminar);
 
         jPanel4.add(jPanel5);
@@ -703,13 +678,6 @@ public class FrmEmpleado extends FrmGenerica {
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnEliminarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEliminarKeyPressed
-        if(evt.getKeyCode()==10) {
-            if (JOptionPane.showConfirmDialog(null, "Desea Eliminar el registro seleccionado","Advertencia", YES_NO_OPTION) == 0 )
-            this.deleteView();
-        }
-    }//GEN-LAST:event_btnEliminarKeyPressed
-
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         int n = 0;
         if (this.getGestorVista().isNuevo() || this.getGestorVista().isOnlyRead())
@@ -721,31 +689,10 @@ public class FrmEmpleado extends FrmGenerica {
             this.dispose();}
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnSalirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalirKeyPressed
-        if(evt.getKeyCode()==10) {
-            int n = 0;
-            if (this.getGestorVista().isNuevo())
-                 this.dispose();
-            else
-            n=JOptionPane.showConfirmDialog(null, "¿Desea guardar los cambios antes de salir?","Advertencia", YES_NO_OPTION);
-            if  (n == 1 ){
-                this.cancelarView();
-                this.dispose();}
-        }
-
-    }//GEN-LAST:event_btnSalirKeyPressed
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         if (JOptionPane.showConfirmDialog(null, "Desea Cancelar los datos ingresados","Advertencia", YES_NO_OPTION) == 0 )
         this.cancelarView();
     }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void btnCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCancelarKeyPressed
-        if(evt.getKeyCode()==10) {
-            if (JOptionPane.showConfirmDialog(null, "Desea Cancelar los datos ingresados","Advertencia", YES_NO_OPTION) == 0 )
-            this.cancelarView();
-        }
-    }//GEN-LAST:event_btnCancelarKeyPressed
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
         int busqueda=0;//busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
@@ -762,20 +709,10 @@ public class FrmEmpleado extends FrmGenerica {
        this.getGestorVista().setDatos();
     }//GEN-LAST:event_tblDatosMouseClicked
 
-    private void btnGuardaraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnGuardaraKeyPressed
-         if (evt.getKeyCode()==10)
-        this.saveView();
-    }//GEN-LAST:event_btnGuardaraKeyPressed
-
     private void btnGuardaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaraActionPerformed
         this.guardarFecha();
         this.saveView();
     }//GEN-LAST:event_btnGuardaraActionPerformed
-
-    private void btnNuevoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnNuevoKeyPressed
-          if (evt.getKeyCode()==10)
-          this.viewNuevoEnter();
-    }//GEN-LAST:event_btnNuevoKeyPressed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         this.viewNuevoEnter();

@@ -529,12 +529,6 @@ public class FrmCliente extends FrmGenerica {
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Ubicacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel1.add(jPanel8);
         jPanel8.setBounds(10, 290, 470, 80);
-
-        datoFechaNacimiento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                datoFechaNacimientoMouseClicked(evt);
-            }
-        });
         jPanel1.add(datoFechaNacimiento);
         datoFechaNacimiento.setBounds(210, 160, 170, 30);
 
@@ -722,10 +716,6 @@ public class FrmCliente extends FrmGenerica {
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         this.viewNuevoEnter();
     }//GEN-LAST:event_btnNuevoActionPerformed
-
-    private void datoFechaNacimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_datoFechaNacimientoMouseClicked
-
-    }//GEN-LAST:event_datoFechaNacimientoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
