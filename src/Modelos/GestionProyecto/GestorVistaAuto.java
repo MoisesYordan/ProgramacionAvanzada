@@ -284,6 +284,7 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
                 DefaultTableModel d =new DefaultTableModel();
                 listaModelo=this.listarGenericoLetraObj(ord,"nombre",dato,Modelo.class,-1);
                 listaPais=this.listarGenericoLetraObj(ord,"nombrepais",dato,Pais.class,-1);
+                System.out.print(listaPais);
                 if(this.listarDatos(d ,this.getOrdenamiento(),dato,"",b,"",listaModelo,listaPais).getRowCount()==0){
                     JOptionPane.showMessageDialog(null, "error, no se encontro en la BD","Validación de Datos",JOptionPane.WARNING_MESSAGE);
                 }

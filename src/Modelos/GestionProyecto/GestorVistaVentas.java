@@ -4,6 +4,7 @@ import FRM.FrmVentas;
 import static Hibernate.HibernateUtil.getSession;
 import Vistas.FrmPrincipal;
 import Vistas.GestorVista;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
@@ -135,7 +136,7 @@ public class GestorVistaVentas extends GestorVista  {
             
             this.getModel().setEmpleado((Empleado) this.getForm().getCmbEmpleado().getModel().getSelectedItem());
             this.getModel().setCliente((Cliente) this.getForm().getCmbCliente().getModel().getSelectedItem());
-            
+            this.getModel().setAuto((Auto) this.getForm().getCmbAuto().getModel().getSelectedItem()); //agrege esta linea
             return 0;
         } else {
             return 1;
@@ -270,30 +271,41 @@ public class GestorVistaVentas extends GestorVista  {
        this.getForm().getCmbCliente().setSelectedItem(this.getModel().getCliente());
     }
     
-    public void setBusqueda(String dato,int ord, String text, String quebuscar,int b){ 
-            this.initializeTablaBusqueda(this.getForm().getTblDatos());
+public void setBusqueda(String dato,int ord, String text, String quebuscar,int b){ 
+        this.initializeTablaBusqueda(this.getForm().getTblDatos());
 
-            if(!"".equals(dato)){
-               if(b==0){//b=>0 es una cadena alfanumerica     1= es una cadena numerica
+        if(!"".equals(dato)){
+           if(b==0){//b=>0 es una cadena numerica    1= es una cadena alfanumerica
 
-                    this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
-                    int d=Integer.parseInt(dato);
-                    if(this.listar3(text,ord,d,quebuscar).size()==0){
-                        JOptionPane.showMessageDialog(null, "error","se ingreso una letra",JOptionPane.WARNING_MESSAGE);
-                    }
-               }
-               else{
-                    this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,""));
-                    if(this.listar2(text,ord,dato,quebuscar).size()==0){
-                        JOptionPane.showMessageDialog(null, "error","Validación de Datos",JOptionPane.WARNING_MESSAGE);
-                    }
+                this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,"",null,null));
+                int d=Integer.parseInt(dato);
+                if(this.listarGenericoNumero(ord,d,quebuscar,Cliente.class,-1).size()==0){
+                    JOptionPane.showMessageDialog(null, "error, no se encontro en la BD","Validación de Datos",JOptionPane.WARNING_MESSAGE);
                 }
+           }
+           else{
+                //this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,"",null));
+               
+                List listaCliente= new ArrayList<Cliente>();
+                List listaEmpleado= new ArrayList<Empleado>();
+                DefaultTableModel d =new DefaultTableModel();
+                listaCliente=this.listarGenericoLetraObj(ord,"nombre",dato,Cliente.class,-1);
+                listaEmpleado=this.listarGenericoLetraObj(ord,"nombre",dato,Empleado.class,-1);
+                System.out.print(listaCliente);
+                if(this.listarDatos(d ,this.getOrdenamiento(),dato,"",b,"",listaCliente,listaEmpleado).getRowCount()==0){
+                    JOptionPane.showMessageDialog(null, "error, no se encontro en la BD","Validación de Datos",JOptionPane.WARNING_MESSAGE);
+                }
+                else{
+                    this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,"",b,"",listaCliente,listaEmpleado));
+                
+                    
+               } 
             }
-            else{
-                b=3;
-                this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"")); 
-            }
-
+        }
+        else{
+            b=3;
+            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"",null,null)); 
+        }
     }
   
     private int getOrdenamiento() {
@@ -327,11 +339,11 @@ public class GestorVistaVentas extends GestorVista  {
         return model.getValueAt(tbl.getSelectedRow(),0);
     }
     
-    public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text) { 
-        TreeSet<Ventas> lista= new TreeSet();
+public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text,List listaCliente, List listaEmpleado) { 
+        TreeSet<Ventas> lista = new TreeSet(); 
         if(b==0){
             int d=Integer.parseInt(dato);
-            List<Ventas> list= this.listar3(text,ordenamiento,d,quebuscar);
+            List<Ventas> list= this.listarGenericoNumero(ordenamiento,d,quebuscar,Ventas.class,-1);
             Ventas  auxModel;
             Iterator it = (Iterator) list.iterator();
             while (it.hasNext())  {
@@ -342,16 +354,56 @@ public class GestorVistaVentas extends GestorVista  {
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Ventas ) it2.next();
-//{"","Cód.","Modelo","Marca","Pais","Año","Cliente","Empleado","Cantidad","Total","Impuesto","FechaDeVenta","Obvservaciones"};
+                //{"","Cód.","Modelo","Marca","Año","Costo","Total","Stock","Pais"};
                 Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),
                                  auxModel.getPais(),auxModel.getAño(),auxModel.getCliente(),auxModel.getEmpleado(),
                                  auxModel.getCantidad(),auxModel.getTotal(),auxModel.getImpuesto(),auxModel.getFechaDeVenta(), 
-                                 auxModel.getObvservaciones()};                
-                auxModelTabla.addRow(fila); 
+                                 auxModel.getObvservaciones()};      
+                auxModelTabla.addRow(fila);
             }
         }
         if(b==1){
-            List<Ventas> list= this.listar2(text,ordenamiento,dato,quebuscar);
+            Ventas  auxModel;
+            for( int i =0; i<listaCliente.size();i++){
+               List listCliente=(this.listarGenericoLetra(ordenamiento,"cliente",listaCliente.get(i),Ventas.class, -1));
+                Iterator it = (Iterator) listCliente.iterator();
+                while (it.hasNext())  {
+                    auxModel =(Ventas) it.next(); 
+                    lista.add(auxModel);
+                }
+            }
+               for( int i =0; i<listaEmpleado.size();i++){
+               List listEmpleado=(this.listarGenericoLetra(ordenamiento,"empleado",listaEmpleado.get(i),Ventas.class, -1));
+                Iterator it = (Iterator) listEmpleado.iterator();
+                while (it.hasNext())  {
+                    auxModel =(Ventas) it.next(); 
+                    lista.add(auxModel);
+                }
+            }
+            List listMarca=(this.listarGenericoLetraObj(ordenamiento,"marca",dato,Ventas.class, -1));
+                Iterator it = (Iterator) listMarca.iterator();
+                while (it.hasNext())  {
+                    auxModel =(Ventas) it.next(); 
+                    lista.add(auxModel);
+                }
+            List listModelo=(this.listarGenericoLetraObj(ordenamiento,"modelo",dato,Ventas.class, -1));
+                Iterator it1 = (Iterator) listModelo.iterator();
+                while (it1.hasNext())  {
+                    auxModel =(Ventas) it1.next(); 
+                    lista.add(auxModel);
+                }
+            Iterator it2 = (Iterator) lista.iterator();
+            while (it2.hasNext())  {
+                auxModel =( Ventas ) it2.next();
+                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),
+                                 auxModel.getPais(),auxModel.getAño(),auxModel.getCliente(),auxModel.getEmpleado(),
+                                 auxModel.getCantidad(),auxModel.getTotal(),auxModel.getImpuesto(),auxModel.getFechaDeVenta(), 
+                                 auxModel.getObvservaciones()};      
+                auxModelTabla.addRow(fila);
+            }  
+        }
+        if(b==3){
+            List<Ventas> list= this.listarTodo(text,ordenamiento,Ventas.class,-1);
             Ventas  auxModel;
             Iterator it = (Iterator) list.iterator();
             while (it.hasNext())  {
@@ -367,52 +419,10 @@ public class GestorVistaVentas extends GestorVista  {
                                  auxModel.getCantidad(),auxModel.getTotal(),auxModel.getImpuesto(),auxModel.getFechaDeVenta(), 
                                  auxModel.getObvservaciones()};      
                 auxModelTabla.addRow(fila); 
-            }  
-        }
-        if(b==3){
-            List<Ventas> list= this.listar(text,ordenamiento);
-            Ventas  auxModel;
-            Iterator it = (Iterator) list.iterator();
-            while (it.hasNext())  {
-                auxModel =(Ventas) it.next(); 
-                lista.add(auxModel);
-            }
-       
-            Iterator it2 = (Iterator) lista.iterator();
-            while (it2.hasNext())  {
-                auxModel =( Ventas ) it2.next();
-                Object[] fila = {auxModel,auxModel.getCodigo(),auxModel.getModelo(),auxModel.getMarca(),
-                                 auxModel.getPais(),auxModel.getAño(),auxModel.getCliente(),auxModel.getEmpleado(),
-                                 auxModel.getCantidad(),auxModel.getTotal(),auxModel.getImpuesto(),auxModel.getFechaDeVenta(), 
-                                 auxModel.getObvservaciones()};       
-                auxModelTabla.addRow(fila); 
             } 
         }
-    return auxModelTabla;
+     return auxModelTabla;
 }
-
-    public List<Ventas> listar(String text,int ord) {
-        Criteria crit = getSession().createCriteria(Ventas.class)
-             .add( Restrictions.eq("estado", 0));  
-             crit.add( Restrictions.like("modelo",'%'+ text.toUpperCase()+'%'));
-        return crit.list();
-    }
-     public List<Ventas> listar2(String text,int ord,String dato,String quebuscar) { 
-        Criteria crit = getSession().createCriteria(Ventas.class)
-             .add( Restrictions.eq("estado", 0));  
-             crit.add( Restrictions.eq(quebuscar, dato));
-           //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
-
-        return crit.list();
-     }
-     public List<Ventas> listar3(String text,int ord,int d,String quebuscar) { 
-        Criteria crit = getSession().createCriteria(Ventas.class)
-             .add( Restrictions.eq("estado", 0));  
-             crit.add( Restrictions.eq(quebuscar, d));
-           //crit.add( Restrictions.like(quebuscar,'%'+ dato.toUpperCase()+'%'));
-
-        return crit.list();
-     }
     
     public void crearCliente(){
         this.gestorCliente.openFormulario(escritorio);

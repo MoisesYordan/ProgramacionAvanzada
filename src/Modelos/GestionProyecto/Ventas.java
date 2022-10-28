@@ -176,9 +176,12 @@ public class Ventas implements Comparable, Serializable {
         this.cantidad = cantidad;
         this.impuesto = impuesto;
     }
-    @Override
+     @Override
     public String toString() {
-        return modelo;
+        return 
+                "Modelo: "+getCliente()+"\n"+"    "+
+                "Año:  "+ getAño()+"\n"+"    "+
+                "Pais: "+ getPais();
     }
     
     @Override
