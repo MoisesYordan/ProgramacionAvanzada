@@ -270,7 +270,7 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
         if(!"".equals(dato)){
            if(b==0){//b=>0 es una cadena numerica    1= es una cadena alfanumerica
 
-                this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,"",null));
+                this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,"",null,null));
                 int d=Integer.parseInt(dato);
                 if(this.listarGenericoNumero(ord,d,quebuscar,Auto.class,-1).size()==0){
                     JOptionPane.showMessageDialog(null, "error, no se encontro en la BD","Validación de Datos",JOptionPane.WARNING_MESSAGE);
@@ -278,19 +278,25 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
            }
            else{
                 //this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,"",null));
-                if(this.listarGenericoLetra(ord,"nombre",dato,Modelo.class,-1).size()==0){ //ADS
+               
+                List listaModelo= new ArrayList<Modelo>();
+                List listaPais= new ArrayList<Pais>();
+                DefaultTableModel d =new DefaultTableModel();
+                listaModelo=this.listarGenericoLetraObj(ord,"nombre",dato,Modelo.class,-1);
+                listaPais=this.listarGenericoLetraObj(ord,"nombrepais",dato,Pais.class,-1);
+                if(this.listarDatos(d ,this.getOrdenamiento(),dato,"",b,"",listaModelo,listaPais).getRowCount()==0){
                     JOptionPane.showMessageDialog(null, "error, no se encontro en la BD","Validación de Datos",JOptionPane.WARNING_MESSAGE);
                 }
                 else{
-                    Modelo obj=(Modelo) this.listarGenericoLetra(ord,"nombre",dato,Modelo.class,-1).get(0);
-                    System.out.print(obj);
-                    this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"",obj));
-                }
+                    this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,"",b,"",listaModelo,listaPais));
+                
+                    
+               } 
             }
         }
         else{
             b=3;
-            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"",null)); 
+            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"",null,null)); 
         }
     }
   
@@ -325,7 +331,7 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
         return model.getValueAt(tbl.getSelectedRow(),0);
     }
     
- public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text,Object obj) { 
+ public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text,List listaModelo,List listaPais) { 
         TreeSet<Auto> lista = new TreeSet(); 
         if(b==0){
             int d=Integer.parseInt(dato);
@@ -347,15 +353,30 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
                 auxModelTabla.addRow(fila); 
             }
         }
-        if(b==1){            
-            List<Auto> list= this.listarGenericoLetra(ordenamiento,"modelo",obj,Auto.class, -1);
+        if(b==1){
             Auto  auxModel;
-            Iterator it = (Iterator) list.iterator();
-            while (it.hasNext())  {
-                auxModel =(Auto) it.next(); 
-                lista.add(auxModel);
+            for( int i =0; i<listaModelo.size();i++){
+               List listModelo=(this.listarGenericoLetra(ordenamiento,"modelo",listaModelo.get(i),Auto.class, -1));
+                Iterator it = (Iterator) listModelo.iterator();
+                while (it.hasNext())  {
+                    auxModel =(Auto) it.next(); 
+                    lista.add(auxModel);
+                }
             }
-       
+              for( int i =0; i<listaPais.size();i++){
+               List listPais=(this.listarGenericoLetra(ordenamiento,"pais",listaPais.get(i),Auto.class, -1));
+                Iterator it = (Iterator) listPais.iterator();
+                while (it.hasNext())  {
+                    auxModel =(Auto) it.next(); 
+                    lista.add(auxModel);
+                }
+            }
+            List listMarca=(this.listarGenericoLetraObj(ordenamiento,"marca",dato,Auto.class, -1));
+                Iterator it = (Iterator) listMarca.iterator();
+                while (it.hasNext())  {
+                    auxModel =(Auto) it.next(); 
+                    lista.add(auxModel);
+                }
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Auto ) it2.next();
@@ -384,5 +405,7 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
             } 
         }
      return auxModelTabla;
-}  
+}
+
+
 }

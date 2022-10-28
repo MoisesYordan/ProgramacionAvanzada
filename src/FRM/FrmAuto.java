@@ -853,9 +853,9 @@ public class FrmAuto extends FrmGenerica {
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
         int busqueda=0;//busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
-        this.clearView();
         this.setBusqueda(busqueda);
         this.viewCamposEnabled(false);
+        this.clearView();
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
     private void btnImprimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimir1ActionPerformed

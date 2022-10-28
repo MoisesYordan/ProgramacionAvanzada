@@ -8,6 +8,7 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 public class GestorVista  extends GestorHibernate {
@@ -294,18 +295,22 @@ public class GestorVista  extends GestorHibernate {
         model.removeRow(tbl.getSelectedRow());
     }
     
-    public List listarTodo(String text, Class clase, int max){
+    public List listarTodo(String text,int ord, Class clase, int max){
         Criteria crit =getSession().createCriteria(clase)
             .add(Restrictions.eq("estado",0)).setMaxResults(max);
         return crit.list();
     }
-    public List listarTodo(String text,int ord,Class clase,int max) { //Vacio
-        Criteria crit = getSession().createCriteria(clase)
-             .add( Restrictions.eq("estado", 0)).setMaxResults(max);  
-             //crit.add( Restrictions.like("marca",'%'+ text.toUpperCase()+'%'));
+  
+    public List listarGenericoLetraObj(int ord, String quebuscar, String dato, Class clase, int max){
+        
+        Criteria crit =getSession().createCriteria(clase)
+            .add(Restrictions.eq("estado",0))
+            .add(Restrictions.like(quebuscar,dato,MatchMode.ANYWHERE).ignoreCase()).setMaxResults(max);
         return crit.list();
-    }  
+    }
+        
     public List listarGenericoLetra(int ord, String quebuscar, Object dato, Class clase, int max){
+        
         Criteria crit =getSession().createCriteria(clase)
             .add(Restrictions.eq("estado",0))
             .add(Restrictions.eq(quebuscar,dato)).setMaxResults(max);

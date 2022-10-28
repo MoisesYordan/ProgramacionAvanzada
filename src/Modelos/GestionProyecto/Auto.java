@@ -30,6 +30,7 @@ public class Auto implements Comparable<Auto> ,Serializable{
     private String total;
     private String año;
     private String marca;
+    @OneToOne (targetEntity = Pais.class, cascade= CascadeType.ALL,fetch=FetchType.LAZY)
     private Pais pais; //----> para mi deberia ser un objeto pais de tipo pais  
     
     public long getId() {
