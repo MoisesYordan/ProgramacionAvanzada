@@ -144,6 +144,7 @@ public class GestorVistaVentas extends GestorVista  {
     }
 
     @Override
+    //validacion para datos ingresados cuando se crea un objeto, NO se permite el no ingreso de estos datos son campos obligatorios
     public boolean isDatosValidos() {
 
          if (this.isEmpty(this.getForm().getTxtCantidad())) {
@@ -179,6 +180,7 @@ public class GestorVistaVentas extends GestorVista  {
 
         return true;
     }
+    //metodo para validar si lo ingresado son numeros
     public static boolean validarNumeros(String datos){
         return datos.matches("[0-9]*");
     } 
@@ -270,10 +272,10 @@ public class GestorVistaVentas extends GestorVista  {
        this.getForm().getCmbEmpleado().setSelectedItem(this.getModel().getEmpleado());
        this.getForm().getCmbCliente().setSelectedItem(this.getModel().getCliente());
     }
-    
+ // set busqueda trae lo el dato que se ingresa para buscar, asi tambien una bandera que indica cual boton de busqueda se preciono, como parametro 
 public void setBusqueda(String dato,int ord, String text, String quebuscar,int b){ 
         this.initializeTablaBusqueda(this.getForm().getTblDatos());
-
+      
         if(!"".equals(dato)){
            if(b==0){//b=>0 es una cadena numerica    1= es una cadena alfanumerica
 
@@ -289,9 +291,13 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
                 List listaCliente= new ArrayList<Cliente>();
                 List listaEmpleado= new ArrayList<Empleado>();
                 DefaultTableModel d =new DefaultTableModel();
+                //listo todos los nombre de los clientes q considan con el dato a buscar y los traigo en un array
                 listaCliente=this.listarGenericoLetraObj(ord,"nombre",dato,Cliente.class,-1);
+                //listo todos los nombre de los empleados q considan con el dato a buscar y los traigo en un array
                 listaEmpleado=this.listarGenericoLetraObj(ord,"nombre",dato,Empleado.class,-1);
                 System.out.print(listaCliente);
+                //d es una tabla vacia que solo se va utilizar para saber su tamaño, en caso de que el cliente/empleado/marca/modelo  no coinsidan con el dato
+                // entrar al if y mostrara el cartel de error
                 if(this.listarDatos(d ,this.getOrdenamiento(),dato,"",b,"",listaCliente,listaEmpleado).getRowCount()==0){
                     JOptionPane.showMessageDialog(null, "error, no se encontro en la BD","Validación de Datos",JOptionPane.WARNING_MESSAGE);
                 }
@@ -341,6 +347,7 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
     
 public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text,List listaCliente, List listaEmpleado) { 
         TreeSet<Ventas> lista = new TreeSet(); 
+        // en este if se buscara por codigo solo se permitira ingresar numeros
         if(b==0){
             int d=Integer.parseInt(dato);
             List<Ventas> list= this.listarGenericoNumero(ordenamiento,d,quebuscar,Ventas.class,-1);
@@ -362,6 +369,7 @@ public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordena
                 auxModelTabla.addRow(fila);
             }
         }
+        // si b=1 entonces sera la busqueda de la lupa y se podra ingresar tanto numero como letras se busca por nombrecliente nombreempleado marca y modelo
         if(b==1){
             Ventas  auxModel;
             for( int i =0; i<listaCliente.size();i++){
@@ -402,6 +410,7 @@ public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordena
                 auxModelTabla.addRow(fila);
             }  
         }
+        // si b=3 quiere decir q no hay dato ingresado por lo tanto se listara todo lo q se encuentre en la base de datos
         if(b==3){
             List<Ventas> list= this.listarTodo(text,ordenamiento,Ventas.class,-1);
             Ventas  auxModel;
