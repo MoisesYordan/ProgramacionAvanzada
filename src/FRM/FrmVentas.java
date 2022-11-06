@@ -386,6 +386,17 @@ public class FrmVentas extends FrmGenerica {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblDatos = new javax.swing.JTable();
+        btnBuscar1 = new javax.swing.JButton();
+        btnImprimir1 = new javax.swing.JButton();
+        txtBusquedaNombre = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        btnEditar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtPais = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -427,16 +438,6 @@ public class FrmVentas extends FrmGenerica {
         jPanel6 = new javax.swing.JPanel();
         btnCalcular = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblDatos = new javax.swing.JTable();
-        btnBuscar1 = new javax.swing.JButton();
-        btnImprimir1 = new javax.swing.JButton();
-        txtBusquedaNombre = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        btnEditar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setTitle("Ventas");
@@ -444,6 +445,104 @@ public class FrmVentas extends FrmGenerica {
         setFrameIcon(null);
         setName("TipoServicio"); // NOI18N
         getContentPane().setLayout(null);
+
+        jDesktopPane1.setPreferredSize(new java.awt.Dimension(935, 480));
+        jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel4.setLayout(null);
+
+        tblDatos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblDatos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tblDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDatosMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblDatos);
+
+        jPanel4.add(jScrollPane2);
+        jScrollPane2.setBounds(20, 70, 340, 310);
+
+        btnBuscar1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Search.png"))); // NOI18N
+        btnBuscar1.setText("Buscar");
+        btnBuscar1.setToolTipText("Buscar Tipo Servicio por denominación");
+        btnBuscar1.setBorderPainted(false);
+        btnBuscar1.setContentAreaFilled(false);
+        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnBuscar1);
+        btnBuscar1.setBounds(260, 30, 100, 30);
+
+        btnImprimir1.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        btnImprimir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PrinterChica.png"))); // NOI18N
+        btnImprimir1.setText("Imprir");
+        btnImprimir1.setToolTipText("Impreme el documento");
+        btnImprimir1.setBorderPainted(false);
+        btnImprimir1.setContentAreaFilled(false);
+        jPanel4.add(btnImprimir1);
+        btnImprimir1.setBounds(250, 390, 110, 40);
+
+        txtBusquedaNombre.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtBusquedaNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel4.add(txtBusquedaNombre);
+        txtBusquedaNombre.setBounds(20, 30, 240, 30);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setText("Ventas");
+        jPanel4.add(jLabel4);
+        jLabel4.setBounds(20, 10, 190, 20);
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel5.setMinimumSize(new java.awt.Dimension(190, 40));
+        jPanel5.setPreferredSize(new java.awt.Dimension(190, 40));
+
+        btnEditar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editarChico.png"))); // NOI18N
+        btnEditar.setText("Editar");
+        btnEditar.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        btnEditar.setMaximumSize(new java.awt.Dimension(75, 29));
+        btnEditar.setMinimumSize(new java.awt.Dimension(75, 29));
+        btnEditar.setPreferredSize(new java.awt.Dimension(75, 29));
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnEditar);
+
+        btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/remove.png"))); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        btnEliminar.setMaximumSize(new java.awt.Dimension(75, 29));
+        btnEliminar.setMinimumSize(new java.awt.Dimension(75, 29));
+        btnEliminar.setPreferredSize(new java.awt.Dimension(75, 29));
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnEliminar);
+
+        jPanel4.add(jPanel5);
+        jPanel5.setBounds(20, 390, 190, 40);
+        jPanel5.getAccessibleContext().setAccessibleDescription("");
+
+        jDesktopPane1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 380, 440));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descripción", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel1.setLayout(null);
@@ -457,7 +556,7 @@ public class FrmVentas extends FrmGenerica {
         jLabel3.setText("Código");
         jLabel3.setRequestFocusEnabled(false);
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(20, 20, 90, 17);
+        jLabel3.setBounds(20, 20, 90, 19);
 
         txtCodigo.setBackground(new java.awt.Color(204, 255, 204));
         txtCodigo.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
@@ -465,7 +564,7 @@ public class FrmVentas extends FrmGenerica {
         txtCodigo.setToolTipText("Ingrese Código");
         txtCodigo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtCodigo);
-        txtCodigo.setBounds(20, 40, 90, 23);
+        txtCodigo.setBounds(20, 40, 90, 25);
 
         btnBuscarCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnBuscarCodigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar.png"))); // NOI18N
@@ -483,7 +582,7 @@ public class FrmVentas extends FrmGenerica {
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel2.setText("Empleado");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(280, 150, 120, 17);
+        jLabel2.setBounds(280, 150, 120, 19);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel3.setLayout(null);
@@ -571,7 +670,7 @@ public class FrmVentas extends FrmGenerica {
         jLabel7.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel7.setText("Cliente");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(280, 210, 120, 17);
+        jLabel7.setBounds(280, 210, 120, 19);
 
         btnFrmCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Add_Symbol.png"))); // NOI18N
         btnFrmCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -693,7 +792,7 @@ public class FrmVentas extends FrmGenerica {
         jPanel1.add(jLabel17);
         jLabel17.setBounds(20, 80, 90, 20);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Auto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Auto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel1.add(jPanel6);
         jPanel6.setBounds(10, 65, 530, 80);
 
@@ -717,103 +816,10 @@ public class FrmVentas extends FrmGenerica {
         jPanel1.add(jLabel18);
         jLabel18.setBounds(140, 280, 30, 30);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(370, 0, 550, 440);
+        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 550, 440));
 
-        jPanel4.setLayout(null);
-
-        tblDatos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tblDatos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        tblDatos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDatosMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tblDatos);
-
-        jPanel4.add(jScrollPane2);
-        jScrollPane2.setBounds(20, 70, 340, 310);
-
-        btnBuscar1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Search.png"))); // NOI18N
-        btnBuscar1.setToolTipText("Buscar Tipo Servicio por denominación");
-        btnBuscar1.setBorderPainted(false);
-        btnBuscar1.setContentAreaFilled(false);
-        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnBuscar1);
-        btnBuscar1.setBounds(260, 30, 80, 30);
-
-        btnImprimir1.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        btnImprimir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PrinterChica.png"))); // NOI18N
-        btnImprimir1.setText("Imprir");
-        btnImprimir1.setToolTipText("Impreme el documento");
-        btnImprimir1.setBorderPainted(false);
-        btnImprimir1.setContentAreaFilled(false);
-        jPanel4.add(btnImprimir1);
-        btnImprimir1.setBounds(250, 390, 110, 40);
-
-        txtBusquedaNombre.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        txtBusquedaNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jPanel4.add(txtBusquedaNombre);
-        txtBusquedaNombre.setBounds(20, 30, 240, 30);
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Ventas");
-        jPanel4.add(jLabel4);
-        jLabel4.setBounds(20, 10, 190, 20);
-
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel5.setMinimumSize(new java.awt.Dimension(190, 40));
-        jPanel5.setPreferredSize(new java.awt.Dimension(190, 40));
-
-        btnEditar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editarChico.png"))); // NOI18N
-        btnEditar.setText("Editar");
-        btnEditar.setMargin(new java.awt.Insets(1, 1, 1, 1));
-        btnEditar.setMaximumSize(new java.awt.Dimension(75, 29));
-        btnEditar.setMinimumSize(new java.awt.Dimension(75, 29));
-        btnEditar.setPreferredSize(new java.awt.Dimension(75, 29));
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnEditar);
-
-        btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/remove.png"))); // NOI18N
-        btnEliminar.setText("Eliminar");
-        btnEliminar.setMargin(new java.awt.Insets(1, 1, 1, 1));
-        btnEliminar.setMaximumSize(new java.awt.Dimension(75, 29));
-        btnEliminar.setMinimumSize(new java.awt.Dimension(75, 29));
-        btnEliminar.setPreferredSize(new java.awt.Dimension(75, 29));
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnEliminar);
-
-        jPanel4.add(jPanel5);
-        jPanel5.setBounds(20, 390, 190, 40);
-        jPanel5.getAccessibleContext().setAccessibleDescription("");
-
-        getContentPane().add(jPanel4);
-        jPanel4.setBounds(0, 0, 380, 440);
+        getContentPane().add(jDesktopPane1);
+        jDesktopPane1.setBounds(-10, -30, 935, 480);
 
         getAccessibleContext().setAccessibleName("Carg");
 
@@ -920,6 +926,7 @@ public class FrmVentas extends FrmGenerica {
     private javax.swing.JComboBox<String> cmbAuto;
     private javax.swing.JComboBox<String> cmbCliente;
     private javax.swing.JComboBox<String> cmbEmpleado;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

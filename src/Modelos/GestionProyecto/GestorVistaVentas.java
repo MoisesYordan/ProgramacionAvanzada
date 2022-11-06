@@ -2,7 +2,7 @@ package Modelos.GestionProyecto;
 
 import FRM.FrmVentas;
 import static Hibernate.HibernateUtil.getSession;
-import Vistas.FrmPrincipal;
+import Vistas.FrmPrincipal2;
 import Vistas.GestorVista;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,7 +27,7 @@ public class GestorVistaVentas extends GestorVista  {
     private GestorVistaAuto gestorAuto = new GestorVistaAuto();
     private GestorVistaCliente gestorCliente = new GestorVistaCliente();
     private GestorVistaEmpleado gestorEmpleado = new GestorVistaEmpleado();
-    private FrmPrincipal fPrincipal = new FrmPrincipal();
+    private FrmPrincipal2 fPrincipal = new FrmPrincipal2();
 
     public FrmVentas getForm() {
         return form;

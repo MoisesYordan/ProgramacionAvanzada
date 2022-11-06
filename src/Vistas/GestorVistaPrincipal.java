@@ -3,11 +3,11 @@ import Modelos.GestionProyecto.*;
 import javax.swing.JDesktopPane;
 
 public class GestorVistaPrincipal extends GestorVista{
-    public FrmPrincipal frmPrincipal;
+    public FrmPrincipal2 frmPrincipal2;
 
     public void abrirPrincipal() {
-        FrmPrincipal frmPrincipal = new FrmPrincipal(this);
-        frmPrincipal.setVisible(true);
+        FrmPrincipal2 frmPrincipal2 = new FrmPrincipal2(this);
+        frmPrincipal2.setVisible(true);
     }
     
     public  void abrirMarca(JDesktopPane escritorio) {
