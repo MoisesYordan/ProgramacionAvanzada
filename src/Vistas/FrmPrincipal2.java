@@ -68,7 +68,7 @@ public class FrmPrincipal2 extends javax.swing.JFrame {
         Escritorio.setPreferredSize(new java.awt.Dimension(1040, 670));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel2.setPreferredSize(new java.awt.Dimension(220, 550));
+        jPanel2.setPreferredSize(new java.awt.Dimension(220, 560));
         jPanel2.setLayout(null);
 
         Marca.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -180,10 +180,10 @@ public class FrmPrincipal2 extends javax.swing.JFrame {
             }
         });
         jPanel2.add(Pais);
-        Pais.setBounds(0, 480, 220, 70);
+        Pais.setBounds(0, 480, 220, 80);
 
         Escritorio.add(jPanel2);
-        jPanel2.setBounds(0, 82, 220, 550);
+        jPanel2.setBounds(0, 80, 220, 560);
 
         jPanel5.setBackground(new java.awt.Color(0, 0, 0));
         jPanel5.setPreferredSize(new java.awt.Dimension(1040, 50));

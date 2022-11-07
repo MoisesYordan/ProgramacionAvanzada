@@ -50,12 +50,12 @@
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[220, 550]"/>
+              <Dimension value="[220, 560]"/>
             </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="82" width="-1" height="-1"/>
+              <AbsoluteConstraints x="0" y="80" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
 
@@ -294,7 +294,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="0" y="480" width="220" height="70"/>
+                  <AbsoluteConstraints x="0" y="480" width="220" height="80"/>
                 </Constraint>
               </Constraints>
             </Component>

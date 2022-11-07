@@ -29,9 +29,41 @@ public class FrmVentas extends FrmGenerica {
     public void setTblDatos(JTable tblDatos) {
         this.tblDatos = tblDatos;
     }
-
-// Definicion de getter y setter de los componentes visuales del formulario
     
+// Definicion de getter y setter de los componentes visuales del formulario
+    public JCheckBox getCheckFechaDeVenta() {
+        return CheckFechaDeVenta;
+    }
+
+    public JCheckBox getCheckMarca() {
+        return CheckMarca;
+    }
+
+    public JCheckBox getCheckModelo() {
+        return CheckModelo;
+    }
+
+    public JCheckBox getCheckPrecioDeVenta() {    
+        return CheckPrecioDeVenta;
+    }
+
+    public void setCheckFechaDeVenta(JCheckBox CheckFechaDeVenta) {
+        this.CheckFechaDeVenta = CheckFechaDeVenta;
+    }
+
+    public void setCheckMarca(JCheckBox CheckMarca) {
+        this.CheckMarca = CheckMarca;
+    }
+
+    public void setCheckModelo(JCheckBox CheckModelo) {
+        this.CheckModelo = CheckModelo;
+    }
+
+    public void setCheckPrecioDeVenta(JCheckBox CheckPrecioDeVenta) {
+        this.CheckPrecioDeVenta = CheckPrecioDeVenta;
+    }
+    
+
     public JTextField getTxtCodigo() {
         return txtCodigo;
     }
@@ -390,13 +422,22 @@ public class FrmVentas extends FrmGenerica {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
-        btnBuscar1 = new javax.swing.JButton();
         btnImprimir1 = new javax.swing.JButton();
         txtBusquedaNombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        txtBusquedaNombre1 = new javax.swing.JTextField();
+        txtBusquedaNombre2 = new javax.swing.JTextField();
+        jPanel7 = new javax.swing.JPanel();
+        btnBuscar1 = new javax.swing.JButton();
+        CheckModelo = new javax.swing.JCheckBox();
+        CheckMarca = new javax.swing.JCheckBox();
+        CheckFechaDeVenta = new javax.swing.JCheckBox();
+        CheckPrecioDeVenta = new javax.swing.JCheckBox();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         txtPais = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -438,6 +479,9 @@ public class FrmVentas extends FrmGenerica {
         jPanel6 = new javax.swing.JPanel();
         btnCalcular = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
+        txtCantidad1 = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setTitle("Ventas");
@@ -446,10 +490,9 @@ public class FrmVentas extends FrmGenerica {
         setName("TipoServicio"); // NOI18N
         getContentPane().setLayout(null);
 
-        jDesktopPane1.setPreferredSize(new java.awt.Dimension(935, 480));
-        jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jDesktopPane1.setPreferredSize(new java.awt.Dimension(935, 660));
 
-        jPanel4.setLayout(null);
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -470,22 +513,7 @@ public class FrmVentas extends FrmGenerica {
         });
         jScrollPane2.setViewportView(tblDatos);
 
-        jPanel4.add(jScrollPane2);
-        jScrollPane2.setBounds(20, 70, 340, 310);
-
-        btnBuscar1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Search.png"))); // NOI18N
-        btnBuscar1.setText("Buscar");
-        btnBuscar1.setToolTipText("Buscar Tipo Servicio por denominación");
-        btnBuscar1.setBorderPainted(false);
-        btnBuscar1.setContentAreaFilled(false);
-        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnBuscar1);
-        btnBuscar1.setBounds(260, 30, 100, 30);
+        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 450, 310));
 
         btnImprimir1.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         btnImprimir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PrinterChica.png"))); // NOI18N
@@ -493,18 +521,15 @@ public class FrmVentas extends FrmGenerica {
         btnImprimir1.setToolTipText("Impreme el documento");
         btnImprimir1.setBorderPainted(false);
         btnImprimir1.setContentAreaFilled(false);
-        jPanel4.add(btnImprimir1);
-        btnImprimir1.setBounds(250, 390, 110, 40);
+        jPanel4.add(btnImprimir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 590, 110, 40));
 
         txtBusquedaNombre.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtBusquedaNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jPanel4.add(txtBusquedaNombre);
-        txtBusquedaNombre.setBounds(20, 30, 240, 30);
+        jPanel4.add(txtBusquedaNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 240, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Ventas");
-        jPanel4.add(jLabel4);
-        jLabel4.setBounds(20, 10, 190, 20);
+        jLabel4.setText("Final");
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 190, -1));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel5.setMinimumSize(new java.awt.Dimension(190, 40));
@@ -538,13 +563,60 @@ public class FrmVentas extends FrmGenerica {
         });
         jPanel5.add(btnEliminar);
 
-        jPanel4.add(jPanel5);
-        jPanel5.setBounds(20, 390, 190, 40);
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, -1, -1));
         jPanel5.getAccessibleContext().setAccessibleDescription("");
 
-        jDesktopPane1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 380, 440));
+        txtBusquedaNombre1.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtBusquedaNombre1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel4.add(txtBusquedaNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 240, 30));
+
+        txtBusquedaNombre2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtBusquedaNombre2.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel4.add(txtBusquedaNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 240, 30));
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnBuscar1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Search.png"))); // NOI18N
+        btnBuscar1.setText("Buscar");
+        btnBuscar1.setToolTipText("Buscar Tipo Servicio por denominación");
+        btnBuscar1.setBorderPainted(false);
+        btnBuscar1.setContentAreaFilled(false);
+        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar1ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 100, 30));
+
+        CheckModelo.setText("Modelo");
+        jPanel7.add(CheckModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+
+        CheckMarca.setText("Marca");
+        jPanel7.add(CheckMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+
+        CheckFechaDeVenta.setText("Fecha De Venta");
+        jPanel7.add(CheckFechaDeVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
+
+        CheckPrecioDeVenta.setText("Precio De Venta");
+        jPanel7.add(CheckPrecioDeVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
+
+        jPanel4.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 200, 180));
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel19.setText("Ventas");
+        jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 190, -1));
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel20.setText("Inicio");
+        jPanel4.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 190, -1));
+
+        jDesktopPane1.add(jPanel4);
+        jPanel4.setBounds(10, 30, 480, 640);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descripción", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
+        jPanel1.setPreferredSize(new java.awt.Dimension(0, 660));
         jPanel1.setLayout(null);
 
         txtPais.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
@@ -582,7 +654,7 @@ public class FrmVentas extends FrmGenerica {
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel2.setText("Empleado");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(280, 150, 120, 19);
+        jLabel2.setBounds(20, 390, 120, 19);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel3.setLayout(null);
@@ -612,7 +684,7 @@ public class FrmVentas extends FrmGenerica {
         btnCancelar.setBounds(12, 5, 75, 30);
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(320, 390, 200, 40);
+        jPanel3.setBounds(300, 590, 200, 40);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(null);
@@ -645,17 +717,17 @@ public class FrmVentas extends FrmGenerica {
         btnNuevo.setBounds(10, 5, 75, 30);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(20, 390, 200, 40);
+        jPanel2.setBounds(10, 590, 200, 40);
 
         cmbEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         jPanel1.add(cmbEmpleado);
-        cmbEmpleado.setBounds(280, 170, 120, 30);
+        cmbEmpleado.setBounds(20, 410, 120, 30);
 
         jLabel5.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
         jLabel5.setText("%");
         jLabel5.setRequestFocusEnabled(false);
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(140, 220, 30, 30);
+        jLabel5.setBounds(140, 250, 30, 30);
 
         jLabel6.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel6.setText("Pais");
@@ -665,12 +737,12 @@ public class FrmVentas extends FrmGenerica {
 
         cmbCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         jPanel1.add(cmbCliente);
-        cmbCliente.setBounds(280, 230, 120, 30);
+        cmbCliente.setBounds(200, 410, 120, 30);
 
         jLabel7.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel7.setText("Cliente");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(280, 210, 120, 19);
+        jLabel7.setBounds(200, 390, 120, 19);
 
         btnFrmCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Add_Symbol.png"))); // NOI18N
         btnFrmCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -679,7 +751,7 @@ public class FrmVentas extends FrmGenerica {
             }
         });
         jPanel1.add(btnFrmCliente);
-        btnFrmCliente.setBounds(410, 230, 40, 30);
+        btnFrmCliente.setBounds(330, 410, 40, 30);
 
         txtMarca.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtMarca.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -695,35 +767,35 @@ public class FrmVentas extends FrmGenerica {
         txtFechaDeVenta.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtFechaDeVenta.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtFechaDeVenta);
-        txtFechaDeVenta.setBounds(410, 350, 120, 30);
+        txtFechaDeVenta.setBounds(400, 520, 120, 30);
 
         jLabel9.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel9.setText("FechaDeVenta");
         jLabel9.setRequestFocusEnabled(false);
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(410, 330, 110, 20);
+        jLabel9.setBounds(400, 500, 110, 20);
 
         txtObvservaciones.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtObvservaciones.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtObvservaciones);
-        txtObvservaciones.setBounds(20, 330, 320, 50);
+        txtObvservaciones.setBounds(20, 500, 320, 50);
 
         jLabel10.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel10.setText("Obvservaciones");
         jLabel10.setRequestFocusEnabled(false);
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(20, 310, 110, 20);
+        jLabel10.setBounds(20, 480, 110, 20);
 
         txtTotal.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtTotal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtTotal);
-        txtTotal.setBounds(20, 280, 120, 30);
+        txtTotal.setBounds(400, 330, 120, 30);
 
         jLabel11.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel11.setText("Total");
         jLabel11.setRequestFocusEnabled(false);
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(20, 260, 90, 20);
+        jLabel11.setBounds(400, 310, 90, 20);
 
         txtAño.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtAño.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -737,10 +809,10 @@ public class FrmVentas extends FrmGenerica {
         jLabel12.setBounds(410, 80, 90, 20);
 
         jLabel13.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        jLabel13.setText("Impuesto Aplicado");
+        jLabel13.setText("Precio Unitario");
         jLabel13.setRequestFocusEnabled(false);
         jPanel1.add(jLabel13);
-        jLabel13.setBounds(20, 200, 120, 20);
+        jLabel13.setBounds(20, 310, 120, 20);
 
         jLabel14.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
         jLabel14.setText("U°");
@@ -772,7 +844,7 @@ public class FrmVentas extends FrmGenerica {
         txtImpuesto.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtImpuesto.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtImpuesto);
-        txtImpuesto.setBounds(20, 220, 120, 30);
+        txtImpuesto.setBounds(20, 250, 120, 30);
 
         txtModelo.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtModelo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -814,18 +886,33 @@ public class FrmVentas extends FrmGenerica {
         jLabel18.setText("$");
         jLabel18.setRequestFocusEnabled(false);
         jPanel1.add(jLabel18);
-        jLabel18.setBounds(140, 280, 30, 30);
+        jLabel18.setBounds(140, 330, 30, 30);
+        jPanel1.add(txtCantidad1);
+        txtCantidad1.setBounds(20, 330, 120, 30);
 
-        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 550, 440));
+        jLabel21.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        jLabel21.setText("Impuesto Aplicado");
+        jLabel21.setRequestFocusEnabled(false);
+        jPanel1.add(jLabel21);
+        jLabel21.setBounds(20, 230, 120, 20);
+
+        jLabel22.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
+        jLabel22.setText("$");
+        jLabel22.setRequestFocusEnabled(false);
+        jPanel1.add(jLabel22);
+        jLabel22.setBounds(520, 330, 30, 30);
+
+        jDesktopPane1.add(jPanel1);
+        jPanel1.setBounds(480, 30, 560, 660);
 
         getContentPane().add(jDesktopPane1);
-        jDesktopPane1.setBounds(-10, -30, 935, 480);
+        jDesktopPane1.setBounds(-10, -30, 1040, 670);
 
         getAccessibleContext().setAccessibleName("Carg");
 
-        setBounds(150, 0, 935, 481);
+        setBounds(150, 0, 1040, 670);
     }// </editor-fold>//GEN-END:initComponents
-
+//ASD
     private void btnBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodigoActionPerformed
         int busqueda=1; //busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
         if (btnCandado==0) {//btnCandado =0 primera vez presionado
@@ -884,6 +971,7 @@ public class FrmVentas extends FrmGenerica {
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
         int busqueda=0;//busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
         this.clearView();
+        
         this.setBusqueda(busqueda);
         this.viewCamposEnabled(false);
     }//GEN-LAST:event_btnBuscar1ActionPerformed
@@ -912,6 +1000,10 @@ public class FrmVentas extends FrmGenerica {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox CheckFechaDeVenta;
+    private javax.swing.JCheckBox CheckMarca;
+    private javax.swing.JCheckBox CheckModelo;
+    private javax.swing.JCheckBox CheckPrecioDeVenta;
     private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnBuscarCodigo;
     public javax.swing.JButton btnCalcular;
@@ -936,7 +1028,11 @@ public class FrmVentas extends FrmGenerica {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -950,12 +1046,16 @@ public class FrmVentas extends FrmGenerica {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblDatos;
     private javax.swing.JTextField txtAuto;
     private javax.swing.JTextField txtAño;
     private javax.swing.JTextField txtBusquedaNombre;
+    private javax.swing.JTextField txtBusquedaNombre1;
+    private javax.swing.JTextField txtBusquedaNombre2;
     private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtCantidad1;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtFechaDeVenta;
     private javax.swing.JTextField txtImpuesto;
