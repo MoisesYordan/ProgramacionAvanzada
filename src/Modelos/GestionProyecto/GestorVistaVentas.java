@@ -1,9 +1,9 @@
 package Modelos.GestionProyecto;
 
 import FRM.FrmVentas;
-import static Hibernate.HibernateUtil.getSession;
 import Vistas.FrmPrincipal2;
 import Vistas.GestorVista;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -14,8 +14,11 @@ import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -27,7 +30,7 @@ public class GestorVistaVentas extends GestorVista  {
     private GestorVistaAuto gestorAuto = new GestorVistaAuto();
     private GestorVistaCliente gestorCliente = new GestorVistaCliente();
     private GestorVistaEmpleado gestorEmpleado = new GestorVistaEmpleado();
-    private FrmPrincipal2 fPrincipal = new FrmPrincipal2();
+    //private FrmPrincipal2 fPrincipal = new FrmPrincipal2();
 
     public FrmVentas getForm() {
         return form;
@@ -65,7 +68,7 @@ public class GestorVistaVentas extends GestorVista  {
     public void setGestorCliente(GestorVistaCliente gestorCliente) {
         this.gestorCliente = gestorCliente;
     }
-    
+
     @Override
     public void newModel() {
         this.setModel(new Ventas());
@@ -118,6 +121,23 @@ public class GestorVistaVentas extends GestorVista  {
         this.getModel().asEliminado();
         this.actualizarObjeto(this.getModel());
     }
+//    public Date convertirStringADate(){
+//        
+//        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+//        
+//        Date fecha = null ;
+//      
+//        try {
+//            
+//            fecha =formato.parse(this.getForm().getTxtFechaDeVenta().getText());
+//            formato.format(fecha);
+//            System.out.print(this.getForm().getTxtFechaDeVenta().getText());
+//        } catch (ParseException ex) {
+//            Logger.getLogger(GestorVistaVentas.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        System.out.print(fecha);
+//        return fecha;
+//    }
     
     @Override
     public int setModel() {
@@ -273,13 +293,13 @@ public class GestorVistaVentas extends GestorVista  {
        this.getForm().getCmbCliente().setSelectedItem(this.getModel().getCliente());
     }
  // set busqueda trae lo el dato que se ingresa para buscar, asi tambien una bandera que indica cual boton de busqueda se preciono, como parametro 
-public void setBusqueda(String dato,int ord, String text, String quebuscar,int b){ 
+public void setBusqueda(String dato,int ord, String text, String quebuscar,int b,boolean mod,boolean marc,boolean pre, boolean fecha,String inicio,String fin){ 
         this.initializeTablaBusqueda(this.getForm().getTblDatos());
       
         if(!"".equals(dato)){
            if(b==0){//b=>0 es una cadena numerica    1= es una cadena alfanumerica
 
-                this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,"",null,null));
+                this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,"",null,null,mod,marc,pre,fecha,"",""));
                 int d=Integer.parseInt(dato);
                 if(this.listarGenericoNumero(ord,d,quebuscar,Cliente.class,-1).size()==0){
                     JOptionPane.showMessageDialog(null, "error, no se encontro en la BD","Validación de Datos",JOptionPane.WARNING_MESSAGE);
@@ -292,17 +312,18 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
                 List listaEmpleado= new ArrayList<Empleado>();
                 DefaultTableModel d =new DefaultTableModel();
                 //listo todos los nombre de los clientes q considan con el dato a buscar y los traigo en un array
-                listaCliente=this.listarGenericoLetraObj(ord,"nombre",dato,Cliente.class,-1);
-                //listo todos los nombre de los empleados q considan con el dato a buscar y los traigo en un array
-                listaEmpleado=this.listarGenericoLetraObj(ord,"nombre",dato,Empleado.class,-1);
-                System.out.print(listaCliente);
+//                listaCliente=this.listarGenericoLetraObj(ord,"nombre",dato,Cliente.class,-1);
+//                //listo todos los nombre de los empleados q considan con el dato a buscar y los traigo en un array
+//                listaEmpleado=this.listarGenericoLetraObj(ord,"nombre",dato,Empleado.class,-1);
                 //d es una tabla vacia que solo se va utilizar para saber su tamaño, en caso de que el cliente/empleado/marca/modelo  no coinsidan con el dato
                 // entrar al if y mostrara el cartel de error
-                if(this.listarDatos(d ,this.getOrdenamiento(),dato,"",b,"",listaCliente,listaEmpleado).getRowCount()==0){
+                
+                if(this.listarDatos(d ,this.getOrdenamiento(),dato,"",b,"",listaCliente,listaEmpleado,mod,marc,pre,fecha,inicio,fin).getRowCount()==0){
                     JOptionPane.showMessageDialog(null, "error, no se encontro en la BD","Validación de Datos",JOptionPane.WARNING_MESSAGE);
                 }
                 else{
-                    this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,"",b,"",listaCliente,listaEmpleado));
+                    
+                    this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,"",b,"",listaCliente,listaEmpleado,mod,marc,pre,fecha,inicio,fin));
                 
                     
                } 
@@ -310,7 +331,7 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
         }
         else{
             b=3;
-            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"",null,null)); 
+            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"",null,null,false,false,false,false,"","")); 
         }
     }
   
@@ -345,7 +366,7 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
         return model.getValueAt(tbl.getSelectedRow(),0);
     }
     
-public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text,List listaCliente, List listaEmpleado) { 
+public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text,List listaCliente, List listaEmpleado,boolean mod, boolean marc, boolean pre, boolean fecha,String inicio,String fin) { 
         TreeSet<Ventas> lista = new TreeSet(); 
         // en este if se buscara por codigo solo se permitira ingresar numeros
         if(b==0){
@@ -372,34 +393,59 @@ public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordena
         // si b=1 entonces sera la busqueda de la lupa y se podra ingresar tanto numero como letras se busca por nombrecliente nombreempleado marca y modelo
         if(b==1){
             Ventas  auxModel;
-            for( int i =0; i<listaCliente.size();i++){
-               List listCliente=(this.listarGenericoLetra(ordenamiento,"cliente",listaCliente.get(i),Ventas.class, -1));
-                Iterator it = (Iterator) listCliente.iterator();
-                while (it.hasNext())  {
-                    auxModel =(Ventas) it.next(); 
-                    lista.add(auxModel);
-                }
-            }
-               for( int i =0; i<listaEmpleado.size();i++){
-               List listEmpleado=(this.listarGenericoLetra(ordenamiento,"empleado",listaEmpleado.get(i),Ventas.class, -1));
-                Iterator it = (Iterator) listEmpleado.iterator();
-                while (it.hasNext())  {
-                    auxModel =(Ventas) it.next(); 
-                    lista.add(auxModel);
-                }
-            }
+//            for( int i =0; i<listaCliente.size();i++){
+//               List listCliente=(this.listarGenericoLetra(ordenamiento,"cliente",listaCliente.get(i),Ventas.class, -1));
+//                Iterator it = (Iterator) listCliente.iterator();
+//                while (it.hasNext())  {
+//                    auxModel =(Ventas) it.next(); 
+//                    lista.add(auxModel);
+//                }
+//            }
+//               for( int i =0; i<listaEmpleado.size();i++){
+//               List listEmpleado=(this.listarGenericoLetra(ordenamiento,"empleado",listaEmpleado.get(i),Ventas.class, -1));
+//                Iterator it = (Iterator) listEmpleado.iterator();
+//                while (it.hasNext())  {
+//                    auxModel =(Ventas) it.next(); 
+//                    lista.add(auxModel);
+//                }
+//            }
+            if (marc){
+            
             List listMarca=(this.listarGenericoLetraObj(ordenamiento,"marca",dato,Ventas.class, -1));
                 Iterator it = (Iterator) listMarca.iterator();
                 while (it.hasNext())  {
                     auxModel =(Ventas) it.next(); 
                     lista.add(auxModel);
                 }
+            }
+
+            if(mod){
+            
             List listModelo=(this.listarGenericoLetraObj(ordenamiento,"modelo",dato,Ventas.class, -1));
                 Iterator it1 = (Iterator) listModelo.iterator();
                 while (it1.hasNext())  {
                     auxModel =(Ventas) it1.next(); 
                     lista.add(auxModel);
                 }
+            }
+            if(pre){
+            
+            List listPrecio=(this.listarGenericoLetraObj(ordenamiento,"total",dato,Ventas.class, -1));
+                Iterator it1 = (Iterator) listPrecio.iterator();
+                while (it1.hasNext())  {
+                    auxModel =(Ventas) it1.next(); 
+                    lista.add(auxModel);
+                }
+            }
+            if(fecha){
+            
+            List listfecha=(this.listarGenericoFecha(ordenamiento,"fechaDeVenta",dato,Ventas.class, -1,inicio,fin));
+                Iterator it1 = (Iterator) listfecha.iterator();
+                while (it1.hasNext())  {
+                    auxModel =(Ventas) it1.next(); 
+                    lista.add(auxModel);
+                }
+            }
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Ventas ) it2.next();

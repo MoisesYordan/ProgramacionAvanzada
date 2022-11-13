@@ -1,9 +1,7 @@
 package FRM;
 import Modelos.GestionProyecto.Auto;
-import Modelos.GestionProyecto.GestorVistaCliente;
 import Modelos.GestionProyecto.GestorVistaVentas;
 import Vistas.FrmGenerica;
-import Vistas.GestorVistaPrincipal;
 import java.awt.HeadlessException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -101,11 +99,34 @@ public class FrmVentas extends FrmGenerica {
     public JTextField getTxtAño() {
         return txtAño;
     }
-
+    public JTextField getTxtInicio() {
+        return txtInicio;
+    }
+    public void setTxtInicio(JTextField txtInicio) {
+        this.txtInicio = txtInicio;
+    }
+    public JTextField getTxtFin() {
+        return txtFin;
+    }
+    public void setTxtFin(JTextField txtFin) {
+        this.txtFin = txtFin;
+    }
+    public JTextField getTxtMontoInicial() {
+        return txtMontoInicial;
+    }
+    public void setTxtMontoInicial(JTextField txtMontonInicial) {
+        this.txtMontoInicial = txtMontoInicial;
+    }
+    public JTextField getTxtMontoFinal() {
+        return txtMontoFinal;
+    }
+    public void setTxtMontoFinal(JTextField txtMontonInicial) {
+        this.txtMontoFinal = txtMontoFinal;
+    }
     public JComboBox<String> getCmbEmpleado() {
         return cmbEmpleado;
     }
-
+    
     public void setCmbEmpleado(JComboBox<String> cmbEmpleado) {
         this.cmbEmpleado = cmbEmpleado;
     }
@@ -309,12 +330,14 @@ public class FrmVentas extends FrmGenerica {
 
     private void viewNueva(){
         Date today;
+        
         today = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         this.clearView();
         this.getGestorVista().newModel();
         txtAuto.grabFocus();
         txtFechaDeVenta.setText(sdf.format(today)+"");
+        
     }
     @Override
     public void clearView() {
@@ -362,25 +385,27 @@ public class FrmVentas extends FrmGenerica {
     }  
   
 //llenado de tablas
-    public void setBusqueda(int busqueda) {
+    public void setBusqueda(int busqueda,boolean mod, boolean marc, boolean pre, boolean fecha) {
         int ord = 0;
         int b=0;//b=>0 es una cadena alfanumerica      1= es una cadena numerica
         String text = null;
+        //String inicio=this.txtBusquedaNombre.getText();
+        String fin= this.txtFin.getText();
         String dato=this.txtBusquedaNombre.getText();//se pone en la variable dato lo que esta dentro de la barra de busqueda de la lupa
-       
+        String inicio=this.txtInicio.getText();
         //pregunta si dato es igual a un numero(codigo) o una letra(barra de busqueda)
         //busqueda=> 0=lupa de buscar     1= el candado de buscarCodigo
         if (this.getGestorVista().validarNumeros(dato)==false|| busqueda==0){
             b=1;//b=>0 es una cadena alfanumerica            1= es una cadena numerica
             String quebuscar="modelo";
             this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
-            this.getGestorVista().setBusqueda(dato,ord,text,quebuscar,b);  
+            this.getGestorVista().setBusqueda(dato,ord,text,quebuscar,b,mod,marc,pre,fecha,inicio,fin);  
         }else{
             b=0;//b=>0 es una cadena alfanumerica            1= es una cadena numerica
             dato=this.txtCodigo.getText();//se pone en la variable dato lo que esta dentro de la barra de codigo
             String quebuscar="codigo";
             this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
-            this.getGestorVista().setBusqueda(dato,ord,text,quebuscar,b); 
+            this.getGestorVista().setBusqueda(dato,ord,text,quebuscar,b,mod,marc,pre,fecha,inicio,fin); 
         }
     }
     
@@ -428,8 +453,8 @@ public class FrmVentas extends FrmGenerica {
         jPanel5 = new javax.swing.JPanel();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        txtBusquedaNombre1 = new javax.swing.JTextField();
-        txtBusquedaNombre2 = new javax.swing.JTextField();
+        txtInicio = new javax.swing.JTextField();
+        txtFin = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         btnBuscar1 = new javax.swing.JButton();
         CheckModelo = new javax.swing.JCheckBox();
@@ -438,6 +463,10 @@ public class FrmVentas extends FrmGenerica {
         CheckPrecioDeVenta = new javax.swing.JCheckBox();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        txtMontoInicial = new javax.swing.JTextField();
+        txtMontoFinal = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         txtPais = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -479,7 +508,7 @@ public class FrmVentas extends FrmGenerica {
         jPanel6 = new javax.swing.JPanel();
         btnCalcular = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
-        txtCantidad1 = new javax.swing.JTextField();
+        txtPrecioUnitario = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
 
@@ -528,7 +557,7 @@ public class FrmVentas extends FrmGenerica {
         jPanel4.add(txtBusquedaNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 240, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Final");
+        jLabel4.setText("Monto Inicial");
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 190, -1));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -566,13 +595,13 @@ public class FrmVentas extends FrmGenerica {
         jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, -1, -1));
         jPanel5.getAccessibleContext().setAccessibleDescription("");
 
-        txtBusquedaNombre1.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        txtBusquedaNombre1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jPanel4.add(txtBusquedaNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 240, 30));
+        txtInicio.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtInicio.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel4.add(txtInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 240, 30));
 
-        txtBusquedaNombre2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        txtBusquedaNombre2.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jPanel4.add(txtBusquedaNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 240, 30));
+        txtFin.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtFin.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel4.add(txtFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 240, 30));
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -609,8 +638,24 @@ public class FrmVentas extends FrmGenerica {
         jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 190, -1));
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel20.setText("Inicio");
-        jPanel4.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 190, -1));
+        jLabel20.setText("Fecha Inicio");
+        jPanel4.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 190, -1));
+
+        txtMontoInicial.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtMontoInicial.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel4.add(txtMontoInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 240, 30));
+
+        txtMontoFinal.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtMontoFinal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel4.add(txtMontoFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 240, 30));
+
+        jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel23.setText("Fecha Final");
+        jPanel4.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 190, -1));
+
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel24.setText("Monto Final");
+        jPanel4.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 190, -1));
 
         jDesktopPane1.add(jPanel4);
         jPanel4.setBounds(10, 30, 480, 640);
@@ -887,8 +932,8 @@ public class FrmVentas extends FrmGenerica {
         jLabel18.setRequestFocusEnabled(false);
         jPanel1.add(jLabel18);
         jLabel18.setBounds(140, 330, 30, 30);
-        jPanel1.add(txtCantidad1);
-        txtCantidad1.setBounds(20, 330, 120, 30);
+        jPanel1.add(txtPrecioUnitario);
+        txtPrecioUnitario.setBounds(20, 330, 120, 30);
 
         jLabel21.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel21.setText("Impuesto Aplicado");
@@ -970,9 +1015,8 @@ public class FrmVentas extends FrmGenerica {
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
         int busqueda=0;//busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
-        this.clearView();
-        
-        this.setBusqueda(busqueda);
+        this.clearView();       
+        this.setBusqueda(busqueda,this.CheckModelo.isSelected(),this.CheckMarca.isSelected(),this.CheckPrecioDeVenta.isSelected(),this.CheckFechaDeVenta.isSelected());
         this.viewCamposEnabled(false);
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
@@ -1033,6 +1077,8 @@ public class FrmVentas extends FrmGenerica {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1052,17 +1098,19 @@ public class FrmVentas extends FrmGenerica {
     private javax.swing.JTextField txtAuto;
     private javax.swing.JTextField txtAño;
     private javax.swing.JTextField txtBusquedaNombre;
-    private javax.swing.JTextField txtBusquedaNombre1;
-    private javax.swing.JTextField txtBusquedaNombre2;
     private javax.swing.JTextField txtCantidad;
-    private javax.swing.JTextField txtCantidad1;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtFechaDeVenta;
+    private javax.swing.JTextField txtFin;
     private javax.swing.JTextField txtImpuesto;
+    private javax.swing.JTextField txtInicio;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;
+    private javax.swing.JTextField txtMontoFinal;
+    private javax.swing.JTextField txtMontoInicial;
     private javax.swing.JTextField txtObvservaciones;
     private javax.swing.JTextField txtPais;
+    private javax.swing.JTextField txtPrecioUnitario;
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }
