@@ -308,13 +308,22 @@ public class GestorVista  extends GestorHibernate {
             .add(Restrictions.like(quebuscar,dato,MatchMode.ANYWHERE).ignoreCase()).setMaxResults(max);
         return crit.list();
     }
-        public List listarGenericoFecha(int ord, String quebuscar, String dato, Class clase, int max,String inicio, String fin){
+    public List listarGenericoFecha(int ord, String quebuscar, String dato, Class clase, int max,String inicio, String fin){
         
         Criteria crit =getSession().createCriteria(clase)
             .add(Restrictions.eq("estado",0))
             .add(Restrictions.between(quebuscar, inicio, fin));
         return crit.list();
     }
+    public List listarGenericoMonto(int ord, String quebuscar, String dato, Class clase, int max,String montoInicial, String montoFinal){
+        int montoI = Integer.parseInt(montoInicial);
+        int montoF=Integer.parseInt(montoFinal);
+        Criteria crit =getSession().createCriteria(clase)
+            .add(Restrictions.eq("estado",0))
+            .add(Restrictions.between(quebuscar, montoInicial, montoFinal));
+        return crit.list();
+        
+    }   
         
     public List listarGenericoLetra(int ord, String quebuscar, Object dato, Class clase, int max){
         

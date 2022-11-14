@@ -391,21 +391,23 @@ public class FrmVentas extends FrmGenerica {
         String text = null;
         //String inicio=this.txtBusquedaNombre.getText();
         String fin= this.txtFin.getText();
-        String dato=this.txtBusquedaNombre.getText();//se pone en la variable dato lo que esta dentro de la barra de busqueda de la lupa
         String inicio=this.txtInicio.getText();
+        String dato=this.txtBusquedaNombre.getText();//se pone en la variable dato lo que esta dentro de la barra de busqueda de la lupa
+        String montoInicial=this.txtMontoInicial.getText();
+        String montoFinal= this.txtMontoFinal.getText();
         //pregunta si dato es igual a un numero(codigo) o una letra(barra de busqueda)
         //busqueda=> 0=lupa de buscar     1= el candado de buscarCodigo
         if (this.getGestorVista().validarNumeros(dato)==false|| busqueda==0){
             b=1;//b=>0 es una cadena alfanumerica            1= es una cadena numerica
             String quebuscar="modelo";
             this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
-            this.getGestorVista().setBusqueda(dato,ord,text,quebuscar,b,mod,marc,pre,fecha,inicio,fin);  
+            this.getGestorVista().setBusqueda(dato,ord,text,quebuscar,b,mod,marc,pre,fecha,inicio,fin,montoInicial,montoFinal);  
         }else{
             b=0;//b=>0 es una cadena alfanumerica            1= es una cadena numerica
             dato=this.txtCodigo.getText();//se pone en la variable dato lo que esta dentro de la barra de codigo
             String quebuscar="codigo";
             this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
-            this.getGestorVista().setBusqueda(dato,ord,text,quebuscar,b,mod,marc,pre,fecha,inicio,fin); 
+            this.getGestorVista().setBusqueda(dato,ord,text,quebuscar,b,mod,marc,pre,fecha,inicio,fin,montoInicial,montoFinal); 
         }
     }
     
@@ -948,7 +950,7 @@ public class FrmVentas extends FrmGenerica {
         jLabel22.setBounds(520, 330, 30, 30);
 
         jDesktopPane1.add(jPanel1);
-        jPanel1.setBounds(480, 30, 560, 660);
+        jPanel1.setBounds(480, 30, 560, 640);
 
         getContentPane().add(jDesktopPane1);
         jDesktopPane1.setBounds(-10, -30, 1040, 670);

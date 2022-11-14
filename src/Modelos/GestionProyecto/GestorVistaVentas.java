@@ -1,9 +1,7 @@
 package Modelos.GestionProyecto;
 
 import FRM.FrmVentas;
-import Vistas.FrmPrincipal2;
 import Vistas.GestorVista;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -14,10 +12,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 
 /**
@@ -293,13 +288,13 @@ public class GestorVistaVentas extends GestorVista  {
        this.getForm().getCmbCliente().setSelectedItem(this.getModel().getCliente());
     }
  // set busqueda trae lo el dato que se ingresa para buscar, asi tambien una bandera que indica cual boton de busqueda se preciono, como parametro 
-public void setBusqueda(String dato,int ord, String text, String quebuscar,int b,boolean mod,boolean marc,boolean pre, boolean fecha,String inicio,String fin){ 
+public void setBusqueda(String dato,int ord, String text, String quebuscar,int b,boolean mod,boolean marc,boolean pre, boolean fecha,String inicio,String fin,String montoInicial,String montoFinal){ 
         this.initializeTablaBusqueda(this.getForm().getTblDatos());
       
         if(!"".equals(dato)){
            if(b==0){//b=>0 es una cadena numerica    1= es una cadena alfanumerica
 
-                this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,"",null,null,mod,marc,pre,fecha,"",""));
+                this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,"",null,null,mod,marc,pre,fecha,"","","",""));
                 int d=Integer.parseInt(dato);
                 if(this.listarGenericoNumero(ord,d,quebuscar,Cliente.class,-1).size()==0){
                     JOptionPane.showMessageDialog(null, "error, no se encontro en la BD","Validación de Datos",JOptionPane.WARNING_MESSAGE);
@@ -318,12 +313,12 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
                 //d es una tabla vacia que solo se va utilizar para saber su tamaño, en caso de que el cliente/empleado/marca/modelo  no coinsidan con el dato
                 // entrar al if y mostrara el cartel de error
                 
-                if(this.listarDatos(d ,this.getOrdenamiento(),dato,"",b,"",listaCliente,listaEmpleado,mod,marc,pre,fecha,inicio,fin).getRowCount()==0){
+                if(this.listarDatos(d ,this.getOrdenamiento(),dato,"",b,"",listaCliente,listaEmpleado,mod,marc,pre,fecha,inicio,fin,montoInicial,montoFinal).getRowCount()==0){
                     JOptionPane.showMessageDialog(null, "error, no se encontro en la BD","Validación de Datos",JOptionPane.WARNING_MESSAGE);
                 }
                 else{
                     
-                    this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,"",b,"",listaCliente,listaEmpleado,mod,marc,pre,fecha,inicio,fin));
+                    this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,"",b,"",listaCliente,listaEmpleado,mod,marc,pre,fecha,inicio,fin,montoInicial,montoFinal));
                 
                     
                } 
@@ -331,7 +326,7 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
         }
         else{
             b=3;
-            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"",null,null,false,false,false,false,"","")); 
+            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"",null,null,false,false,false,false,"","","","")); 
         }
     }
   
@@ -366,7 +361,7 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
         return model.getValueAt(tbl.getSelectedRow(),0);
     }
     
-public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text,List listaCliente, List listaEmpleado,boolean mod, boolean marc, boolean pre, boolean fecha,String inicio,String fin) { 
+public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text,List listaCliente, List listaEmpleado,boolean mod, boolean marc, boolean pre, boolean fecha,String inicio,String fin,String montoInicial,String montoFinal) { 
         TreeSet<Ventas> lista = new TreeSet(); 
         // en este if se buscara por codigo solo se permitira ingresar numeros
         if(b==0){
@@ -430,12 +425,13 @@ public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordena
             }
             if(pre){
             
-            List listPrecio=(this.listarGenericoLetraObj(ordenamiento,"total",dato,Ventas.class, -1));
-                Iterator it1 = (Iterator) listPrecio.iterator();
+            List listtotal=(this.listarGenericoMonto(ordenamiento,"total",dato,Ventas.class, -1,montoInicial,montoFinal));
+                Iterator it1 = (Iterator) listtotal.iterator();
                 while (it1.hasNext())  {
                     auxModel =(Ventas) it1.next(); 
                     lista.add(auxModel);
                 }
+            System.out.print(listtotal.size());
             }
             if(fecha){
             
@@ -445,6 +441,7 @@ public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordena
                     auxModel =(Ventas) it1.next(); 
                     lista.add(auxModel);
                 }
+            System.out.print(listfecha.size());
             }
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
