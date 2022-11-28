@@ -280,7 +280,7 @@ public class FrmPrincipal2 extends javax.swing.JFrame {
     private rsbuttom.RSButtonMetro Auto;
     private rsbuttom.RSButtonMetro Cliente;
     private rsbuttom.RSButtonMetro Empleado;
-    private javax.swing.JDesktopPane Escritorio;
+    public static javax.swing.JDesktopPane Escritorio;
     private rsbuttom.RSButtonMetro Marca;
     private rsbuttom.RSButtonMetroMenu MenuPlegable;
     private rsbuttom.RSButtonMetro Modelo;

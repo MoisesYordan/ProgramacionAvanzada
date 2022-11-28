@@ -1,26 +1,7 @@
 package ireport;
-
-
-import java.awt.print.PrinterJob;
 import java.io.File;
-import java.net.URL;
 import java.util.*;
-import javax.print.PrintService;
-import javax.print.PrintServiceLookup;
-import javax.print.attribute.HashPrintRequestAttributeSet;
-import javax.print.attribute.PrintRequestAttributeSet;
-import javax.print.attribute.standard.Copies;
-import javax.print.attribute.standard.MediaPrintableArea;
-import javax.print.attribute.standard.MediaSize;
-import javax.print.attribute.standard.MediaSizeName;
-
-
-import javax.swing.JOptionPane;
-
-
 import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
-import net.sf.jasperreports.engine.export.JRPrintServiceExporterParameter;
 import net.sf.jasperreports.engine.util.JRLoader;
 import java.sql.Connection;
 import net.sf.jasperreports.view.*;
@@ -39,7 +20,7 @@ public class GestorDeReportes  extends Thread {
 
     private String archivo;
     private Session session;
-    private Map parametros = new HashMap();
+    private Map parametro = new HashMap();
     private FuenteDeDatosCollection fuenteDeDatos=new  FuenteDeDatosCollection();  
     private JasperReport masterReport;
     JasperPrint jasperPrint;
@@ -50,9 +31,11 @@ public class GestorDeReportes  extends Thread {
      */
 
     
-    public GestorDeReportes(String archivo, Session session) {
+    public GestorDeReportes(String archivo, Session session,Map parametro) {
         this.archivo=archivo;
         this.session= session;
+        this.parametro= parametro;
+        
         
     }
 
@@ -114,7 +97,7 @@ public class GestorDeReportes  extends Thread {
 //              System.out.println("fuenteDeDatos: cantidad="+FuenteDeDatosCollection.getColeccionDeDatos().size()
 //                      +" "+FuenteDeDatosCollection.getColeccionDeDatos().toString());
              
-                jasperPrint= JasperFillManager.fillReport(masterReport,null,conn);
+                jasperPrint= JasperFillManager.fillReport(masterReport,parametro,conn);
             }
              JasperViewer jviewer = new JasperViewer(jasperPrint,false);   
              jviewer.setTitle("Reporte");
@@ -167,11 +150,11 @@ public class GestorDeReportes  extends Thread {
     }
 
     public Map getParametros() {
-        return parametros;
+        return parametro;
     }
 
     public void setParametros(Map parametros) {
-        this.parametros = parametros;
+        this.parametro = parametros;
     }   
     
   

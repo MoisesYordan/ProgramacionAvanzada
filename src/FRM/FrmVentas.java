@@ -2,6 +2,8 @@ package FRM;
 import Modelos.GestionProyecto.Auto;
 import Modelos.GestionProyecto.GestorVistaVentas;
 import Vistas.FrmGenerica;
+import Vistas.FrmPrincipal2;
+import ireport.FrmReporte;
 import ireport.GestorDeReportes;
 import java.awt.HeadlessException;
 import java.text.ParseException;
@@ -17,9 +19,9 @@ import javax.swing.*;
 
 public class FrmVentas extends FrmGenerica {
     public GestorDeReportes gestor;
-    public String path= "src/ireport/report1.jasper";
     private GestorVistaVentas gestorVista;
     private GestorDeReportes gestorDeReportes;
+
     private int YES_NO_OPTION;
     
     public GestorDeReportes getGestorDeReportes() {
@@ -39,14 +41,6 @@ public class FrmVentas extends FrmGenerica {
 
     public void setGestor(GestorDeReportes gestor) {
         this.gestor = gestor;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
     }
     
     public void setGestorVista(GestorVistaVentas gestorVista) {
@@ -249,7 +243,6 @@ public class FrmVentas extends FrmGenerica {
     }
 
     public FrmVentas() {
-        this.gestor= new GestorDeReportes(path, this.gestorVista.getSession2());
         initComponents();
     }
     
@@ -521,7 +514,6 @@ public class FrmVentas extends FrmGenerica {
         txtMontoFinal = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtPais = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -601,11 +593,16 @@ public class FrmVentas extends FrmGenerica {
 
         btnImprimir1.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         btnImprimir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PrinterChica.png"))); // NOI18N
-        btnImprimir1.setText("Imprir");
+        btnImprimir1.setText("Reportes");
         btnImprimir1.setToolTipText("Impreme el documento");
         btnImprimir1.setBorderPainted(false);
         btnImprimir1.setContentAreaFilled(false);
-        jPanel4.add(btnImprimir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 590, 110, 40));
+        btnImprimir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimir1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnImprimir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 590, 120, 40));
 
         txtBusquedaNombre.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtBusquedaNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -681,6 +678,11 @@ public class FrmVentas extends FrmGenerica {
         jPanel7.add(CheckMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
         CheckFechaDeVenta.setText("Fecha De Venta");
+        CheckFechaDeVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckFechaDeVentaActionPerformed(evt);
+            }
+        });
         jPanel7.add(CheckFechaDeVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
 
         CheckPrecioDeVenta.setText("Precio De Venta");
@@ -711,14 +713,6 @@ public class FrmVentas extends FrmGenerica {
         jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel24.setText("Monto Final");
         jPanel4.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 190, -1));
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 600, -1, -1));
 
         jDesktopPane1.add(jPanel4);
         jPanel4.setBounds(10, 30, 480, 640);
@@ -1105,10 +1099,18 @@ public class FrmVentas extends FrmGenerica {
         this.llenadoCmbAutos();
     }//GEN-LAST:event_cmbAutoItemStateChanged
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.gestor= new GestorDeReportes(path, this.gestorVista.getSession2());
-        gestor.imprimir();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnImprimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimir1ActionPerformed
+        FrmReporte reporte = new FrmReporte();
+        reporte.setGestorVista(this.gestorVista);
+        FrmPrincipal2.Escritorio.add(reporte);
+        reporte.toFront();
+        reporte.setVisible(true);
+        
+    }//GEN-LAST:event_btnImprimir1ActionPerformed
+
+    private void CheckFechaDeVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckFechaDeVentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CheckFechaDeVentaActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1130,7 +1132,6 @@ public class FrmVentas extends FrmGenerica {
     private javax.swing.JComboBox<String> cmbAuto;
     private javax.swing.JComboBox<String> cmbCliente;
     private javax.swing.JComboBox<String> cmbEmpleado;
-    private javax.swing.JButton jButton1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
