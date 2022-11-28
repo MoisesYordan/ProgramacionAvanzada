@@ -12,6 +12,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 public class GestorVista  extends GestorHibernate {
+    private GestorHibernate gestorHibernate;
     private int opcABM; // Se define para saber si es actualizacion o alta
     public JDesktopPane escritorio;
     private MDIForm pantalla;
@@ -92,7 +93,13 @@ public class GestorVista  extends GestorHibernate {
     public void setAuxForm(FrmGenerica auxForm) {
         this.auxForm = auxForm;
     }
-
+        public GestorHibernate getGestorHibernate() {
+        return gestorHibernate;
+    }
+    
+    public void setGestorVista(GestorHibernate gestorHibernate) {
+        this.gestorHibernate = gestorHibernate;
+    }
     public String getTitulo() {
         return titulo;
     }
@@ -320,7 +327,7 @@ public class GestorVista  extends GestorHibernate {
         int montoF=Integer.parseInt(montoFinal);
         Criteria crit =getSession().createCriteria(clase)
             .add(Restrictions.eq("estado",0))
-            .add(Restrictions.between(quebuscar, montoInicial, montoFinal));
+            .add(Restrictions.between(quebuscar, montoI, montoF));
         return crit.list();
         
     }   

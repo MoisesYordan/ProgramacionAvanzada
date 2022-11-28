@@ -1,15 +1,20 @@
 package Hibernate;
 import java.awt.HeadlessException;
+import java.sql.*; 
 import javax.swing.JOptionPane;
 import org.hibernate.*;
 import org.hibernate.cfg.*;
 
+
 public class HibernateUtil  {
     public static SessionFactory sessionFactory;
     public static Session session;
-
+    
+    
     public static void inicializar() {
+
         try {
+           
            Configuration conf = new Configuration(); 
            try{
                 conf.setProperty("hibernate.connection.driver_class","org.postgresql.Driver");
@@ -22,7 +27,8 @@ public class HibernateUtil  {
             
             conf.setProperty("hibernate.connection.username","postgres");
             conf.setProperty("hibernate.connection.password","123");
-
+            
+            
             conf.setProperty("hibernate.connection.pool_size","10");                          
             conf.setProperty("hibernate.hbm2ddl.auto","update");
 
@@ -42,6 +48,7 @@ public class HibernateUtil  {
             try {
                     sessionFactory = conf.buildSessionFactory();
                     session=sessionFactory.openSession();
+                    
                 }
                 catch(HibernateException e){
                     JOptionPane.showMessageDialog(null, e);
@@ -54,6 +61,10 @@ public class HibernateUtil  {
     }
     
     public static Session getSession()
+    throws HibernateException {
+        return session;
+    }
+      public  Session getSession2()
     throws HibernateException {
         return session;
     }

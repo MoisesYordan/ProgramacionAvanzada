@@ -2,18 +2,51 @@ package FRM;
 import Modelos.GestionProyecto.Auto;
 import Modelos.GestionProyecto.GestorVistaVentas;
 import Vistas.FrmGenerica;
+import ireport.GestorDeReportes;
 import java.awt.HeadlessException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.*;
 
 
-public class FrmVentas extends FrmGenerica {
-    private GestorVistaVentas gestorVista;
-    private int YES_NO_OPTION;
 
+
+public class FrmVentas extends FrmGenerica {
+    public GestorDeReportes gestor;
+    public String path= "src/ireport/report1.jasper";
+    private GestorVistaVentas gestorVista;
+    private GestorDeReportes gestorDeReportes;
+    private int YES_NO_OPTION;
+    
+    public GestorDeReportes getGestorDeReportes() {
+        return gestorDeReportes;
+    }
+    
+    public void setGestorDeReportes(GestorDeReportes gestorDeReportes) {
+        this.gestorDeReportes = gestorDeReportes;
+    }
     public GestorVistaVentas getGestorVista() {
         return gestorVista;
+    }
+
+    public GestorDeReportes getGestor() {
+        return gestor;
+    }
+
+    public void setGestor(GestorDeReportes gestor) {
+        this.gestor = gestor;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
     
     public void setGestorVista(GestorVistaVentas gestorVista) {
@@ -147,13 +180,22 @@ public class FrmVentas extends FrmGenerica {
     }
 
     public JTextField getTxtImpuesto() {
+        
         return txtImpuesto;
     }
 
     public JTextField getTxtTotal() {
         return txtTotal;
     }
-
+    public int convertirAInt(){
+        int i = Integer.parseInt(getTxtTotal().getText());
+        return i;
+    }
+     public int convertirAIntCantidad(){
+        int i = Integer.parseInt(getTxtCantidad().getText());
+        return i;
+    }
+    
     public JTextField getTxtObvservaciones() {
         return txtObvservaciones;
     }
@@ -167,6 +209,17 @@ public class FrmVentas extends FrmGenerica {
     public void setTxtFechaDeVenta(JTextField txtFechaDeVenta) {
         this.txtFechaDeVenta = txtFechaDeVenta;
     }
+//    public Date convertirAdate(){
+//       SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+//       java.util.Date fecha = null;
+//        try {
+//            fecha = formato.parse(getTxtFechaDeVenta().getText());
+//            
+//        } catch (ParseException ex) {
+//            Logger.getLogger(FrmVentas.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//       return fecha;
+//    }
     
     public JTextField getTxtBuscar(){
         return txtBusquedaNombre;
@@ -196,6 +249,7 @@ public class FrmVentas extends FrmGenerica {
     }
 
     public FrmVentas() {
+        this.gestor= new GestorDeReportes(path, this.gestorVista.getSession2());
         initComponents();
     }
     
@@ -329,9 +383,7 @@ public class FrmVentas extends FrmGenerica {
 
 
     private void viewNueva(){
-        Date today;
-        
-        today = new Date();
+        Date today = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         this.clearView();
         this.getGestorVista().newModel();
@@ -469,6 +521,7 @@ public class FrmVentas extends FrmGenerica {
         txtMontoFinal = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtPais = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -658,6 +711,14 @@ public class FrmVentas extends FrmGenerica {
         jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel24.setText("Monto Final");
         jPanel4.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 190, -1));
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 600, -1, -1));
 
         jDesktopPane1.add(jPanel4);
         jPanel4.setBounds(10, 30, 480, 640);
@@ -1044,6 +1105,11 @@ public class FrmVentas extends FrmGenerica {
         this.llenadoCmbAutos();
     }//GEN-LAST:event_cmbAutoItemStateChanged
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.gestor= new GestorDeReportes(path, this.gestorVista.getSession2());
+        gestor.imprimir();
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox CheckFechaDeVenta;
@@ -1064,6 +1130,7 @@ public class FrmVentas extends FrmGenerica {
     private javax.swing.JComboBox<String> cmbAuto;
     private javax.swing.JComboBox<String> cmbCliente;
     private javax.swing.JComboBox<String> cmbEmpleado;
+    private javax.swing.JButton jButton1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

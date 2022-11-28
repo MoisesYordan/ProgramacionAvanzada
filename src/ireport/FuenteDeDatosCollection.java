@@ -1,4 +1,5 @@
 package ireport;
+import Hibernate.HibernateUtil;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.*;
 
@@ -7,7 +8,7 @@ import net.sf.jasperreports.engine.data.*;
  * Cumple con el estandar usado por las fuentes de datos Jasper usadas por Ireport
  * @author Fernando Boiero
  */
-public class FuenteDeDatosCollection {
+public class FuenteDeDatosCollection extends HibernateUtil {
     private static java.util.Collection coleccionDeDatos;
      public  JRDataSource createBeanCollectionDatasource()
     {

@@ -1,6 +1,7 @@
 package Modelos.GestionProyecto;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,9 +28,9 @@ public class Ventas implements Comparable, Serializable {
     private String marca;
     private String año;
     
-    private String cantidad;
+    private int cantidad;
     private String impuesto;
-    private String total;
+    private int total;
     
     private String obvservaciones;
     private String fechaDeVenta;
@@ -101,14 +102,17 @@ public class Ventas implements Comparable, Serializable {
         this.año = año;
     }
 
-    public String getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(String cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-
+    public String convertirAStringCantidad(){
+        String i = String.valueOf(getTotal());
+        return i;
+    }
     public String getImpuesto() {
         return impuesto;
     }
@@ -117,14 +121,21 @@ public class Ventas implements Comparable, Serializable {
         this.impuesto = impuesto;
     }
 
-    public String getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(String total) {
+    public void setTotal(int total) {
         this.total = total;
     }
-
+    public String convertirAString(){
+        String i = String.valueOf(getTotal());
+        return i;
+    }
+//    public String convertirAStringFecha(){
+//        String i = String.valueOf(getFechaDeVenta());
+//        return i;
+//    }
     public String getObvservaciones() {
         return obvservaciones;
     }
@@ -161,7 +172,7 @@ public class Ventas implements Comparable, Serializable {
     public Ventas() {
         
     }
-    public Ventas(long id, int codigo, String modelo, String marca,String pais, String año,Empleado empleado, Cliente cliente, String fechaDeVenta, String obvservaciones, String total, String cantidad, String impuesto) {
+    public Ventas(long id, int codigo, String modelo, String marca,String pais, String año,Empleado empleado, Cliente cliente, String fechaDeVenta, String obvservaciones, int total, int cantidad, String impuesto) {
         this.id = id;
         this.codigo = codigo;
         this.modelo = modelo;

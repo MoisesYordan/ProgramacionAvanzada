@@ -2,6 +2,7 @@ package ireport;
 
 
 import java.awt.print.PrinterJob;
+import java.io.File;
 import java.net.URL;
 import java.util.*;
 import javax.print.PrintService;
@@ -13,6 +14,7 @@ import javax.print.attribute.standard.MediaPrintableArea;
 import javax.print.attribute.standard.MediaSize;
 import javax.print.attribute.standard.MediaSizeName;
 
+
 import javax.swing.JOptionPane;
 
 
@@ -20,8 +22,10 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
 import net.sf.jasperreports.engine.export.JRPrintServiceExporterParameter;
 import net.sf.jasperreports.engine.util.JRLoader;
-
+import java.sql.Connection;
 import net.sf.jasperreports.view.*;
+import org.hibernate.Session;
+import org.hibernate.engine.spi.SessionImplementor;
 /**
  * Este Gestor toma la fuente de datos tipo java.util.Collection seteada con anterioridad en la clase FuenteDeDatosCollection,
  * toma los los parametros necesarios con el metodo  agregarParametro(String nombreParametro,String valorParametro)
@@ -34,6 +38,7 @@ import net.sf.jasperreports.view.*;
 public class GestorDeReportes  extends Thread {
 
     private String archivo;
+    private Session session;
     private Map parametros = new HashMap();
     private FuenteDeDatosCollection fuenteDeDatos=new  FuenteDeDatosCollection();  
     private JasperReport masterReport;
@@ -45,9 +50,12 @@ public class GestorDeReportes  extends Thread {
      */
 
     
-    public GestorDeReportes(String archivo) {
+    public GestorDeReportes(String archivo, Session session) {
         this.archivo=archivo;
+        this.session= session;
+        
     }
+
 
 
     /** Setea la coleccion de datos del reporte, esta coleccion debe contener javaBeans que
@@ -87,13 +95,15 @@ public class GestorDeReportes  extends Thread {
     
 
     @Override
-    public void run(){       
-          
+    public void run(){
+        SessionImplementor miSessionImplementor = (SessionImplementor) session;
+        Connection conn = (Connection) miSessionImplementor.connection();
         try{ 
              JRDataSource jrd=null;
             if (jasperPrint==null){
 //                URL url=this.getClass().getClassLoader().getResource(this.archivo);
-                setMasterReport((JasperReport) JRLoader.loadObject(this.archivo));
+                File arc = new File (this.archivo);
+                setMasterReport((JasperReport) JRLoader.loadObject(arc));
                 try{
                   jrd= fuenteDeDatos.createBeanCollectionDatasource();
                 } catch (Exception ek) {
@@ -101,10 +111,10 @@ public class GestorDeReportes  extends Thread {
             ek.printStackTrace();
         }
                System.out.println("parametros="+this.getParametros().toString());
-              System.out.println("fuenteDeDatos: cantidad="+FuenteDeDatosCollection.getColeccionDeDatos().size()
-                      +" "+FuenteDeDatosCollection.getColeccionDeDatos().toString());
+//              System.out.println("fuenteDeDatos: cantidad="+FuenteDeDatosCollection.getColeccionDeDatos().size()
+//                      +" "+FuenteDeDatosCollection.getColeccionDeDatos().toString());
              
-                jasperPrint= JasperFillManager.fillReport(masterReport,this.getParametros(),jrd);
+                jasperPrint= JasperFillManager.fillReport(masterReport,null,conn);
             }
              JasperViewer jviewer = new JasperViewer(jasperPrint,false);   
              jviewer.setTitle("Reporte");

@@ -3,11 +3,18 @@ import GUtilr.Util;
 import java.awt.Component;
 import java.util.*;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.*;
+
 
 public class GestorHibernate extends HibernateUtil {
    
@@ -122,6 +129,25 @@ public class GestorHibernate extends HibernateUtil {
             .add( Restrictions.eq("estado", 0));
         return crit.uniqueResult();
     }
+//    public void generarReporte() throws  JRException {  	
+//        Session s = HibernateUtil.getSession();
+//        try{
+//            JasperReport masterReport= null;
+//            try{
+//                masterReport= (JasperReport) JRLoader.loadObject(getClass().getResource("src\\reporte\\report1.jasper")); 
+//            }
+//            catch(HibernateException e){
+//                System.out.println("Error generando el reporte maestro" + e.getMessage());
+//            }
+//            JasperPrint jasperPrint= JasperFillManager.fillReport(masterReport, null );
+//            JasperViewer Jviewer = new JasperViewer(jasperPrint,false);
+//            Jviewer.setTitle("REPORTE DE CANTIDAD DE VENTAS POR MARCA");
+//            Jviewer.setVisible(true);
+//            
+//        }catch(HibernateException e){
+//          System.out.println("Error generando reporte " + e.getMessage());
+//        }
+//    }
 
 } 
  

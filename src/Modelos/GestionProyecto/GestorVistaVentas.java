@@ -2,10 +2,15 @@ package Modelos.GestionProyecto;
 
 import FRM.FrmVentas;
 import Vistas.GestorVista;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
@@ -116,24 +121,12 @@ public class GestorVistaVentas extends GestorVista  {
         this.getModel().asEliminado();
         this.actualizarObjeto(this.getModel());
     }
-//    public Date convertirStringADate(){
+//    public Date convertirStringADate() throws ParseException {
+//        SimpleDateFormat formatDate = new SimpleDateFormat("yyyy/MM/dd");
+//        java.util.Date fechadefactura = formatDate.parse(this.getForm().getTxtFechaDeVenta().getText());
 //        
-//        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-//        
-//        Date fecha = null ;
-//      
-//        try {
-//            
-//            fecha =formato.parse(this.getForm().getTxtFechaDeVenta().getText());
-//            formato.format(fecha);
-//            System.out.print(this.getForm().getTxtFechaDeVenta().getText());
-//        } catch (ParseException ex) {
-//            Logger.getLogger(GestorVistaVentas.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        System.out.print(fecha);
-//        return fecha;
+//        return fechadefactura;
 //    }
-    
     @Override
     public int setModel() {
         if (this.isDatosValidos()) {
@@ -142,11 +135,13 @@ public class GestorVistaVentas extends GestorVista  {
             this.getModel().setMarca(this.getForm().getTxtMarca().getText());
             this.getModel().setAño(this.getForm().getTxtAño().getText());
             
-            this.getModel().setCantidad(this.getForm().getTxtCantidad().getText());
+            this.getModel().setCantidad(this.getForm().convertirAIntCantidad());
             this.getModel().setImpuesto(this.getForm().getTxtImpuesto().getText());
-            this.getModel().setTotal(this.getForm().getTxtTotal().getText());
+            
+            this.getModel().setTotal(this.getForm().convertirAInt());
             
             this.getModel().setObvservaciones(this.getForm().getTxtObvservaciones().getText());
+            
             this.getModel().setFechaDeVenta(this.getForm().getTxtFechaDeVenta().getText());
             
             this.getModel().setEmpleado((Empleado) this.getForm().getCmbEmpleado().getModel().getSelectedItem());
@@ -278,12 +273,13 @@ public class GestorVistaVentas extends GestorVista  {
         this.getForm().getTxtPais().setText(this.getModel().getPais());
         this.getForm().getTxtAño().setText(this.getModel().getAño());
 
-        this.getForm().getTxtCantidad().setText(this.getModel().getCantidad());
+        this.getForm().getTxtCantidad().setText(this.getModel().convertirAStringCantidad());
         this.getForm().getTxtImpuesto().setText(this.getModel().getImpuesto());
-        this.getForm().getTxtTotal().setText(this.getModel().getTotal());
+        this.getForm().getTxtTotal().setText(this.getModel().convertirAString());
         
         this.getForm().getTxtObvservaciones().setText(this.getModel().getObvservaciones());
-        this.getForm().getTxtFechaDeVenta().setText(this.getModel().getFechaDeVenta());
+         this.getForm().getTxtFechaDeVenta().setText(this.getModel().getFechaDeVenta());
+     
        this.getForm().getCmbEmpleado().setSelectedItem(this.getModel().getEmpleado());
        this.getForm().getCmbCliente().setSelectedItem(this.getModel().getCliente());
     }
