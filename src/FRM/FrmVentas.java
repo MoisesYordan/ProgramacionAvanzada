@@ -87,6 +87,14 @@ public class FrmVentas extends FrmGenerica {
     public void setCheckPrecioDeVenta(JCheckBox CheckPrecioDeVenta) {
         this.CheckPrecioDeVenta = CheckPrecioDeVenta;
     }
+
+    public JTextField getTxtPrecioUnitario() {
+        return txtPrecioUnitario;
+    }
+
+    public void setTxtPrecioUnitario(JTextField txtPrecioUnitario) {
+        this.txtPrecioUnitario = txtPrecioUnitario;
+    }
     
 
     public JTextField getTxtCodigo() {
@@ -461,7 +469,8 @@ public class FrmVentas extends FrmGenerica {
         txtModelo.setText(auto.getModelo().toString());   
         txtMarca.setText(auto.getMarca());  
         txtPais.setText(auto.getPais().toString());  
-        txtAño.setText(auto.getAño()); 
+        txtAño.setText(auto.getAño());
+        txtPrecioUnitario.setText(auto.getTotal());
         btnCalcular.setEnabled(true); 
      }
      
@@ -928,6 +937,11 @@ public class FrmVentas extends FrmGenerica {
                 cmbAutoItemStateChanged(evt);
             }
         });
+        cmbAuto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbAutoActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmbAuto);
         cmbAuto.setBounds(150, 30, 380, 30);
 
@@ -1111,6 +1125,10 @@ public class FrmVentas extends FrmGenerica {
     private void CheckFechaDeVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckFechaDeVentaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CheckFechaDeVentaActionPerformed
+
+    private void cmbAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbAutoActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
