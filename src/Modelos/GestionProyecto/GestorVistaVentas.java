@@ -230,7 +230,9 @@ public class GestorVistaVentas extends GestorVista  {
         this.setForm(new FrmVentas(this));
         this.setTitulo(this.getForm().getTitle());
         this.getEscritorio().add(this.getForm());
+        this.getForm().setLocation(0,0);
         this.getForm().setVisible(true);
+        
     }
 
     public void openFormulario(DefaultComboBoxModel model, JDesktopPane pantalla) {
@@ -287,7 +289,7 @@ public class GestorVistaVentas extends GestorVista  {
 public void setBusqueda(String dato,int ord, String text, String quebuscar,int b,boolean mod,boolean marc,boolean pre, boolean fecha,String inicio,String fin,String montoInicial,String montoFinal){ 
         this.initializeTablaBusqueda(this.getForm().getTblDatos());
       
-        if(!"".equals(dato)){
+        if(!"".equals(dato)){ 
            if(b==0){//b=>0 es una cadena numerica    1= es una cadena alfanumerica
 
                 this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,"",null,null,mod,marc,pre,fecha,"","","",""));
@@ -320,7 +322,7 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
                } 
             }
         }
-        else{
+        else {
             b=3;
             this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"",null,null,false,false,false,false,"","","","")); 
         }

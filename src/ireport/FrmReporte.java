@@ -9,6 +9,8 @@ import Modelos.GestionProyecto.GestorVistaVentas;
 import Vistas.FrmGenerica;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.JTextField;
 
 /**
@@ -96,6 +98,11 @@ public String path;
         jLabel2.setText("Fecha Final");
 
         jButton5.setText("Salir");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(RbtnCantidadEmpleado);
         RbtnCantidadEmpleado.setText("Ranking cantidad de ventas por empleado");
@@ -224,6 +231,17 @@ public String path;
     private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
         this.path = "src/ireport/reportTotalMarca.jasper";
     }//GEN-LAST:event_jRadioButton8ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        int n = 0;
+        if (this.getGestorVista().isNuevo() || this.getGestorVista().isOnlyRead())
+        this.dispose();
+        else
+        n=JOptionPane.showConfirmDialog(null, "¿Desea guardar los cambios antes de salir?","Advertencia", YES_NO_OPTION);
+        if  (n == 1 ){
+            this.cancelarView();
+            this.dispose();}
+    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
