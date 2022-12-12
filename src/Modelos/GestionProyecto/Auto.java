@@ -25,9 +25,9 @@ public class Auto implements Comparable<Auto> ,Serializable{
     @OneToOne (targetEntity = Modelo.class, cascade= CascadeType.ALL,fetch=FetchType.LAZY)
     private Modelo modelo;
     private int estado;
-    private String costo;
-    private String stock;
-    private String total;
+    private int costo;
+    private int stock;
+    private int total;
     private String año;
     private String marca;
     @OneToOne (targetEntity = Pais.class, cascade= CascadeType.ALL,fetch=FetchType.LAZY)
@@ -81,30 +81,39 @@ public class Auto implements Comparable<Auto> ,Serializable{
         this.año = año;
     }
     
-    public String getCosto() {
+    public int getCosto() {
         return costo;
     }
 
-    public void setCosto(String costo) {
+    public void setCosto(int costo) {
         this.costo = costo;
     }
- 
-    public String getTotal() {
+    public String convertirAStringCosto(){
+        String i = String.valueOf(getCosto());
+        return i;
+    }
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(String costo) {
+    public void setTotal(int costo) {
         this.total = costo;
     }
-    
-    public String getStock() {
+    public String convertirAStringTotal(){
+        String i = String.valueOf(getTotal());
+        return i;
+    }
+    public int getStock() {
         return stock;
     }
 
-    public void setStock(String stock) {
+    public void setStock(int stock) {
         this.stock = stock;
     }
-    
+    public String convertirAStringStock(){
+        String i = String.valueOf(getStock());
+        return i;
+    }
     public Pais getPais() {
         return pais;
     }
@@ -117,7 +126,7 @@ public class Auto implements Comparable<Auto> ,Serializable{
     
     }
 
-    public Auto(long id, int codigo, Modelo modelo, String marca,  String año, String costo, String total, String stock, Pais pais) {
+    public Auto(long id, int codigo, Modelo modelo, String marca,  String año, int costo, int total, int stock, Pais pais) {
         this.id =id;
         this.codigo = codigo;
         this.modelo = modelo;

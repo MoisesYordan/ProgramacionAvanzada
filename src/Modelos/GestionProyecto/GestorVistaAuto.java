@@ -12,10 +12,8 @@ import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
+
 
 /**
  *
@@ -112,9 +110,9 @@ public class GestorVistaAuto extends GestorVista  {
 //            this.getModel().setPais(pais); //----> DE IVO cumple pero  no deberia traer un objeto pais asi podemos sacar el %
             this.getModel().setMarca(this.getForm().getTxtMarca().getText());
             this.getModel().setAño(this.getForm().getTxtAño().getText());
-            this.getModel().setCosto(this.getForm().getTxtCosto().getText());
-            this.getModel().setTotal(this.getForm().getTxtTotal().getText());
-            this.getModel().setStock(this.getForm().getTxtStock().getText());
+            this.getModel().setCosto(this.getForm().convertirAIntCosto());
+            this.getModel().setTotal(this.getForm().convertirAIntTotal());
+            this.getModel().setStock(this.getForm().convertirAIntCantidad());
             return 0;
         } else {
             return 1;
@@ -202,6 +200,7 @@ public class GestorVistaAuto extends GestorVista  {
         this.setForm(new FrmAuto(this));
         this.setTitulo(this.getForm().getTitle());
         this.getEscritorio().add(this.getForm());
+        this.getForm().setLocation(0,0);
         this.getForm().setVisible(true);
     }
 
@@ -258,19 +257,19 @@ public class GestorVistaAuto extends GestorVista  {
         this.getForm().getTxtAño().setText(this.getModel().getAño());
         //this.getForm().getTxtPais().setText(this.getModel().getPais());
         this.getForm().getCmbPais().setSelectedItem(this.getModel().getPais());
-        this.getForm().getTxtCosto().setText(this.getModel().getCosto());
-        this.getForm().getTxtTotal().setText(this.getModel().getTotal());
-        this.getForm().getTxtStock().setText(this.getModel().getStock());
+        this.getForm().getTxtCosto().setText(this.getModel().convertirAStringCosto());
+        this.getForm().getTxtTotal().setText(this.getModel().convertirAStringTotal());
+        this.getForm().getTxtStock().setText(this.getModel().convertirAStringStock());
 
     }
 
-public void setBusqueda(String dato,int ord, String text, String quebuscar,int b){ 
+public void setBusqueda(String dato,int ord, String text, String quebuscar,int b,boolean mod,boolean marc,boolean año, boolean pais,String inicio,String fin){ 
         this.initializeTablaBusqueda(this.getForm().getTblDatos());
 
-        if(!"".equals(dato)){
+        if(!"".equals(dato)|| !"".equals(inicio)|| !"".equals(fin)){
            if(b==0){//b=>0 es una cadena numerica    1= es una cadena alfanumerica
 
-                this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,"",null,null));
+                this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,"",null,null,mod,marc,año,pais,"",""));
                 int d=Integer.parseInt(dato);
                 if(this.listarGenericoNumero(ord,d,quebuscar,Auto.class,-1).size()==0){
                     JOptionPane.showMessageDialog(null, "error, no se encontro en la BD","Validación de Datos",JOptionPane.WARNING_MESSAGE);
@@ -284,12 +283,11 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
                 DefaultTableModel d =new DefaultTableModel();
                 listaModelo=this.listarGenericoLetraObj(ord,"nombre",dato,Modelo.class,-1);
                 listaPais=this.listarGenericoLetraObj(ord,"nombrepais",dato,Pais.class,-1);
-                System.out.print(listaPais);
-                if(this.listarDatos(d ,this.getOrdenamiento(),dato,"",b,"",listaModelo,listaPais).getRowCount()==0){
+                if(this.listarDatos(d ,this.getOrdenamiento(),dato,"",b,"",listaModelo,listaPais,mod,marc,año,pais,inicio,fin).getRowCount()==0){
                     JOptionPane.showMessageDialog(null, "error, no se encontro en la BD","Validación de Datos",JOptionPane.WARNING_MESSAGE);
                 }
                 else{
-                    this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,"",b,"",listaModelo,listaPais));
+                    this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,"",b,"",listaModelo,listaPais,mod,marc,año,pais,inicio,fin));
                 
                     
                } 
@@ -297,7 +295,7 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
         }
         else{
             b=3;
-            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"",null,null)); 
+            this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),"","",b,"",null,null,false,false,false,false,"","")); 
         }
     }
   
@@ -332,7 +330,7 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
         return model.getValueAt(tbl.getSelectedRow(),0);
     }
     
- public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text,List listaModelo,List listaPais) { 
+ public DefaultTableModel listarDatos(DefaultTableModel auxModelTabla, int ordenamiento, String dato, String quebuscar , int b,String text,List listaModelo,List listaPais,boolean mod, boolean marc, boolean año, boolean pais,String inicio,String fin) { 
         TreeSet<Auto> lista = new TreeSet(); 
         if(b==0){
             int d=Integer.parseInt(dato);
@@ -356,28 +354,42 @@ public void setBusqueda(String dato,int ord, String text, String quebuscar,int b
         }
         if(b==1){
             Auto  auxModel;
-            for( int i =0; i<listaModelo.size();i++){
-               List listModelo=(this.listarGenericoLetra(ordenamiento,"modelo",listaModelo.get(i),Auto.class, -1));
-                Iterator it = (Iterator) listModelo.iterator();
-                while (it.hasNext())  {
-                    auxModel =(Auto) it.next(); 
-                    lista.add(auxModel);
+            if(mod){
+                for( int i =0; i<listaModelo.size();i++){
+                    List listModelo=(this.listarGenericoLetra(ordenamiento,"modelo",listaModelo.get(i),Auto.class, -1));
+                    Iterator it = (Iterator) listModelo.iterator();
+                    while (it.hasNext())  {
+                        auxModel =(Auto) it.next(); 
+                        lista.add(auxModel);
+                    }
                 }
             }
-              for( int i =0; i<listaPais.size();i++){
-               List listPais=(this.listarGenericoLetra(ordenamiento,"pais",listaPais.get(i),Auto.class, -1));
-                Iterator it = (Iterator) listPais.iterator();
-                while (it.hasNext())  {
-                    auxModel =(Auto) it.next(); 
-                    lista.add(auxModel);
+            if(pais){
+                for( int i =0; i<listaPais.size();i++){
+                    List listPais=(this.listarGenericoLetra(ordenamiento,"pais",listaPais.get(i),Auto.class, -1));
+                    Iterator it = (Iterator) listPais.iterator();
+                    while (it.hasNext())  {
+                        auxModel =(Auto) it.next(); 
+                        lista.add(auxModel);
+                    }
                 }
             }
-            List listMarca=(this.listarGenericoLetraObj(ordenamiento,"marca",dato,Auto.class, -1));
-                Iterator it = (Iterator) listMarca.iterator();
-                while (it.hasNext())  {
-                    auxModel =(Auto) it.next(); 
-                    lista.add(auxModel);
-                }
+            if(marc){
+                List listMarca=(this.listarGenericoLetraObj(ordenamiento,"marca",dato,Auto.class, -1));
+                    Iterator it = (Iterator) listMarca.iterator();
+                    while (it.hasNext())  {
+                        auxModel =(Auto) it.next(); 
+                        lista.add(auxModel);
+                    }
+            }
+            if(año){
+                List listfecha=(this.listarGenericoFecha(ordenamiento,"año",dato,Auto.class, -1,inicio,fin));
+                    Iterator it1 = (Iterator) listfecha.iterator();
+                    while (it1.hasNext())  {
+                        auxModel =(Auto) it1.next(); 
+                        lista.add(auxModel);
+                    }
+            }
             Iterator it2 = (Iterator) lista.iterator();
             while (it2.hasNext())  {
                 auxModel =( Auto ) it2.next();

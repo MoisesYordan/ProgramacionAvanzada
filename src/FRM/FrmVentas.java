@@ -6,11 +6,8 @@ import Vistas.FrmPrincipal2;
 import ireport.FrmReporte;
 import ireport.GestorDeReportes;
 import java.awt.HeadlessException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.*;
 
@@ -341,6 +338,7 @@ public class FrmVentas extends FrmGenerica {
         
         txtObvservaciones.setEnabled(tipo);
         txtFechaDeVenta.setEnabled(false);
+        txtPrecioUnitario.setEnabled(false);
     }
 
     private void viewBasic(){
@@ -408,6 +406,7 @@ public class FrmVentas extends FrmGenerica {
         
         txtObvservaciones.setText("");
         txtFechaDeVenta.setText("");
+        txtPrecioUnitario.setText("");
     }
 
     @Override
@@ -470,7 +469,7 @@ public class FrmVentas extends FrmGenerica {
         txtMarca.setText(auto.getMarca());  
         txtPais.setText(auto.getPais().toString());  
         txtAño.setText(auto.getAño());
-        txtPrecioUnitario.setText(auto.getTotal());
+        txtPrecioUnitario.setText(auto.convertirAStringTotal());
         btnCalcular.setEnabled(true); 
      }
      
@@ -481,7 +480,7 @@ public class FrmVentas extends FrmGenerica {
 //        int total2=stock-cantidad;//total2 sirve para saber si tengo Stock o no
 //        if(total2<0){
             Double impuesto=Double.parseDouble( auto.getPais().getImpuesto());
-            Double total= Double.parseDouble( auto.getTotal());
+            Double total= Double.parseDouble( auto.convertirAStringTotal());
             total= total+(total*cantidad*(impuesto/100));
             txtImpuesto.setText(auto.getPais().getImpuesto()); 
             txtTotal.setText(Math.round(total) +"");
@@ -678,7 +677,7 @@ public class FrmVentas extends FrmGenerica {
                 btnBuscar1ActionPerformed(evt);
             }
         });
-        jPanel7.add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 100, 30));
+        jPanel7.add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 100, 30));
 
         CheckModelo.setText("Modelo");
         jPanel7.add(CheckModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
@@ -1003,6 +1002,8 @@ public class FrmVentas extends FrmGenerica {
         jLabel18.setRequestFocusEnabled(false);
         jPanel1.add(jLabel18);
         jLabel18.setBounds(140, 330, 30, 30);
+
+        txtPrecioUnitario.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtPrecioUnitario);
         txtPrecioUnitario.setBounds(20, 330, 120, 30);
 

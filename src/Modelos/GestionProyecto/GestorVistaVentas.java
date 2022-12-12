@@ -2,15 +2,10 @@ package Modelos.GestionProyecto;
 
 import FRM.FrmVentas;
 import Vistas.GestorVista;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
@@ -289,7 +284,7 @@ public class GestorVistaVentas extends GestorVista  {
 public void setBusqueda(String dato,int ord, String text, String quebuscar,int b,boolean mod,boolean marc,boolean pre, boolean fecha,String inicio,String fin,String montoInicial,String montoFinal){ 
         this.initializeTablaBusqueda(this.getForm().getTblDatos());
       
-        if(!"".equals(dato)){ 
+        if(!"".equals(dato)|| !"".equals(inicio)|| !"".equals(fin)|| !"".equals(montoInicial)|| !"".equals(montoFinal)){ 
            if(b==0){//b=>0 es una cadena numerica    1= es una cadena alfanumerica
 
                 this.getForm().getTblDatos().setModel(this.listarDatos((DefaultTableModel )this.getForm().getTblDatos().getModel(),this.getOrdenamiento(),dato,quebuscar,b,"",null,null,mod,marc,pre,fecha,"","","",""));

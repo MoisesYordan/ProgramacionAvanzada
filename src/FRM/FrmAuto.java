@@ -25,8 +25,56 @@ public class FrmAuto extends FrmGenerica {
         this.tblDatos = tblDatos;
     }
 
-// Definicion de getter y setter de los componentes visuales del formulario
+    public JTextField getTxtAñoFinal() {
+        return txtFin;
+    }
+
+    public void setTxtAñoFinal(JTextField txtAñoFinal) {
+        this.txtFin = txtAñoFinal;
+    }
+
+    public JTextField getTxtAñoInicial() {
+        return txtInicio;
+    }
+
+    public void setTxtAñoInicial(JTextField txtAñoInicial) {
+        this.txtInicio = txtAñoInicial;
+    }
+   
     
+    public JCheckBox getCheckAño() {
+        return CheckAño;
+    }
+
+    public void setCheckAño(JCheckBox CheckAño) {
+        this.CheckAño = CheckAño;
+    }
+
+    public JCheckBox getCheckMarca() {
+        return CheckMarca;
+    }
+
+    public void setCheckMarca(JCheckBox CheckMarca) {
+        this.CheckMarca = CheckMarca;
+    }
+
+    public JCheckBox getCheckModelo() {
+        return CheckModelo;
+    }
+
+    public void setCheckModelo(JCheckBox CheckModelo) {
+        this.CheckModelo = CheckModelo;
+    }
+
+    public JCheckBox getCheckPais() {
+        return CheckPais;
+    }
+
+// Definicion de getter y setter de los componentes visuales del formulario
+    public void setCheckPais(JCheckBox CheckPais) {    
+        this.CheckPais = CheckPais;
+    }
+
     public JTextField getTxtCodigo() {
         return txtCodigo;
     }
@@ -71,11 +119,19 @@ public class FrmAuto extends FrmGenerica {
 
     public void setTxtCosto(JTextField txtCosto) {
        this.txtCosto = txtCosto;
-    } 
+    }
+    public int convertirAIntCosto(){
+        int i = Integer.parseInt(getTxtCosto().getText());
+        return i;
+    }
+    
     public JTextField getTxtTotal() {
        return txtTotal;   
     }
-    
+    public int convertirAIntTotal(){
+        int i = Integer.parseInt(getTxtTotal().getText());
+        return i;
+    }
     public JTextField getTxtAño() {
         return txtAño;
     }
@@ -89,7 +145,10 @@ public class FrmAuto extends FrmGenerica {
     public void setTxtStock(JTextField txtStock) {
         this.txtStock= txtStock;
     }
-    
+    public int convertirAIntCantidad(){
+        int i = Integer.parseInt(getTxtStock().getText());
+        return i;
+    }
     public JTextField getTxtBuscar(){
         return txtBusquedaNombre;
     }
@@ -285,10 +344,12 @@ public class FrmAuto extends FrmGenerica {
     
 
 //llenado de tablas
-    public void setBusqueda(int busqueda) {
+    public void setBusqueda(int busqueda,boolean mod, boolean marc, boolean año, boolean pais) {
         int ord = 0;
         int b=0;//b=>0 es una cadena alfanumerica      1= es una cadena numerica
         String text = null;
+        String fin= this.txtFin.getText();
+        String inicio=this.txtInicio.getText();
         String dato=this.txtBusquedaNombre.getText();//se pone en la variable dato lo que esta dentro de la barra de busqueda de la lupa
        
         //pregunta si dato es igual a un numero(codigo) o una letra(barra de busqueda)
@@ -297,13 +358,13 @@ public class FrmAuto extends FrmGenerica {
             b=1;//b=>0 es una cadena alfanumerica            1= es una cadena numerica
 //            String quebuscar="marca";
             this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
-            this.getGestorVista().setBusqueda(dato,ord,text,"",b);  
+            this.getGestorVista().setBusqueda(dato,ord,text,"",b,mod,marc,año,pais,inicio,fin);  
         }else{
             b=0;//b=>0 es una cadena numerica           1= es una cadena letras
             dato=this.txtCodigo.getText();//se pone en la variable dato lo que esta dentro de la barra de codigo
             String quebuscar="codigo";
             this.getGestorVista().initializeTablaBusqueda(this.getTblDatos());
-            this.getGestorVista().setBusqueda(dato,ord,text,quebuscar,b); 
+            this.getGestorVista().setBusqueda(dato,ord,text,quebuscar,b,mod,marc,año,pais,inicio,fin); 
         }
     }
     
@@ -335,12 +396,9 @@ public class FrmAuto extends FrmGenerica {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        txtTotal = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         btnBuscarCodigo = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
@@ -352,31 +410,43 @@ public class FrmAuto extends FrmGenerica {
         txtMarca = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtCosto = new javax.swing.JTextField();
         txtAño = new javax.swing.JTextField();
-        txtStock = new javax.swing.JTextField();
-        btnCalcular = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         cmbPais = new javax.swing.JComboBox<>();
         txtPais = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
+        txtTotal = new javax.swing.JTextField();
+        txtCosto = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        btnCalcular = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
+        txtStock = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
-        btnBuscar1 = new javax.swing.JButton();
         btnImprimir1 = new javax.swing.JButton();
         txtBusquedaNombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        txtFin = new javax.swing.JTextField();
+        txtInicio = new javax.swing.JTextField();
+        jPanel9 = new javax.swing.JPanel();
+        btnBuscar1 = new javax.swing.JButton();
+        CheckAño = new javax.swing.JCheckBox();
+        CheckPais = new javax.swing.JCheckBox();
+        CheckMarca = new javax.swing.JCheckBox();
+        CheckModelo = new javax.swing.JCheckBox();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setTitle("Auto");
@@ -387,17 +457,6 @@ public class FrmAuto extends FrmGenerica {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Descripción", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel1.setLayout(null);
-
-        jLabel1.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        jLabel1.setText("Precio de Venta");
-        jLabel1.setRequestFocusEnabled(false);
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(290, 220, 140, 20);
-
-        txtTotal.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        txtTotal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jPanel1.add(txtTotal);
-        txtTotal.setBounds(290, 240, 180, 30);
 
         jLabel3.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel3.setText("Código");
@@ -425,11 +484,6 @@ public class FrmAuto extends FrmGenerica {
         });
         jPanel1.add(btnBuscarCodigo);
         btnBuscarCodigo.setBounds(110, 40, 30, 30);
-
-        jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        jLabel2.setText("Stock");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 300, 120, 19);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(null);
@@ -472,7 +526,7 @@ public class FrmAuto extends FrmGenerica {
         btnNuevo.setBounds(10, 5, 75, 30);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(20, 380, 200, 40);
+        jPanel2.setBounds(10, 570, 200, 40);
 
         cmbModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         cmbModelo.addItemListener(new java.awt.event.ItemListener() {
@@ -522,7 +576,7 @@ public class FrmAuto extends FrmGenerica {
         btnCancelar.setBounds(10, 10, 75, 23);
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(310, 380, 180, 40);
+        jPanel3.setBounds(350, 570, 180, 40);
 
         txtModelo.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtModelo.setForeground(new java.awt.Color(187, 187, 198));
@@ -545,60 +599,15 @@ public class FrmAuto extends FrmGenerica {
         jPanel1.add(jLabel6);
         jLabel6.setBounds(430, 80, 80, 19);
 
-        jLabel7.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
-        jLabel7.setText("$");
-        jPanel1.add(jLabel7);
-        jLabel7.setBounds(200, 240, 30, 30);
-
         jLabel8.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         jLabel8.setText("Marca");
         jPanel1.add(jLabel8);
         jLabel8.setBounds(210, 80, 120, 19);
 
-        txtCosto.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        txtCosto.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jPanel1.add(txtCosto);
-        txtCosto.setBounds(20, 240, 180, 30);
-
         txtAño.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtAño.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel1.add(txtAño);
         txtAño.setBounds(430, 100, 80, 30);
-
-        txtStock.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        txtStock.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jPanel1.add(txtStock);
-        txtStock.setBounds(20, 320, 80, 30);
-
-        btnCalcular.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnCalcular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/calcular.png"))); // NOI18N
-        btnCalcular.setMargin(new java.awt.Insets(1, 1, 1, 1));
-        btnCalcular.setMaximumSize(new java.awt.Dimension(61, 21));
-        btnCalcular.setMinimumSize(new java.awt.Dimension(61, 21));
-        btnCalcular.setPreferredSize(new java.awt.Dimension(61, 21));
-        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCalcularActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnCalcular);
-        btnCalcular.setBounds(220, 240, 30, 30);
-        btnCalcular.getAccessibleContext().setAccessibleDescription("");
-
-        jLabel9.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
-        jLabel9.setText("Costo");
-        jPanel1.add(jLabel9);
-        jLabel9.setBounds(20, 220, 120, 19);
-
-        jLabel10.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
-        jLabel10.setText("U°");
-        jPanel1.add(jLabel10);
-        jLabel10.setBounds(100, 320, 30, 30);
-
-        jLabel11.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
-        jLabel11.setText("$");
-        jPanel1.add(jLabel11);
-        jLabel11.setBounds(470, 240, 30, 30);
 
         cmbPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
         jPanel1.add(cmbPais);
@@ -617,18 +626,128 @@ public class FrmAuto extends FrmGenerica {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Auto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel1.add(jPanel6);
-        jPanel6.setBounds(10, 65, 520, 140);
+        jPanel6.setBounds(10, 65, 520, 250);
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Precio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 102, 204))); // NOI18N
+
+        txtTotal.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtTotal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
+        txtCosto.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtCosto.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
+        jLabel11.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
+        jLabel11.setText("$");
+
+        jLabel7.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
+        jLabel7.setText("$");
+
+        jLabel1.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        jLabel1.setText("Precio de Venta");
+        jLabel1.setRequestFocusEnabled(false);
+
+        jLabel9.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        jLabel9.setText("Costo");
+
+        btnCalcular.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnCalcular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/calcular.png"))); // NOI18N
+        btnCalcular.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        btnCalcular.setMaximumSize(new java.awt.Dimension(61, 21));
+        btnCalcular.setMinimumSize(new java.awt.Dimension(61, 21));
+        btnCalcular.setPreferredSize(new java.awt.Dimension(61, 21));
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(19, 19, 19))
+        );
+
+        btnCalcular.getAccessibleContext().setAccessibleDescription("");
+
         jPanel1.add(jPanel7);
-        jPanel7.setBounds(10, 205, 520, 80);
+        jPanel7.setBounds(10, 320, 520, 100);
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Stock", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 102, 204))); // NOI18N
+
+        txtStock.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtStock.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
+        jLabel2.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        jLabel2.setText("Stock");
+
+        jLabel10.setFont(new java.awt.Font("Bodoni MT", 0, 18)); // NOI18N
+        jLabel10.setText("U°");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 388, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         jPanel1.add(jPanel8);
-        jPanel8.setBounds(10, 285, 520, 80);
+        jPanel8.setBounds(10, 430, 520, 110);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(390, 10, 540, 430);
+        jPanel1.setBounds(390, 10, 540, 620);
 
         jPanel4.setLayout(null);
 
@@ -652,21 +771,7 @@ public class FrmAuto extends FrmGenerica {
         jScrollPane2.setViewportView(tblDatos);
 
         jPanel4.add(jScrollPane2);
-        jScrollPane2.setBounds(20, 90, 340, 280);
-
-        btnBuscar1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Search.png"))); // NOI18N
-        btnBuscar1.setText("Buscar");
-        btnBuscar1.setToolTipText("Buscar Tipo Servicio por denominación");
-        btnBuscar1.setBorderPainted(false);
-        btnBuscar1.setContentAreaFilled(false);
-        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnBuscar1);
-        btnBuscar1.setBounds(260, 50, 100, 30);
+        jScrollPane2.setBounds(20, 280, 340, 280);
 
         btnImprimir1.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         btnImprimir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PrinterChica.png"))); // NOI18N
@@ -680,18 +785,18 @@ public class FrmAuto extends FrmGenerica {
             }
         });
         jPanel4.add(btnImprimir1);
-        btnImprimir1.setBounds(250, 380, 110, 40);
+        btnImprimir1.setBounds(260, 570, 110, 40);
 
         txtBusquedaNombre.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtBusquedaNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jPanel4.add(txtBusquedaNombre);
-        txtBusquedaNombre.setBounds(20, 50, 240, 30);
+        txtBusquedaNombre.setBounds(20, 40, 150, 30);
         txtBusquedaNombre.getAccessibleContext().setAccessibleName("txtBusquedaNombre");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Auto");
+        jLabel4.setText("Año Fin");
         jPanel4.add(jLabel4);
-        jLabel4.setBounds(20, 20, 190, 20);
+        jLabel4.setBounds(20, 180, 190, 20);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel5.setMinimumSize(new java.awt.Dimension(190, 40));
@@ -736,15 +841,93 @@ public class FrmAuto extends FrmGenerica {
         jPanel5.add(btnEliminar);
 
         jPanel4.add(jPanel5);
-        jPanel5.setBounds(21, 380, 190, 40);
+        jPanel5.setBounds(10, 570, 190, 40);
         jPanel5.getAccessibleContext().setAccessibleDescription("");
 
+        txtFin.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtFin.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel4.add(txtFin);
+        txtFin.setBounds(20, 200, 150, 30);
+
+        txtInicio.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
+        txtInicio.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jPanel4.add(txtInicio);
+        txtInicio.setBounds(20, 120, 150, 30);
+
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        btnBuscar1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Search.png"))); // NOI18N
+        btnBuscar1.setText("Buscar");
+        btnBuscar1.setToolTipText("Buscar Tipo Servicio por denominación");
+        btnBuscar1.setBorderPainted(false);
+        btnBuscar1.setContentAreaFilled(false);
+        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar1ActionPerformed(evt);
+            }
+        });
+
+        CheckAño.setText("Año");
+
+        CheckPais.setText("Pais");
+
+        CheckMarca.setText("Marca");
+
+        CheckModelo.setText("Modelo");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addComponent(btnBuscar1)
+                .addGap(34, 34, 34))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addComponent(CheckPais)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CheckModelo))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addComponent(CheckAño)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CheckMarca)
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addComponent(btnBuscar1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckAño)
+                    .addComponent(CheckMarca))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CheckPais, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(CheckModelo, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(37, 37, 37))
+        );
+
+        jPanel4.add(jPanel9);
+        jPanel9.setBounds(200, 40, 170, 190);
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel13.setText("Auto");
+        jPanel4.add(jLabel13);
+        jLabel13.setBounds(20, 20, 190, 20);
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel14.setText("Año Inicio");
+        jPanel4.add(jLabel14);
+        jLabel14.setBounds(20, 100, 190, 20);
+
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(0, 10, 380, 430);
+        jPanel4.setBounds(0, 10, 380, 620);
 
         getAccessibleContext().setAccessibleName("Carg");
 
-        setBounds(150, 0, 954, 481);
+        setBounds(150, 0, 954, 670);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCodigoActionPerformed
@@ -854,7 +1037,7 @@ public class FrmAuto extends FrmGenerica {
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
         int busqueda=0;//busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
-        this.setBusqueda(busqueda);
+        this.setBusqueda(busqueda,this.CheckModelo.isSelected(),this.CheckMarca.isSelected(),this.CheckAño.isSelected(),this.CheckPais.isSelected());
         this.viewCamposEnabled(false);
         this.clearView();
     }//GEN-LAST:event_btnBuscar1ActionPerformed
@@ -882,6 +1065,10 @@ public class FrmAuto extends FrmGenerica {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox CheckAño;
+    private javax.swing.JCheckBox CheckMarca;
+    private javax.swing.JCheckBox CheckModelo;
+    private javax.swing.JCheckBox CheckPais;
     private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnBuscarCodigo;
     public javax.swing.JButton btnCalcular;
@@ -898,6 +1085,8 @@ public class FrmAuto extends FrmGenerica {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -914,12 +1103,15 @@ public class FrmAuto extends FrmGenerica {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblDatos;
     private javax.swing.JTextField txtAño;
     private javax.swing.JTextField txtBusquedaNombre;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCosto;
+    private javax.swing.JTextField txtFin;
+    private javax.swing.JTextField txtInicio;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtPais;
