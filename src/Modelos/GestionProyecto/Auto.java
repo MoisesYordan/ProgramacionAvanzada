@@ -30,8 +30,17 @@ public class Auto implements Comparable<Auto> ,Serializable{
     private int total;
     private String año;
     private String marca;
+    private int ganancia;
     @OneToOne (targetEntity = Pais.class, cascade= CascadeType.ALL,fetch=FetchType.LAZY)
     private Pais pais; //----> para mi deberia ser un objeto pais de tipo pais  
+
+    public int getGanancia() {
+        return ganancia;
+    }
+
+    public void setGanancia(int ganancia) {
+        this.ganancia = ganancia;
+    }
     
     public long getId() {
         return id;
@@ -126,7 +135,7 @@ public class Auto implements Comparable<Auto> ,Serializable{
     
     }
 
-    public Auto(long id, int codigo, Modelo modelo, String marca,  String año, int costo, int total, int stock, Pais pais) {
+    public Auto(long id, int codigo, Modelo modelo, String marca,  String año, int costo, int total, int stock, Pais pais, int ganancia) {
         this.id =id;
         this.codigo = codigo;
         this.modelo = modelo;
@@ -136,6 +145,7 @@ public class Auto implements Comparable<Auto> ,Serializable{
         this.total=total;
         this.stock=stock;
         this.pais = pais;
+        this.ganancia=ganancia;
     }
     
     @Override

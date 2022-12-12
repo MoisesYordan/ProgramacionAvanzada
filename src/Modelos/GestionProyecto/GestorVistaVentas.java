@@ -243,7 +243,7 @@ public class GestorVistaVentas extends GestorVista  {
     
 // busquedas, iteradores y otras 
     public List <Ventas> listarVentas(){   
-        return this.listarClase(Ventas.class,"auto");
+        return this.listarClase(Ventas.class,"auto",0);
     }
 
     public int getUltimoCodigo() {

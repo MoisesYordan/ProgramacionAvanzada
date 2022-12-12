@@ -113,6 +113,7 @@ public class GestorVistaAuto extends GestorVista  {
             this.getModel().setCosto(this.getForm().convertirAIntCosto());
             this.getModel().setTotal(this.getForm().convertirAIntTotal());
             this.getModel().setStock(this.getForm().convertirAIntCantidad());
+            this.getModel().setGanancia(this.getForm().calcularGanancia());
             return 0;
         } else {
             return 1;
@@ -220,8 +221,8 @@ public class GestorVistaAuto extends GestorVista  {
     
     //lista para un combo box
     public List <Auto> listarAutos(){   
-        return getSession().createCriteria(Auto.class).list();
-      //  return this.listarClase(Auto.class,"modelo");
+        //return getSession().createCriteria(Auto.class).list();
+      return this.listarClase(Auto.class,"modelo",0);
     }
     
     public DefaultComboBoxModel getComboModelAuto() {      

@@ -342,7 +342,12 @@ public class FrmAuto extends FrmGenerica {
        this.getGestorVista().getView();
     }  
     
-
+    public int calcularGanancia(){
+        int a= Integer.parseInt(getTxtTotal().getText());
+        int b= Integer.parseInt(getTxtCosto().getText());
+        int ganancia= (a-b);
+        return ganancia;
+    }
 //llenado de tablas
     public void setBusqueda(int busqueda,boolean mod, boolean marc, boolean año, boolean pais) {
         int ord = 0;
