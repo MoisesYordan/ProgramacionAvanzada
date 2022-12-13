@@ -79,10 +79,12 @@ public String path;
         TxtFechaFin = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
-        RbtnCantidadEmpleado = new javax.swing.JRadioButton();
+        jRbtnCantidadEmpleado = new javax.swing.JRadioButton();
         jRadioButton6 = new javax.swing.JRadioButton();
         jRadioButton7 = new javax.swing.JRadioButton();
         jRadioButton8 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
 
         jButton3.setText("Imprimir");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -104,11 +106,11 @@ public String path;
             }
         });
 
-        buttonGroup1.add(RbtnCantidadEmpleado);
-        RbtnCantidadEmpleado.setText("Ranking cantidad de ventas por empleado");
-        RbtnCantidadEmpleado.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jRbtnCantidadEmpleado);
+        jRbtnCantidadEmpleado.setText("Ranking cantidad de ventas por empleado");
+        jRbtnCantidadEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RbtnCantidadEmpleadoActionPerformed(evt);
+                jRbtnCantidadEmpleadoActionPerformed(evt);
             }
         });
 
@@ -136,6 +138,22 @@ public String path;
             }
         });
 
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setText("Ranking Ganancia por empleado ");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setText("Ranking Ganancia por marca");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -149,18 +167,21 @@ public String path;
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton6)
-                            .addComponent(RbtnCantidadEmpleado)
-                            .addComponent(jRadioButton7)
-                            .addComponent(jRadioButton8))
-                        .addGap(33, 33, 33))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                    .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jRadioButton6)
+                                .addComponent(jRbtnCantidadEmpleado)
+                                .addComponent(jRadioButton7)
+                                .addComponent(jRadioButton8))
+                            .addGap(33, 33, 33))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap()))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,24 +191,25 @@ public String path;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RbtnCantidadEmpleado))
+                    .addComponent(jRbtnCantidadEmpleado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton6)
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jRadioButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jRadioButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TxtFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButton8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(TxtFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -216,22 +238,6 @@ public String path;
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void RbtnCantidadEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbtnCantidadEmpleadoActionPerformed
-       this.path= "src/ireport/reportCantidadEmpleado.jasper";
-    }//GEN-LAST:event_RbtnCantidadEmpleadoActionPerformed
-
-    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
-        this.path = "src/ireport/reportCantidadMarca.jasper";
-    }//GEN-LAST:event_jRadioButton6ActionPerformed
-
-    private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
-        this.path = "src/ireport/reportTotalEmpleado.jasper";
-    }//GEN-LAST:event_jRadioButton7ActionPerformed
-
-    private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
-        this.path = "src/ireport/reportTotalMarca.jasper";
-    }//GEN-LAST:event_jRadioButton8ActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         int n = 0;
         if (this.getGestorVista().isNuevo() || this.getGestorVista().isOnlyRead())
@@ -243,9 +249,32 @@ public String path;
             this.dispose();}
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
+        this.path = "src/ireport/reportCantidadMarca.jasper";
+    }//GEN-LAST:event_jRadioButton6ActionPerformed
+
+    private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
+        this.path = "src/ireport/reportTotalEmpleado.jasper";
+    }//GEN-LAST:event_jRadioButton7ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        this.path = "src/ireport/reportGananciaXempleado.jasper";
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
+        this.path = "src/ireport/reportTotalMarca.jasper";
+    }//GEN-LAST:event_jRadioButton8ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        this.path = "src/ireport/reportGananciaXMarca.jasper";
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRbtnCantidadEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRbtnCantidadEmpleadoActionPerformed
+        this.path= "src/ireport/reportCantidadEmpleado.jasper";
+    }//GEN-LAST:event_jRbtnCantidadEmpleadoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton RbtnCantidadEmpleado;
     private javax.swing.JTextField TxtFechaFin;
     private javax.swing.JTextField TxtFechaIni;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -254,8 +283,11 @@ public String path;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioButton8;
+    private javax.swing.JRadioButton jRbtnCantidadEmpleado;
     // End of variables declaration//GEN-END:variables
 }

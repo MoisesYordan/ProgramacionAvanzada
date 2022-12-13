@@ -463,7 +463,7 @@ public class FrmVentas extends FrmGenerica {
         }
     }
     
-     public void llenadoCmbAutos(){
+    public void llenadoCmbAutos(){
         Auto auto = (Auto) cmbAuto.getSelectedItem();
         txtModelo.setText(auto.getModelo().toString());   
         txtMarca.setText(auto.getMarca());  
@@ -479,11 +479,13 @@ public class FrmVentas extends FrmGenerica {
 //        int stock = this.gestorVista.convertirToInteger(this.gestorVista.getGestorAuto().getForm().getTxtStock());//stock que tengo por auto
 //        int total2=stock-cantidad;//total2 sirve para saber si tengo Stock o no
 //        if(total2<0){
-            Double impuesto=Double.parseDouble( auto.getPais().getImpuesto());
-            Double total= Double.parseDouble( auto.convertirAStringTotal());
-            total= total+(total*cantidad*(impuesto/100));
+            int impuesto=Integer.parseInt( auto.getPais().getImpuesto());
+            int total= Integer.parseInt( auto.convertirAStringTotal());
+            int total1= (total*cantidad);
+            int total2=((total1*impuesto)/100);
+            int total3=(total1+total2);
             txtImpuesto.setText(auto.getPais().getImpuesto()); 
-            txtTotal.setText(Math.round(total) +"");
+            txtTotal.setText((total3) +"");
 //            JTextField total3 = new JTextField(total2);//total3 lo uso unicamentee para convertir el int a JTextField
 //            this.gestorVista.getGestorAuto().getForm().setTxtStock(total3);
 //        }else{
@@ -1052,7 +1054,24 @@ public class FrmVentas extends FrmGenerica {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        this.saveView();
+       Auto auto = (Auto) cmbAuto.getSelectedItem();
+       if((auto.getStock()-this.convertirAIntCantidad())==0){
+           auto.setEstado(1);
+           this.saveView();
+       }
+       if ((auto.getStock()-this.convertirAIntCantidad())>0){
+           System.out.print(auto.getStock());
+           System.out.print(this.convertirAIntCantidad());
+           int i= (auto.getStock()-this.convertirAIntCantidad());
+           auto.setStock(i);
+           this.saveView();
+       }
+       if ((auto.getStock()-this.convertirAIntCantidad())<0){
+          JOptionPane.showMessageDialog(null, "NO HAY STOCK","Validación de Datos",JOptionPane.WARNING_MESSAGE);
+          
+       }
+        
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
