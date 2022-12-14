@@ -720,10 +720,20 @@ public class FrmVentas extends FrmGenerica {
 
         txtMontoInicial.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtMontoInicial.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtMontoInicial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMontoInicialKeyTyped(evt);
+            }
+        });
         jPanel4.add(txtMontoInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 240, 30));
 
         txtMontoFinal.setFont(new java.awt.Font("Bodoni MT", 0, 14)); // NOI18N
         txtMontoFinal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtMontoFinal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMontoFinalKeyTyped(evt);
+            }
+        });
         jPanel4.add(txtMontoFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 240, 30));
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -1190,6 +1200,18 @@ public class FrmVentas extends FrmGenerica {
     private void cmbAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbAutoActionPerformed
+
+    private void txtMontoInicialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoInicialKeyTyped
+        if ((txtMontoInicial.getText().length())>=9){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMontoInicialKeyTyped
+
+    private void txtMontoFinalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoFinalKeyTyped
+          if ((txtMontoFinal.getText().length())>=9){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMontoFinalKeyTyped
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
