@@ -6,6 +6,7 @@ import Vistas.FrmPrincipal2;
 import ireport.FrmReporte;
 import ireport.GestorDeReportes;
 import java.awt.HeadlessException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -472,7 +473,16 @@ public class FrmVentas extends FrmGenerica {
         txtPrecioUnitario.setText(auto.convertirAStringTotal());
         btnCalcular.setEnabled(true); 
      }
-     
+    public static boolean validarFecha(String fecha) {
+        try {
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy/MM/dd");
+            formatoFecha.setLenient(false);
+            formatoFecha.parse(fecha);
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
+    }
     public void calcularTotal(){
         Auto auto = (Auto) cmbAuto.getSelectedItem();
         int cantidad = Integer.parseInt(txtCantidad.getText());//cantidad ingresada
@@ -1106,8 +1116,39 @@ public class FrmVentas extends FrmGenerica {
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
         int busqueda=0;//busqueda=> 0=lupa de buscar ------   1= el candado de buscarCodigo
-        this.clearView();       
-        this.setBusqueda(busqueda,this.CheckModelo.isSelected(),this.CheckMarca.isSelected(),this.CheckPrecioDeVenta.isSelected(),this.CheckFechaDeVenta.isSelected());
+         boolean monto1=false;
+         boolean monto2=false;
+         boolean fecha1=false;
+         boolean fecha2=false;
+         boolean fechacont=false;
+         boolean montocont=false;
+        this.clearView();
+        if(!"".equals(this.txtInicio.getText())&&!"".equals(this.txtFin.getText())){
+            String fechaIni= this.getTxtInicio().getText();
+            fecha1=validarFecha(fechaIni);
+            String fechaFin= this.getTxtFin().getText();
+            fecha2=validarFecha(fechaFin);
+            fechacont=true;
+        }
+        if(!"".equals(this.txtMontoInicial.getText())&&(!"".equals(this.txtMontoFinal.getText()))){
+            String montoIni= this.getTxtMontoInicial().getText();
+            monto1=this.getGestorVista().validarNumeros(montoIni);
+            String montoFin= this.getTxtMontoFinal().getText();
+            monto2=this.getGestorVista().validarNumeros(montoFin);
+            montocont=true;
+        }
+        if((monto1==true)&&(monto2==true)&&((fecha1==true)&&(fecha2==true))){
+            this.setBusqueda(busqueda,this.CheckModelo.isSelected(),this.CheckMarca.isSelected(),this.CheckPrecioDeVenta.isSelected(),this.CheckFechaDeVenta.isSelected());
+        }
+        else if(((monto1==false)||(monto2==false))&&(montocont==true)){
+            JOptionPane.showMessageDialog(null, "MONTO MAL INGRESADO","Validación de Datos",JOptionPane.WARNING_MESSAGE);  
+        }
+        else if(((fecha1==false)||(fecha2==false))&&(fechacont==true)){
+            JOptionPane.showMessageDialog(null, "FECHA MAL INGRESADA","Validación de Datos",JOptionPane.WARNING_MESSAGE);
+        }
+        else if((montocont==false)||(fechacont==false)){
+            this.setBusqueda(busqueda,this.CheckModelo.isSelected(),this.CheckMarca.isSelected(),this.CheckPrecioDeVenta.isSelected(),this.CheckFechaDeVenta.isSelected());
+        }
         this.viewCamposEnabled(false);
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 

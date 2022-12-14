@@ -7,6 +7,8 @@ package ireport;
 
 import Modelos.GestionProyecto.GestorVistaVentas;
 import Vistas.FrmGenerica;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -228,16 +230,33 @@ public String path;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        boolean res1=true;
+        boolean res2=true;
         String fechaIni= this.getTxtFechaIni().getText();
+        res1=validarFecha(fechaIni);
         String fechaFin= this.getTxtFechaFin().getText();
-        Map parametro = new HashMap();
-        parametro.put("fechaIni",fechaIni);
-        parametro.put("fechaFin",fechaFin);
-        this.gestorDeReportes = new GestorDeReportes(path, this.gestorVista.getSession2(),parametro);
-        gestorDeReportes.imprimir();
+        res2=validarFecha(fechaFin);
+        if((res1==true)&&(res2==true)){
+            Map parametro = new HashMap();
+            parametro.put("fechaIni",fechaIni);
+            parametro.put("fechaFin",fechaFin);
+            this.gestorDeReportes = new GestorDeReportes(path, this.gestorVista.getSession2(),parametro);
+            gestorDeReportes.imprimir();             }
+        else{
+            JOptionPane.showMessageDialog(null, "FECHA MAL INGRESADA","Validación de Datos",JOptionPane.WARNING_MESSAGE);
+        }
         
     }//GEN-LAST:event_jButton3ActionPerformed
-
+    public static boolean validarFecha(String fecha) {
+        try {
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy/MM/dd");
+            formatoFecha.setLenient(false);
+            formatoFecha.parse(fecha);
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
+    }
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         int n = 0;
         if (this.getGestorVista().isNuevo() || this.getGestorVista().isOnlyRead())

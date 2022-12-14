@@ -3,7 +3,6 @@ package Vistas;
 import Interfaz.Vistas;
 
 public class FrmGenerica extends javax.swing.JInternalFrame  implements Vistas {
-
     
     /** Creates new form FrmGenerica */
     public FrmGenerica() {
