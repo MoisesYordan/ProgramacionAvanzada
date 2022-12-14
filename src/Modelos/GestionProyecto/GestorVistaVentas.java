@@ -131,6 +131,7 @@ public class GestorVistaVentas extends GestorVista  {
             this.getModel().setAño(this.getForm().getTxtAño().getText());
             
             this.getModel().setCantidad(this.getForm().convertirAIntCantidad());
+            this.getModel().setGananciatotal(this.getForm().calcularGanancia());
             this.getModel().setImpuesto(this.getForm().getTxtImpuesto().getText());
             
             this.getModel().setTotal(this.getForm().convertirAInt());

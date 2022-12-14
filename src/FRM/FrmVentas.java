@@ -483,6 +483,13 @@ public class FrmVentas extends FrmGenerica {
         }
         return true;
     }
+    public int calcularGanancia(){
+    Auto auto = (Auto) cmbAuto.getSelectedItem();
+    int ganancia=(auto.getGanancia());
+    int cantidad=(this.convertirAIntCantidad());
+    int total =(ganancia*cantidad);
+    return total;
+    }
     public void calcularTotal(){
         Auto auto = (Auto) cmbAuto.getSelectedItem();
         int cantidad = Integer.parseInt(txtCantidad.getText());//cantidad ingresada
@@ -1075,20 +1082,25 @@ public class FrmVentas extends FrmGenerica {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
        Auto auto = (Auto) cmbAuto.getSelectedItem();
-       if((auto.getStock()-this.convertirAIntCantidad())==0){
+       boolean a= false;
+       if(((auto.getStock()-this.convertirAIntCantidad())==0)&&(a==false)){
            auto.setEstado(1);
+           int i= (auto.getStock()-this.convertirAIntCantidad());
+           auto.setStock(i);
            this.saveView();
+           a=true;
        }
-       if ((auto.getStock()-this.convertirAIntCantidad())>0){
+       if (((auto.getStock()-this.convertirAIntCantidad())>0)&&(a==false)){
            System.out.print(auto.getStock());
            System.out.print(this.convertirAIntCantidad());
            int i= (auto.getStock()-this.convertirAIntCantidad());
            auto.setStock(i);
            this.saveView();
+           a=true;
        }
-       if ((auto.getStock()-this.convertirAIntCantidad())<0){
+       if (((auto.getStock()-this.convertirAIntCantidad())<0)&&(a==false)){
           JOptionPane.showMessageDialog(null, "NO HAY STOCK","Validación de Datos",JOptionPane.WARNING_MESSAGE);
-          
+          a=true;
        }
         
         

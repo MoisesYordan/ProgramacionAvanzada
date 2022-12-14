@@ -31,6 +31,7 @@ public class Ventas implements Comparable, Serializable {
     private int cantidad;
     private String impuesto;
     private int total;
+    private int gananciatotal;
     
     private String obvservaciones;
     private String fechaDeVenta;
@@ -39,6 +40,14 @@ public class Ventas implements Comparable, Serializable {
     private Empleado empleado;
     @OneToOne (targetEntity = Cliente.class, cascade= CascadeType.ALL,fetch=FetchType.LAZY)
     private Cliente cliente;
+
+    public int getGananciatotal() {
+        return gananciatotal;
+    }
+
+    public void setGananciatotal(int gananciatotal) {
+        this.gananciatotal = gananciatotal;
+    }
     
     public long getId() {
         return id;
@@ -172,7 +181,7 @@ public class Ventas implements Comparable, Serializable {
     public Ventas() {
         
     }
-    public Ventas(long id, int codigo, String modelo, String marca,String pais, String año,Empleado empleado, Cliente cliente, String fechaDeVenta, String obvservaciones, int total, int cantidad, String impuesto) {
+    public Ventas(long id, int codigo, String modelo, String marca,String pais, String año,Empleado empleado, Cliente cliente, String fechaDeVenta, String obvservaciones, int total, int cantidad, String impuesto,int gananciatotal) {
         this.id = id;
         this.codigo = codigo;
         this.modelo = modelo;
@@ -186,6 +195,7 @@ public class Ventas implements Comparable, Serializable {
         this.total = total;
         this.cantidad = cantidad;
         this.impuesto = impuesto;
+        this.gananciatotal=gananciatotal;
     }
      @Override
     public String toString() {
