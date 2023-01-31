@@ -484,23 +484,18 @@ public class FrmVentas extends FrmGenerica {
         return true;
     }
     public int calcularGanancia(){
-    Auto auto = (Auto) cmbAuto.getSelectedItem();
-    int ganancia=(auto.getGanancia());
-    int cantidad=(this.convertirAIntCantidad());
-    int total =(ganancia*cantidad);
-    return total;
+        Auto auto = (Auto) cmbAuto.getSelectedItem();
+        int ganancia=(auto.getGanancia());
+        int cantidad=(this.convertirAIntCantidad());
+        int total=this.gestorVista.calcularGanancia(ganancia,cantidad);
+        return total;
     }
     public void calcularTotal(){
         Auto auto = (Auto) cmbAuto.getSelectedItem();
         int cantidad = Integer.parseInt(txtCantidad.getText());//cantidad ingresada
-//        int stock = this.gestorVista.convertirToInteger(this.gestorVista.getGestorAuto().getForm().getTxtStock());//stock que tengo por auto
-//        int total2=stock-cantidad;//total2 sirve para saber si tengo Stock o no
-//        if(total2<0){
             int impuesto=Integer.parseInt( auto.getPais().getImpuesto());
             int total= Integer.parseInt( auto.convertirAStringTotal());
-            int total1= (total*cantidad);
-            int total2=((total1*impuesto)/100);
-            int total3=(total1+total2);
+            int total3= this.gestorVista.calcularTotal(cantidad, impuesto, total);
             txtImpuesto.setText(auto.getPais().getImpuesto()); 
             txtTotal.setText((total3) +"");
 //            JTextField total3 = new JTextField(total2);//total3 lo uso unicamentee para convertir el int a JTextField

@@ -122,6 +122,16 @@ public class GestorVistaVentas extends GestorVista  {
 //        
 //        return fechadefactura;
 //    }
+    public int calcularGanancia(int ganancia, int cantidad){
+        int total =(ganancia*cantidad);
+        return total;
+    }
+   public int calcularTotal(int cantidad, int impuesto, int total){
+       int total1= (total*cantidad);
+       int total2=((total1*impuesto)/100);
+       int total3=(total1+total2);
+       return total3;  
+   }
     @Override
     public int setModel() {
         if (this.isDatosValidos()) {
