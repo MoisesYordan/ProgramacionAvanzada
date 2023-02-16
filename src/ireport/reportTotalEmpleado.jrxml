@@ -329,7 +329,7 @@ GROUP BY nombre  ORDER BY total DESC;]]>
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="162" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<textField>
 				<reportElement x="24" y="0" width="100" height="20"/>
 				<textElement textAlignment="Center"/>

@@ -300,6 +300,7 @@ public class FrmEmpleado extends FrmGenerica {
         SimpleDateFormat dFormat= new SimpleDateFormat("dd-MM-yyyy");
         String fechaNacimiento= dFormat.format(datoFechaNacimiento.getDate());
         this.txtFechaDeNacimiento.setText(fechaNacimiento);
+        
 
     }
      /** Este método se llama desde dentro del constructor para inicializar el formulario.
